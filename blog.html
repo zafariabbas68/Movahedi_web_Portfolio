@@ -1,0 +1,2403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Blog | Najibeh Movahedi - Interior Architect & Spatial Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Clean, elegant fonts from portfolio page -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ==================== DOME-INSPIRED COLOR PALETTE (FROM PORTFOLIO) ==================== */
+        :root {
+            /* Sophisticated minimalist palette - EXACT from portfolio */
+            --dome-black: #0A0A0A;
+            --dome-dark: #1A1A1A;
+            --dome-gray: #8C8C8C;
+            --dome-light: #F5F5F5;
+            --dome-white: #FFFFFF;
+            --dome-accent: #CC5500; /* Dark orange from portfolio */
+            --dome-border: rgba(0, 0, 0, 0.08);
+            --dome-hover: rgba(204, 85, 0, 0.1);
+        }
+
+        /* ==================== BASE STYLES (EXACT FROM PORTFOLIO) ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dome-black);
+            background-color: var(--dome-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: 0.3px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            position: relative;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        /* ==================== DOME-STYLE NAVIGATION (EXACT FROM PORTFOLIO) ==================== */
+        .navbar {
+            background: var(--dome-white);
+            padding: 25px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--dome-border);
+        }
+
+        .navbar.scrolled {
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo - Clean and minimal (EXACT from portfolio) */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-container:hover {
+            opacity: 0.8;
+        }
+
+        .logo-symbol {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            background: var(--dome-black);
+            color: var(--dome-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .logo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--dome-black);
+            letter-spacing: 0.5px;
+        }
+
+        /* Menu toggle button - DOME style (EXACT from portfolio) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--dome-black);
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .menu-toggle:not(.active) span {
+            background: var(--dome-black);
+        }
+
+        .menu-toggle.active span {
+            background: var(--dome-white);
+        }
+
+        /* Navigation Links - Desktop (EXACT from portfolio) */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dome-black);
+            font-weight: 400;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+            text-transform: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--dome-accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--dome-accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Mobile Navigation Menu (EXACT from portfolio) */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--dome-black);
+            z-index: 999;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 40px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.4s ease;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            text-align: center;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 30px;
+        }
+
+        .mobile-nav-links a {
+            color: var(--dome-white);
+            font-size: 2rem;
+            font-weight: 400;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--dome-accent);
+        }
+
+        /* ==================== ACADEMIC BLOG HERO SECTION ==================== */
+        .blog-hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 120px;
+            background: var(--dome-dark);
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .blog-hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
+                        url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .blog-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            color: var(--dome-white);
+            padding: 60px 0;
+        }
+
+        .blog-page-title {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .blog-hero-description {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 50px;
+            max-width: 700px;
+            line-height: 1.8;
+            font-weight: 300;
+            padding-left: 20px;
+            border-left: 3px solid var(--dome-accent);
+        }
+
+        /* Academic badge - DOME style */
+        .academic-badge {
+            display: inline-block;
+            background: rgba(204, 85, 0, 0.2);
+            border: 1px solid rgba(204, 85, 0, 0.4);
+            color: var(--dome-accent);
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+            animation: pulse 2s infinite;
+        }
+
+        /* ==================== BUTTONS (EXACT FROM PORTFOLIO) ==================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: 1px;
+            border: 1px solid var(--dome-white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: var(--dome-white);
+        }
+
+        .btn:hover {
+            background: var(--dome-white);
+            color: var(--dome-black);
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background: var(--dome-accent);
+            border-color: var(--dome-accent);
+        }
+
+        .btn-primary:hover {
+            background: var(--dome-white);
+            color: var(--dome-accent);
+            border-color: var(--dome-white);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--dome-black);
+            border: 1px solid var(--dome-border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            border-color: var(--dome-accent);
+        }
+
+        /* ==================== BLOG FILTERS ==================== */
+        .blog-filters-container {
+            padding: 40px 0;
+            background: var(--dome-light);
+            border-bottom: 1px solid var(--dome-border);
+        }
+
+        .blog-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 28px;
+            background: rgba(204, 85, 0, 0.1);
+            border: 1px solid rgba(204, 85, 0, 0.2);
+            color: var(--dome-accent);
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .filter-btn:hover {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            box-shadow: 0 4px 15px rgba(204, 85, 0, 0.3);
+        }
+
+        /* ==================== BLOG ARTICLES SECTION ==================== */
+        .blog-articles {
+            padding: 100px 0;
+            background: var(--dome-white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: var(--dome-black);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--dome-accent);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--dome-gray);
+            max-width: 800px;
+            margin: 30px auto 0;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* Featured Article - DOME Style */
+        .featured-article {
+            background: var(--dome-light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--dome-border);
+            margin-bottom: 80px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .featured-article:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
+            border-color: var(--dome-accent);
+        }
+
+        .featured-image {
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .featured-article:hover .featured-image img {
+            transform: scale(1.05);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(204, 85, 0, 0.3);
+        }
+
+        .featured-content {
+            padding: 60px;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dome-gray);
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .meta-item i {
+            color: var(--dome-accent);
+            transition: all 0.3s ease;
+        }
+
+        .featured-article:hover .meta-item i {
+            transform: scale(1.1);
+        }
+
+        .featured-content h3 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: var(--dome-black);
+            font-weight: 400;
+            line-height: 1.3;
+            transition: all 0.3s ease;
+        }
+
+        .featured-article:hover .featured-content h3 {
+            color: var(--dome-accent);
+        }
+
+        .featured-excerpt {
+            color: var(--dome-gray);
+            line-height: 1.7;
+            margin-bottom: 35px;
+            font-size: 1.15rem;
+        }
+
+        .featured-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .tag {
+            font-size: 0.85rem;
+            padding: 8px 20px;
+            border-radius: 20px;
+            background: rgba(204, 85, 0, 0.1);
+            color: var(--dome-accent);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .featured-article:hover .tag {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            border-color: var(--dome-accent);
+        }
+
+        /* ==================== ARCHITECTURAL VISUALIZATIONS SECTION ==================== */
+        .visualizations-section {
+            padding: 100px 0;
+            background: var(--dome-light);
+            border-top: 1px solid var(--dome-border);
+            border-bottom: 1px solid var(--dome-border);
+        }
+
+        .visualizations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .visualization-post {
+            background: var(--dome-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--dome-border);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .visualization-post:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+            border-color: var(--dome-accent);
+        }
+
+        .visualization-image {
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visualization-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .visualization-post:hover .visualization-image img {
+            transform: scale(1.05);
+        }
+
+        .visualization-content {
+            padding: 40px;
+        }
+
+        .visualization-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .visualization-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--dome-gray);
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .visualization-meta-item i {
+            color: var(--dome-accent);
+            transition: all 0.3s ease;
+        }
+
+        .visualization-post:hover .visualization-meta-item i {
+            transform: scale(1.1);
+        }
+
+        .visualization-content h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--dome-black);
+            font-weight: 500;
+            line-height: 1.4;
+            transition: all 0.3s ease;
+        }
+
+        .visualization-post:hover .visualization-content h3 {
+            color: var(--dome-accent);
+        }
+
+        .visualization-content p {
+            color: var(--dome-gray);
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        .visualization-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .visualization-tag {
+            font-size: 0.85rem;
+            padding: 8px 20px;
+            border-radius: 20px;
+            background: rgba(204, 85, 0, 0.1);
+            color: var(--dome-accent);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .visualization-post:hover .visualization-tag {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            border-color: var(--dome-accent);
+        }
+
+        .view-project {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dome-accent);
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .view-project i {
+            transition: all 0.3s ease;
+        }
+
+        .view-project:hover {
+            gap: 15px;
+            color: var(--dome-black);
+        }
+
+        .view-project:hover i {
+            transform: translateX(5px);
+        }
+
+        /* ==================== RESEARCH CATEGORIES SECTION ==================== */
+        .categories-section {
+            padding: 100px 0;
+            background: var(--dome-white);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: var(--dome-light);
+            padding: 50px 40px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            cursor: pointer;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--dome-accent);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--dome-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: var(--dome-white);
+            font-size: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-card:hover .category-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 30px rgba(204, 85, 0, 0.3);
+        }
+
+        .category-card h3 {
+            font-size: 2rem;
+            color: var(--dome-black);
+            margin-bottom: 20px;
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover h3 {
+            color: var(--dome-accent);
+        }
+
+        .category-card p {
+            color: var(--dome-gray);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-count {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--dome-white);
+            color: var(--dome-accent);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid var(--dome-border);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover .category-count {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            border-color: transparent;
+        }
+
+        /* ==================== ARTICLE MODAL ==================== */
+        .article-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dome-white);
+            z-index: 2000;
+            overflow-y: auto;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .article-modal.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .modal-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--dome-white);
+            z-index: 3000;
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid var(--dome-border);
+        }
+
+        .modal-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-back-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dome-black);
+            background: none;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .modal-back-btn:hover {
+            background: rgba(204, 85, 0, 0.1);
+            color: var(--dome-accent);
+            transform: translateX(-5px);
+        }
+
+        .modal-back-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .modal-back-btn:hover i {
+            transform: translateX(-3px);
+        }
+
+        .modal-header {
+            padding: 140px 0 60px;
+            background: var(--dome-light);
+            border-bottom: 1px solid var(--dome-border);
+        }
+
+        .modal-header-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .modal-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            color: var(--dome-black);
+            line-height: 1.1;
+            font-weight: 300;
+        }
+
+        .modal-subtitle {
+            font-size: 1.5rem;
+            color: var(--dome-gray);
+            line-height: 1.6;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        .modal-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .modal-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--dome-gray);
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .modal-meta-item i {
+            color: var(--dome-accent);
+            font-size: 1.2rem;
+        }
+
+        .modal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 60px;
+        }
+
+        .modal-tag {
+            padding: 10px 24px;
+            background: var(--dome-light);
+            color: var(--dome-accent);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid var(--dome-border);
+            transition: all 0.3s ease;
+        }
+
+        .modal-tag:hover {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        .modal-hero-image {
+            width: 100%;
+            max-height: 70vh;
+            overflow: hidden;
+            border-radius: 12px;
+            margin: 50px 0 80px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--dome-border);
+        }
+
+        .modal-hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .modal-hero-image:hover img {
+            transform: scale(1.02);
+        }
+
+        .modal-content {
+            padding: 80px 0;
+        }
+
+        .modal-content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            margin-bottom: 80px;
+        }
+
+        .modal-section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--dome-black);
+            position: relative;
+            padding-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .modal-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--dome-accent);
+        }
+
+        .modal-text-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--dome-black);
+            margin-bottom: 40px;
+        }
+
+        .modal-text-content p {
+            margin-bottom: 30px;
+        }
+
+        .modal-text-content ul {
+            margin-left: 30px;
+            margin-bottom: 30px;
+        }
+
+        .modal-text-content li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .modal-text-content li::before {
+            content: '•';
+            color: var(--dome-accent);
+            position: absolute;
+            left: -15px;
+            font-size: 1.5rem;
+        }
+
+        /* ==================== DESIGN VISUALIZATIONS GALLERY ==================== */
+        .design-visualizations-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            margin: 60px 0;
+        }
+
+        .visualization-item {
+            background: var(--dome-light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--dome-border);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .visualization-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+            border-color: var(--dome-accent);
+        }
+
+        .visualization-item.featured {
+            border: 2px solid var(--dome-accent);
+            box-shadow: 0 30px 60px rgba(204, 85, 0, 0.1);
+        }
+
+        .visualization-item.featured:hover {
+            box-shadow: 0 40px 80px rgba(204, 85, 0, 0.15);
+        }
+
+        .visualization-image-container {
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+            position: relative;
+            background: var(--dome-white);
+        }
+
+        .visualization-item.featured .visualization-image-container {
+            height: 700px;
+        }
+
+        .high-quality-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            transition: transform 0.5s ease;
+            padding: 30px;
+        }
+
+        .visualization-item:hover .high-quality-image {
+            transform: scale(1.03);
+        }
+
+        .visualization-caption {
+            padding: 40px;
+            background: var(--dome-white);
+            border-top: 1px solid var(--dome-border);
+        }
+
+        .visualization-item.featured .visualization-caption {
+            background: rgba(204, 85, 0, 0.05);
+        }
+
+        .caption-label {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(204, 85, 0, 0.2);
+        }
+
+        .visualization-caption h3 {
+            font-size: 2.2rem;
+            color: var(--dome-black);
+            margin-bottom: 20px;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .visualization-caption p {
+            color: var(--dome-gray);
+            line-height: 1.7;
+            font-size: 1.15rem;
+            margin: 0;
+        }
+
+        .highlight-box {
+            background: rgba(204, 85, 0, 0.05);
+            border-left: 4px solid var(--dome-accent);
+            padding: 40px;
+            margin: 60px 0;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: var(--dome-black);
+            font-size: 1.4rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==================== FOOTER (EXACT FROM PORTFOLIO) ==================== */
+        .footer {
+            background: var(--dome-black);
+            color: var(--dome-white);
+            padding: 100px 0 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .footer-logo-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo-symbol {
+            width: 40px;
+            height: 40px;
+            background: var(--dome-white);
+            color: var(--dome-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 300;
+        }
+
+        .footer-signature {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--dome-white);
+        }
+
+        .footer-about {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dome-white);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--dome-white);
+            color: var(--dome-black);
+            border-color: var(--dome-white);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            color: var(--dome-white);
+            font-weight: 500;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--dome-white);
+            padding-left: 5px;
+        }
+
+        .footer-contact li {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .footer-contact i {
+            color: var(--dome-accent);
+            margin-top: 3px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(204, 85, 0, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(204, 85, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(204, 85, 0, 0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .animate-left {
+            opacity: 0;
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        .animate-right {
+            opacity: 0;
+            animation: slideInRight 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* ==================== RESPONSIVE STYLES ==================== */
+        @media (max-width: 1200px) {
+            .blog-page-title {
+                font-size: 3.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 2fr 1fr;
+            }
+
+            .visualizations-grid {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .blog-hero-content {
+                text-align: center;
+            }
+
+            .blog-hero-description {
+                margin-left: auto;
+                margin-right: auto;
+                padding-left: 0;
+                border-left: none;
+                border-top: 3px solid var(--dome-accent);
+                padding-top: 20px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu.active {
+                display: flex;
+            }
+
+            .featured-image {
+                height: 400px;
+            }
+
+            .featured-content h3 {
+                font-size: 2.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .visualizations-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 30px;
+            }
+
+            .modal-header h1 {
+                font-size: 3rem;
+            }
+
+            .modal-subtitle {
+                font-size: 1.4rem;
+            }
+
+            .design-visualizations-gallery {
+                gap: 40px;
+            }
+
+            .visualization-image-container {
+                height: 500px;
+            }
+
+            .visualization-item.featured .visualization-image-container {
+                height: 600px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .blog-page-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .blog-hero-description {
+                font-size: 1.1rem;
+            }
+
+            .featured-image {
+                height: 300px;
+            }
+
+            .featured-content {
+                padding: 40px;
+            }
+
+            .featured-content h3 {
+                font-size: 2.2rem;
+            }
+
+            .article-meta {
+                gap: 20px;
+            }
+
+            .blog-filters {
+                gap: 10px;
+            }
+
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+                min-width: 100px;
+            }
+
+            .modal-header {
+                padding: 120px 0 60px;
+            }
+
+            .modal-nav {
+                padding: 20px 0;
+            }
+
+            .modal-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .modal-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .modal-hero-image {
+                padding: 20px;
+                max-height: 500px;
+            }
+
+            .modal-hero-image img {
+                max-height: 450px;
+            }
+
+            .modal-section-title {
+                font-size: 2.2rem;
+            }
+
+            .visualization-image-container {
+                height: 400px;
+            }
+
+            .visualization-item.featured .visualization-image-container {
+                height: 500px;
+            }
+
+            .visualization-caption {
+                padding: 30px;
+            }
+
+            .visualization-caption h3 {
+                font-size: 1.8rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-card {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .blog-page-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 14px 24px;
+            }
+
+            .academic-badge {
+                padding: 10px 25px;
+                font-size: 0.85rem;
+            }
+
+            .blog-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-btn {
+                width: 200px;
+            }
+
+            .visualizations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-header h1 {
+                font-size: 2rem;
+            }
+
+            .modal-description {
+                font-size: 1.1rem;
+            }
+
+            .modal-meta {
+                gap: 20px;
+            }
+
+            .modal-meta-item {
+                font-size: 1rem;
+            }
+
+            .visualization-image-container {
+                height: 350px;
+            }
+
+            .visualization-item.featured .visualization-image-container {
+                height: 400px;
+            }
+
+            .high-quality-image {
+                padding: 20px;
+            }
+
+            .visualization-caption h3 {
+                font-size: 1.6rem;
+            }
+
+            .caption-label {
+                padding: 6px 16px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (EXACT from portfolio) -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo-container">
+                <div class="logo-symbol">NM</div>
+                <div class="logo-name">Najibeh Movahedi</div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <ul class="nav-links" id="desktopNav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html" class="active">Academic Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html" class="active">Academic Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Academic Blog Hero Section -->
+    <section class="blog-hero">
+        <div class="blog-hero-background"></div>
+        <div class="container">
+            <div class="blog-hero-content">
+                <div class="academic-badge animate-on-scroll">Academic Research & Insights</div>
+                <h1 class="blog-page-title animate-on-scroll">Design Perspectives</h1>
+                <p class="blog-hero-description animate-on-scroll delay-1">
+                    Exploring the intersection of Persian artistry, Italian design excellence, and contemporary interior architecture through research, analysis, and creative insights.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Filters -->
+    <div class="blog-filters-container">
+        <div class="container">
+            <div class="blog-filters">
+                <button class="filter-btn active" data-filter="all">All Articles</button>
+                <button class="filter-btn" data-filter="research">Research</button>
+                <button class="filter-btn" data-filter="theory">Theory</button>
+                <button class="filter-btn" data-filter="cultural">Cultural</button>
+                <button class="filter-btn" data-filter="technical">Technical</button>
+                <button class="filter-btn" data-filter="visualization">Visualizations</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Articles Section -->
+    <section class="blog-articles" id="blog-content">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Academic Articles & Research</h2>
+                <p class="section-subtitle">In-depth explorations of design theory, research findings, and academic perspectives on interior architecture and spatial design</p>
+            </div>
+
+            <!-- Featured Article -->
+            <article class="featured-article animate-on-scroll" data-category="research" data-article="thesis">
+                <div class="featured-image">
+                    <img src="assest/bachelor_Thesis/render/room-design.jpg" alt="Color & Light in Boutique Hospitality">
+                    <div class="featured-badge">Featured Research</div>
+                </div>
+                <div class="featured-content">
+                    <div class="article-meta">
+                        <span class="meta-item"><i class="far fa-calendar"></i> March 20, 2025</span>
+                        <span class="meta-item"><i class="far fa-clock"></i> 12 min read</span>
+                        <span class="meta-item"><i class="far fa-folder"></i> Academic Research</span>
+                        <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Isfahan, Iran</span>
+                    </div>
+                    <h3>Color & Light in Boutique Hospitality: An Impressionist Approach</h3>
+                    <p class="featured-excerpt">
+                        Drawing from my Bachelor's thesis research at the Faculty of Art, Architecture and Urban Planning, this comprehensive study explores how Impressionist art principles can revolutionize boutique hotel design. Discover how Monet's treatment of light and Renoir's color harmonies can inform contemporary spaces that respond dynamically to changing light conditions throughout the day.
+                    </p>
+                    <div class="featured-tags">
+                        <span class="tag">Impressionism</span>
+                        <span class="tag">Boutique Hotels</span>
+                        <span class="tag">Light Design</span>
+                        <span class="tag">Color Psychology</span>
+                        <span class="tag">Academic Thesis</span>
+                    </div>
+                    <button class="btn btn-primary open-article-btn" data-article="thesis">
+                        <i class="fas fa-book-open"></i> Read Research Article
+                    </button>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Architectural Visualizations Section -->
+    <section class="visualizations-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Architectural Visualizations</h2>
+                <p class="section-subtitle">3D renderings and architectural visualizations created using Rhinoceros 3D with V-Ray rendering, demonstrating materiality, lighting dynamics, and spatial relationships</p>
+            </div>
+
+            <div class="visualizations-grid">
+                <!-- Project 1: Sunlight-Optimized Living Space -->
+                <article class="visualization-post animate-on-scroll" data-category="visualization" data-article="sunlight-optimized">
+                    <div class="visualization-image">
+                        <img src="assest/Rhino/01._Rhino_Document_Sun.webp" alt="Sunlight-Optimized Living Space">
+                    </div>
+                    <div class="visualization-content">
+                        <div class="visualization-meta">
+                            <span class="visualization-meta-item"><i class="far fa-calendar"></i> March 20, 2025</span>
+                            <span class="visualization-meta-item"><i class="far fa-clock"></i> 8 min view</span>
+                        </div>
+                        <h3>Sunlight-Optimized Living Space</h3>
+                        <p>A comprehensive study of natural light dynamics throughout the day, featuring polished concrete floors, oak wood paneling, and minimalist color palette. This project explores how strategic window placement creates dramatic light patterns.</p>
+                        <div class="visualization-tags">
+                            <span class="visualization-tag">Rhino 3D</span>
+                            <span class="visualization-tag">V-Ray</span>
+                            <span class="visualization-tag">Light Study</span>
+                            <span class="visualization-tag">Daylight Analysis</span>
+                        </div>
+                        <a class="view-project open-article-btn" data-article="sunlight-optimized">View Full Study <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Project 2: Contemporary Villa Design -->
+                <article class="visualization-post animate-on-scroll delay-1" data-category="visualization" data-article="contemporary-villa">
+                    <div class="visualization-image">
+                        <img src="assest/Rhino/1a_resized_1920px.webp" alt="Contemporary Villa Design">
+                    </div>
+                    <div class="visualization-content">
+                        <div class="visualization-meta">
+                            <span class="visualization-meta-item"><i class="far fa-calendar"></i> March 10, 2025</span>
+                            <span class="visualization-meta-item"><i class="far fa-clock"></i> 10 min view</span>
+                        </div>
+                        <h3>Contemporary Villa Design</h3>
+                        <p>Modern residential design exploring material honesty, clean architectural lines, and the relationship between solid and void. Features textured concrete, expansive glass surfaces, and thermally modified wood cladding.</p>
+                        <div class="visualization-tags">
+                            <span class="visualization-tag">Villa Design</span>
+                            <span class="visualization-tag">Exterior</span>
+                            <span class="visualization-tag">Contemporary</span>
+                            <span class="visualization-tag">Material Studies</span>
+                        </div>
+                        <a class="view-project open-article-btn" data-article="contemporary-villa">View Full Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Explore Research Categories</h2>
+                <p class="section-subtitle">Browse academic articles and research papers by topic and specialization</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card animate-on-scroll">
+                    <div class="category-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Color & Light</h3>
+                    <p>Research on color theory, lighting design, and atmospheric spatial qualities</p>
+                    <span class="category-count">12 Articles</span>
+                </div>
+                <div class="category-card animate-on-scroll delay-1">
+                    <div class="category-icon">
+                        <i class="fas fa-archway"></i>
+                    </div>
+                    <h3>Cultural Fusion</h3>
+                    <p>Blending Persian artistic heritage with contemporary Italian design principles</p>
+                    <span class="category-count">8 Articles</span>
+                </div>
+                <div class="category-card animate-on-scroll delay-2">
+                    <div class="category-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sustainable Design</h3>
+                    <p>Eco-friendly materials, passive strategies, and environmental consciousness</p>
+                    <span class="category-count">10 Articles</span>
+                </div>
+                <div class="category-card animate-on-scroll delay-3">
+                    <div class="category-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Academic Research</h3>
+                    <p>Bachelor's and Master's thesis insights, university projects, and design methodology</p>
+                    <span class="category-count">6 Articles</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (EXACT from portfolio) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-symbol">NM</div>
+                        <div class="footer-signature">Najibeh Movahedi</div>
+                    </div>
+                    <p class="footer-about">
+                        Interior Architect & Spatial Designer blending Persian artistic heritage with contemporary Italian design principles. Master's candidate at Politecnico di Milano, specializing in spatial perception, color theory, and light manipulation.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blog.html">Academic Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong><br>
+                                <span>movahedinajibeh@gmail.com</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Location</strong><br>
+                                <span>Milan, Italy</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <strong>University</strong><br>
+                                <span>Politecnico di Milano</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Najibeh Movahedi. | Interior Architect & Spatial Designer | Politecnico di Milano</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Article Modal Template -->
+    <div class="article-modal" id="articleModal"></div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ==================== NAVIGATION ====================
+            // Navigation Scroll Effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile Menu Toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            menuToggle.addEventListener('click', function() {
+                menuToggle.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            });
+
+            // Close mobile menu when clicking a link
+            const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    menuToggle.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // ==================== BLOG FILTERING ====================
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const articles = document.querySelectorAll('.featured-article, .visualization-post');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Update active button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Get filter value
+                    const filterValue = this.getAttribute('data-filter');
+
+                    // Filter articles
+                    articles.forEach(article => {
+                        if (filterValue === 'all') {
+                            article.style.display = 'block';
+                        } else {
+                            const category = article.getAttribute('data-category');
+                            if (category.includes(filterValue)) {
+                                article.style.display = 'block';
+                            } else {
+                                article.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+
+            // ==================== ARTICLE DATA ====================
+            const articleData = {
+                'thesis': {
+                    title: 'Color & Light in Boutique Hospitality: An Impressionist Approach',
+                    subtitle: 'A Comprehensive Bachelor\'s Thesis Research on Integrating Impressionist Art Principles into Contemporary Hotel Design in Isfahan',
+                    category: 'Academic Research',
+                    date: 'January 2021',
+                    readTime: '12 minutes',
+                    location: 'Isfahan, Iran',
+                    university: 'Faculty of Art, Architecture and Urban Planning',
+                    degree: 'Bachelor of Interior Architecture',
+                    supervisor: 'Dr. Razieh Rafiee',
+                    tags: ['Impressionism', 'Boutique Hotel Design', 'Color Theory', 'Lighting Design', 'Isfahan Architecture', 'Spatial Atmosphere', 'Academic Research'],
+                    images: ['assest/bachelor_Thesis/render/room-design.jpg'],
+                    content: `
+                        <div class="modal-content-section">
+                            <h2 class="modal-section-title">Abstract</h2>
+                            <div class="modal-text-content">
+                                <p>This thesis proposes an innovative approach to boutique hotel design in Isfahan, Iran, by integrating principles from Impressionist art with a specialized focus on color and light as primary architectural elements. The project aims to create a unique hospitality experience that merges architectural design with artistic sensibility, specifically targeting tourists and art enthusiasts seeking immersive cultural experiences.</p>
+
+                                <div class="highlight-box">
+                                    <p>The hotel is designed to reflect the transient effects of light and color characteristic of Impressionism, while responding to the rich cultural and historical context of Isfahan—a UNESCO World Heritage site renowned for its architectural marvels.</p>
+                                </div>
+
+                                <p>The research methodology includes comprehensive theoretical studies on boutique hotels, Impressionism, lighting design psychology, and extensive case studies of successful boutique hotels both in Iran and internationally. The final design proposal integrates sophisticated spatial planning, innovative lighting strategies, and carefully curated color schemes to evoke the emotional and perceptual qualities characteristic of Impressionist art.</p>
+                            </div>
+                        </div>
+
+                        <div class="modal-content-section">
+                            <h2 class="modal-section-title">Design Visualizations</h2>
+                            <div class="modal-text-content">
+                                <p>The following renderings illustrate key spaces within the proposed boutique hotel design:</p>
+                            </div>
+
+                            <!-- Clean single-column gallery with high-quality images -->
+                            <div class="design-visualizations-gallery">
+                                <!-- Featured Image -->
+                                <div class="visualization-item featured">
+                                    <div class="visualization-image-container">
+                                        <img src="assest/bachelor_Thesis/render/room-design.jpg" alt="Boutique Hotel Room Design" class="high-quality-image">
+                                    </div>
+                                    <div class="visualization-caption">
+                                        <span class="caption-label">Featured Design</span>
+                                        <h3>Boutique Hotel Room Design</h3>
+                                        <p>Impressionist Color & Light Study - Primary room showcasing the integration of Impressionist principles in hospitality design</p>
+                                    </div>
+                                </div>
+
+                                <!-- Gallery Spaces -->
+                                <div class="visualization-item">
+                                    <div class="visualization-image-container">
+                                        <img src="assest/bachelor_Thesis/render/gallery-space-1.jpg" alt="Gallery 5: Impression Art Display Area" class="high-quality-image">
+                                    </div>
+                                    <div class="visualization-caption">
+                                        <span class="caption-label">Gallery 5</span>
+                                        <h3>Impression Art Display Area</h3>
+                                        <p>Dedicated exhibition space showcasing Impressionist artworks with controlled natural lighting</p>
+                                    </div>
+                                </div>
+
+                                <div class="visualization-item">
+                                    <div class="visualization-image-container">
+                                        <img src="assest/bachelor_Thesis/render/gallery-space-2.jpg" alt="Gallery 6: Space Natural Light Interaction" class="high-quality-image">
+                                    </div>
+                                    <div class="visualization-caption">
+                                        <span class="caption-label">Gallery 6</span>
+                                        <h3>Space Natural Light Interaction</h3>
+                                        <p>Demonstrating the dynamic relationship between architectural space and changing natural light conditions</p>
+                                    </div>
+                                </div>
+
+                                <div class="visualization-item">
+                                    <div class="visualization-image-container">
+                                        <img src="assest/bachelor_Thesis/render/gallery-space-4.jpg" alt="Gallery 7: Space Event Atmosphere with Artificial Light" class="high-quality-image">
+                                    </div>
+                                    <div class="visualization-caption">
+                                        <span class="caption-label">Gallery 7</span>
+                                        <h3>Space Event Atmosphere with Artificial Light</h3>
+                                        <p>Evening rendering showcasing artificial lighting strategies for event spaces and social gatherings</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-content-section">
+                            <h2 class="modal-section-title">Theoretical Framework</h2>
+                            <div class="modal-text-content">
+                                <h4>Boutique Hotels: Concept and Characteristics</h4>
+                                <p>A boutique hotel is defined by several key characteristics:</p>
+                                <ul>
+                                    <li><strong>Small Scale:</strong> Typically under 100 rooms, allowing for personalized service</li>
+                                    <li><strong>Unique Thematic Identity:</strong> Each hotel tells a distinct story through its design</li>
+                                    <li><strong>Cultural Authenticity:</strong> Strong connection to local history and traditions</li>
+                                    <li><strong>Prime Urban Locations:</strong> Often situated in culturally significant areas</li>
+                                    <li><strong>Architectural Significance:</strong> Emphasis on interior design as a primary attraction</li>
+                                </ul>
+
+                                <h4>Impressionism in Architectural Context</h4>
+                                <p>Impressionism, originating in 19th-century France, revolutionized artistic expression by emphasizing:</p>
+                                <ul>
+                                    <li>Capturing fleeting moments and transient light effects</li>
+                                    <li>Use of pure, unmixed colors applied in short brushstrokes</li>
+                                    <li>Painting <em>en plein air</em> (outdoors) to capture natural light</li>
+                                    <li>Focus on perception and sensory experience over precise representation</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="modal-content-section">
+                            <h2 class="modal-section-title">Conclusion and Contribution</h2>
+                            <div class="modal-text-content">
+                                <p>This thesis demonstrates the significant potential for translating Impressionist art principles into architectural and interior design practice, creating boutique hotels that are both functionally efficient and emotionally resonant. The proposed "Boutique Hotel of Color and Light" in Isfahan offers an innovative model for thematic hospitality spaces where art, architecture, and human experience intersect meaningfully.</p>
+
+                                <div class="highlight-box">
+                                    <p>The project contributes to multiple fields: interior design through its innovative approach to color and light; cultural tourism by enhancing visitor experience through artistic immersion; and sustainable architecture by emphasizing perceptual richness and contextual sensitivity as alternatives to resource-intensive solutions.</p>
+                                </div>
+
+                                <p>This research establishes a framework for future investigations into art-architecture integration, suggesting that emotional and perceptual dimensions of space deserve equal consideration alongside functional requirements in hospitality design.</p>
+                            </div>
+                        </div>
+                    `
+                },
+                'sunlight-optimized': {
+                    title: 'Sunlight-Optimized Living Space: A Comprehensive Light Study',
+                    subtitle: 'Exploring natural light dynamics throughout the day in a contemporary interior space',
+                    category: 'Architectural Visualization',
+                    date: 'March 20, 2025',
+                    readTime: '8 minutes',
+                    location: '3D Visualization',
+                    software: 'Rhino 3D & V-Ray',
+                    tags: ['Rhino 3D', 'V-Ray Rendering', 'Light Study', 'Interior Design', 'Natural Light', 'Minimalist', 'Daylight Analysis'],
+                    images: ['assest/Rhino/01._Rhino_Document_Sun.webp'],
+                    content: `
+                        <div class="modal-content-section">
+                            <h2 class="modal-section-title">Project Overview</h2>
+                            <div class="modal-text-content">
+                                <p>This comprehensive study explores the dynamic relationship between architecture and natural light throughout different times of the day. The project demonstrates how strategic design decisions can optimize daylight penetration while creating dramatic visual effects.</p>
+
+                                <div class="highlight-box">
+                                    <p>The space features polished concrete floors, oak wood wall paneling, and a minimalist color palette of warm greys and beige. Strategically placed clerestory windows create dramatic light patterns while maintaining privacy and controlling glare.</p>
+                                </div>
+
+                                <h4>Key Design Features:</h4>
+                                <ul>
+                                    <li><strong>Material Palette:</strong> Polished concrete, oak wood, marble accents</li>
+                                    <li><strong>Color Scheme:</strong> Warm greys and beige tones for optimal light reflection</li>
+                                    <li><strong>Lighting Strategy:</strong> Clerestory windows for controlled natural light</li>
+                                    <li><strong>Spatial Layout:</strong> Open plan facilitating deep light penetration</li>
+                                    <li><strong>Textural Elements:</strong> Wool area rug, linen upholstery for tactile quality</li>
+                                    <li><strong>Glare Control:</strong> Strategic window placement and shading devices</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="modal-content-section">
+                            <h2 class="modal-section-title">Lighting Studies Throughout the Day</h2>
+                            <div class="design-visualizations-gallery">
+                                <div class="visualization-item featured">
+                                    <div class="visualization-image-container">
+                                        <img src="assest/Rhino/01._Rhino_Document_Sun.webp" alt="Midday Sunlight Dynamics" class="high-quality-image">
+                                    </div>
+                                    <div class="visualization-caption">
+                                        <span class="caption-label">Midday Study</span>
+                                        <h3>Optimal Daylight Conditions</h3>
+                                        <p>Midday rendering showing maximum light penetration with dramatic shadows and light patterns. The clerestory windows allow high-angle sunlight while protecting from direct glare.</p>
+                                    </div>
+                                </div>
+
+                                <div class="visualization-item">
+                                    <div class="visualization-image-container">
+                                        <img src="assest/Rhino/01.Environment.webp" alt="Morning Ambient Light" class="high-quality-image">
+                                    </div>
+                                    <div class="visualization-caption">
+                                        <span class="caption-label">Morning Study</span>
+                                        <h3>Ambient Morning Light</h3>
+                                        <p>Soft morning light interacting with textured fabrics and custom-built shelving unit. The low-angle light creates long shadows and warm tones throughout the space.</p>
+                                    </div>
+                                </div>
+
+                                <div class="visualization-item">
+                                    <div class="visualization-image-container">
+                                        <img src="assest/Rhino/01.webp" alt="Afternoon Glow" class="high-quality-image">
+                                    </div>
+                                    <div class="visualization-caption">
+                                        <span class="caption-label">Evening Study</span>
+                                        <h3>Afternoon Golden Hour</h3>
+                                        <p>Warm afternoon light creating a golden glow throughout the space. The combination of natural and artificial lighting begins to create layered lighting effects.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-content-section">
+                            <h2 class="modal-section-title">Design Methodology</h2>
+                            <div class="modal-text-content">
+                                <p>The visualization was created using Rhinoceros 3D with V-Ray rendering to accurately simulate real-world lighting conditions. The methodology included:</p>
+
+                                <ul>
+                                    <li><strong>Solar Analysis:</strong> Study of sun path and angles throughout the year</li>
+                                    <li><strong>Material Studies:</strong> Testing different material reflectivity and absorption</li>
+                                    <li><strong>Window Optimization:</strong> Placement and sizing for optimal light distribution</li>
+                                    <li><strong>Color Temperature Analysis:</strong> Understanding how different materials respond to changing light</li>
+                                    <li><strong>Shadow Studies:</strong> Analysis of shadow patterns throughout the day</li>
+                                </ul>
+
+                                <h4>Technical Specifications:</h4>
+                                <ul>
+                                    <li><strong>Software:</strong> Rhinoceros 3D v7, V-Ray 5</li>
+                                    <li><strong>Render Time:</strong> 4-6 hours per image</li>
+                                    <li><strong>Resolution:</strong> 3840x2160 (4K)</li>
+                                    <li><strong>Light Simulation:</strong> Physical sun and sky model</li>
+                                    <li><strong>Material Accuracy:</strong> Physically-based rendering materials</li>
+                                </ul>
+                            </div>
+                        </div>
+                    `
+                },
+                'contemporary-villa': {
+                    title: 'Contemporary Villa Design: Material Honesty & Spatial Harmony',
+                    subtitle: 'Modern residential design exploring the relationship between solid and void',
+                    category: 'Architectural Visualization',
+                    date: 'March 10, 2025',
+                    readTime: '10 minutes',
+                    location: '3D Visualization',
+                    software: 'Rhino 3D & V-Ray',
+                    tags: ['Villa Design', 'Exterior', 'Contemporary', 'Textured Concrete', 'Glass Facade', 'Material Studies', 'Landscape Integration'],
+                    images: ['assest/Rhino/1a_resized_1920px.webp'],
+                    content: `
+                        <div class="modal-content-section">
+                            <h2 class="modal-section-title">Design Concept</h2>
+                            <div class="modal-text-content">
+                                <p>This contemporary villa design emphasizes material honesty and clean architectural lines. The project explores the relationship between solid and void, with textured concrete volumes contrasting against expansive glass surfaces.</p>
+
+                                <div class="highlight-box">
+                                    <p>The cantilevered roof element serves both functional and aesthetic purposes, providing solar shading while creating dramatic shadows that change throughout the day, adding dynamic visual interest to the façade.</p>
+                                </div>
+
+                                <h4>Architectural Features:</h4>
+                                <ul>
+                                    <li><strong>Textured Concrete:</strong> Board-formed concrete with natural texture and formwork marks</li>
+                                    <li><strong>Floor-to-Ceiling Glazing:</strong> Black aluminum frames for clean lines and structural clarity</li>
+                                    <li><strong>Thermally Modified Wood:</strong> Cladding for warmth and texture contrast against cool concrete</li>
+                                    <li><strong>Cantilevered Roof:</strong> 4-meter overhang for solar protection and dramatic shadow play</li>
+                                    <li><strong>Reflecting Pool:</strong> For aesthetic appeal and passive cooling through evaporation</li>
+                                    <li><strong>Integrated Landscape:</strong> Drought-resistant native plants and strategic pathway lighting</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="modal-content-section">
+                            <h2 class="modal-section-title">Design Visualizations</h2>
+                            <div class="design-visualizations-gallery">
+                                <div class="visualization-item featured">
+                                    <div class="visualization-image-container">
+                                        <img src="assest/Rhino/1a_resized_1920px.webp" alt="Villa Exterior - Daylight" class="high-quality-image">
+                                    </div>
+                                    <div class="visualization-caption">
+                                        <span class="caption-label">Daylight Study</span>
+                                        <h3>Primary Façade - Full Daylight</h3>
+                                        <p>Full façade view showcasing material composition, architectural proportions, and the relationship between solid concrete masses and transparent glass surfaces.</p>
+                                    </div>
+                                </div>
+
+                                <div class="visualization-item">
+                                    <div class="visualization-image-container">
+                                        <img src="assest/Rhino/1a.webp" alt="Villa Exterior - Golden Hour" class="high-quality-image">
+                                    </div>
+                                    <div class="visualization-caption">
+                                        <span class="caption-label">Golden Hour</span>
+                                        <h3>Sunset Lighting Conditions</h3>
+                                        <p>Sunset lighting revealing warm tones of wood elements against cool concrete. The low-angle light accentuates material textures and creates dramatic shadows.</p>
+                                    </div>
+                                </div>
+
+                                <div class="visualization-item">
+                                    <div class="visualization-image-container">
+                                        <img src="assest/Rhino/008-2.webp" alt="Architectural Detail" class="high-quality-image">
+                                    </div>
+                                    <div class="visualization-caption">
+                                        <span class="caption-label">Nighttime View</span>
+                                        <h3>Material Junction Detail</h3>
+                                        <p>Close-up view of precision detailing between concrete, glass, and wood elements showing shadow gap detailing that allows for material expansion while creating clean lines.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-content-section">
+                            <h2 class="modal-section-title">Sustainable Design Strategies</h2>
+                            <div class="modal-text-content">
+                                <p>The villa incorporates multiple sustainable design strategies that enhance both environmental performance and occupant comfort:</p>
+
+                                <ul>
+                                    <li><strong>Passive Solar Design:</strong> Strategic window placement for optimal solar gain in winter and shading in summer</li>
+                                    <li><strong>Thermal Mass:</strong> Concrete walls provide thermal inertia, stabilizing indoor temperatures</li>
+                                    <li><strong>Natural Ventilation:</strong> Cross-ventilation strategies for passive cooling</li>
+                                    <li><strong>Water Management:</strong> Rainwater harvesting and greywater recycling systems</li>
+                                    <li><strong>Native Landscaping:</strong> Drought-resistant plants requiring minimal irrigation</li>
+                                    <li><strong>Material Selection:</strong> Locally sourced, durable materials with low embodied energy</li>
+                                </ul>
+
+                                <h4>Technical Performance:</h4>
+                                <ul>
+                                    <li><strong>Orientation:</strong> Optimal solar alignment for energy efficiency</li>
+                                    <li><strong>Glazing Performance:</strong> Low-E coated glass with high thermal performance</li>
+                                    <li><strong>Insulation:</strong> High-performance insulation exceeding local building codes</li>
+                                    <li><strong>Rainwater Harvesting:</strong> 10,000-liter capacity for irrigation and non-potable uses</li>
+                                    <li><strong>Solar Readiness:</strong> Roof designed for future photovoltaic installation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    `
+                }
+            };
+
+            // ==================== ARTICLE MODAL MANAGEMENT ====================
+            const articleModal = document.getElementById('articleModal');
+
+            function openArticle(articleId) {
+                if (!articleData[articleId]) {
+                    console.error('Article data not found:', articleId);
+                    return;
+                }
+
+                const data = articleData[articleId];
+
+                // Create modal HTML
+                const modalHTML = `
+                    <div class="modal-nav">
+                        <div class="container">
+                            <button class="modal-back-btn" onclick="closeArticle()">
+                                <i class="fas fa-arrow-left"></i> Back to Academic Blog
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="modal-header">
+                        <div class="container">
+                            <div class="modal-header-content">
+                                <h1>${data.title}</h1>
+                                <div class="modal-subtitle">${data.subtitle}</div>
+
+                                <div class="modal-meta">
+                                    <span class="modal-meta-item"><i class="far fa-calendar"></i> ${data.date}</span>
+                                    <span class="modal-meta-item"><i class="far fa-clock"></i> ${data.readTime}</span>
+                                    ${data.category ? `<span class="modal-meta-item"><i class="far fa-folder"></i> ${data.category}</span>` : ''}
+                                    ${data.location ? `<span class="modal-meta-item"><i class="fas fa-map-marker-alt"></i> ${data.location}</span>` : ''}
+                                    ${data.software ? `<span class="modal-meta-item"><i class="fas fa-desktop"></i> ${data.software}</span>` : ''}
+                                    ${data.university ? `<span class="modal-meta-item"><i class="fas fa-university"></i> ${data.university}</span>` : ''}
+                                    ${data.degree ? `<span class="modal-meta-item"><i class="fas fa-graduation-cap"></i> ${data.degree}</span>` : ''}
+                                    ${data.supervisor ? `<span class="modal-meta-item"><i class="fas fa-user-graduate"></i> ${data.supervisor}</span>` : ''}
+                                </div>
+
+                                <div class="modal-tags">
+                                    ${data.tags.map(tag => `<span class="modal-tag">${tag}</span>`).join('')}
+                                </div>
+
+                                ${data.images && data.images.length > 0 ? `
+                                    <div class="modal-hero-image">
+                                        <img src="${data.images[0]}" alt="${data.title}">
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-content">
+                        <div class="container">
+                            ${data.content}
+                        </div>
+                    </div>
+                `;
+
+                // Insert modal content
+                articleModal.innerHTML = modalHTML;
+
+                // Show modal
+                setTimeout(() => {
+                    articleModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }, 10);
+
+                // Scroll to top
+                window.scrollTo(0, 0);
+            }
+
+            function closeArticle() {
+                articleModal.classList.remove('active');
+                setTimeout(() => {
+                    articleModal.innerHTML = '';
+                    document.body.style.overflow = '';
+                }, 400);
+            }
+
+            // ==================== EVENT LISTENERS ====================
+            // Add click events to all article buttons
+            document.querySelectorAll('.open-article-btn, .view-project').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const articleId = this.getAttribute('data-article');
+                    openArticle(articleId);
+                });
+            });
+
+            // Add click events to featured article
+            const featuredArticle = document.querySelector('.featured-article');
+            if (featuredArticle) {
+                featuredArticle.addEventListener('click', function(e) {
+                    if (!e.target.closest('.btn')) {
+                        const articleId = this.getAttribute('data-article');
+                        openArticle(articleId);
+                    }
+                });
+            }
+
+            // Add click events to visualization posts
+            const visualizationPosts = document.querySelectorAll('.visualization-post');
+            visualizationPosts.forEach(post => {
+                post.addEventListener('click', function(e) {
+                    if (!e.target.closest('.view-project')) {
+                        e.preventDefault();
+                        const articleId = this.getAttribute('data-article');
+                        openArticle(articleId);
+                    }
+                });
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && articleModal.classList.contains('active')) {
+                    closeArticle();
+                }
+            });
+
+            // Close modal when clicking on overlay
+            articleModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeArticle();
+                }
+            });
+
+            // Make functions available globally
+            window.openArticle = openArticle;
+            window.closeArticle = closeArticle;
+
+            // ==================== SCROLL ANIMATIONS ====================
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe animated elements
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

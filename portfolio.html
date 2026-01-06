@@ -1,0 +1,2925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Najibeh Movahedi - Interior Architect & Spatial Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Clean, elegant fonts from your index.html -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ==================== DOME-INSPIRED COLOR PALETTE (FROM INDEX.HTML) ==================== */
+        :root {
+            /* Sophisticated minimalist palette - EXACT from your index.html */
+            --dome-black: #0A0A0A;
+            --dome-dark: #1A1A1A;
+            --dome-gray: #8C8C8C;
+            --dome-light: #F5F5F5;
+            --dome-white: #FFFFFF;
+            --dome-accent: #CC5500; /* Dark orange from your palette */
+            --dome-border: rgba(0, 0, 0, 0.08);
+            --dome-hover: rgba(204, 85, 0, 0.1);
+        }
+
+        /* ==================== BASE STYLES (EXACT FROM INDEX.HTML) ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dome-black);
+            background-color: var(--dome-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: 0.3px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            position: relative;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        /* ==================== DOME-STYLE NAVIGATION (EXACT FROM INDEX.HTML) ==================== */
+        .navbar {
+            background: var(--dome-white);
+            padding: 25px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--dome-border);
+        }
+
+        .navbar.scrolled {
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo - Clean and minimal (EXACT from index.html) */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-container:hover {
+            opacity: 0.8;
+        }
+
+        .logo-symbol {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            background: var(--dome-black);
+            color: var(--dome-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .logo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--dome-black);
+            letter-spacing: 0.5px;
+        }
+
+        /* Menu toggle button - DOME style (EXACT from index.html) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--dome-black);
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .menu-toggle:not(.active) span {
+            background: var(--dome-black);
+        }
+
+        .menu-toggle.active span {
+            background: var(--dome-white);
+        }
+
+        /* Navigation Links - Desktop (EXACT from index.html) */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dome-black);
+            font-weight: 400;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+            text-transform: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--dome-accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--dome-accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Mobile Navigation Menu (EXACT from index.html) */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--dome-black);
+            z-index: 999;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 40px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.4s ease;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            text-align: center;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 30px;
+        }
+
+        .mobile-nav-links a {
+            color: var(--dome-white);
+            font-size: 2rem;
+            font-weight: 400;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--dome-accent);
+        }
+
+        /* ==================== DOME-STYLE HERO SECTION (ADAPTED FOR PORTFOLIO) ==================== */
+        .portfolio-hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 120px;
+            background: var(--dome-white);
+            overflow: hidden;
+            border-bottom: 1px solid var(--dome-border);
+        }
+
+        .portfolio-hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),
+                        url('assest/3Dmax/room-design_resized_1920px.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .portfolio-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            color: var(--dome-white);
+            padding: 60px 0;
+        }
+
+        .portfolio-page-title {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .portfolio-hero-description {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 50px;
+            max-width: 700px;
+            line-height: 1.8;
+            font-weight: 300;
+            padding-left: 20px;
+            border-left: 3px solid var(--dome-accent);
+        }
+
+        /* ==================== BUTTONS (EXACT FROM INDEX.HTML) ==================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: 1px;
+            border: 1px solid var(--dome-white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: var(--dome-white);
+        }
+
+        .btn:hover {
+            background: var(--dome-white);
+            color: var(--dome-black);
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background: var(--dome-accent);
+            border-color: var(--dome-accent);
+        }
+
+        .btn-primary:hover {
+            background: var(--dome-white);
+            color: var(--dome-accent);
+            border-color: var(--dome-white);
+        }
+
+        /* ==================== PORTFOLIO FILTERS ==================== */
+        .portfolio-filters-container {
+            padding: 40px 0;
+            background: var(--dome-light);
+            border-bottom: 1px solid var(--dome-border);
+        }
+
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 28px;
+            background: rgba(204, 85, 0, 0.1);
+            border: 1px solid rgba(204, 85, 0, 0.2);
+            color: var(--dome-accent);
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .filter-btn:hover {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            box-shadow: 0 4px 15px rgba(204, 85, 0, 0.3);
+        }
+
+        /* ==================== PORTFOLIO PROJECTS SECTION (ALTERNATING LAYOUT) ==================== */
+        .portfolio-projects {
+            padding: 100px 0;
+            background: var(--dome-white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: var(--dome-black);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--dome-accent);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--dome-gray);
+            max-width: 800px;
+            margin: 30px auto 0;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* Project Item - Alternating Layout (AS YOU REQUESTED) */
+        .project-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 120px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .project-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Alternate layout for even items */
+        .project-item:nth-child(even) .project-visual {
+            order: 2;
+        }
+
+        .project-item:nth-child(even) .project-info {
+            order: 1;
+        }
+
+        .project-info {
+            padding: 20px 0;
+        }
+
+        .project-number {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--dome-accent);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .project-name {
+            font-size: 2.5rem;
+            color: var(--dome-black);
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .project-description {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--dome-black);
+            margin-bottom: 25px;
+            max-height: 150px;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .project-description.expanded {
+            max-height: 1000px;
+        }
+
+        .read-more-btn {
+            color: var(--dome-accent);
+            background: none;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .read-more-btn:hover {
+            gap: 12px;
+            color: var(--dome-black);
+        }
+
+        .read-more-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .read-more-btn.expanded i {
+            transform: rotate(180deg);
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0 40px;
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            padding: 10px 24px;
+            background: rgba(204, 85, 0, 0.1);
+            color: var(--dome-accent);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: 1px solid rgba(204, 85, 0, 0.2);
+            border-radius: 20px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .meta-tag:hover {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            transform: translateY(-2px);
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--dome-black);
+            border: 1px solid var(--dome-border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            border-color: var(--dome-accent);
+        }
+
+        .btn-view-full {
+            background: transparent;
+            color: var(--dome-accent);
+            border: 1px solid var(--dome-accent);
+        }
+
+        .btn-view-full:hover {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+        }
+
+        .project-visual {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            position: relative;
+            height: 500px;
+            transition: all 0.4s ease;
+        }
+
+        .project-visual:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .project-visual:hover img {
+            transform: scale(1.05);
+        }
+
+        .project-badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: var(--dome-black);
+            color: var(--dome-white);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            z-index: 2;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* ==================== PROJECT ARTICLE PAGE STYLES ==================== */
+        .project-article {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dome-white);
+            z-index: 2000;
+            overflow-y: auto;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-article.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .article-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--dome-white);
+            z-index: 3000;
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid var(--dome-border);
+        }
+
+        .article-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .article-back-btn, .article-close-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dome-black);
+            background: none;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .article-back-btn:hover, .article-close-btn:hover {
+            background: rgba(204, 85, 0, 0.1);
+            color: var(--dome-accent);
+            transform: translateX(-5px);
+        }
+
+        .article-close-btn:hover {
+            transform: translateX(5px);
+        }
+
+        .article-nav-controls {
+            display: flex;
+            gap: 15px;
+        }
+
+        .article-header {
+            padding: 140px 0 60px;
+            background: var(--dome-light);
+            border-bottom: 1px solid var(--dome-border);
+        }
+
+        .article-hero-image {
+            width: 100%;
+            max-height: 70vh;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .article-hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .article-info {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .article-title-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            color: var(--dome-black);
+            line-height: 1.1;
+            font-weight: 300;
+        }
+
+        .article-description {
+            font-size: 1.2rem;
+            color: var(--dome-gray);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .article-meta {
+            background: var(--dome-white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--dome-border);
+        }
+
+        .meta-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--dome-border);
+            transition: all 0.3s ease;
+        }
+
+        .meta-item:hover {
+            padding-left: 10px;
+            border-bottom-color: var(--dome-accent);
+        }
+
+        .meta-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .meta-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--dome-gray);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .meta-value {
+            font-size: 1.1rem;
+            color: var(--dome-black);
+            font-weight: 500;
+        }
+
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .article-tag {
+            padding: 8px 20px;
+            background: rgba(204, 85, 0, 0.1);
+            color: var(--dome-accent);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .article-tag:hover {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            transform: translateY(-2px);
+        }
+
+        .article-content {
+            padding: 60px 0;
+        }
+
+        .article-section {
+            margin-bottom: 60px;
+        }
+
+        .article-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--dome-black);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .article-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--dome-accent);
+        }
+
+        .article-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dome-black);
+            margin-bottom: 30px;
+        }
+
+        .article-text p {
+            margin-bottom: 20px;
+        }
+
+        .article-text ul {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        .article-text li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .article-text li::before {
+            content: '•';
+            color: var(--dome-accent);
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .detail-card {
+            background: var(--dome-light);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--dome-accent);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .detail-card h3 {
+            color: var(--dome-accent);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .detail-card p {
+            color: var(--dome-black);
+            line-height: 1.6;
+        }
+
+        .project-navigation {
+            background: var(--dome-light);
+            padding: 80px 0;
+            margin-top: 60px;
+            text-align: center;
+            border-top: 1px solid var(--dome-border);
+        }
+
+        .project-navigation h2 {
+            color: var(--dome-black);
+            margin-bottom: 30px;
+            font-size: 2rem;
+            font-weight: 300;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: var(--dome-white);
+            color: var(--dome-black);
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: 1px solid var(--dome-border);
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+        }
+
+        .nav-btn:hover {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            transform: translateY(-5px);
+            border-color: var(--dome-accent);
+        }
+
+        /* ==================== 3D VISUALIZATION MASTERY SECTION ==================== */
+        .visualization-mastery {
+            padding: 100px 0;
+            background: var(--dome-light);
+            border-top: 1px solid var(--dome-border);
+            border-bottom: 1px solid var(--dome-border);
+        }
+
+        .mastery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .mastery-card {
+            background: var(--dome-white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border: 1px solid var(--dome-border);
+        }
+
+        .mastery-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+            border-color: var(--dome-accent);
+        }
+
+        .mastery-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        .mastery-title {
+            font-size: 1.5rem;
+            color: var(--dome-black);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .mastery-description {
+            color: var(--dome-gray);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .mastery-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .mastery-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--dome-border);
+            color: var(--dome-black);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mastery-list li:last-child {
+            border-bottom: none;
+        }
+
+        .mastery-list i {
+            color: var(--dome-accent);
+        }
+
+        .software-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .software-item {
+            text-align: center;
+            padding: 25px 15px;
+            background: var(--dome-white);
+            border-radius: 8px;
+            border: 1px solid var(--dome-border);
+            transition: all 0.3s ease;
+        }
+
+        .software-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--dome-accent);
+            box-shadow: 0 10px 25px rgba(204, 85, 0, 0.1);
+        }
+
+        .software-icon {
+            font-size: 2.5rem;
+            color: var(--dome-accent);
+            margin-bottom: 15px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .software-name {
+            font-weight: 500;
+            color: var(--dome-black);
+            margin-bottom: 5px;
+        }
+
+        .software-type {
+            font-size: 0.8rem;
+            color: var(--dome-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ==================== VISUALIZATION PROCESS SECTION ==================== */
+        .visualization-process {
+            padding: 100px 0;
+            background: var(--dome-white);
+        }
+
+        .process-timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 60px auto 0;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--dome-accent);
+            transform: translateX(-50%);
+            opacity: 0.2;
+        }
+
+        .process-item {
+            position: relative;
+            margin-bottom: 80px;
+            width: 45%;
+        }
+
+        .process-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+            padding-right: 70px;
+        }
+
+        .process-item:nth-child(even) {
+            left: 55%;
+            padding-left: 70px;
+        }
+
+        .process-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--dome-white);
+            border: 3px solid var(--dome-accent);
+            border-radius: 50%;
+            top: 30px;
+            z-index: 2;
+        }
+
+        .process-item:nth-child(odd) .process-marker {
+            right: -10px;
+        }
+
+        .process-item:nth-child(even) .process-marker {
+            left: -10px;
+        }
+
+        .process-content {
+            background: var(--dome-white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--dome-border);
+            transition: all 0.3s ease;
+        }
+
+        .process-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+            border-color: var(--dome-accent);
+        }
+
+        .process-number {
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--dome-accent);
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .process-title {
+            font-size: 1.5rem;
+            color: var(--dome-black);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .process-description {
+            color: var(--dome-gray);
+            line-height: 1.7;
+        }
+
+        /* ==================== VISUALIZATION SPECIALIZATIONS SECTION ==================== */
+        .specializations {
+            padding: 100px 0;
+            background: var(--dome-white);
+        }
+
+        .specializations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .specialization-card {
+            background: var(--dome-white);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--dome-border);
+            transition: all 0.3s ease;
+        }
+
+        .specialization-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+            border-color: var(--dome-accent);
+        }
+
+        .specialization-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(204, 85, 0, 0.1);
+            color: var(--dome-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 25px;
+        }
+
+        .specialization-title {
+            font-size: 1.3rem;
+            color: var(--dome-black);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .specialization-description {
+            color: var(--dome-gray);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* ==================== FOOTER (EXACT FROM INDEX.HTML) ==================== */
+        .footer {
+            background: var(--dome-black);
+            color: var(--dome-white);
+            padding: 100px 0 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .footer-logo-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo-symbol {
+            width: 40px;
+            height: 40px;
+            background: var(--dome-white);
+            color: var(--dome-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 300;
+        }
+
+        .footer-signature {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--dome-white);
+        }
+
+        .footer-about {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dome-white);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--dome-white);
+            color: var(--dome-black);
+            border-color: var(--dome-white);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            color: var(--dome-white);
+            font-weight: 500;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--dome-white);
+            padding-left: 5px;
+        }
+
+        .footer-contact li {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .footer-contact i {
+            color: var(--dome-accent);
+            margin-top: 3px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .animate-left {
+            opacity: 0;
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        .animate-right {
+            opacity: 0;
+            animation: slideInRight 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* ==================== RESPONSIVE STYLES ==================== */
+        @media (max-width: 1200px) {
+            .portfolio-page-title {
+                font-size: 3.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 2fr 1fr;
+            }
+
+            .article-info {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .article-title-section h1 {
+                font-size: 3rem;
+            }
+
+            .specializations-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .portfolio-hero-content {
+                text-align: center;
+            }
+
+            .portfolio-hero-description {
+                margin-left: auto;
+                margin-right: auto;
+                padding-left: 0;
+                border-left: none;
+                border-top: 3px solid var(--dome-accent);
+                padding-top: 20px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu.active {
+                display: flex;
+            }
+
+            .project-item {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .project-visual {
+                min-height: 400px;
+                order: 1 !important;
+            }
+
+            .project-info {
+                order: 2 !important;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .process-timeline::before {
+                left: 30px;
+            }
+
+            .process-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 70px;
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .process-item:nth-child(odd) .process-marker,
+            .process-item:nth-child(even) .process-marker {
+                left: 20px;
+            }
+
+            .mastery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .software-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            }
+
+            .specializations-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .portfolio-page-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .portfolio-hero-description {
+                font-size: 1.1rem;
+            }
+
+            .project-item {
+                gap: 40px;
+                margin-bottom: 80px;
+            }
+
+            .project-name {
+                font-size: 2.2rem;
+            }
+
+            .project-visual {
+                height: 400px;
+            }
+
+            .portfolio-filters {
+                gap: 10px;
+            }
+
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+                min-width: 100px;
+            }
+
+            .article-title-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .article-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mastery-card {
+                padding: 30px;
+            }
+
+            .software-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .specializations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .specialization-card {
+                padding: 25px;
+            }
+
+            .article-nav-controls {
+                gap: 10px;
+            }
+
+            .article-back-btn, .article-close-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .portfolio-page-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 14px 24px;
+            }
+
+            .project-meta {
+                justify-content: center;
+            }
+
+            .project-actions {
+                flex-direction: column;
+            }
+
+            .project-visual {
+                height: 300px;
+            }
+
+            .portfolio-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-btn {
+                width: 200px;
+            }
+
+            .article-title-section h1 {
+                font-size: 2rem;
+            }
+
+            .article-description {
+                font-size: 1.1rem;
+            }
+
+            .article-meta {
+                padding: 20px;
+            }
+
+            .meta-item {
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+            }
+
+            .process-content {
+                padding: 20px;
+            }
+
+            .process-title {
+                font-size: 1.3rem;
+            }
+
+            .software-item {
+                padding: 20px 10px;
+            }
+
+            .software-icon {
+                font-size: 2rem;
+                height: 50px;
+            }
+
+            .specialization-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (EXACT from index.html) -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo-container">
+                <div class="logo-symbol">NM</div>
+                <div class="logo-name">Najibeh Movahedi</div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <ul class="nav-links" id="desktopNav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="blog.html">Academic Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="blog.html">Academic Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Portfolio Hero Section -->
+    <section class="portfolio-hero">
+        <div class="portfolio-hero-background"></div>
+        <div class="container">
+            <div class="portfolio-hero-content">
+                <h1 class="portfolio-page-title animate-on-scroll">3D Design & Visualization Portfolio</h1>
+                <p class="portfolio-hero-description animate-on-scroll delay-1">
+                    A comprehensive collection of architectural visualizations and interior design concepts rendered in 3D Max with detailed material and lighting studies. Each project represents a unique exploration of form, function, and atmosphere in digital architecture.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Filters -->
+    <div class="portfolio-filters-container">
+        <div class="container">
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="interior">Interior Design</button>
+                <button class="filter-btn" data-filter="architecture">Architecture</button>
+                <button class="filter-btn" data-filter="villa">Villa Designs</button>
+                <button class="filter-btn" data-filter="technical">Technical</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Projects Section -->
+    <section class="portfolio-projects" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">3D Design Projects</h2>
+                <p class="section-subtitle">A curated selection of architectural visualizations and interior design concepts rendered in 3D Max with detailed material and lighting studies</p>
+            </div>
+
+            <!-- All 12 Projects in Alternating Layout -->
+            <div id="projectsContainer">
+                <!-- Project 1: Contemporary Living Space -->
+                <div class="project-item visible" data-category="interior">
+                    <div class="project-visual animate-left">
+                        <img src="assest/3Dmax/18_resized_1920px.jpg" alt="Contemporary Living Space">
+                        <div class="project-badge">Interior Design</div>
+                    </div>
+                    <div class="project-info animate-right delay-1">
+                        <div class="project-number">Project 01</div>
+                        <h3 class="project-name">Contemporary Living Space</h3>
+                        <div class="project-description" id="desc-1">
+                            <p>An elegant residential interior that maximizes natural light through strategic window placement and reflective surfaces. The design creates a seamless connection between indoor comfort and outdoor views through careful material selection and spatial planning.</p>
+                        </div>
+                        <button class="read-more-btn" data-target="desc-1">
+                            Read More <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="project-meta">
+                            <span class="meta-tag">Residential</span>
+                            <span class="meta-tag">3D Visualization</span>
+                            <span class="meta-tag">Modern</span>
+                            <span class="meta-tag">Lighting Study</span>
+                            <span class="meta-tag">Material Research</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-primary" data-project="1">
+                                <i class="fas fa-expand-alt"></i> View Full Article
+                            </button>
+                            <button class="btn btn-view-full">
+                                <i class="fas fa-images"></i> Gallery
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Royal Grandeur Hall -->
+                <div class="project-item" data-category="interior">
+                    <div class="project-visual animate-right">
+                        <img src="assest/3Dmax/Royal Grandeur Hall_resized_1920px.jpg" alt="Royal Grandeur Hall">
+                        <div class="project-badge">Luxury Interior</div>
+                    </div>
+                    <div class="project-info animate-left delay-1">
+                        <div class="project-number">Project 02</div>
+                        <h3 class="project-name">Royal Grandeur Hall</h3>
+                        <div class="project-description" id="desc-2">
+                            <p>This majestic interior design combines classical elements with contemporary luxury, featuring intricate architectural details, ornate chandeliers, and a sophisticated gold-accented color scheme.</p>
+                        </div>
+                        <button class="read-more-btn" data-target="desc-2">
+                            Read More <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="project-meta">
+                            <span class="meta-tag">Luxury Interior</span>
+                            <span class="meta-tag">Classical</span>
+                            <span class="meta-tag">Ornate</span>
+                            <span class="meta-tag">3D Max</span>
+                            <span class="meta-tag">V-Ray</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-primary" data-project="2">
+                                <i class="fas fa-expand-alt"></i> View Full Article
+                            </button>
+                            <button class="btn btn-view-full">
+                                <i class="fas fa-images"></i> Gallery
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Tranquil Minimalist Haven -->
+                <div class="project-item" data-category="interior">
+                    <div class="project-visual animate-left">
+                        <img src="assest/3Dmax/Tranquil Minimalist Haven_resized_1920px.jpg" alt="Tranquil Minimalist Haven">
+                        <div class="project-badge">Minimalism</div>
+                    </div>
+                    <div class="project-info animate-right delay-1">
+                        <div class="project-number">Project 03</div>
+                        <h3 class="project-name">Tranquil Minimalist Haven</h3>
+                        <div class="project-description" id="desc-3">
+                            <p>A serene residential space designed with Japanese-inspired minimalism, emphasizing clean lines and natural materials to create a calming sanctuary.</p>
+                        </div>
+                        <button class="read-more-btn" data-target="desc-3">
+                            Read More <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="project-meta">
+                            <span class="meta-tag">Minimalism</span>
+                            <span class="meta-tag">Wellness</span>
+                            <span class="meta-tag">Japanese-inspired</span>
+                            <span class="meta-tag">3D Max</span>
+                            <span class="meta-tag">Corona</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-primary" data-project="3">
+                                <i class="fas fa-expand-alt"></i> View Full Article
+                            </button>
+                            <button class="btn btn-view-full">
+                                <i class="fas fa-images"></i> Gallery
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Nature's Touch Interior -->
+                <div class="project-item" data-category="interior">
+                    <div class="project-visual animate-right">
+                        <img src="assest/3Dmax/Nature's Touch Interior_resized_1920px.jpg" alt="Nature's Touch Interior">
+                        <div class="project-badge">Biophilic Design</div>
+                    </div>
+                    <div class="project-info animate-left delay-1">
+                        <div class="project-number">Project 04</div>
+                        <h3 class="project-name">Nature's Touch Interior</h3>
+                        <div class="project-description" id="desc-4">
+                            <p>An interior space that seamlessly integrates natural elements to create a healing environment with living walls and optimized natural light.</p>
+                        </div>
+                        <button class="read-more-btn" data-target="desc-4">
+                            Read More <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="project-meta">
+                            <span class="meta-tag">Biophilic Design</span>
+                            <span class="meta-tag">Sustainable</span>
+                            <span class="meta-tag">Wellness</span>
+                            <span class="meta-tag">3D Max</span>
+                            <span class="meta-tag">Forest Pack</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-primary" data-project="4">
+                                <i class="fas fa-expand-alt"></i> View Full Article
+                            </button>
+                            <button class="btn btn-view-full">
+                                <i class="fas fa-images"></i> Gallery
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: Urban Buildings Facade Study -->
+                <div class="project-item" data-category="architecture">
+                    <div class="project-visual animate-left">
+                        <img src="assest/3Dmax/19_resized_1920px.jpg" alt="Urban Buildings Facade Study">
+                        <div class="project-badge">Urban Design</div>
+                    </div>
+                    <div class="project-info animate-right delay-1">
+                        <div class="project-number">Project 05</div>
+                        <h3 class="project-name">Urban Buildings Facade Study</h3>
+                        <div class="project-description" id="desc-5">
+                            <p>A series of commercial building facades exploring geometric patterns, material textures, and urban context integration in contemporary architecture.</p>
+                        </div>
+                        <button class="read-more-btn" data-target="desc-5">
+                            Read More <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="project-meta">
+                            <span class="meta-tag">Urban Design</span>
+                            <span class="meta-tag">Commercial</span>
+                            <span class="meta-tag">Facade Study</span>
+                            <span class="meta-tag">3D Max</span>
+                            <span class="meta-tag">Rhino</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-primary" data-project="5">
+                                <i class="fas fa-expand-alt"></i> View Full Article
+                            </button>
+                            <button class="btn btn-view-full">
+                                <i class="fas fa-images"></i> Gallery
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: Bold Geometry Facade -->
+                <div class="project-item" data-category="architecture">
+                    <div class="project-visual animate-right">
+                        <img src="assest/3Dmax/Bold Geometry Facade_resized_1920px.jpg" alt="Bold Geometry Facade">
+                        <div class="project-badge">Modern Architecture</div>
+                    </div>
+                    <div class="project-info animate-left delay-1">
+                        <div class="project-number">Project 06</div>
+                        <h3 class="project-name">Bold Geometry Facade</h3>
+                        <div class="project-description" id="desc-6">
+                            <p>A contemporary commercial facade that explores the expressive potential of geometric forms with dramatic shadow play and material contrast.</p>
+                        </div>
+                        <button class="read-more-btn" data-target="desc-6">
+                            Read More <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="project-meta">
+                            <span class="meta-tag">Modern Architecture</span>
+                            <span class="meta-tag">Geometric</span>
+                            <span class="meta-tag">Facade Design</span>
+                            <span class="meta-tag">Parametric</span>
+                            <span class="meta-tag">3D Max</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-primary" data-project="6">
+                                <i class="fas fa-expand-alt"></i> View Full Article
+                            </button>
+                            <button class="btn btn-view-full">
+                                <i class="fas fa-images"></i> Gallery
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 7: Cityscape Illumination -->
+                <div class="project-item" data-category="architecture">
+                    <div class="project-visual animate-left">
+                        <img src="assest/3Dmax/Cityscape Illumination_resized_1920px.jpg" alt="Cityscape Illumination">
+                        <div class="project-badge">Night Visualization</div>
+                    </div>
+                    <div class="project-info animate-right delay-1">
+                        <div class="project-number">Project 07</div>
+                        <h3 class="project-name">Cityscape Illumination</h3>
+                        <div class="project-description" id="desc-7">
+                            <p>A nighttime study of urban architecture focusing on lighting design and material reflectivity for creating vibrant nocturnal city identities.</p>
+                        </div>
+                        <button class="read-more-btn" data-target="desc-7">
+                            Read More <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="project-meta">
+                            <span class="meta-tag">Night Visualization</span>
+                            <span class="meta-tag">Urban Lighting</span>
+                            <span class="meta-tag">Cityscape</span>
+                            <span class="meta-tag">3D Max</span>
+                            <span class="meta-tag">After Effects</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-primary" data-project="7">
+                                <i class="fas fa-expand-alt"></i> View Full Article
+                            </button>
+                            <button class="btn btn-view-full">
+                                <i class="fas fa-images"></i> Gallery
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 8: Industrial Elegance Space -->
+                <div class="project-item" data-category="architecture interior">
+                    <div class="project-visual animate-right">
+                        <img src="assest/3Dmax/Industrial Elegance Space_resized_1920px.jpg" alt="Industrial Elegance Space">
+                        <div class="project-badge">Industrial</div>
+                    </div>
+                    <div class="project-info animate-left delay-1">
+                        <div class="project-number">Project 08</div>
+                        <h3 class="project-name">Industrial Elegance Space</h3>
+                        <div class="project-description" id="desc-8">
+                            <p>An adaptive reuse project transforming industrial structures into sophisticated mixed-use spaces celebrating raw materials with refined contemporary elements.</p>
+                        </div>
+                        <button class="read-more-btn" data-target="desc-8">
+                            Read More <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="project-meta">
+                            <span class="meta-tag">Industrial</span>
+                            <span class="meta-tag">Adaptive Reuse</span>
+                            <span class="meta-tag">Mixed-Use</span>
+                            <span class="meta-tag">3D Max</span>
+                            <span class="meta-tag">V-Ray</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-primary" data-project="8">
+                                <i class="fas fa-expand-alt"></i> View Full Article
+                            </button>
+                            <button class="btn btn-view-full">
+                                <i class="fas fa-images"></i> Gallery
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 9: Winter Retreat Villa -->
+                <div class="project-item" data-category="villa architecture">
+                    <div class="project-visual animate-left">
+                        <img src="assest/3Dmax/Winter Retreat Villa_resized_1920px.jpg" alt="Winter Retreat Villa">
+                        <div class="project-badge">Alpine Architecture</div>
+                    </div>
+                    <div class="project-info animate-right delay-1">
+                        <div class="project-number">Project 09</div>
+                        <h3 class="project-name">Winter Retreat Villa</h3>
+                        <div class="project-description" id="desc-9">
+                            <p>A mountain residence designed for harsh winter conditions with sloped roofs, thermal mass, and strategic solar orientation for maximum comfort.</p>
+                        </div>
+                        <button class="read-more-btn" data-target="desc-9">
+                            Read More <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="project-meta">
+                            <span class="meta-tag">Alpine Architecture</span>
+                            <span class="meta-tag">Climate-Responsive</span>
+                            <span class="meta-tag">Luxury Residence</span>
+                            <span class="meta-tag">Sustainable</span>
+                            <span class="meta-tag">3D Max</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-primary" data-project="9">
+                                <i class="fas fa-expand-alt"></i> View Full Article
+                            </button>
+                            <button class="btn btn-view-full">
+                                <i class="fas fa-images"></i> Gallery
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 10: Timeless Classic Villa -->
+                <div class="project-item" data-category="villa architecture">
+                    <div class="project-visual animate-right">
+                        <img src="assest/3Dmax/Timeless Classic Villa_resized_1920px.jpg" alt="Timeless Classic Villa">
+                        <div class="project-badge">Classical Architecture</div>
+                    </div>
+                    <div class="project-info animate-left delay-1">
+                        <div class="project-number">Project 10</div>
+                        <h3 class="project-name">Timeless Classic Villa</h3>
+                        <div class="project-description" id="desc-10">
+                            <p>A villa design drawing inspiration from historical architectural traditions while incorporating contemporary comforts and sustainable systems.</p>
+                        </div>
+                        <button class="read-more-btn" data-target="desc-10">
+                            Read More <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="project-meta">
+                            <span class="meta-tag">Classical Architecture</span>
+                            <span class="meta-tag">Heritage</span>
+                            <span class="meta-tag">Traditional</span>
+                            <span class="meta-tag">3D Max</span>
+                            <span class="meta-tag">V-Ray</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-primary" data-project="10">
+                                <i class="fas fa-expand-alt"></i> View Full Article
+                            </button>
+                            <button class="btn btn-view-full">
+                                <i class="fas fa-images"></i> Gallery
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 11: Harmony Green Villa -->
+                <div class="project-item" data-category="villa architecture">
+                    <div class="project-visual animate-left">
+                        <img src="assest/3Dmax/Harmony Green Villa_resized_1920px.jpg" alt="Harmony Green Villa">
+                        <div class="project-badge">Sustainable</div>
+                    </div>
+                    <div class="project-info animate-right delay-1">
+                        <div class="project-number">Project 11</div>
+                        <h3 class="project-name">Harmony Green Villa</h3>
+                        <div class="project-description" id="desc-11">
+                            <p>A sustainable residence designed to merge seamlessly with its natural surroundings using passive design strategies and extensive green integration.</p>
+                        </div>
+                        <button class="read-more-btn" data-target="desc-11">
+                            Read More <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="project-meta">
+                            <span class="meta-tag">Sustainable</span>
+                            <span class="meta-tag">Bioclimatic</span>
+                            <span class="meta-tag">Landscape Integration</span>
+                            <span class="meta-tag">Green Roof</span>
+                            <span class="meta-tag">3D Max</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-primary" data-project="11">
+                                <i class="fas fa-expand-alt"></i> View Full Article
+                            </button>
+                            <button class="btn btn-view-full">
+                                <i class="fas fa-images"></i> Gallery
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 12: Architectural Plans in 3D -->
+                <div class="project-item" data-category="technical">
+                    <div class="project-visual animate-right">
+                        <img src="assest/3Dmax/Architectural Plans in 3D_resized_1920px.jpg" alt="Architectural Plans in 3D">
+                        <div class="project-badge">Technical</div>
+                    </div>
+                    <div class="project-info animate-left delay-1">
+                        <div class="project-number">Project 12</div>
+                        <h3 class="project-name">Architectural Plans in 3D</h3>
+                        <div class="project-description" id="desc-12">
+                            <p>A technical study converting traditional 2D architectural plans into immersive 3D visualizations for enhanced spatial comprehension and client communication.</p>
+                        </div>
+                        <button class="read-more-btn" data-target="desc-12">
+                            Read More <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="project-meta">
+                            <span class="meta-tag">Technical</span>
+                            <span class="meta-tag">Plan Visualization</span>
+                            <span class="meta-tag">3D Documentation</span>
+                            <span class="meta-tag">Educational</span>
+                            <span class="meta-tag">3D Max</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-primary" data-project="12">
+                                <i class="fas fa-expand-alt"></i> View Full Article
+                            </button>
+                            <button class="btn btn-view-full">
+                                <i class="fas fa-images"></i> Gallery
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualization Process Section -->
+    <section class="visualization-process">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Visualization Process</h2>
+                <p class="section-subtitle">A structured workflow from concept to final render, ensuring precision and artistic excellence in every visualization.</p>
+            </div>
+
+            <div class="process-timeline">
+                <!-- Process Step 1 -->
+                <div class="process-item animate-on-scroll">
+                    <div class="process-marker"></div>
+                    <div class="process-content">
+                        <div class="process-number">01</div>
+                        <h3 class="process-title">Concept & Planning</h3>
+                        <p class="process-description">Initial concept development, reference gathering, and project planning. Establishing visual style, composition, and storytelling approach through detailed mood boards and sketches.</p>
+                    </div>
+                </div>
+
+                <!-- Process Step 2 -->
+                <div class="process-item animate-on-scroll delay-1">
+                    <div class="process-marker"></div>
+                    <div class="process-content">
+                        <div class="process-number">02</div>
+                        <h3 class="process-title">3D Modeling</h3>
+                        <p class="process-description">Precise geometric modeling with attention to scale and proportion. Creating detailed architectural elements and spatial relationships through advanced polygon modeling techniques.</p>
+                    </div>
+                </div>
+
+                <!-- Process Step 3 -->
+                <div class="process-item animate-on-scroll delay-2">
+                    <div class="process-marker"></div>
+                    <div class="process-content">
+                        <div class="process-number">03</div>
+                        <h3 class="process-title">Material & Lighting</h3>
+                        <p class="process-description">Developing realistic material libraries and implementing advanced lighting setups for accurate physical representation and mood creation. Utilizing V-Ray and Corona for physically-based rendering.</p>
+                    </div>
+                </div>
+
+                <!-- Process Step 4 -->
+                <div class="process-item animate-on-scroll delay-3">
+                    <div class="process-marker"></div>
+                    <div class="process-content">
+                        <div class="process-number">04</div>
+                        <h3 class="process-title">Rendering & Post-Production</h3>
+                        <p class="process-description">High-quality rendering with careful post-production refinement. Enhancing visual impact through compositing, color grading, and atmospheric effects for photorealistic results.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D Visualization Mastery Section -->
+    <section class="visualization-mastery">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">3D Visualization Mastery</h2>
+                <p class="section-subtitle">Comprehensive technical expertise and software proficiency in architectural visualization and 3D modeling, honed through academic excellence and professional practice.</p>
+            </div>
+
+            <div class="mastery-grid">
+                <div class="mastery-card animate-on-scroll">
+                    <div class="mastery-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3 class="mastery-title">Core 3D Visualization Skills</h3>
+                    <p class="mastery-description">Advanced expertise in creating photorealistic architectural visualizations through meticulous attention to detail in modeling, texturing, and lighting.</p>
+                    <ul class="mastery-list">
+                        <li><i class="fas fa-camera"></i> Photorealistic Rendering</li>
+                        <li><i class="fas fa-layer-group"></i> Material Creation & Mapping</li>
+                        <li><i class="fas fa-lightbulb"></i> Lighting Design & Simulation</li>
+                        <li><i class="fas fa-video"></i> Camera Composition & Framing</li>
+                        <li><i class="fas fa-magic"></i> Post-Production & Compositing</li>
+                    </ul>
+                </div>
+
+                <div class="mastery-card animate-on-scroll delay-1">
+                    <div class="mastery-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="mastery-title">Software Proficiency</h3>
+                    <p class="mastery-description">Expert command of industry-standard software for modeling, rendering, and post-production workflows.</p>
+                    <div class="software-grid">
+                        <div class="software-item">
+                            <div class="software-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <div class="software-name">3D Max</div>
+                            <div class="software-type">Modeling</div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <div class="software-name">V-Ray</div>
+                            <div class="software-type">Rendering</div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="software-name">Corona</div>
+                            <div class="software-type">Rendering</div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-icon">
+                                <i class="fas fa-shapes"></i>
+                            </div>
+                            <div class="software-name">Rhino</div>
+                            <div class="software-type">Modeling</div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="software-name">Revit</div>
+                            <div class="software-type">BIM</div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <div class="software-name">SketchUp</div>
+                            <div class="software-type">Modeling</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mastery-card animate-on-scroll delay-2">
+                    <div class="mastery-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="mastery-title">Post-Production Suite</h3>
+                    <p class="mastery-description">Advanced skills in image editing, vector graphics, and motion graphics for final presentation polish.</p>
+                    <div class="software-grid">
+                        <div class="software-item">
+                            <div class="software-icon">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <div class="software-name">Photoshop</div>
+                            <div class="software-type">Image Editing</div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-icon">
+                                <i class="fas fa-pen-nib"></i>
+                            </div>
+                            <div class="software-name">Illustrator</div>
+                            <div class="software-type">Vector Graphics</div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div class="software-name">After Effects</div>
+                            <div class="software-type">Motion Graphics</div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-icon">
+                                <i class="fas fa-vr-cardboard"></i>
+                            </div>
+                            <div class="software-name">Twinmotion</div>
+                            <div class="software-type">Real-Time</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualization Specializations Section -->
+    <section class="specializations">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Visualization Specializations</h2>
+                <p class="section-subtitle">Expertise in diverse architectural visualization domains, from intimate interiors to expansive cityscapes</p>
+            </div>
+
+            <div class="specializations-grid">
+                <div class="specialization-card animate-on-scroll">
+                    <div class="specialization-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="specialization-title">Architectural Interiors</h3>
+                    <p class="specialization-description">Creating immersive interior spaces with realistic lighting, materials, and spatial composition for residential and commercial projects.</p>
+                </div>
+
+                <div class="specialization-card animate-on-scroll delay-1">
+                    <div class="specialization-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="specialization-title">Building Exteriors</h3>
+                    <p class="specialization-description">Detailed exterior visualizations showcasing architectural forms, materials, and contextual integration with surrounding environments.</p>
+                </div>
+
+                <div class="specialization-card animate-on-scroll delay-2">
+                    <div class="specialization-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3 class="specialization-title">Daylight Studies</h3>
+                    <p class="specialization-description">Analyzing and visualizing natural light behavior throughout different times of day and seasons for optimal building performance.</p>
+                </div>
+
+                <div class="specialization-card animate-on-scroll delay-3">
+                    <div class="specialization-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <h3 class="specialization-title">Night Rendering</h3>
+                    <p class="specialization-description">Creating atmospheric night scenes with artificial lighting design and ambient glow for dramatic visual impact.</p>
+                </div>
+
+                <div class="specialization-card animate-on-scroll">
+                    <div class="specialization-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3 class="specialization-title">Human Scale Integration</h3>
+                    <p class="specialization-description">Incorporating human figures and activities to communicate scale, functionality, and spatial experience in architectural visualizations.</p>
+                </div>
+
+                <div class="specialization-card animate-on-scroll delay-1">
+                    <div class="specialization-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h3 class="specialization-title">Landscape Integration</h3>
+                    <p class="specialization-description">Seamlessly blending architectural elements with natural landscapes, vegetation, and outdoor environments.</p>
+                </div>
+
+                <div class="specialization-card animate-on-scroll delay-2">
+                    <div class="specialization-icon">
+                        <i class="fas fa-vr-cardboard"></i>
+                    </div>
+                    <h3 class="specialization-title">Virtual Reality</h3>
+                    <p class="specialization-description">Creating immersive VR experiences for clients to explore architectural spaces in real-time with interactive navigation.</p>
+                </div>
+
+                <div class="specialization-card animate-on-scroll delay-3">
+                    <div class="specialization-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <h3 class="specialization-title">Animation & Walkthroughs</h3>
+                    <p class="specialization-description">Producing cinematic animations and virtual walkthroughs that guide viewers through architectural narratives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (EXACT from index.html) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-symbol">NM</div>
+                        <div class="footer-signature">Najibeh Movahedi</div>
+                    </div>
+                    <p class="footer-about">
+                        Interior Architect & Spatial Designer specializing in 3D visualization and innovative spatial solutions. Currently advancing expertise at Politecnico di Milano.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blog.html">Academic Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong><br>
+                                <span>najibeh.movahedi@mail.polimi.it</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Location</strong><br>
+                                <span>Milan, Italy</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <strong>University</strong><br>
+                                <span>Politecnico di Milano</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Najibeh Movahedi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactive Elements -->
+    <script>
+        // Project Data - Complete details for all 12 projects
+        const projectsData = {
+            1: {
+                title: "Contemporary Living Space",
+                description: "An elegant residential interior that maximizes natural light through strategic window placement and reflective surfaces. The design creates a seamless connection between indoor comfort and outdoor views through careful material selection and spatial planning.",
+                tags: ["Residential", "3D Visualization", "Modern", "Lighting Study", "Material Research"],
+                category: "Interior Design",
+                software: "3D Max, V-Ray, Corona, Photoshop",
+                metaLabel: "PROJECT TYPE",
+                metaValue: "Academic Visualization",
+                image: "assest/3Dmax/18_resized_1920px.jpg",
+                designConcept: `<p>This project represents a comprehensive exploration of interior design through detailed 3D visualization techniques. The design approach combines technical precision with artistic interpretation to create compelling visual narratives that communicate spatial qualities, material characteristics, and lighting conditions.</p>
+                <p>Using advanced 3D modeling and rendering techniques, the project demonstrates proficiency in creating photorealistic representations that serve both as design development tools and presentation materials for clients and stakeholders.</p>`,
+                softwareTools: "3D Max, V-Ray, Corona, Photoshop for comprehensive 3D modeling, texturing, rendering, and post-production workflow"
+            },
+            2: {
+                title: "Royal Grandeur Hall",
+                description: "A majestic interior design combining classical elements with contemporary luxury, featuring intricate architectural details, ornate chandeliers, and a sophisticated gold-accented color scheme.",
+                tags: ["Luxury Interior", "Classical", "Ornate", "3D Max", "V-Ray"],
+                category: "Interior Design",
+                software: "3D Max, V-Ray, Marvelous Designer, Substance Painter",
+                metaLabel: "STYLE",
+                metaValue: "Neoclassical Luxury",
+                image: "assest/3Dmax/Royal Grandeur Hall_resized_1920px.jpg",
+                designConcept: `<p>This project represents a comprehensive exploration of interior design through detailed 3D visualization techniques. The design approach combines technical precision with artistic interpretation to create compelling visual narratives that communicate spatial qualities, material characteristics, and lighting conditions.</p>
+                <p>Using advanced 3D modeling and rendering techniques, the project demonstrates proficiency in creating photorealistic representations that serve both as design development tools and presentation materials for clients and stakeholders.</p>`,
+                softwareTools: "3D Max, V-Ray, Marvelous Designer, Substance Painter for comprehensive 3D modeling, texturing, rendering, and post-production workflow"
+            },
+            3: {
+                title: "Tranquil Minimalist Haven",
+                description: "A serene residential space designed with Japanese-inspired minimalism, emphasizing clean lines and natural materials to create a calming sanctuary.",
+                tags: ["Minimalism", "Wellness", "Japanese-inspired", "3D Max", "Corona"],
+                category: "Interior Design",
+                software: "3D Max, Corona, SketchUp, Lightroom",
+                metaLabel: "STYLE",
+                metaValue: "Wabi-Sabi Minimalism",
+                image: "assest/3Dmax/Tranquil Minimalist Haven_resized_1920px.jpg",
+                designConcept: `<p>This project represents a comprehensive exploration of interior design through detailed 3D visualization techniques. The design approach combines technical precision with artistic interpretation to create compelling visual narratives that communicate spatial qualities, material characteristics, and lighting conditions.</p>
+                <p>Using advanced 3D modeling and rendering techniques, the project demonstrates proficiency in creating photorealistic representations that serve both as design development tools and presentation materials for clients and stakeholders.</p>`,
+                softwareTools: "3D Max, Corona, SketchUp, Lightroom for comprehensive 3D modeling, texturing, rendering, and post-production workflow"
+            },
+            4: {
+                title: "Nature's Touch Interior",
+                description: "An interior space that seamlessly integrates natural elements to create a healing environment with living walls and optimized natural light.",
+                tags: ["Biophilic Design", "Sustainable", "Wellness", "3D Max", "Forest Pack"],
+                category: "Interior Design",
+                software: "3D Max, V-Ray, Forest Pack, RailClone",
+                metaLabel: "STYLE",
+                metaValue: "Biophilic Wellness",
+                image: "assest/3Dmax/Nature's Touch Interior_resized_1920px.jpg",
+                designConcept: `<p>This project represents a comprehensive exploration of interior design through detailed 3D visualization techniques. The design approach combines technical precision with artistic interpretation to create compelling visual narratives that communicate spatial qualities, material characteristics, and lighting conditions.</p>
+                <p>Using advanced 3D modeling and rendering techniques, the project demonstrates proficiency in creating photorealistic representations that serve both as design development tools and presentation materials for clients and stakeholders.</p>`,
+                softwareTools: "3D Max, V-Ray, Forest Pack, RailClone for comprehensive 3D modeling, texturing, rendering, and post-production workflow"
+            },
+            5: {
+                title: "Urban Buildings Facade Study",
+                description: "A series of commercial building facades exploring geometric patterns, material textures, and urban context integration in contemporary architecture.",
+                tags: ["Urban Design", "Commercial", "Facade Study", "3D Max", "Rhino"],
+                category: "Architecture",
+                software: "3D Max, Rhino, V-Ray, Illustrator",
+                metaLabel: "PROJECT TYPE",
+                metaValue: "Facade Study",
+                image: "assest/3Dmax/19_resized_1920px.jpg",
+                designConcept: `<p>This project represents a comprehensive exploration of architecture through detailed 3D visualization techniques. The design approach combines technical precision with artistic interpretation to create compelling visual narratives that communicate spatial qualities, material characteristics, and lighting conditions.</p>
+                <p>Using advanced 3D modeling and rendering techniques, the project demonstrates proficiency in creating photorealistic representations that serve both as design development tools and presentation materials for clients and stakeholders.</p>`,
+                softwareTools: "3D Max, Rhino, V-Ray, Illustrator for comprehensive 3D modeling, texturing, rendering, and post-production workflow"
+            },
+            6: {
+                title: "Bold Geometry Facade",
+                description: "A contemporary commercial facade that explores the expressive potential of geometric forms with dramatic shadow play and material contrast.",
+                tags: ["Modern Architecture", "Geometric", "Facade Design", "Parametric", "3D Max"],
+                category: "Architecture",
+                software: "3D Max, V-Ray, Grasshopper, Photoshop",
+                metaLabel: "STYLE",
+                metaValue: "Parametric Modern",
+                image: "assest/3Dmax/Bold Geometry Facade_resized_1920px.jpg",
+                designConcept: `<p>This project represents a comprehensive exploration of architecture through detailed 3D visualization techniques. The design approach combines technical precision with artistic interpretation to create compelling visual narratives that communicate spatial qualities, material characteristics, and lighting conditions.</p>
+                <p>Using advanced 3D modeling and rendering techniques, the project demonstrates proficiency in creating photorealistic representations that serve both as design development tools and presentation materials for clients and stakeholders.</p>`,
+                softwareTools: "3D Max, V-Ray, Grasshopper, Photoshop for comprehensive 3D modeling, texturing, rendering, and post-production workflow"
+            },
+            7: {
+                title: "Cityscape Illumination",
+                description: "A nighttime study of urban architecture focusing on lighting design and material reflectivity for creating vibrant nocturnal city identities.",
+                tags: ["Night Visualization", "Urban Lighting", "Cityscape", "3D Max", "After Effects"],
+                category: "Architecture",
+                software: "3D Max, Corona, After Effects, Photoshop",
+                metaLabel: "FOCUS",
+                metaValue: "Night Rendering",
+                image: "assest/3Dmax/Cityscape Illumination_resized_1920px.jpg",
+                designConcept: `<p>This project represents a comprehensive exploration of architecture through detailed 3D visualization techniques. The design approach combines technical precision with artistic interpretation to create compelling visual narratives that communicate spatial qualities, material characteristics, and lighting conditions.</p>
+                <p>Using advanced 3D modeling and rendering techniques, the project demonstrates proficiency in creating photorealistic representations that serve both as design development tools and presentation materials for clients and stakeholders.</p>`,
+                softwareTools: "3D Max, Corona, After Effects, Photoshop for comprehensive 3D modeling, texturing, rendering, and post-production workflow"
+            },
+            8: {
+                title: "Industrial Elegance Space",
+                description: "An adaptive reuse project transforming industrial structures into sophisticated mixed-use spaces celebrating raw materials with refined contemporary elements.",
+                tags: ["Industrial", "Adaptive Reuse", "Mixed-Use", "3D Max", "V-Ray"],
+                category: "Architecture & Interior",
+                software: "3D Max, V-Ray, Substance Painter, Photoshop",
+                metaLabel: "STYLE",
+                metaValue: "Industrial Chic",
+                image: "assest/3Dmax/Industrial Elegance Space_resized_1920px.jpg",
+                designConcept: `<p>This project represents a comprehensive exploration of architecture & interior through detailed 3D visualization techniques. The design approach combines technical precision with artistic interpretation to create compelling visual narratives that communicate spatial qualities, material characteristics, and lighting conditions.</p>
+                <p>Using advanced 3D modeling and rendering techniques, the project demonstrates proficiency in creating photorealistic representations that serve both as design development tools and presentation materials for clients and stakeholders.</p>`,
+                softwareTools: "3D Max, V-Ray, Substance Painter, Photoshop for comprehensive 3D modeling, texturing, rendering, and post-production workflow"
+            },
+            9: {
+                title: "Winter Retreat Villa",
+                description: "A mountain residence designed for harsh winter conditions with sloped roofs, thermal mass, and strategic solar orientation for maximum comfort.",
+                tags: ["Alpine Architecture", "Climate-Responsive", "Luxury Residence", "Sustainable", "3D Max"],
+                category: "Villa Architecture",
+                software: "3D Max, V-Ray, SketchUp, Climate Studio",
+                metaLabel: "FOCUS",
+                metaValue: "Climate Design",
+                image: "assest/3Dmax/Winter Retreat Villa_resized_1920px.jpg",
+                designConcept: `<p>This project represents a comprehensive exploration of villa architecture through detailed 3D visualization techniques. The design approach combines technical precision with artistic interpretation to create compelling visual narratives that communicate spatial qualities, material characteristics, and lighting conditions.</p>
+                <p>Using advanced 3D modeling and rendering techniques, the project demonstrates proficiency in creating photorealistic representations that serve both as design development tools and presentation materials for clients and stakeholders.</p>`,
+                softwareTools: "3D Max, V-Ray, SketchUp, Climate Studio for comprehensive 3D modeling, texturing, rendering, and post-production workflow"
+            },
+            10: {
+                title: "Timeless Classic Villa",
+                description: "A villa design drawing inspiration from historical architectural traditions while incorporating contemporary comforts and sustainable systems.",
+                tags: ["Classical Architecture", "Heritage", "Traditional", "3D Max", "V-Ray"],
+                category: "Villa Architecture",
+                software: "3D Max, V-Ray, AutoCAD, Photoshop",
+                metaLabel: "STYLE",
+                metaValue: "Contemporary Classical",
+                image: "assest/3Dmax/Timeless Classic Villa_resized_1920px.jpg",
+                designConcept: `<p>This project represents a comprehensive exploration of villa architecture through detailed 3D visualization techniques. The design approach combines technical precision with artistic interpretation to create compelling visual narratives that communicate spatial qualities, material characteristics, and lighting conditions.</p>
+                <p>Using advanced 3D modeling and rendering techniques, the project demonstrates proficiency in creating photorealistic representations that serve both as design development tools and presentation materials for clients and stakeholders.</p>`,
+                softwareTools: "3D Max, V-Ray, AutoCAD, Photoshop for comprehensive 3D modeling, texturing, rendering, and post-production workflow"
+            },
+            11: {
+                title: "Harmony Green Villa",
+                description: "A sustainable residence designed to merge seamlessly with its natural surroundings using passive design strategies and extensive green integration.",
+                tags: ["Sustainable", "Bioclimatic", "Landscape Integration", "Green Roof", "3D Max"],
+                category: "Villa Architecture",
+                software: "3D Max, V-Ray, Revit, Twinmotion",
+                metaLabel: "FOCUS",
+                metaValue: "Sustainable Design",
+                image: "assest/3Dmax/Harmony Green Villa_resized_1920px.jpg",
+                designConcept: `<p>This project represents a comprehensive exploration of villa architecture through detailed 3D visualization techniques. The design approach combines technical precision with artistic interpretation to create compelling visual narratives that communicate spatial qualities, material characteristics, and lighting conditions.</p>
+                <p>Using advanced 3D modeling and rendering techniques, the project demonstrates proficiency in creating photorealistic representations that serve both as design development tools and presentation materials for clients and stakeholders.</p>`,
+                softwareTools: "3D Max, V-Ray, Revit, Twinmotion for comprehensive 3D modeling, texturing, rendering, and post-production workflow"
+            },
+            12: {
+                title: "Architectural Plans in 3D",
+                description: "A technical study converting traditional 2D architectural plans into immersive 3D visualizations for enhanced spatial comprehension and client communication.",
+                tags: ["Technical", "Plan Visualization", "3D Documentation", "Educational", "3D Max"],
+                category: "Technical",
+                software: "3D Max, AutoCAD, Revit, Photoshop",
+                metaLabel: "PURPOSE",
+                metaValue: "Educational Visualization",
+                image: "assest/3Dmax/Architectural Plans in 3D_resized_1920px.jpg",
+                designConcept: `<p>This project represents a comprehensive exploration of technical through detailed 3D visualization techniques. The design approach combines technical precision with artistic interpretation to create compelling visual narratives that communicate spatial qualities, material characteristics, and lighting conditions.</p>
+                <p>Using advanced 3D modeling and rendering techniques, the project demonstrates proficiency in creating photorealistic representations that serve both as design development tools and presentation materials for clients and stakeholders.</p>`,
+                softwareTools: "3D Max, AutoCAD, Revit, Photoshop for comprehensive 3D modeling, texturing, rendering, and post-production workflow"
+            }
+        };
+
+        // Navigation Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuToggle.addEventListener('click', function() {
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close mobile menu when clicking a link
+        const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Portfolio Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectItems = document.querySelectorAll('.project-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Get filter value
+                const filterValue = this.getAttribute('data-filter');
+
+                // Filter projects
+                projectItems.forEach(item => {
+                    if (filterValue === 'all') {
+                        item.style.display = 'grid';
+                    } else {
+                        const categories = item.getAttribute('data-category');
+                        if (categories.includes(filterValue)) {
+                            item.style.display = 'grid';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+
+        // Read More/Read Less functionality
+        const readMoreBtns = document.querySelectorAll('.read-more-btn');
+        readMoreBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const targetDescription = document.getElementById(targetId);
+                const isExpanded = targetDescription.classList.contains('expanded');
+
+                // Toggle expanded class
+                targetDescription.classList.toggle('expanded');
+                this.classList.toggle('expanded');
+
+                // Update button text
+                this.innerHTML = isExpanded
+                    ? 'Read More <i class="fas fa-chevron-down"></i>'
+                    : 'Read Less <i class="fas fa-chevron-up"></i>';
+            });
+        });
+
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe project items
+        projectItems.forEach(item => {
+            if (!item.classList.contains('visible')) {
+                observer.observe(item);
+            }
+        });
+
+        // Observe other animated elements
+        const animatedElements = document.querySelectorAll('.animate-on-scroll, .animate-left, .animate-right');
+        animatedElements.forEach(el => {
+            observer.observe(el);
+        });
+
+        // Project Article Functionality
+        let currentProjectId = 1;
+
+        // Function to create project article HTML
+        function createProjectArticle(projectId) {
+            const projectData = projectsData[projectId];
+            if (!projectData) return null;
+
+            // Create the article HTML structure
+            const articleHTML = `
+                <div class="project-article" id="projectArticle">
+                    <!-- Article Navigation -->
+                    <nav class="article-nav">
+                        <div class="container">
+                            <button class="article-back-btn" id="articleBackBtn">
+                                <i class="fas fa-arrow-left"></i> Back to Portfolio
+                            </button>
+                            <div class="article-nav-controls">
+                                <button class="article-close-btn" id="articleCloseBtn">
+                                    <i class="fas fa-times"></i> Close
+                                </button>
+                            </div>
+                        </div>
+                    </nav>
+
+                    <!-- Article Header -->
+                    <header class="article-header">
+                        <div class="container">
+                            <div class="article-hero-image">
+                                <img src="${projectData.image}" alt="${projectData.title}">
+                            </div>
+                            <div class="article-info">
+                                <div class="article-title-section">
+                                    <h1>${projectData.title}</h1>
+                                    <p class="article-description">${projectData.description}</p>
+                                    <div class="article-tags">
+                                        ${projectData.tags.map(tag => `<span class="article-tag">${tag}</span>`).join('')}
+                                    </div>
+                                </div>
+                                <div class="article-meta">
+                                    <div class="meta-item">
+                                        <div class="meta-label">CATEGORY</div>
+                                        <div class="meta-value">${projectData.category}</div>
+                                    </div>
+                                    <div class="meta-item">
+                                        <div class="meta-label">YEAR</div>
+                                        <div class="meta-value">2024</div>
+                                    </div>
+                                    <div class="meta-item">
+                                        <div class="meta-label">SOFTWARE USED</div>
+                                        <div class="meta-value">${projectData.software}</div>
+                                    </div>
+                                    <div class="meta-item">
+                                        <div class="meta-label">${projectData.metaLabel}</div>
+                                        <div class="meta-value">${projectData.metaValue}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Article Content -->
+                    <div class="article-content">
+                        <div class="container">
+                            <div class="article-section">
+                                <h2>Design Concept</h2>
+                                <div class="article-text">
+                                    ${projectData.designConcept}
+                                </div>
+                            </div>
+
+                            <div class="article-section">
+                                <h2>Technical Details</h2>
+                                <div class="details-grid">
+                                    <div class="detail-card">
+                                        <h3>Software & Tools</h3>
+                                        <p>${projectData.softwareTools}</p>
+                                    </div>
+                                    <div class="detail-card">
+                                        <h3>Render Settings</h3>
+                                        <p>4K resolution output, advanced lighting simulation, global illumination, material accuracy with PBR workflow</p>
+                                    </div>
+                                    <div class="detail-card">
+                                        <h3>Modeling Approach</h3>
+                                        <p>High-precision modeling with attention to scale and proportion, optimized for both quality and rendering efficiency</p>
+                                    </div>
+                                    <div class="detail-card">
+                                        <h3>Output Quality</h3>
+                                        <p>Photorealistic rendering with accurate material representation, lighting simulation, and post-production refinement</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="article-section">
+                                <h2>Project Outcomes</h2>
+                                <div class="article-text">
+                                    <p>The visualization successfully communicates the design intent through carefully composed camera angles, accurate material representation, and realistic lighting conditions. The project demonstrates advanced skills in:</p>
+                                    <ul>
+                                        <li><strong>3D Modeling:</strong> Precise geometric representation of architectural elements</li>
+                                        <li><strong>Material Creation:</strong> Development of realistic material libraries with accurate physical properties</li>
+                                        <li><strong>Lighting Design:</strong> Simulation of natural and artificial lighting conditions</li>
+                                        <li><strong>Post-Production:</strong> Enhancement of render outputs for maximum visual impact</li>
+                                        <li><strong>Presentation:</strong> Creation of compelling visual narratives for design communication</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Project Navigation -->
+                            <div class="project-navigation">
+                                <h2>Explore More Projects</h2>
+                                <div class="nav-buttons">
+                                    <button class="nav-btn" id="prevProjectBtn" ${projectId === 1 ? 'disabled style="opacity: 0.5; pointer-events: none;"' : ''}>
+                                        <i class="fas fa-arrow-left"></i> Previous Project
+                                    </button>
+                                    <button class="nav-btn" id="nextProjectBtn" ${projectId === 12 ? 'disabled style="opacity: 0.5; pointer-events: none;"' : ''}>
+                                        Next Project <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            return articleHTML;
+        }
+
+        // Function to open project article
+        function openProjectArticle(projectId) {
+            const projectData = projectsData[projectId];
+            if (!projectData) {
+                console.error('Project data not found for ID:', projectId);
+                return;
+            }
+
+            currentProjectId = projectId;
+
+            // Remove existing article if it exists
+            const existingArticle = document.getElementById('projectArticle');
+            if (existingArticle) {
+                existingArticle.remove();
+            }
+
+            // Create and insert the article
+            const articleHTML = createProjectArticle(projectId);
+            if (!articleHTML) return;
+
+            // Create a temporary container
+            const tempContainer = document.createElement('div');
+            tempContainer.innerHTML = articleHTML;
+            const article = tempContainer.firstElementChild;
+
+            // Add to document
+            document.body.appendChild(article);
+
+            // Add event listeners
+            document.getElementById('articleBackBtn').addEventListener('click', closeProjectArticle);
+            document.getElementById('articleCloseBtn').addEventListener('click', closeProjectArticle);
+
+            // Add navigation listeners
+            const prevBtn = document.getElementById('prevProjectBtn');
+            const nextBtn = document.getElementById('nextProjectBtn');
+
+            if (prevBtn && !prevBtn.disabled) {
+                prevBtn.addEventListener('click', () => navigateToProject(currentProjectId - 1));
+            }
+
+            if (nextBtn && !nextBtn.disabled) {
+                nextBtn.addEventListener('click', () => navigateToProject(currentProjectId + 1));
+            }
+
+            // Show article with animation
+            setTimeout(() => {
+                article.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }, 10);
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Function to close project article
+        function closeProjectArticle() {
+            const article = document.getElementById('projectArticle');
+            if (article) {
+                article.classList.remove('active');
+                setTimeout(() => {
+                    article.remove();
+                    document.body.style.overflow = '';
+                }, 400);
+            }
+        }
+
+        // Function to navigate to another project
+        function navigateToProject(projectId) {
+            if (projectId < 1 || projectId > 12) return;
+            closeProjectArticle();
+            setTimeout(() => openProjectArticle(projectId), 400);
+        }
+
+        // Event listeners for project buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listeners to view project buttons
+            const viewProjectBtns = document.querySelectorAll('.btn-primary[data-project]');
+            viewProjectBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const projectId = parseInt(this.getAttribute('data-project'));
+                    console.log('Opening project article:', projectId);
+                    openProjectArticle(projectId);
+                });
+            });
+
+            // Close article with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    const article = document.getElementById('projectArticle');
+                    if (article && article.classList.contains('active')) {
+                        closeProjectArticle();
+                    }
+                }
+            });
+        });
+
+        // Gallery buttons functionality (placeholder)
+        const galleryBtns = document.querySelectorAll('.btn-view-full');
+        galleryBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const projectItem = this.closest('.project-item');
+                const projectName = projectItem.querySelector('.project-name').textContent;
+                alert(`Opening gallery for: ${projectName}\n\nThis would open a lightbox gallery with all project images.`);
+            });
+        });
+    </script>
+</body>
+</html>

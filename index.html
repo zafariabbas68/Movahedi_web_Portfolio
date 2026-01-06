@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interior Architecture & Spatial Design | Najibeh Movahedi | Milan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Clean, elegant fonts inspired by DOME -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ==================== DOME-INSPIRED COLOR PALETTE ==================== */
+        :root {
+            /* Sophisticated minimalist palette */
+            --dome-black: #0A0A0A;
+            --dome-dark: #1A1A1A;
+            --dome-gray: #8C8C8C;
+            --dome-light: #F5F5F5;
+            --dome-white: #FFFFFF;
+            --dome-accent: #CC5500; /* Dark orange from your palette */
+            --dome-border: rgba(0, 0, 0, 0.08);
+            --dome-hover: rgba(204, 85, 0, 0.1);
+
+            /* Your existing colors as fallback */
+            --natural-wood: #B2967D;
+            --gold-accent: #D4AF37;
+            --persian-turquoise: #00A896;
+            --warm-white: #FEFCF8;
+            --charcoal: #2C2C2C;
+        }
+
+        /* ==================== BASE STYLES ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dome-black);
+            background-color: var(--dome-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: 0.3px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            position: relative;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        /* ==================== DOME-STYLE NAVIGATION ==================== */
+        .navbar {
+            background: var(--dome-white);
+            padding: 25px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--dome-border);
+        }
+
+        .navbar.scrolled {
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo - Clean and minimal */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-container:hover {
+            opacity: 0.8;
+        }
+
+        .logo-symbol {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            background: var(--dome-black);
+            color: var(--dome-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .logo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--dome-black);
+            letter-spacing: 0.5px;
+        }
+
+        /* Menu toggle button - DOME style */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--dome-black);
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        /* Menu colors based on state */
+        .menu-toggle:not(.active) span {
+            background: var(--dome-black); /* Closed state - black lines */
+        }
+
+        .menu-toggle.active span {
+            background: var(--dome-white); /* Open state - white lines */
+        }
+
+        /* Navigation Links - Desktop */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dome-black);
+            font-weight: 400;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+            text-transform: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--dome-accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--dome-accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Mobile Navigation Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--dome-black);
+            z-index: 999;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 40px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.4s ease;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            text-align: center;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 30px;
+        }
+
+        .mobile-nav-links a {
+            color: var(--dome-white);
+            font-size: 2rem;
+            font-weight: 400;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--dome-accent);
+        }
+
+        /* ==================== DOME-STYLE HERO SECTION ==================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 120px;
+            background: var(--dome-white);
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),
+                        url('assest/Rhino/008-2.webp');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            animation: scaleIn 1.5s ease forwards;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            color: var(--dome-white);
+            padding: 60px 0;
+        }
+
+        .page-title {
+            font-size: 4.5rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 50px;
+            max-width: 700px;
+            line-height: 1.8;
+            font-weight: 300;
+            padding-left: 20px;
+            border-left: 3px solid var(--dome-accent);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        /* ==================== BUTTONS ==================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: 1px;
+            border: 1px solid var(--dome-white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: var(--dome-white);
+        }
+
+        .btn:hover {
+            background: var(--dome-white);
+            color: var(--dome-black);
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background: var(--dome-accent);
+            border-color: var(--dome-accent);
+        }
+
+        .btn-primary:hover {
+            background: var(--dome-white);
+            color: var(--dome-accent);
+            border-color: var(--dome-white);
+        }
+
+        /* ==================== CONTENT SECTIONS ==================== */
+        .content-section {
+            padding: 100px 0;
+            border-top: 1px solid var(--dome-border);
+        }
+
+        .section-header {
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: var(--dome-black);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--dome-accent);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--dome-gray);
+            max-width: 800px;
+            margin: 30px auto 0;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* ==================== PRINCIPAL INTRODUCTION ==================== */
+        .intro-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: var(--dome-black);
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--dome-black);
+            margin-bottom: 25px;
+        }
+
+        .intro-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            position: relative;
+            height: 500px;
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .intro-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .render-badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: var(--dome-black);
+            color: var(--dome-white);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            z-index: 2;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* ==================== PROJECTS SECTION ==================== */
+        .project-showcase {
+            margin-top: 60px;
+        }
+
+        .project-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 120px;
+        }
+
+        .project-info {
+            padding: 20px 0;
+        }
+
+        .project-number {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--dome-accent);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .project-name {
+            font-size: 2.5rem;
+            color: var(--dome-black);
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .project-description {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--dome-black);
+            margin-bottom: 35px;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            padding: 10px 24px;
+            background: rgba(204, 85, 0, 0.1);
+            color: var(--dome-accent);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: 1px solid rgba(204, 85, 0, 0.2);
+            border-radius: 20px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .meta-tag:hover {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            transform: translateY(-2px);
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* ==================== ENHANCED VIDEO PLAYER ==================== */
+        .enhanced-video-player {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--dome-dark);
+        }
+
+        .enhanced-video-player video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        .enhanced-video-player.playing .video-overlay {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dome-accent);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            background: var(--dome-accent);
+            color: var(--dome-white);
+        }
+
+        .video-controls-panel {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            backdrop-filter: blur(10px);
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            z-index: 3;
+        }
+
+        .enhanced-video-player:hover .video-controls-panel {
+            transform: translateY(0);
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--dome-white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .control-btn:hover {
+            background: var(--dome-accent);
+            color: var(--dome-black);
+            transform: scale(1.1);
+        }
+
+        .progress-container {
+            flex: 1;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            min-width: 60px;
+        }
+
+        .progress-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: var(--dome-accent);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .time-display {
+            color: var(--dome-white);
+            font-size: 0.9rem;
+            min-width: 100px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 5px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            outline: none;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--dome-accent);
+            cursor: pointer;
+        }
+
+        /* ==================== GALLERY SECTION ==================== */
+        .gallery-container {
+            margin-bottom: 80px;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .gallery-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: var(--dome-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .gallery-description {
+            font-size: 1.2rem;
+            color: var(--dome-gray);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 28px;
+            background: rgba(204, 85, 0, 0.1);
+            border: 1px solid rgba(204, 85, 0, 0.2);
+            color: var(--dome-accent);
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .filter-btn:hover {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            box-shadow: 0 4px 15px rgba(204, 85, 0, 0.3);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            background: var(--dome-dark);
+            height: 280px;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            filter: brightness(0.9);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            color: var(--dome-white);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(-10px);
+            opacity: 0;
+            transition: all 0.3s ease 0.1s;
+            pointer-events: none;
+        }
+
+        .gallery-item[data-category="concept"] .gallery-badge {
+            background: rgba(204, 85, 0, 0.9);
+            color: var(--dome-white);
+        }
+
+        .gallery-item[data-category="technical"] .gallery-badge {
+            background: rgba(0, 0, 0, 0.9);
+            color: var(--dome-white);
+        }
+
+        .gallery-item[data-category="construction"] .gallery-badge {
+            background: rgba(204, 85, 0, 0.9);
+            color: var(--dome-white);
+        }
+
+        .gallery-item[data-category="analysis"] .gallery-badge {
+            background: rgba(0, 0, 0, 0.9);
+            color: var(--dome-white);
+        }
+
+        .gallery-item:hover .gallery-badge {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .gallery-number {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.15);
+            font-family: 'Inter', sans-serif;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .gallery-cta {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            background: var(--dome-black);
+            color: var(--dome-white);
+            padding: 100px 0 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .footer-logo-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo-symbol {
+            width: 40px;
+            height: 40px;
+            background: var(--dome-white);
+            color: var(--dome-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 300;
+        }
+
+        .footer-signature {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--dome-white);
+        }
+
+        .footer-about {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dome-white);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--dome-white);
+            color: var(--dome-black);
+            border-color: var(--dome-white);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            color: var(--dome-white);
+            font-weight: 500;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--dome-white);
+            padding-left: 5px;
+        }
+
+        .footer-contact li {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .footer-contact i {
+            color: var(--dome-accent);
+            margin-top: 3px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* ==================== LIGHTBOX STYLES ==================== */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            background: var(--dome-dark);
+            border-radius: 12px;
+            overflow: hidden;
+            animation: scaleIn 0.3s ease;
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+
+        .lightbox-caption {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--dome-white);
+            text-align: center;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--dome-white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2001;
+        }
+
+        .lightbox-close:hover {
+            background: var(--dome-accent);
+            color: var(--dome-black);
+            transform: rotate(90deg);
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .animate-left {
+            opacity: 0;
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        .animate-right {
+            opacity: 0;
+            animation: slideInRight 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* ==================== RESPONSIVE STYLES ==================== */
+        @media (max-width: 1200px) {
+            .page-title {
+                font-size: 3.8rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+                padding-left: 0;
+                border-left: none;
+                border-top: 3px solid var(--dome-accent);
+                padding-top: 20px;
+            }
+
+            .hero-cta {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu.active {
+                display: flex;
+            }
+
+            .intro-container,
+            .project-item {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .project-visual {
+                min-height: 400px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .page-title {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+            }
+
+            .intro-image {
+                height: 400px;
+            }
+
+            .project-item {
+                gap: 40px;
+                margin-bottom: 80px;
+            }
+
+            .project-name {
+                font-size: 2.2rem;
+            }
+
+            .enhanced-video-player {
+                min-height: 400px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .gallery-item {
+                height: 250px;
+            }
+
+            .gallery-filters {
+                gap: 10px;
+            }
+
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+                min-width: 100px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 14px 24px;
+            }
+
+            .project-meta {
+                justify-content: center;
+            }
+
+            .project-actions {
+                flex-direction: column;
+            }
+
+            .gallery-item {
+                height: 220px;
+            }
+
+            .gallery-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-btn {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo-container">
+                <div class="logo-symbol">NM</div>
+                <div class="logo-name">Najibeh Movahedi</div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <ul class="nav-links" id="desktopNav">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html">Academic Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html">Academic Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="page-title animate-on-scroll">Interior Architecture &<br>Spatial Design</h1>
+                <p class="hero-description animate-on-scroll delay-1">
+                    Crafting immersive environments through sophisticated interplay of light, materiality, and form.
+                    Specializing in spatial narratives that evoke emotion while maintaining functional excellence.
+                    Where Persian artistic heritage meets contemporary Italian design principles.
+                </p>
+
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary animate-on-scroll delay-2">
+                        <i class="fas fa-arrow-down"></i> View Featured Projects
+                    </a>
+                    <a href="about.html" class="btn animate-on-scroll delay-2">
+                        <i class="fas fa-user"></i> About the Designer
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Philosophy -->
+    <section class="content-section">
+        <div class="container">
+            <div class="intro-container">
+                <div class="intro-text animate-left">
+                    <h2>Design Philosophy</h2>
+                    <p>
+                        Interior architecture transcends mere decoration—it's the art of shaping human experience through space.
+                        Our approach integrates rigorous academic research from Politecnico di Milano with practical application,
+                        focusing on how spatial design influences perception, emotion, and behavior.
+                    </p>
+                    <p>
+                        We believe in evidence-based design where every decision—from material selection to lighting strategy—is
+                        informed by principles of spatial psychology, color theory, and sustainable practice. This methodology
+                        ensures environments that are not only aesthetically compelling but also enhance wellbeing and functionality.
+                    </p>
+                    <p>
+                        Specializing in transitional spaces and adaptive reuse, we transform underutilized areas into meaningful
+                        environments that serve communities while respecting ecological balance and cultural context.
+                    </p>
+                </div>
+                <div class="intro-image animate-right delay-1">
+                    <img src="assest/3Dmax/room-design_resized_1920px.jpg"
+                         alt="3DMax Interior Design Render"
+                         style="width:100%; height:100%;">
+                    <div class="render-badge">
+                        <i class="fas fa-cube"></i> 3DMax Professional Render
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Studio Projects Section -->
+    <section class="content-section" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animate-on-scroll">Featured Studio Projects</h2>
+                <p class="section-subtitle animate-on-scroll delay-1">
+                    A selection of recent spatial design explorations and architectural interventions
+                    that demonstrate our studio's approach to creating meaningful environments.
+                </p>
+            </div>
+
+            <div class="project-showcase">
+                <!-- Project 1: Farm to Fork -->
+                <div class="project-item">
+                    <div class="project-info animate-left">
+                        <div class="project-number">Project 01</div>
+                        <h3 class="project-name">Farm to Fork</h3>
+                        <p class="project-description">
+                            An innovative exploration of ephemeral architecture that transforms transit spaces into
+                            vibrant community hubs through modular hydroponic systems. This project reimagines food
+                            production within urban environments, creating sustainable ecosystems in transitional spaces.
+                        </p>
+                        <div class="project-meta">
+                            <span class="meta-tag">Sustainable Design</span>
+                            <span class="meta-tag">Modular Architecture</span>
+                            <span class="meta-tag">Urban Farming</span>
+                            <span class="meta-tag">Community Spaces</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="assest/Ephemeral_Temporal_spaces/BOOK PROVA FINALE_compressed_screen.pdf"
+                               class="btn btn-primary" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> View Full PDF
+                            </a>
+                            <a href="#gallery-farm" class="btn">
+                                <i class="fas fa-images"></i> View Gallery
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-visual animate-right delay-1">
+                        <div class="enhanced-video-player" id="farmVideoPlayer">
+                            <video id="farmVideo" poster="assest/Ephemeral_Temporal_spaces/Image1.png">
+                                <source src="/Users/ghulamabbaszafari/Downloads/Movahedi_web_Portfolio/assest/Ephemeral_Temporal_spaces/final _compressed_web_mobile.mp4" type="video/mp4">
+                            </video>
+                            <div class="video-overlay" onclick="togglePlay('farm')">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="video-controls-panel">
+                                <button class="control-btn" onclick="togglePlay('farm')">
+                                    <i class="fas fa-play" id="farmPlayIcon"></i>
+                                </button>
+                                <button class="control-btn" onclick="stopVideo('farm')">
+                                    <i class="fas fa-stop"></i>
+                                </button>
+                                <div class="progress-container" onclick="seekVideo('farm', event)">
+                                    <div class="progress-bar" id="farmProgressBar"></div>
+                                </div>
+                                <div class="time-display" id="farmTimeDisplay">0:00 / 0:00</div>
+                                <button class="control-btn" onclick="toggleMute('farm')">
+                                    <i class="fas fa-volume-up" id="farmVolumeIcon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Lake Varese -->
+                <div class="project-item">
+                    <div class="project-visual animate-left">
+                        <div class="enhanced-video-player" id="lakeVideoPlayer">
+                            <video id="lakeVideo" poster="assest/Lake varese_Landscape/IMG-20231116-WA0013.jpg">
+                                <source src="/Users/ghulamabbaszafari/Downloads/Movahedi_web_Portfolio/assest/Lake varese_Landscape/copy_E9F78368-DA7F-4792-AF71-E811B97039FE_compressed_web_mobile.mp4" type="video/mp4">
+                            </video>
+                            <div class="video-overlay" onclick="togglePlay('lake')">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="video-controls-panel">
+                                <button class="control-btn" onclick="togglePlay('lake')">
+                                    <i class="fas fa-play" id="lakePlayIcon"></i>
+                                </button>
+                                <button class="control-btn" onclick="stopVideo('lake')">
+                                    <i class="fas fa-stop"></i>
+                                </button>
+                                <div class="progress-container" onclick="seekVideo('lake', event)">
+                                    <div class="progress-bar" id="lakeProgressBar"></div>
+                                </div>
+                                <div class="time-display" id="lakeTimeDisplay">0:00 / 0:00</div>
+                                <button class="control-btn" onclick="toggleMute('lake')">
+                                    <i class="fas fa-volume-up" id="lakeVolumeIcon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info animate-right delay-1">
+                        <div class="project-number">Project 02</div>
+                        <h3 class="project-name">Lake Varese</h3>
+                        <p class="project-description">
+                            A comprehensive landscape architecture project focusing on ecological restoration and
+                            sustainable development of lakefront spaces. This design integrates natural ecosystems
+                            with recreational areas, creating harmony between built environment and natural systems.
+                        </p>
+                        <div class="project-meta">
+                            <span class="meta-tag">Landscape Architecture</span>
+                            <span class="meta-tag">Ecological Design</span>
+                            <span class="meta-tag">Public Space</span>
+                            <span class="meta-tag">Sustainable Development</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="assest/Lake varese_Landscape/Exam_Book x stampadef_compressed_ebook_compressed_screen.pdf"
+                               class="btn btn-primary" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> View Full PDF
+                            </a>
+                            <a href="#gallery-lake" class="btn">
+                                <i class="fas fa-images"></i> View Gallery
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="content-section" id="gallery-farm">
+        <div class="container">
+            <div class="gallery-container">
+                <div class="gallery-header">
+                    <h3 class="gallery-title animate-on-scroll">
+                        <i class="fas fa-seedling"></i> Farm to Fork Collection
+                    </h3>
+                    <p class="gallery-description animate-on-scroll delay-1">
+                        Visual documentation of the modular hydroponic farming system, from initial concept sketches
+                        to detailed technical drawings and construction specifications.
+                    </p>
+                </div>
+
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all" onclick="filterGallery('farm', 'all')">
+                        <i class="fas fa-th"></i> All
+                    </button>
+                    <button class="filter-btn" data-filter="concept" onclick="filterGallery('farm', 'concept')">
+                        <i class="fas fa-lightbulb"></i> Concepts
+                    </button>
+                    <button class="filter-btn" data-filter="technical" onclick="filterGallery('farm', 'technical')">
+                        <i class="fas fa-ruler-combined"></i> Technical
+                    </button>
+                </div>
+
+                <div class="gallery-grid" id="farmGallery">
+                    <div class="gallery-item farm animate-on-scroll" data-category="concept" onclick="openLightbox('assest/Ephemeral_Temporal_spaces/Image1.png', 'Farm to Fork - Concept Visualization')">
+                        <div class="gallery-number">01</div>
+                        <div class="gallery-badge">Concept Design</div>
+                        <img src="assest/Ephemeral_Temporal_spaces/Image1.png" alt="Concept Design">
+                        <div class="gallery-overlay">
+                            <h4>Concept Visualization</h4>
+                            <p>Initial design exploration showing modular system integration</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item farm animate-on-scroll delay-1" data-category="technical" onclick="openLightbox('assest/Ephemeral_Temporal_spaces/Image2.png', 'Farm to Fork - Technical Documentation')">
+                        <div class="gallery-number">02</div>
+                        <div class="gallery-badge">Technical Drawings</div>
+                        <img src="assest/Ephemeral_Temporal_spaces/Image2.png" alt="Technical Drawings">
+                        <div class="gallery-overlay">
+                            <h4>Technical Documentation</h4>
+                            <p>Detailed architectural drawings and system specifications</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item farm animate-on-scroll delay-2" data-category="concept" onclick="openLightbox('assest/Ephemeral_Temporal_spaces/Image3.png', 'Farm to Fork - Construction Details')">
+                        <div class="gallery-number">03</div>
+                        <div class="gallery-badge">Construction</div>
+                        <img src="assest/Ephemeral_Temporal_spaces/Image3.png" alt="Construction Details">
+                        <div class="gallery-overlay">
+                            <h4>Construction Details</h4>
+                            <p>Structural specifications and assembly sequence</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item farm animate-on-scroll delay-3" data-category="technical" onclick="openLightbox('assest/Ephemeral_Temporal_spaces/Image1.png', 'Farm to Fork - System Integration')">
+                        <div class="gallery-number">04</div>
+                        <div class="gallery-badge">System Integration</div>
+                        <img src="assest/Ephemeral_Temporal_spaces/Image1.png" alt="System Integration">
+                        <div class="gallery-overlay">
+                            <h4>System Integration Study</h4>
+                            <p>Analysis of hydroponic system integration</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lake Varese Gallery -->
+            <div class="gallery-container" id="gallery-lake">
+                <div class="gallery-header">
+                    <h3 class="gallery-title animate-on-scroll">
+                        <i class="fas fa-water"></i> Lake Varese Collection
+                    </h3>
+                    <p class="gallery-description animate-on-scroll delay-1">
+                        Comprehensive documentation of the ecological restoration project, including site analysis,
+                        master planning, 3D visualizations, and sustainable development strategies.
+                    </p>
+                </div>
+
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all" onclick="filterGallery('lake', 'all')">
+                        <i class="fas fa-th"></i> All
+                    </button>
+                    <button class="filter-btn" data-filter="analysis" onclick="filterGallery('lake', 'analysis')">
+                        <i class="fas fa-search"></i> Analysis
+                    </button>
+                    <button class="filter-btn" data-filter="concept" onclick="filterGallery('lake', 'concept')">
+                        <i class="fas fa-cube"></i> 3D Views
+                    </button>
+                </div>
+
+                <div class="gallery-grid" id="lakeGallery">
+                    <div class="gallery-item lake animate-on-scroll" data-category="analysis" onclick="openLightbox('assest/Lake varese_Landscape/IMG-20231116-WA0013.jpg', 'Lake Varese - Site Analysis')">
+                        <div class="gallery-number">01</div>
+                        <div class="gallery-badge">Site Analysis</div>
+                        <img src="assest/Lake varese_Landscape/IMG-20231116-WA0013.jpg" alt="Site Analysis">
+                        <div class="gallery-overlay">
+                            <h4>Site Analysis & Context Study</h4>
+                            <p>Initial site documentation and environmental assessment</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item lake animate-on-scroll delay-1" data-category="concept" onclick="openLightbox('assest/Lake varese_Landscape/IMG-20231116-WA0017.jpg', 'Lake Varese - 3D Visualization')">
+                        <div class="gallery-number">02</div>
+                        <div class="gallery-badge">3D Visualization</div>
+                        <img src="assest/Lake varese_Landscape/IMG-20231116-WA0017.jpg" alt="3D Visualization">
+                        <div class="gallery-overlay">
+                            <h4>3D Landscape Visualization</h4>
+                            <p>Twinmotion render showcasing proposed ecological restoration</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item lake animate-on-scroll delay-2" data-category="analysis" onclick="openLightbox('assest/Lake varese_Landscape/IMG-20231116-WA0021.jpg', 'Lake Varese - Master Planning')">
+                        <div class="gallery-number">03</div>
+                        <div class="gallery-badge">Master Plan</div>
+                        <img src="assest/Lake varese_Landscape/IMG-20231116-WA0021.jpg" alt="Master Plan">
+                        <div class="gallery-overlay">
+                            <h4>Master Planning Strategy</h4>
+                            <p>Comprehensive design layout showing spatial organization</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item lake animate-on-scroll delay-3" data-category="analysis" onclick="openLightbox('assest/Lake varese_Landscape/IMG-20231116-WA0013.jpg', 'Lake Varese - Ecological Zones')">
+                        <div class="gallery-number">04</div>
+                        <div class="gallery-badge">Ecological Design</div>
+                        <img src="assest/Lake varese_Landscape/IMG-20231116-WA0013.jpg" alt="Ecological Zones">
+                        <div class="gallery-overlay">
+                            <h4>Ecological Zone Analysis</h4>
+                            <p>Detailed study of wetland restoration strategies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-cta">
+                <a href="portfolio.html" class="btn btn-primary animate-on-scroll">
+                    <i class="fas fa-images"></i> Explore Full Portfolio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-symbol">NM</div>
+                        <div class="footer-signature">Najibeh Movahedi</div>
+                    </div>
+                    <p class="footer-about">
+                        Interior Architect & Spatial Designer blending Persian artistic heritage with contemporary Italian design principles. Master's candidate at Politecnico di Milano.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="contact.html" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blog.html">Academic Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i> movahedinajibeh@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> +39 375 5611868</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Milan, Italy</li>
+                        <li><i class="fas fa-graduation-cap"></i> Politecnico di Milano</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Najibeh Movahedi. Interior Architect & Spatial Designer | Politecnico di Milano</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            menuToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+
+                // Toggle body scroll
+                if (mobileMenu.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    menuToggle.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                // Trigger animations
+                checkAnimations();
+            });
+
+            // Initialize animations
+            function checkAnimations() {
+                const elements = document.querySelectorAll('.animate-on-scroll, .animate-left, .animate-right');
+                const windowHeight = window.innerHeight;
+
+                elements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < windowHeight * 0.85) {
+                        el.style.animationPlayState = 'running';
+                    }
+                });
+            }
+
+            // Initial animation check
+            checkAnimations();
+
+            // Video Management System
+            const videos = {
+                farm: {
+                    element: document.getElementById('farmVideo'),
+                    player: document.getElementById('farmVideoPlayer'),
+                    progressBar: document.getElementById('farmProgressBar'),
+                    timeDisplay: document.getElementById('farmTimeDisplay'),
+                    playIcon: document.getElementById('farmPlayIcon'),
+                    volumeIcon: document.getElementById('farmVolumeIcon'),
+                    muted: false,
+                    volume: 1
+                },
+                lake: {
+                    element: document.getElementById('lakeVideo'),
+                    player: document.getElementById('lakeVideoPlayer'),
+                    progressBar: document.getElementById('lakeProgressBar'),
+                    timeDisplay: document.getElementById('lakeTimeDisplay'),
+                    playIcon: document.getElementById('lakePlayIcon'),
+                    volumeIcon: document.getElementById('lakeVolumeIcon'),
+                    muted: false,
+                    volume: 1
+                }
+            };
+
+            // Initialize video players
+            Object.keys(videos).forEach(key => {
+                const video = videos[key];
+                if (video.element) {
+                    // Update progress bar
+                    video.element.addEventListener('timeupdate', function() {
+                        updateVideoProgress(key);
+                    });
+
+                    // Update time display on load
+                    video.element.addEventListener('loadedmetadata', function() {
+                        updateTimeDisplay(key);
+                    });
+
+                    // Play/pause events
+                    video.element.addEventListener('play', function() {
+                        video.player.classList.add('playing');
+                        video.playIcon.className = 'fas fa-pause';
+                    });
+
+                    video.element.addEventListener('pause', function() {
+                        video.player.classList.remove('playing');
+                        video.playIcon.className = 'fas fa-play';
+                    });
+
+                    // Video ended
+                    video.element.addEventListener('ended', function() {
+                        video.player.classList.remove('playing');
+                        video.playIcon.className = 'fas fa-play';
+                        video.element.currentTime = 0;
+                        updateVideoProgress(key);
+                    });
+                }
+            });
+
+            // Video control functions
+            window.togglePlay = function(videoId) {
+                const video = videos[videoId];
+                if (video.element.paused) {
+                    video.element.play();
+                } else {
+                    video.element.pause();
+                }
+            };
+
+            window.stopVideo = function(videoId) {
+                const video = videos[videoId];
+                video.element.pause();
+                video.element.currentTime = 0;
+                video.player.classList.remove('playing');
+                video.playIcon.className = 'fas fa-play';
+                updateVideoProgress(videoId);
+            };
+
+            window.toggleMute = function(videoId) {
+                const video = videos[videoId];
+                video.element.muted = !video.element.muted;
+                video.muted = video.element.muted;
+                video.volumeIcon.className = video.element.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+            };
+
+            window.seekVideo = function(videoId, event) {
+                const video = videos[videoId];
+                const progressContainer = event.currentTarget;
+                const rect = progressContainer.getBoundingClientRect();
+                const percent = (event.clientX - rect.left) / rect.width;
+
+                if (video.element) {
+                    video.element.currentTime = percent * video.element.duration;
+                    updateVideoProgress(videoId);
+                }
+            };
+
+            function updateVideoProgress(videoId) {
+                const video = videos[videoId];
+                if (video.element && video.progressBar) {
+                    const percent = (video.element.currentTime / video.element.duration) * 100;
+                    video.progressBar.style.width = percent + '%';
+                    updateTimeDisplay(videoId);
+                }
+            }
+
+            function updateTimeDisplay(videoId) {
+                const video = videos[videoId];
+                if (video.element && video.timeDisplay) {
+                    const currentTime = formatTime(video.element.currentTime);
+                    const duration = formatTime(video.element.duration);
+                    video.timeDisplay.textContent = `${currentTime} / ${duration}`;
+                }
+            }
+
+            function formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+
+            // Gallery Filtering System
+            window.filterGallery = function(galleryId, filterType) {
+                const gallery = document.getElementById(galleryId + 'Gallery');
+                const filterBtns = document.querySelectorAll(`#${galleryId} .filter-btn`);
+
+                // Update active button
+                filterBtns.forEach(btn => {
+                    if (btn.getAttribute('data-filter') === filterType) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+
+                // Filter gallery items
+                const items = gallery.querySelectorAll('.gallery-item');
+
+                items.forEach(item => {
+                    if (filterType === 'all') {
+                        item.style.display = 'block';
+                    } else {
+                        const category = item.getAttribute('data-category');
+                        if (category === filterType) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    }
+                });
+            };
+
+            // Lightbox functionality
+            window.openLightbox = function(src, title) {
+                // Create lightbox elements
+                const lightbox = document.createElement('div');
+                lightbox.className = 'lightbox';
+                lightbox.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.95);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 2000;
+                    padding: 20px;
+                `;
+
+                const lightboxContent = document.createElement('div');
+                lightboxContent.className = 'lightbox-content';
+
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = title;
+
+                const caption = document.createElement('div');
+                caption.className = 'lightbox-caption';
+
+                const titleElement = document.createElement('h4');
+                titleElement.textContent = title;
+                caption.appendChild(titleElement);
+
+                const closeBtn = document.createElement('button');
+                closeBtn.className = 'lightbox-close';
+                closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+
+                closeBtn.addEventListener('click', function() {
+                    document.body.removeChild(lightbox);
+                    document.body.style.overflow = 'auto';
+                });
+
+                lightbox.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        document.body.removeChild(lightbox);
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+
+                lightboxContent.appendChild(closeBtn);
+                lightboxContent.appendChild(img);
+                lightboxContent.appendChild(caption);
+                lightbox.appendChild(lightboxContent);
+                document.body.appendChild(lightbox);
+                document.body.style.overflow = 'hidden';
+            };
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

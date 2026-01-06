@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Najibeh Movahedi - Interior Architect & Spatial Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Clean, elegant fonts from portfolio page -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ==================== DOME-INSPIRED COLOR PALETTE (FROM PORTFOLIO) ==================== */
+        :root {
+            /* Sophisticated minimalist palette - EXACT from portfolio */
+            --dome-black: #0A0A0A;
+            --dome-dark: #1A1A1A;
+            --dome-gray: #8C8C8C;
+            --dome-light: #F5F5F5;
+            --dome-white: #FFFFFF;
+            --dome-accent: #CC5500; /* Dark orange from portfolio */
+            --dome-border: rgba(0, 0, 0, 0.08);
+            --dome-hover: rgba(204, 85, 0, 0.1);
+        }
+
+        /* ==================== BASE STYLES (EXACT FROM PORTFOLIO) ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dome-black);
+            background-color: var(--dome-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: 0.3px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            position: relative;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        /* ==================== DOME-STYLE NAVIGATION (EXACT FROM PORTFOLIO) ==================== */
+        .navbar {
+            background: var(--dome-white);
+            padding: 25px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--dome-border);
+        }
+
+        .navbar.scrolled {
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo - Clean and minimal (EXACT from portfolio) */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-container:hover {
+            opacity: 0.8;
+        }
+
+        .logo-symbol {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            background: var(--dome-black);
+            color: var(--dome-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .logo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--dome-black);
+            letter-spacing: 0.5px;
+        }
+
+        /* Menu toggle button - DOME style (EXACT from portfolio) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--dome-black);
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .menu-toggle:not(.active) span {
+            background: var(--dome-black);
+        }
+
+        .menu-toggle.active span {
+            background: var(--dome-white);
+        }
+
+        /* Navigation Links - Desktop (EXACT from portfolio) */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dome-black);
+            font-weight: 400;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+            text-transform: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--dome-accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--dome-accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Mobile Navigation Menu (EXACT from portfolio) */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--dome-black);
+            z-index: 999;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 40px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.4s ease;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            text-align: center;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 30px;
+        }
+
+        .mobile-nav-links a {
+            color: var(--dome-white);
+            font-size: 2rem;
+            font-weight: 400;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--dome-accent);
+        }
+
+        /* ==================== ANIMATION VIDEO SECTION ==================== */
+        .animation-section {
+            padding-top: 120px;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: var(--dome-black);
+        }
+
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-background {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom,
+                rgba(10, 10, 10, 0.2) 0%,
+                rgba(10, 10, 10, 0.5) 50%,
+                rgba(10, 10, 10, 0.8) 100%);
+        }
+
+        .animation-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--dome-white);
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .animation-title {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            line-height: 1.1;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .animation-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .video-controls {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        /* ==================== BUTTONS (EXACT FROM PORTFOLIO) ==================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: 1px;
+            border: 1px solid var(--dome-white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: var(--dome-white);
+        }
+
+        .btn:hover {
+            background: var(--dome-white);
+            color: var(--dome-black);
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background: var(--dome-accent);
+            border-color: var(--dome-accent);
+        }
+
+        .btn-primary:hover {
+            background: var(--dome-white);
+            color: var(--dome-accent);
+            border-color: var(--dome-white);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--dome-black);
+            border: 1px solid var(--dome-border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            border-color: var(--dome-accent);
+        }
+
+        /* ==================== CONTACT HERO SECTION ==================== */
+        .contact-hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 120px;
+            background: var(--dome-dark);
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
+                        url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .contact-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            color: var(--dome-white);
+            padding: 60px 0;
+        }
+
+        .contact-page-title {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .contact-hero-description {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 50px;
+            max-width: 700px;
+            line-height: 1.8;
+            font-weight: 300;
+            padding-left: 20px;
+            border-left: 3px solid var(--dome-accent);
+        }
+
+        /* Contact badge */
+        .contact-badge {
+            display: inline-block;
+            background: rgba(204, 85, 0, 0.2);
+            border: 1px solid rgba(204, 85, 0, 0.4);
+            color: var(--dome-accent);
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+            animation: pulse 2s infinite;
+        }
+
+        /* ==================== CONTACT CONTENT SECTION ==================== */
+        .contact-content {
+            padding: 100px 0;
+            background: var(--dome-white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: var(--dome-black);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--dome-accent);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--dome-gray);
+            max-width: 800px;
+            margin: 30px auto 0;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* ==================== CONTACT GRID ==================== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-top: 80px;
+        }
+
+        .contact-info {
+            background: var(--dome-light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--dome-border);
+            padding: 60px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .contact-info:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+            border-color: var(--dome-accent);
+        }
+
+        .contact-info h2 {
+            font-size: 2.2rem;
+            color: var(--dome-black);
+            margin-bottom: 30px;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        .contact-info > p {
+            color: var(--dome-gray);
+            line-height: 1.7;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        .contact-details {
+            margin-bottom: 50px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 35px;
+            align-items: flex-start;
+            padding-bottom: 35px;
+            border-bottom: 1px solid var(--dome-border);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-bottom-color: var(--dome-accent);
+            padding-left: 10px;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--dome-accent);
+            min-width: 40px;
+            margin-top: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover i {
+            transform: scale(1.1);
+        }
+
+        .contact-item h4 {
+            color: var(--dome-black);
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .contact-item p {
+            color: var(--dome-gray);
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .contact-item .contact-note {
+            font-size: 0.95rem;
+            color: var(--dome-gray);
+            margin-top: 8px;
+            font-style: italic;
+            opacity: 0.7;
+        }
+
+        .social-contact {
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 1px solid var(--dome-border);
+        }
+
+        .social-contact h3 {
+            color: var(--dome-black);
+            margin-bottom: 25px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+        }
+
+        .social-links-contact {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .social-links-contact a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--dome-black);
+            text-decoration: none;
+            padding: 18px 25px;
+            background: var(--dome-white);
+            border-radius: 10px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--dome-border);
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links-contact a:hover {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(204, 85, 0, 0.2);
+            border-color: transparent;
+        }
+
+        /* ==================== CONTACT FORM ==================== */
+        .contact-form-container {
+            background: var(--dome-light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--dome-border);
+            padding: 60px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .contact-form-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+            border-color: var(--dome-accent);
+        }
+
+        .contact-form-container h2 {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: var(--dome-black);
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            color: var(--dome-black);
+            font-weight: 500;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            padding-left: 5px;
+        }
+
+        .form-group label::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 10px;
+            height: 1px;
+            background: var(--dome-accent);
+            transform: translateY(-50%);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 18px;
+            border: 1px solid var(--dome-border);
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            color: var(--dome-black);
+            transition: all 0.3s ease;
+            background: var(--dome-white);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--dome-accent);
+            box-shadow: 0 0 0 4px rgba(204, 85, 0, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-message {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        .form-message.success {
+            background: rgba(122, 158, 126, 0.1);
+            color: var(--dome-accent);
+            border: 1px solid var(--dome-accent);
+        }
+
+        .form-message.error {
+            background: rgba(226, 114, 91, 0.1);
+            color: var(--dome-accent);
+            border: 1px solid var(--dome-accent);
+        }
+
+        /* ==================== MAP SECTION ==================== */
+        .map-section {
+            padding: 100px 0;
+            background: var(--dome-light);
+            border-top: 1px solid var(--dome-border);
+            border-bottom: 1px solid var(--dome-border);
+        }
+
+        .map-section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            color: var(--dome-black);
+            margin-bottom: 60px;
+            font-weight: 300;
+        }
+
+        .map-placeholder {
+            max-width: 1100px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            background: var(--dome-white);
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .map-placeholder:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .map-image {
+            width: 100%;
+            height: 350px;
+            background: var(--dome-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--dome-gray);
+            border-radius: 10px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-image i {
+            font-size: 5rem;
+            margin-bottom: 25px;
+            color: var(--dome-accent);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .map-image p {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 400;
+            color: var(--dome-black);
+        }
+
+        .map-note {
+            font-size: 1.2rem;
+            color: var(--dome-gray);
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ==================== FOOTER (EXACT FROM PORTFOLIO) ==================== */
+        .footer {
+            background: var(--dome-black);
+            color: var(--dome-white);
+            padding: 100px 0 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .footer-logo-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo-symbol {
+            width: 40px;
+            height: 40px;
+            background: var(--dome-white);
+            color: var(--dome-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 300;
+        }
+
+        .footer-signature {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--dome-white);
+        }
+
+        .footer-about {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dome-white);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--dome-white);
+            color: var(--dome-black);
+            border-color: var(--dome-white);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            color: var(--dome-white);
+            font-weight: 500;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--dome-white);
+            padding-left: 5px;
+        }
+
+        .footer-contact li {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .footer-contact i {
+            color: var(--dome-accent);
+            margin-top: 3px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(204, 85, 0, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(204, 85, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(204, 85, 0, 0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .animate-left {
+            opacity: 0;
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        .animate-right {
+            opacity: 0;
+            animation: slideInRight 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* ==================== RESPONSIVE STYLES ==================== */
+        @media (max-width: 1200px) {
+            .animation-title {
+                font-size: 3.2rem;
+            }
+
+            .contact-page-title {
+                font-size: 3.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 2fr 1fr;
+            }
+
+            .contact-grid {
+                gap: 50px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .animation-section {
+                height: 80vh;
+            }
+
+            .animation-title {
+                font-size: 2.8rem;
+            }
+
+            .animation-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .contact-hero-content {
+                text-align: center;
+            }
+
+            .contact-hero-description {
+                margin-left: auto;
+                margin-right: auto;
+                padding-left: 0;
+                border-left: none;
+                border-top: 3px solid var(--dome-accent);
+                padding-top: 20px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu.active {
+                display: flex;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .contact-info,
+            .contact-form-container {
+                padding: 40px;
+            }
+
+            .social-links-contact {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .animation-section {
+                height: 70vh;
+            }
+
+            .animation-title {
+                font-size: 2.5rem;
+            }
+
+            .animation-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .contact-page-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .contact-hero-description {
+                font-size: 1.1rem;
+            }
+
+            .contact-item {
+                gap: 20px;
+            }
+
+            .contact-item i {
+                font-size: 1.3rem;
+            }
+
+            .contact-item h4 {
+                font-size: 1.05rem;
+            }
+
+            .contact-item p {
+                font-size: 1.05rem;
+            }
+
+            .btn {
+                padding: 15px 30px;
+                font-size: 0.9rem;
+            }
+
+            .map-image {
+                height: 280px;
+                padding: 20px;
+            }
+
+            .map-image i {
+                font-size: 4rem;
+            }
+
+            .map-image p {
+                font-size: 1.5rem;
+            }
+
+            .map-note {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .animation-section {
+                height: 60vh;
+            }
+
+            .animation-title {
+                font-size: 2rem;
+            }
+
+            .animation-content {
+                padding: 20px;
+            }
+
+            .video-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-page-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .contact-badge {
+                padding: 10px 25px;
+                font-size: 0.85rem;
+            }
+
+            .contact-info,
+            .contact-form-container {
+                padding: 30px;
+            }
+
+            .contact-info h2,
+            .contact-form-container h2 {
+                font-size: 1.8rem;
+            }
+
+            .map-image {
+                height: 220px;
+            }
+
+            .map-image i {
+                font-size: 3.5rem;
+            }
+
+            .map-image p {
+                font-size: 1.3rem;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 14px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (EXACT from portfolio) -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo-container">
+                <div class="logo-symbol">NM</div>
+                <div class="logo-name">Najibeh Movahedi</div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <ul class="nav-links" id="desktopNav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html">Academic Blog</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html">Academic Blog</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Animation Video Section -->
+    <section class="animation-section">
+        <div class="video-container">
+            <video class="video-background" autoplay muted loop playsinline>
+                <source src="assest/New%20folder/animation.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        <div class="animation-content">
+            <h1 class="animation-title animate-on-scroll">Design in Motion</h1>
+            <p class="animation-subtitle animate-on-scroll delay-1">
+                Exploring the dynamic interplay of form, light, and space through architectural animation.
+            </p>
+            <div class="video-controls animate-on-scroll delay-2">
+                <button class="btn btn-primary" id="playPauseBtn">
+                    <i class="fas fa-pause"></i> Pause Video
+                </button>
+                <button class="btn" id="muteUnmuteBtn">
+                    <i class="fas fa-volume-up"></i> Mute Audio
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+        <div class="contact-hero-background"></div>
+        <div class="container">
+            <div class="contact-hero-content">
+                <div class="contact-badge animate-on-scroll">Connect & Collaborate</div>
+                <h1 class="contact-page-title animate-on-scroll">Let's Create Together</h1>
+                <p class="contact-hero-description animate-on-scroll delay-1">
+                    Interior Architect & Spatial Designer | Master's Candidate at Politecnico di Milano. Open to academic collaborations, research partnerships, and professional opportunities in spatial design, color theory, and sustainable architecture.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Content Section -->
+    <section class="contact-content">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-subtitle">Connect with me for academic collaborations, research discussions, or professional opportunities. Let's explore creative possibilities together.</p>
+            </div>
+
+            <!-- Contact Grid -->
+            <div class="contact-grid">
+                <div class="contact-info animate-on-scroll">
+                    <h2>Academic & Professional Inquiries</h2>
+                    <p>As a Master's candidate in Interior Architecture at Politecnico di Milano, I'm open to academic collaborations, research partnerships, and professional opportunities that align with my focus on spatial design, color theory, and sustainable architecture.</p>
+
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email Address</h4>
+                                <p>najibeh.movahedi@mail.polimi.it</p>
+                                <p class="contact-note">Primary academic contact</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Personal Email</h4>
+                                <p>movahedinajibeh@gmail.com</p>
+                                <p class="contact-note">Professional inquiries</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone / WhatsApp</h4>
+                                <p>+39 375 5611868</p>
+                                <p class="contact-note">Available for calls during business hours</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Via Vittorio Veneto, 22<br>Bresso, Milan, Italy</p>
+                                <p class="contact-note">Based near Politecnico di Milano</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <h4>University</h4>
+                                <p>Politecnico di Milano</p>
+                                <p class="contact-note">Master's in Interior Architecture (2023-2026)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-contact">
+                        <h3>Connect Professionally</h3>
+                        <div class="social-links-contact">
+                            <a href="#"><i class="fab fa-linkedin"></i> LinkedIn Profile</a>
+                            <a href="#"><i class="fab fa-behance"></i> Behance Portfolio</a>
+                            <a href="#"><i class="fas fa-graduation-cap"></i> Academic Profile</a>
+                            <a href="#"><i class="fas fa-file-pdf"></i> Download CV</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-container animate-on-scroll delay-1">
+                    <h2>Send a Message</h2>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Your full name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="Your email address">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Optional contact number">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inquiry-type">Type of Inquiry *</label>
+                            <select id="inquiry-type" name="inquiry-type" required>
+                                <option value="" disabled selected>Select inquiry type</option>
+                                <option value="academic">Academic Collaboration</option>
+                                <option value="research">Research Partnership</option>
+                                <option value="professional">Professional Opportunity</option>
+                                <option value="internship">Internship/Stage</option>
+                                <option value="project">Project Discussion</option>
+                                <option value="other">Other Inquiry</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <input type="text" id="subject" name="subject" required placeholder="Brief subject of your inquiry">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Your Message *</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Please describe your inquiry in detail, including any relevant project information, timelines, or specific questions..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+
+                    <div id="formMessage" class="form-message"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2 class="section-title">Located in Milan, Italy</h2>
+            <div class="map-placeholder animate-on-scroll">
+                <div class="map-image">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <p>Based in Bresso, Milan - Near Politecnico di Milano</p>
+                </div>
+                <p class="map-note">Accessible for meetings in Milan metropolitan area. Open to both in-person and virtual collaborations across Europe and internationally.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (EXACT from portfolio) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-symbol">NM</div>
+                        <div class="footer-signature">Najibeh Movahedi</div>
+                    </div>
+                    <p class="footer-about">
+                        Interior Architect & Spatial Designer blending Persian artistic heritage with contemporary Italian design principles. Master's candidate at Politecnico di Milano, specializing in spatial perception, color theory, and light manipulation.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blog.html">Academic Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Academic Email</strong><br>
+                                <span>najibeh.movahedi@mail.polimi.it</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Personal Email</strong><br>
+                                <span>movahedinajibeh@gmail.com</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Location</strong><br>
+                                <span>Milan, Italy</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <strong>University</strong><br>
+                                <span>Politecnico di Milano</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Najibeh Movahedi. | Interior Architect & Spatial Designer | Politecnico di Milano</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ==================== NAVIGATION ====================
+            // Navigation Scroll Effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile Menu Toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            menuToggle.addEventListener('click', function() {
+                menuToggle.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            });
+
+            // Close mobile menu when clicking a link
+            const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    menuToggle.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // ==================== VIDEO CONTROLS ====================
+            const video = document.querySelector('.video-background');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const muteUnmuteBtn = document.getElementById('muteUnmuteBtn');
+
+            if (video && playPauseBtn) {
+                // Play/Pause button functionality
+                playPauseBtn.addEventListener('click', function() {
+                    if (video.paused) {
+                        video.play();
+                        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i> Pause Video';
+                    } else {
+                        video.pause();
+                        playPauseBtn.innerHTML = '<i class="fas fa-play"></i> Play Video';
+                    }
+                });
+
+                // Mute/Unmute button functionality
+                if (muteUnmuteBtn) {
+                    muteUnmuteBtn.addEventListener('click', function() {
+                        if (video.muted) {
+                            video.muted = false;
+                            muteUnmuteBtn.innerHTML = '<i class="fas fa-volume-up"></i> Mute Audio';
+                        } else {
+                            video.muted = true;
+                            muteUnmuteBtn.innerHTML = '<i class="fas fa-volume-mute"></i> Unmute Audio';
+                        }
+                    });
+                }
+
+                // Ensure video is muted by default (for autoplay)
+                video.muted = true;
+
+                // Try to play video automatically
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log("Autoplay was prevented, showing controls");
+                        playPauseBtn.style.display = 'flex';
+                    });
+                }
+            }
+
+            // ==================== SCROLL ANIMATIONS ====================
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe animated elements
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // ==================== CONTACT FORM ====================
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('formMessage');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    // Simple form validation
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const subject = document.getElementById('subject').value.trim();
+                    const message = document.getElementById('message').value.trim();
+
+                    if (!name || !email || !subject || !message) {
+                        showMessage('Please fill in all required fields.', 'error');
+                        return;
+                    }
+
+                    if (!isValidEmail(email)) {
+                        showMessage('Please enter a valid email address.', 'error');
+                        return;
+                    }
+
+                    // Simulate form submission
+                    showMessage('Thank you for your message! I will get back to you soon.', 'success');
+                    contactForm.reset();
+
+                    // Scroll to success message
+                    formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+            }
+
+            function isValidEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+
+            function showMessage(text, type) {
+                formMessage.textContent = text;
+                formMessage.className = 'form-message ' + type;
+                formMessage.style.display = 'block';
+
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    formMessage.style.display = 'none';
+                }, 5000);
+            }
+
+            // ==================== PARALLAX EFFECTS ====================
+            // Add subtle parallax to animation section
+            window.addEventListener('scroll', function() {
+                const videoContainer = document.querySelector('.video-container');
+                if (videoContainer) {
+                    const scrolled = window.pageYOffset;
+                    const rate = scrolled * 0.3;
+                    videoContainer.style.transform = `translate3d(0, ${rate}px, 0)`;
+                }
+            });
+
+            // ==================== VIDEO AUTO-PLAY HANDLING ====================
+            // Handle video autoplay on user interaction
+            document.addEventListener('click', function() {
+                if (video && video.paused) {
+                    const playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(error => {
+                            console.log("Autoplay prevented");
+                        });
+                    }
+                }
+            });
+
+            // ==================== SMOOTH SCROLLING ====================
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+
+                    // Skip if it's a regular link
+                    if (href === '#' || href.startsWith('#')) {
+                        e.preventDefault();
+
+                        const targetId = href.substring(1);
+                        const targetElement = document.getElementById(targetId);
+
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

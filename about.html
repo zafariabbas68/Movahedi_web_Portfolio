@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Najibeh Movahedi - Interior Architect & Spatial Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Clean, elegant fonts inspired by DOME -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        /* ==================== DOME-INSPIRED COLOR PALETTE ==================== */
+        :root {
+            /* Sophisticated minimalist palette */
+            --dome-black: #0A0A0A;
+            --dome-dark: #1A1A1A;
+            --dome-gray: #8C8C8C;
+            --dome-light: #F5F5F5;
+            --dome-white: #FFFFFF;
+            --dome-accent: #CC5500; /* Dark orange from your palette */
+            --dome-border: rgba(0, 0, 0, 0.08);
+
+            /* Your existing colors as fallback */
+            --natural-wood: #B2967D;
+            --gold-accent: #D4AF37;
+            --persian-turquoise: #00A896;
+            --warm-white: #FEFCF8;
+            --charcoal: #2C2C2C;
+        }
+
+        /* ==================== BASE STYLES ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dome-black);
+            background-color: var(--dome-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: 0.3px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        /* ==================== DOME-STYLE NAVIGATION ==================== */
+        .navbar {
+            background: var(--dome-white);
+            padding: 25px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--dome-border);
+        }
+
+        .navbar.scrolled {
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo - Clean and minimal */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-container:hover {
+            opacity: 0.8;
+        }
+
+        .logo-symbol {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            background: var(--dome-black);
+            color: var(--dome-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .logo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--dome-black);
+            letter-spacing: 0.5px;
+        }
+
+        /* Menu toggle button - DOME style */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--dome-black);
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        /* Menu colors based on state */
+        .menu-toggle:not(.active) span {
+            background: var(--dome-black); /* Closed state - black lines */
+        }
+
+        .menu-toggle.active span {
+            background: var(--dome-white); /* Open state - white lines */
+        }
+
+        /* Navigation Links - Desktop */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dome-black);
+            font-weight: 400;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+            text-transform: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--dome-accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--dome-accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Mobile Navigation Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--dome-black);
+            z-index: 999;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 40px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.4s ease;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            text-align: center;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 30px;
+        }
+
+        .mobile-nav-links a {
+            color: var(--dome-white);
+            font-size: 2rem;
+            font-weight: 400;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--dome-accent);
+        }
+
+        /* ==================== DOME-STYLE HERO SECTION ==================== */
+        .about-hero {
+            padding-top: 160px;
+            padding-bottom: 100px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: var(--dome-white);
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        /* Left Column - Text */
+        .hero-text {
+            padding-right: 40px;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            color: var(--dome-black);
+        }
+
+        .hero-title .highlight {
+            display: block;
+            margin-top: 15px;
+            color: var(--dome-accent);
+            font-weight: 500;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--dome-gray);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 500px;
+            font-weight: 400;
+        }
+
+        /* Stats - Clean layout */
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin: 50px 0;
+        }
+
+        .stat-item {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: var(--dome-accent);
+            display: block;
+            line-height: 1;
+            margin-bottom: 8px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--dome-gray);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+        }
+
+        /* Right Column - Image */
+        .hero-visual {
+            position: relative;
+        }
+
+        .profile-showcase {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+            filter: grayscale(20%);
+        }
+
+        .profile-showcase:hover .profile-image {
+            transform: scale(1.02);
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 40px;
+            color: var(--dome-white);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .profile-showcase:hover .image-overlay {
+            opacity: 1;
+        }
+
+        /* ==================== CONTENT SECTIONS - DOME STYLE ==================== */
+        .content-section {
+            padding: 100px 0;
+            border-top: 1px solid var(--dome-border);
+        }
+
+        .section-header {
+            margin-bottom: 80px;
+            text-align: left;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: var(--dome-black);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--dome-accent);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--dome-gray);
+            max-width: 600px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* Cultural Fusion Grid */
+        .fusion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .culture-card {
+            border: 1px solid var(--dome-border);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            background: var(--dome-white);
+        }
+
+        .culture-card:hover {
+            border-color: var(--dome-accent);
+            transform: translateY(-5px);
+        }
+
+        .culture-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .culture-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .culture-card:hover .culture-image img {
+            transform: scale(1.05);
+        }
+
+        .culture-content {
+            padding: 30px;
+        }
+
+        .culture-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dome-black);
+        }
+
+        .culture-description {
+            color: var(--dome-gray);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .culture-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .culture-tag {
+            font-size: 0.8rem;
+            padding: 5px 12px;
+            background: rgba(204, 85, 0, 0.1);
+            color: var(--dome-accent);
+            border-radius: 2px;
+            font-weight: 500;
+        }
+
+        /* Design Philosophy */
+        .philosophy-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .philosophy-quote {
+            font-size: 1.8rem;
+            line-height: 1.4;
+            color: var(--dome-black);
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+        }
+
+        .philosophy-author {
+            font-size: 1rem;
+            color: var(--dome-accent);
+            font-weight: 500;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .principle-card {
+            padding: 30px;
+            border: 1px solid var(--dome-border);
+            transition: all 0.3s ease;
+        }
+
+        .principle-card:hover {
+            border-color: var(--dome-accent);
+            background: rgba(204, 85, 0, 0.02);
+        }
+
+        .principle-icon {
+            font-size: 2rem;
+            color: var(--dome-accent);
+            margin-bottom: 20px;
+        }
+
+        .principle-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dome-black);
+        }
+
+        /* Education Timeline */
+        .journey-timeline {
+            position: relative;
+            max-width: 900px;
+            margin-top: 40px;
+        }
+
+        .timeline-item {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--dome-border);
+            position: relative;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-year {
+            font-size: 0.9rem;
+            color: var(--dome-accent);
+            font-weight: 500;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .timeline-title {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            color: var(--dome-black);
+        }
+
+        .timeline-subtitle {
+            font-size: 1rem;
+            color: var(--dome-gray);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .skill-category {
+            padding: 40px;
+            border: 1px solid var(--dome-border);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: var(--dome-accent);
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--dome-black);
+        }
+
+        .skill-items {
+            list-style: none;
+        }
+
+        .skill-item {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--dome-border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+
+        .skill-icon {
+            color: var(--dome-accent);
+        }
+
+        /* ==================== BUTTONS ==================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: 1px;
+            border: 1px solid var(--dome-black);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: var(--dome-black);
+        }
+
+        .btn:hover {
+            background: var(--dome-black);
+            color: var(--dome-white);
+            border-color: var(--dome-black);
+        }
+
+        .btn-primary {
+            background: var(--dome-black);
+            color: var(--dome-white);
+        }
+
+        .btn-primary:hover {
+            background: var(--dome-accent);
+            border-color: var(--dome-accent);
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            background: var(--dome-black);
+            color: var(--dome-white);
+            padding: 100px 0 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .footer-logo-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo-symbol {
+            width: 40px;
+            height: 40px;
+            background: var(--dome-white);
+            color: var(--dome-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 300;
+        }
+
+        .footer-signature {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--dome-white);
+        }
+
+        .footer-about {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dome-white);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--dome-white);
+            color: var(--dome-black);
+            border-color: var(--dome-white);
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            color: var(--dome-white);
+            font-weight: 500;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--dome-white);
+            padding-left: 5px;
+        }
+
+        .footer-contact li {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .footer-contact i {
+            color: var(--dome-accent);
+            margin-top: 3px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* ==================== RESPONSIVE STYLES ==================== */
+        @media (max-width: 1200px) {
+            .hero-container {
+                gap: 60px;
+            }
+
+            .hero-title {
+                font-size: 3.2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 2fr 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .hero-text {
+                padding-right: 0;
+                order: 2;
+            }
+
+            .hero-visual {
+                order: 1;
+            }
+
+            .philosophy-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .principles-grid {
+                order: 2;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu.active {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .profile-image {
+                height: 400px;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .fusion-grid,
+            .principles-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .profile-image {
+                height: 300px;
+            }
+
+            .culture-content,
+            .principle-card,
+            .skill-category {
+                padding: 20px;
+            }
+
+            .philosophy-quote {
+                font-size: 1.5rem;
+            }
+
+            .mobile-nav-links a {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-animate {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo-container">
+                <div class="logo-symbol">NM</div>
+                <div class="logo-name">Najibeh Movahedi</div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <ul class="nav-links" id="desktopNav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html">Academic Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html">Academic Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="hero-container">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Interior Architect &<br>
+                        <span class="highlight">Spatial Designer</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Blending Persian artistic heritage with contemporary Italian design principles to create spaces that tell stories and transform experiences.
+                    </p>
+
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">8+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">12</span>
+                            <span class="stat-label">Awards</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 40px;">
+                        <a href="portfolio.html" class="btn btn-primary">
+                            <i class="fas fa-images"></i> View Portfolio
+                        </a>
+                        <a href="contact.html" class="btn">
+                            <i class="fas fa-envelope"></i> Get in Touch
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="profile-showcase">
+                        <img src="assest/Najibeh.png" alt="Najibeh Movahedi" class="profile-image">
+                        <div class="image-overlay">
+                            <div style="font-size: 1.2rem; margin-bottom: 5px;">Najibeh Movahedi</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9;">Master's Candidate at Politecnico di Milano</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cultural Fusion Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Cultural Fusion in Design</h2>
+                <p class="section-subtitle">Bridging Persian artistry with Italian design excellence to create spaces that tell stories and evoke emotions</p>
+            </div>
+
+            <div class="fusion-grid">
+                <div class="culture-card scroll-animate">
+                    <div class="culture-image">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Persian Architecture">
+                    </div>
+                    <div class="culture-content">
+                        <h3 class="culture-title">Persian Heritage</h3>
+                        <p class="culture-description">
+                            Influenced by the intricate patterns, vibrant colors, and mathematical precision of Persian architecture and miniature art.
+                        </p>
+                        <div class="culture-tags">
+                            <span class="culture-tag">Geometric Patterns</span>
+                            <span class="culture-tag">Color Harmony</span>
+                            <span class="culture-tag">Spiritual Spaces</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="culture-card scroll-animate">
+                    <div class="culture-image">
+                        <img src="https://images.unsplash.com/photo-1538688273855-c0a22f1c8ae8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Italian Design">
+                    </div>
+                    <div class="culture-content">
+                        <h3 class="culture-title">Italian Excellence</h3>
+                        <p class="culture-description">
+                            Embracing the minimalist elegance, functional innovation, and material sophistication of Italian design.
+                        </p>
+                        <div class="culture-tags">
+                            <span class="culture-tag">Minimalism</span>
+                            <span class="culture-tag">Functionality</span>
+                            <span class="culture-tag">Material Innovation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="culture-card scroll-animate">
+                    <div class="culture-image">
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cultural Synthesis">
+                    </div>
+                    <div class="culture-content">
+                        <h3 class="culture-title">Harmonious Fusion</h3>
+                        <p class="culture-description">
+                            Creating a unique design language that merges Eastern ornamentation with Western minimalism.
+                        </p>
+                        <div class="culture-tags">
+                            <span class="culture-tag">Cultural Bridge</span>
+                            <span class="culture-tag">Emotional Design</span>
+                            <span class="culture-tag">Global Perspective</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Philosophy Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Design Philosophy</h2>
+                <p class="section-subtitle">Principles that guide my creative process and approach to spatial design</p>
+            </div>
+
+            <div class="philosophy-content">
+                <div class="philosophy-text scroll-animate">
+                    <div class="philosophy-quote">
+                        "Design is not just about creating beautiful spaces, but about crafting experiences that resonate with the human spirit."
+                    </div>
+                    <div class="philosophy-author">
+                        — Najibeh Movahedi
+                    </div>
+                </div>
+
+                <div class="principles-grid scroll-animate">
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3 class="principle-title">Spatial Perception</h3>
+                        <p>Understanding how humans perceive and interact with space to create intuitive environments.</p>
+                    </div>
+
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <h3 class="principle-title">Light & Shadow</h3>
+                        <p>Mastering the interplay of natural and artificial light to define space and create mood.</p>
+                    </div>
+
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3 class="principle-title">Color Psychology</h3>
+                        <p>Using color theory to evoke specific emotions and create visual harmony.</p>
+                    </div>
+
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="principle-title">Sustainable Innovation</h3>
+                        <p>Integrating eco-friendly materials with cutting-edge design approaches.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Journey Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Academic Journey</h2>
+                <p class="section-subtitle">From Isfahan to Milan: A path of artistic and academic growth</p>
+            </div>
+
+            <div class="journey-timeline">
+                <div class="timeline-item scroll-animate">
+                    <div class="timeline-year">2023-2026</div>
+                    <h3 class="timeline-title">Master's in Interior Architecture</h3>
+                    <div class="timeline-subtitle">Politecnico di Milano, Italy</div>
+                    <p>Currently pursuing advanced studies in interior architecture with expected graduation in March 2026. Specializing in spatial design and sustainable architecture.</p>
+                </div>
+
+                <div class="timeline-item scroll-animate">
+                    <div class="timeline-year">2022</div>
+                    <h3 class="timeline-title">Humanitarian Journey</h3>
+                    <div class="timeline-subtitle">Community of Sant'Egidio, Italy</div>
+                    <p>Arrived in Italy through a Humanitarian Corridor, deepening understanding of cultural integration and inclusive design.</p>
+                </div>
+
+                <div class="timeline-item scroll-animate">
+                    <div class="timeline-year">2016-2020</div>
+                    <h3 class="timeline-title">Bachelor's in Interior Architecture</h3>
+                    <div class="timeline-subtitle">Islamic Azad University, Najaf Abad, Iran</div>
+                    <p>Graduated with focus on color theory, lighting design, and spatial planning. Developed foundation in Persian architectural traditions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Expertise Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Skills & Expertise</h2>
+                <p class="section-subtitle">Technical mastery and creative competencies developed through years of study and practice</p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-category scroll-animate">
+                    <h3 class="category-title">3D Visualization</h3>
+                    <ul class="skill-items">
+                        <li class="skill-item">
+                            <i class="fas fa-check skill-icon"></i>
+                            <span>Photorealistic Rendering</span>
+                        </li>
+                        <li class="skill-item">
+                            <i class="fas fa-check skill-icon"></i>
+                            <span>Material Creation & Mapping</span>
+                        </li>
+                        <li class="skill-item">
+                            <i class="fas fa-check skill-icon"></i>
+                            <span>Lighting Design & Simulation</span>
+                        </li>
+                        <li class="skill-item">
+                            <i class="fas fa-check skill-icon"></i>
+                            <span>Camera Composition & Framing</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skill-category scroll-animate">
+                    <h3 class="category-title">Software Proficiency</h3>
+                    <ul class="skill-items">
+                        <li class="skill-item">
+                            <i class="fas fa-check skill-icon"></i>
+                            <span>3D Max, V-Ray, Corona</span>
+                        </li>
+                        <li class="skill-item">
+                            <i class="fas fa-check skill-icon"></i>
+                            <span>Rhino, Revit, SketchUp</span>
+                        </li>
+                        <li class="skill-item">
+                            <i class="fas fa-check skill-icon"></i>
+                            <span>Twinmotion, Enscape</span>
+                        </li>
+                        <li class="skill-item">
+                            <i class="fas fa-check skill-icon"></i>
+                            <span>Adobe Creative Suite</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skill-category scroll-animate">
+                    <h3 class="category-title">Design Specializations</h3>
+                    <ul class="skill-items">
+                        <li class="skill-item">
+                            <i class="fas fa-check skill-icon"></i>
+                            <span>Architectural Interiors</span>
+                        </li>
+                        <li class="skill-item">
+                            <i class="fas fa-check skill-icon"></i>
+                            <span>Building Exteriors</span>
+                        </li>
+                        <li class="skill-item">
+                            <i class="fas fa-check skill-icon"></i>
+                            <span>Daylight & Night Studies</span>
+                        </li>
+                        <li class="skill-item">
+                            <i class="fas fa-check skill-icon"></i>
+                            <span>Human Scale Integration</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-symbol">NM</div>
+                        <div class="footer-signature">Najibeh Movahedi</div>
+                    </div>
+                    <p class="footer-about">
+                        Interior Architect & Spatial Designer blending Persian artistic heritage with contemporary Italian design principles. Master's candidate at Politecnico di Milano.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blog.html">Academic Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Research Focus</h4>
+                    <ul class="footer-links">
+                        <li>Spatial Perception</li>
+                        <li>Color Theory</li>
+                        <li>Light & Shadow</li>
+                        <li>Cultural Heritage</li>
+                        <li>Sustainable Design</li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i> movahedinajibeh@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> +39 375 5611868</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Milan, Italy</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Najibeh Movahedi. Interior Architect & Spatial Designer | Politecnico di Milano</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            menuToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+
+                // Toggle body scroll
+                if (mobileMenu.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    menuToggle.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Scroll animations
+            function checkScroll() {
+                const elements = document.querySelectorAll('.scroll-animate');
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+
+            // Initialize scroll animations
+            document.querySelectorAll('.scroll-animate').forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            });
+
+            // Check on scroll
+            window.addEventListener('scroll', checkScroll);
+            checkScroll(); // Initial check
+
+            // Profile image hover effect
+            const profileImage = document.querySelector('.profile-image');
+            if (profileImage) {
+                profileImage.parentElement.addEventListener('mouseenter', function() {
+                    this.querySelector('.image-overlay').style.opacity = '1';
+                });
+
+                profileImage.parentElement.addEventListener('mouseleave', function() {
+                    this.querySelector('.image-overlay').style.opacity = '0';
+                });
+            }
+
+            // Set active class for current page
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-links a, .mobile-nav-links a').forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
