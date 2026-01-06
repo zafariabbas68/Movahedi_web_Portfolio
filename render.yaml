@@ -4,7 +4,23 @@ services:
     env: static
     buildCommand: ""
     staticPublishPath: .
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=3600
     routes:
+      - type: rewrite
+        source: /blog
+        destination: /blog.html
+      - type: rewrite
+        source: /about
+        destination: /about.html
+      - type: rewrite
+        source: /portfolio
+        destination: /portfolio.html
+      - type: rewrite
+        source: /contact
+        destination: /contact.html
       - type: rewrite
         source: /*
         destination: /index.html

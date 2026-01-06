@@ -1,0 +1,16 @@
+{
+  "root": ".",
+  "clean_urls": true,
+  "routes": {
+    "/blog": "blog.html",
+    "/about": "about.html",
+    "/portfolio": "portfolio.html",
+    "/contact": "contact.html",
+    "/**": "index.html"
+  },
+  "headers": {
+    "/**": {
+      "Cache-Control": "public, max-age=3600"
+    }
+  }
+}
