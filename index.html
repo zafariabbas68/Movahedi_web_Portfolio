@@ -1310,18 +1310,18 @@
         <div class="hero-background"></div>
         <div class="container">
             <div class="hero-content">
-                <h1 class="page-title animate-on-scroll">Interior Architecture &<br>Spatial Design</h1>
-                <p class="hero-description animate-on-scroll delay-1">
+                <h1 class="page-title" style="animation: fadeInUp 0.6s ease forwards;">Interior Architecture &<br>Spatial Design</h1>
+                <p class="hero-description" style="animation: fadeInUp 0.6s ease forwards 0.1s;">
                     Crafting immersive environments through sophisticated interplay of light, materiality, and form.
                     Specializing in spatial narratives that evoke emotion while maintaining functional excellence.
                     Where Persian artistic heritage meets contemporary Italian design principles.
                 </p>
 
                 <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary animate-on-scroll delay-2">
+                    <a href="#projects" class="btn btn-primary" style="animation: fadeInUp 0.6s ease forwards 0.2s;">
                         <i class="fas fa-arrow-down"></i> View Featured Projects
                     </a>
-                    <a href="about.html" class="btn animate-on-scroll delay-2">
+                    <a href="about.html" class="btn" style="animation: fadeInUp 0.6s ease forwards 0.2s;">
                         <i class="fas fa-user"></i> About the Designer
                     </a>
                 </div>
@@ -1417,6 +1417,9 @@
                 <button class="control-btn" onclick="stopVideo('farm')">
                     <i class="fas fa-stop"></i>
                 </button>
+                <button class="control-btn" onclick="toggleFullscreen('farm')">
+                    <i class="fas fa-expand"></i>
+                </button>
                 <div class="progress-container" onclick="seekVideo('farm', event)">
                     <div class="progress-bar" id="farmProgressBar"></div>
                 </div>
@@ -1448,6 +1451,9 @@
                 <button class="control-btn" onclick="stopVideo('lake')">
                     <i class="fas fa-stop"></i>
                 </button>
+                <button class="control-btn" onclick="toggleFullscreen('lake')">
+                    <i class="fas fa-expand"></i>
+                </button>
                 <div class="progress-container" onclick="seekVideo('lake', event)">
                     <div class="progress-bar" id="lakeProgressBar"></div>
                 </div>
@@ -1458,32 +1464,31 @@
             </div>
         </div>
     </div>
+    <div class="project-info animate-right delay-1">
+        <div class="project-number">Project 02</div>
+        <h3 class="project-name">Lake Varese</h3>
+        <p class="project-description">
+            A comprehensive landscape architecture project focusing on ecological restoration and
+            sustainable development of lakefront spaces. This design integrates natural ecosystems
+            with recreational areas, creating harmony between built environment and natural systems.
+        </p>
+        <div class="project-meta">
+            <span class="meta-tag">Landscape Architecture</span>
+            <span class="meta-tag">Ecological Design</span>
+            <span class="meta-tag">Public Space</span>
+            <span class="meta-tag">Sustainable Development</span>
+        </div>
+        <div class="project-actions">
+            <a href="assest/Lake varese_Landscape/Exam_Book x stampadef_compressed_ebook_compressed_screen.pdf"
+               class="btn btn-primary" target="_blank">
+                <i class="fas fa-external-link-alt"></i> View Full PDF
+            </a>
+            <a href="#gallery-lake" class="btn">
+                <i class="fas fa-images"></i> View Gallery
+            </a>
+        </div>
+    </div>
 </div>
-                    <div class="project-info animate-right delay-1">
-                        <div class="project-number">Project 02</div>
-                        <h3 class="project-name">Lake Varese</h3>
-                        <p class="project-description">
-                            A comprehensive landscape architecture project focusing on ecological restoration and
-                            sustainable development of lakefront spaces. This design integrates natural ecosystems
-                            with recreational areas, creating harmony between built environment and natural systems.
-                        </p>
-                        <div class="project-meta">
-                            <span class="meta-tag">Landscape Architecture</span>
-                            <span class="meta-tag">Ecological Design</span>
-                            <span class="meta-tag">Public Space</span>
-                            <span class="meta-tag">Sustainable Development</span>
-                        </div>
-                        <div class="project-actions">
-                            <a href="assest/Lake varese_Landscape/Exam_Book x stampadef_compressed_ebook_compressed_screen.pdf"
-                               class="btn btn-primary" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> View Full PDF
-                            </a>
-                            <a href="#gallery-lake" class="btn">
-                                <i class="fas fa-images"></i> View Gallery
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -1745,7 +1750,8 @@
                     playIcon: document.getElementById('farmPlayIcon'),
                     volumeIcon: document.getElementById('farmVolumeIcon'),
                     muted: false,
-                    volume: 1
+                    volume: 1,
+                    fullscreen: false
                 },
                 lake: {
                     element: document.getElementById('lakeVideo'),
@@ -1755,7 +1761,8 @@
                     playIcon: document.getElementById('lakePlayIcon'),
                     volumeIcon: document.getElementById('lakeVolumeIcon'),
                     muted: false,
-                    volume: 1
+                    volume: 1,
+                    fullscreen: false
                 }
             };
 
@@ -1791,8 +1798,30 @@
                         video.element.currentTime = 0;
                         updateVideoProgress(key);
                     });
+
+                    // Handle fullscreen change
+                    document.addEventListener('fullscreenchange', handleFullscreenChange);
+                    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+                    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+                    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
                 }
             });
+
+            function handleFullscreenChange() {
+                Object.keys(videos).forEach(key => {
+                    const video = videos[key];
+                    const fullscreenElement = document.fullscreenElement ||
+                                              document.webkitFullscreenElement ||
+                                              document.mozFullScreenElement ||
+                                              document.msFullscreenElement;
+
+                    if (fullscreenElement === video.player) {
+                        video.fullscreen = true;
+                    } else {
+                        video.fullscreen = false;
+                    }
+                });
+            }
 
             // Video control functions
             window.togglePlay = function(videoId) {
@@ -1818,6 +1847,33 @@
                 video.element.muted = !video.element.muted;
                 video.muted = video.element.muted;
                 video.volumeIcon.className = video.element.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+            };
+
+            window.toggleFullscreen = function(videoId) {
+                const video = videos[videoId];
+                const player = video.player;
+
+                if (!video.fullscreen) {
+                    if (player.requestFullscreen) {
+                        player.requestFullscreen();
+                    } else if (player.webkitRequestFullscreen) {
+                        player.webkitRequestFullscreen();
+                    } else if (player.mozRequestFullScreen) {
+                        player.mozRequestFullScreen();
+                    } else if (player.msRequestFullscreen) {
+                        player.msRequestFullscreen();
+                    }
+                } else {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.mozCancelFullScreen) {
+                        document.mozCancelFullScreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+                }
             };
 
             window.seekVideo = function(videoId, event) {
@@ -1959,6 +2015,17 @@
                         });
                     }
                 });
+            });
+
+            // Immediate hero animation
+            const heroTitle = document.querySelector('.page-title');
+            const heroDesc = document.querySelector('.hero-description');
+            const heroCta = document.querySelectorAll('.hero-cta a');
+
+            if (heroTitle) heroTitle.style.animation = 'fadeInUp 0.6s ease forwards';
+            if (heroDesc) heroDesc.style.animation = 'fadeInUp 0.6s ease forwards 0.1s';
+            heroCta.forEach((btn, index) => {
+                btn.style.animation = `fadeInUp 0.6s ease forwards ${0.2 + (index * 0.1)}s`;
             });
         });
     </script>
