@@ -19,13 +19,6 @@
             --dome-accent: #CC5500; /* Dark orange from your palette */
             --dome-border: rgba(0, 0, 0, 0.08);
             --dome-hover: rgba(204, 85, 0, 0.1);
-
-            /* Your existing colors as fallback */
-            --natural-wood: #B2967D;
-            --gold-accent: #D4AF37;
-            --persian-turquoise: #00A896;
-            --warm-white: #FEFCF8;
-            --charcoal: #2C2C2C;
         }
 
         /* ==================== BASE STYLES ==================== */
@@ -102,7 +95,6 @@
             align-items: center;
         }
 
-        /* Logo - Clean and minimal */
         .logo-container {
             display: flex;
             align-items: center;
@@ -137,7 +129,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Menu toggle button - DOME style */
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -158,16 +149,14 @@
             display: block;
         }
 
-        /* Menu colors based on state */
         .menu-toggle:not(.active) span {
-            background: var(--dome-black); /* Closed state - black lines */
+            background: var(--dome-black);
         }
 
         .menu-toggle.active span {
-            background: var(--dome-white); /* Open state - white lines */
+            background: var(--dome-white);
         }
 
-        /* Navigation Links - Desktop */
         .nav-links {
             display: flex;
             list-style: none;
@@ -208,7 +197,6 @@
             width: 100%;
         }
 
-        /* Mobile Navigation Menu */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -254,34 +242,49 @@
             color: var(--dome-accent);
         }
 
-        /* ==================== DOME-STYLE HERO SECTION ==================== */
+        /* ==================== HERO SECTION WITH VIDEO ==================== */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
             padding-top: 120px;
-            background: var(--dome-white);
+            background: var(--dome-black);
             overflow: hidden;
         }
 
-        .hero-background {
+        .hero-video-container {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),
-                        url('assest/Rhino/008-2.webp');
-            background-size: cover;
-            background-position: center;
+            width: 100%;
+            height: 100%;
             z-index: 1;
-            animation: scaleIn 1.5s ease forwards;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+
+        .hero-video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+            z-index: 2;
         }
 
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 3;
             max-width: 900px;
             color: var(--dome-white);
             padding: 60px 0;
@@ -311,7 +314,6 @@
             margin-top: 50px;
         }
 
-        /* ==================== BUTTONS ==================== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -594,745 +596,375 @@
             transform: translateY(0);
         }
 
-        .control-btn {
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--dome-white);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            flex-shrink: 0;
+        /* ==================== SLIDER GALLERY - UNIFIED STYLE ==================== */
+        .project-gallery-section {
+            padding: 80px 0;
+            background: var(--dome-light);
+            border-radius: 20px;
+            margin: 60px 0;
         }
 
-        .control-btn:hover {
-            background: var(--dome-accent);
-            color: var(--dome-black);
-            transform: scale(1.1);
-        }
-
-        .progress-container {
-            flex: 1;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            min-width: 60px;
-        }
-
-        .progress-bar {
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            background: var(--dome-accent);
-            border-radius: 3px;
-            width: 0%;
-            transition: width 0.1s linear;
-        }
-
-        .time-display {
-            color: var(--dome-white);
-            font-size: 0.9rem;
-            min-width: 100px;
+        .gallery-header {
             text-align: center;
-            font-family: 'Inter', sans-serif;
-            flex-shrink: 0;
-            white-space: nowrap;
+            margin-bottom: 60px;
         }
 
-        .volume-slider {
-            width: 80px;
-            height: 5px;
-            -webkit-appearance: none;
-            appearance: none;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            outline: none;
-            cursor: pointer;
-            flex-shrink: 0;
+        .gallery-title {
+            font-size: 2.5rem;
+            color: var(--dome-black);
+            margin-bottom: 20px;
+            font-weight: 400;
         }
 
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: var(--dome-accent);
-            cursor: pointer;
+        .gallery-description {
+            font-size: 1.1rem;
+            color: var(--dome-gray);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
         }
 
-        /* ==================== IMAGE SLIDER STYLES ==================== */
-        .image-slider {
+        /* Main Image Gallery */
+        .main-gallery {
+            position: relative;
+            width: 100%;
+            height: 75vh;
+            margin: 40px 0;
+            overflow: hidden;
+        }
+
+        .main-image-container {
             position: relative;
             width: 100%;
             height: 100%;
-            border-radius: 12px;
             overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .main-image-wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .main-image-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .main-image-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
             background: var(--dome-dark);
         }
 
-        .slider-container {
-            display: flex;
-            height: 100%;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .slider-slide {
-            min-width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .slider-slide img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        .slider-controls {
+        .image-overlay {
             position: absolute;
-            bottom: 20px;
+            bottom: 0;
             left: 0;
             right: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            z-index: 10;
-        }
-
-        .slider-counter {
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 40px;
             color: var(--dome-white);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 8px 16px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .slider-dots {
-            position: absolute;
-            bottom: 70px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            z-index: 10;
+        .image-title {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 10px;
         }
 
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 0;
+        .image-description {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 600px;
         }
 
-        .slider-dot:hover {
-            background: rgba(255, 255, 255, 0.6);
-            transform: scale(1.2);
-        }
-
-        .slider-dot.active {
-            background: var(--dome-accent);
-            transform: scale(1.2);
-        }
-
-        .slider-prev,
-        .slider-next {
+        /* Gallery Navigation */
+        .gallery-navigation {
             position: absolute;
             top: 50%;
+            left: 20px;
+            right: 20px;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--dome-white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .nav-arrow {
             width: 50px;
             height: 50px;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .slider-prev:hover,
-        .slider-next:hover {
-            background: var(--dome-accent);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 1.2rem;
             color: var(--dome-black);
-            transform: translateY(-50%) scale(1.1);
         }
 
-        .slider-prev {
-            left: 20px;
+        .nav-arrow:hover {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            transform: scale(1.1);
         }
 
-        .slider-next {
-            right: 20px;
+        /* Thumbnail Gallery */
+        .thumbnail-gallery {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            z-index: 20;
+            overflow-x: auto;
+            padding: 0 40px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
 
-        /* ==================== WORKSHOP HOSPITALITY REDESIGN ==================== */
-        .workshop-redesign {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        .thumbnail-gallery::-webkit-scrollbar {
+            display: none;
+        }
+
+        .thumbnail-container {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            justify-content: center;
+        }
+
+        .thumbnail-item {
+            width: 100px;
+            height: 70px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            border: 2px solid transparent;
+        }
+
+        .thumbnail-item.active {
+            opacity: 1;
+            border-color: var(--dome-accent);
+            transform: scale(1.1);
+        }
+
+        .thumbnail-item:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .thumbnail-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ==================== WORKSHOP HOSPITALITY SECTION ==================== */
+        .workshop-detail-section {
             padding: 120px 0;
-            border-radius: 30px;
-            margin: 80px 0;
+            background: var(--dome-white);
         }
 
-        .workshop-header {
+        .workshop-detail-header {
             text-align: center;
             margin-bottom: 80px;
         }
 
         .workshop-category {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 8px 24px;
             background: var(--dome-accent);
             color: var(--dome-white);
-            border-radius: 30px;
+            border-radius: 25px;
             font-size: 0.9rem;
             font-weight: 600;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
             text-transform: uppercase;
         }
 
         .workshop-main-title {
-            font-size: 3.8rem;
+            font-size: 3.5rem;
             color: var(--dome-black);
             margin-bottom: 30px;
-            font-weight: 400;
+            font-weight: 500;
         }
 
         .workshop-tagline {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--dome-gray);
             max-width: 800px;
             margin: 0 auto;
             line-height: 1.8;
-            font-weight: 300;
         }
 
-        /* Workshop Overview Grid */
-        .workshop-overview {
+        /* Project Information Sections */
+        .workshop-info-sections {
+            margin: 100px 0;
+        }
+
+        .info-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
+            align-items: center;
             margin-bottom: 100px;
-            align-items: start;
         }
 
-        .workshop-description {
-            padding-right: 40px;
+        .info-section.reverse {
+            direction: rtl;
         }
 
-        .workshop-description h3 {
-            font-size: 2rem;
+        .info-section.reverse .info-content {
+            direction: ltr;
+        }
+
+        .info-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .info-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .info-content {
+            padding: 20px;
+        }
+
+        .info-subtitle {
+            font-size: 1rem;
+            color: var(--dome-accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .info-title {
+            font-size: 2.5rem;
             color: var(--dome-black);
             margin-bottom: 30px;
             font-weight: 400;
         }
 
-        .workshop-description p {
+        .info-text {
             font-size: 1.1rem;
-            color: var(--dome-black);
-            margin-bottom: 25px;
+            color: var(--dome-gray);
             line-height: 1.9;
+            margin-bottom: 25px;
         }
 
-        .workshop-meta-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
+        .info-features {
+            list-style: none;
+            margin-top: 30px;
         }
 
-        .workshop-meta-item {
-            background: var(--dome-white);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-            border: 1px solid var(--dome-border);
-        }
-
-        .workshop-meta-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(204, 85, 0, 0.1);
-        }
-
-        .workshop-meta-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(204, 85, 0, 0.1);
-            color: var(--dome-accent);
-            border-radius: 50%;
+        .info-features li {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
+            gap: 15px;
             margin-bottom: 20px;
-        }
-
-        .workshop-meta-title {
-            font-size: 0.9rem;
-            color: var(--dome-gray);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 600;
-        }
-
-        .workshop-meta-value {
-            font-size: 1.3rem;
             color: var(--dome-black);
-            font-weight: 500;
+            font-size: 1.1rem;
         }
 
-        /* Workshop Image Gallery */
-        .workshop-gallery {
+        .info-features i {
+            color: var(--dome-accent);
+            font-size: 1.2rem;
+        }
+
+        /* ==================== PROJECT SPECIFICATIONS - FIXED ==================== */
+        .project-specs {
+            background: var(--dome-light);
+            padding: 80px;
+            border-radius: 20px;
             margin: 100px 0;
         }
 
-        .workshop-gallery-header {
+        .specs-header {
             text-align: center;
             margin-bottom: 60px;
         }
 
-        .workshop-gallery-title {
+        .specs-title {
             font-size: 2.5rem;
             color: var(--dome-black);
             margin-bottom: 20px;
-            font-weight: 400;
         }
 
-        .workshop-gallery-description {
+        .specs-description {
+            font-size: 1.1rem;
             color: var(--dome-gray);
             max-width: 600px;
             margin: 0 auto;
-            font-size: 1.1rem;
             line-height: 1.8;
         }
 
-        .workshop-gallery-grid {
+        .specs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
-            margin-top: 60px;
-        }
-
-        .workshop-gallery-item {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            aspect-ratio: 4/3;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        .workshop-gallery-item:hover {
-            transform: scale(1.05);
-        }
-
-        .workshop-gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .workshop-gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .workshop-gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(10, 10, 10, 0.9));
-            color: var(--dome-white);
-            padding: 30px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .workshop-gallery-item:hover .workshop-gallery-caption {
-            transform: translateY(0);
-        }
-
-        .workshop-gallery-caption h4 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-
-        .workshop-gallery-caption p {
-            font-size: 0.95rem;
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        /* Sustainability Section */
-        .workshop-sustainability {
-            background: linear-gradient(135deg, rgba(204, 85, 0, 0.05) 0%, rgba(204, 85, 0, 0.15) 100%);
-            padding: 100px 0;
-            border-radius: 30px;
-            margin: 80px 0;
-        }
-
-        .workshop-sustainability-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .workshop-sustainability-text h3 {
-            font-size: 2.5rem;
-            color: var(--dome-black);
-            margin-bottom: 30px;
-            font-weight: 400;
-        }
-
-        .workshop-sustainability-text p {
-            font-size: 1.1rem;
-            color: var(--dome-black);
-            margin-bottom: 25px;
-            line-height: 1.9;
-        }
-
-        .workshop-sustainability-features {
-            list-style: none;
             margin-top: 40px;
         }
 
-        .workshop-sustainability-features li {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            color: var(--dome-black);
-            font-size: 1.1rem;
-        }
-
-        .workshop-sustainability-features i {
-            color: var(--dome-accent);
-            font-size: 1.2rem;
-        }
-
-        .workshop-sustainability-image img {
-            border-radius: 20px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-        }
-
-        /* Cultural Integration Section */
-        .workshop-cultural {
-            padding: 100px 0;
-        }
-
-        .workshop-cultural-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .workshop-cultural-image img {
-            border-radius: 20px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .workshop-cultural-image:hover img {
-            transform: scale(1.05);
-        }
-
-        .workshop-cultural-text h3 {
-            font-size: 2.5rem;
-            color: var(--dome-black);
-            margin-bottom: 30px;
-            font-weight: 400;
-        }
-
-        .workshop-cultural-text p {
-            font-size: 1.1rem;
-            color: var(--dome-black);
-            margin-bottom: 25px;
-            line-height: 1.9;
-        }
-
-        /* Environmental Context */
-        .workshop-environment {
-            background: var(--dome-light);
-            padding: 80px;
-            border-radius: 20px;
-            margin: 80px 0;
-        }
-
-        .workshop-environment-content {
+        .spec-item {
             text-align: center;
-        }
-
-        .workshop-environment h3 {
-            font-size: 2.2rem;
-            color: var(--dome-black);
-            margin-bottom: 40px;
-            font-weight: 400;
-        }
-
-        .workshop-environment-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .workshop-environment-item {
-            background: var(--dome-white);
             padding: 30px;
+            background: var(--dome-white);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
         }
 
-        .workshop-environment-value {
-            font-size: 1.8rem;
+        .spec-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(204, 85, 0, 0.1);
+        }
+
+        .spec-value {
+            font-size: 2.2rem;
             color: var(--dome-accent);
             font-weight: 600;
             margin-bottom: 10px;
+            line-height: 1.2;
         }
 
-        .workshop-environment-label {
+        .spec-label {
             font-size: 0.9rem;
             color: var(--dome-gray);
             text-transform: uppercase;
             letter-spacing: 1.5px;
+            line-height: 1.4;
         }
 
-        /* ==================== GALLERY SECTION ==================== */
-        .gallery-container {
-            margin-bottom: 80px;
+        /* For longer text labels */
+        .spec-item.long-text .spec-value {
+            font-size: 1.8rem;
         }
 
-        .gallery-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .gallery-title {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 20px;
-            color: var(--dome-black);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .gallery-description {
-            font-size: 1.2rem;
-            color: var(--dome-gray);
-            max-width: 800px;
-            margin: 0 auto 40px;
-            line-height: 1.8;
-        }
-
-        .gallery-filters {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 12px 28px;
-            background: rgba(204, 85, 0, 0.1);
-            border: 1px solid rgba(204, 85, 0, 0.2);
-            color: var(--dome-accent);
-            font-size: 0.9rem;
-            font-family: 'Inter', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            min-width: 120px;
-            text-align: center;
-        }
-
-        .filter-btn:hover {
-            background: var(--dome-accent);
-            color: var(--dome-white);
-            transform: translateY(-2px);
-        }
-
-        .filter-btn.active {
-            background: var(--dome-accent);
-            color: var(--dome-white);
-            box-shadow: 0 4px 15px rgba(204, 85, 0, 0.3);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .gallery-item {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s ease;
-            background: var(--dome-dark);
-            height: 280px;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-            filter: brightness(0.9);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-            filter: brightness(1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%);
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            color: var(--dome-white);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.4s ease;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .gallery-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-size: 0.8rem;
-            font-family: 'Inter', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 600;
-            z-index: 2;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transform: translateY(-10px);
-            opacity: 0;
-            transition: all 0.3s ease 0.1s;
-            pointer-events: none;
-        }
-
-        .gallery-item[data-category="concept"] .gallery-badge {
-            background: rgba(204, 85, 0, 0.9);
-            color: var(--dome-white);
-        }
-
-        .gallery-item[data-category="technical"] .gallery-badge {
-            background: rgba(0, 0, 0, 0.9);
-            color: var(--dome-white);
-        }
-
-        .gallery-item[data-category="construction"] .gallery-badge {
-            background: rgba(204, 85, 0, 0.9);
-            color: var(--dome-white);
-        }
-
-        .gallery-item[data-category="analysis"] .gallery-badge {
-            background: rgba(0, 0, 0, 0.9);
-            color: var(--dome-white);
-        }
-
-        .gallery-item[data-category="plans"] .gallery-badge {
-            background: rgba(204, 85, 0, 0.9);
-            color: var(--dome-white);
-        }
-
-        .gallery-item[data-category="views"] .gallery-badge {
-            background: rgba(0, 168, 150, 0.9);
-            color: var(--dome-white);
-        }
-
-        .gallery-item[data-category="details"] .gallery-badge {
-            background: rgba(212, 175, 55, 0.9);
-            color: var(--dome-black);
-        }
-
-        .gallery-item:hover .gallery-badge {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .gallery-number {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 2.5rem;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.15);
-            font-family: 'Inter', sans-serif;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .gallery-cta {
-            text-align: center;
-            margin-top: 80px;
+        .spec-item.long-text .spec-label {
+            font-size: 0.85rem;
         }
 
         /* ==================== FOOTER ==================== */
@@ -1459,73 +1091,6 @@
             font-size: 0.9rem;
         }
 
-        /* ==================== LIGHTBOX STYLES ==================== */
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            padding: 20px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .lightbox.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .lightbox-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-            background: var(--dome-dark);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .lightbox img {
-            max-width: 100%;
-            max-height: 70vh;
-            object-fit: contain;
-        }
-
-        .lightbox-caption {
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            color: var(--dome-white);
-            text-align: center;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: var(--dome-white);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 2001;
-        }
-
-        .lightbox-close:hover {
-            background: var(--dome-accent);
-            color: var(--dome-black);
-            transform: rotate(90deg);
-        }
-
         /* ==================== ANIMATIONS ==================== */
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -1606,13 +1171,15 @@
             }
 
             .workshop-main-title {
-                font-size: 3.2rem;
+                font-size: 3rem;
             }
 
-            .workshop-overview,
-            .workshop-sustainability-content,
-            .workshop-cultural-content {
+            .info-section {
                 gap: 60px;
+            }
+
+            .specs-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
 
             .footer-content {
@@ -1652,32 +1219,38 @@
             }
 
             .intro-container,
-            .project-item {
+            .project-item,
+            .info-section {
                 grid-template-columns: 1fr;
                 gap: 50px;
             }
 
-            .workshop-overview,
-            .workshop-sustainability-content,
-            .workshop-cultural-content {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-
-            .workshop-description {
-                padding-right: 0;
+            .info-section.reverse {
+                direction: ltr;
             }
 
             .project-visual {
                 min-height: 400px;
             }
 
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            .main-gallery {
+                height: 60vh;
             }
 
-            .workshop-gallery-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            .image-overlay {
+                padding: 30px;
+            }
+
+            .image-title {
+                font-size: 1.8rem;
+            }
+
+            .thumbnail-gallery {
+                padding: 0 20px;
+            }
+
+            .specs-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .footer-content {
@@ -1720,50 +1293,52 @@
                 font-size: 2.2rem;
             }
 
-            .enhanced-video-player,
-            .image-slider {
+            .enhanced-video-player {
                 min-height: 400px;
             }
 
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+            .main-gallery {
+                height: 50vh;
             }
 
-            .gallery-item {
-                height: 250px;
+            .image-overlay {
+                padding: 20px;
             }
 
-            .gallery-filters {
-                gap: 10px;
+            .image-title {
+                font-size: 1.5rem;
             }
 
-            .filter-btn {
-                padding: 10px 20px;
-                font-size: 0.85rem;
-                min-width: 100px;
+            .image-description {
+                font-size: 0.9rem;
             }
 
-            .slider-prev,
-            .slider-next {
+            .nav-arrow {
                 width: 40px;
                 height: 40px;
+                font-size: 1rem;
             }
 
-            .workshop-meta-grid {
-                grid-template-columns: 1fr;
+            .thumbnail-item {
+                width: 80px;
+                height: 60px;
             }
 
-            .workshop-gallery-grid {
-                grid-template-columns: 1fr;
+            .info-title {
+                font-size: 2rem;
             }
 
-            .workshop-environment {
+            .project-specs {
                 padding: 40px;
             }
 
-            .workshop-environment-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .specs-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .spec-value {
+                font-size: 2rem;
             }
         }
 
@@ -1794,30 +1369,38 @@
                 flex-direction: column;
             }
 
-            .gallery-item {
-                height: 220px;
+            .main-gallery {
+                height: 40vh;
             }
 
-            .gallery-filters {
-                flex-direction: column;
-                align-items: center;
+            .image-overlay {
+                padding: 15px;
             }
 
-            .filter-btn {
-                width: 200px;
+            .image-title {
+                font-size: 1.3rem;
             }
 
-            .slider-counter {
-                font-size: 0.8rem;
-                padding: 6px 12px;
+            .nav-arrow {
+                width: 35px;
+                height: 35px;
             }
 
-            .slider-dots {
-                bottom: 60px;
+            .thumbnail-item {
+                width: 70px;
+                height: 50px;
             }
 
-            .workshop-environment-grid {
-                grid-template-columns: 1fr;
+            .info-title {
+                font-size: 1.8rem;
+            }
+
+            .project-specs {
+                padding: 30px 20px;
+            }
+
+            .spec-value {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -1831,7 +1414,7 @@
                 <div class="logo-name">Najibeh Movahedi</div>
             </a>
 
-            <!-- Desktop Navigation -->
+            <!-- Desktop Navigation - UPDATED TO MATCH FOOTER -->
             <ul class="nav-links" id="desktopNav">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="about.html">About</a></li>
@@ -1848,7 +1431,7 @@
             </button>
         </div>
 
-        <!-- Mobile Navigation Menu -->
+        <!-- Mobile Navigation Menu - UPDATED TO MATCH FOOTER -->
         <div class="mobile-menu" id="mobileMenu">
             <ul class="mobile-nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
@@ -1860,9 +1443,15 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Video -->
     <section class="hero">
-        <div class="hero-background"></div>
+        <div class="hero-video-container">
+            <video autoplay muted loop playsinline class="hero-video" id="heroVideo">
+                <source src="assest/SketchUp/animations/IMG_2781.MOV" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="hero-video-overlay"></div>
+        </div>
         <div class="container">
             <div class="hero-content">
                 <h1 class="page-title" style="animation: fadeInUp 0.6s ease forwards;">Interior Architecture &<br>Spatial Design</h1>
@@ -1876,8 +1465,8 @@
                     <a href="#projects" class="btn btn-primary" style="animation: fadeInUp 0.6s ease forwards 0.2s;">
                         <i class="fas fa-arrow-down"></i> View Featured Projects
                     </a>
-                    <a href="about.html" class="btn" style="animation: fadeInUp 0.6s ease forwards 0.2s;">
-                        <i class="fas fa-user"></i> About the Designer
+                    <a href="#workshop" class="btn" style="animation: fadeInUp 0.6s ease forwards 0.2s;">
+                        <i class="fas fa-hotel"></i> Workshop Hospitality
                     </a>
                 </div>
             </div>
@@ -1929,7 +1518,7 @@
             </div>
 
             <div class="project-showcase">
-                <!-- Project 1: Farm to Fork - KEEP ORIGINAL -->
+                <!-- Project 1: Farm to Fork -->
                 <div class="project-item">
                     <div class="project-info animate-left">
                         <div class="project-number">Project 01</div>
@@ -1950,7 +1539,7 @@
                                class="btn btn-primary" target="_blank">
                                 <i class="fas fa-external-link-alt"></i> View Full PDF
                             </a>
-                            <a href="#gallery-farm" class="btn">
+                            <a href="#farm-gallery" class="btn">
                                 <i class="fas fa-images"></i> View Gallery
                             </a>
                         </div>
@@ -1987,7 +1576,44 @@
                     </div>
                 </div>
 
-                <!-- Project 2: Lake Varese - KEEP ORIGINAL -->
+                <!-- Farm to Fork Gallery - Immediately after project -->
+                <div id="farm-gallery" class="project-gallery-section">
+                    <div class="gallery-header">
+                        <h3 class="gallery-title">Farm to Fork Collection</h3>
+                        <p class="gallery-description">
+                            Visual documentation of the modular hydroponic farming system, from initial concept sketches
+                            to detailed technical drawings and construction specifications.
+                        </p>
+                    </div>
+
+                    <!-- Farm to Fork Slider Gallery -->
+                    <div class="main-gallery">
+                        <div class="main-image-container">
+                            <div class="main-image-wrapper" id="farmGalleryWrapper">
+                                <!-- Farm gallery slides will be added by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Gallery Navigation -->
+                        <div class="gallery-navigation">
+                            <button class="nav-arrow prev-arrow" onclick="prevSlide('farm')">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="nav-arrow next-arrow" onclick="nextSlide('farm')">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+
+                        <!-- Thumbnail Gallery -->
+                        <div class="thumbnail-gallery">
+                            <div class="thumbnail-container" id="farmThumbnailContainer">
+                                <!-- Thumbnails will be generated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Lake Varese -->
                 <div class="project-item">
                     <div class="project-visual animate-left">
                         <div class="enhanced-video-player" id="lakeVideoPlayer">
@@ -2038,9 +1664,46 @@
                                class="btn btn-primary" target="_blank">
                                 <i class="fas fa-external-link-alt"></i> View Full PDF
                             </a>
-                            <a href="#gallery-lake" class="btn">
+                            <a href="#lake-gallery" class="btn">
                                 <i class="fas fa-images"></i> View Gallery
                             </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lake Varese Gallery - Immediately after project -->
+                <div id="lake-gallery" class="project-gallery-section">
+                    <div class="gallery-header">
+                        <h3 class="gallery-title">Lake Varese Collection</h3>
+                        <p class="gallery-description">
+                            Comprehensive documentation of the ecological restoration project, including site analysis,
+                            master planning, 3D visualizations, and sustainable development strategies.
+                        </p>
+                    </div>
+
+                    <!-- Lake Varese Slider Gallery -->
+                    <div class="main-gallery">
+                        <div class="main-image-container">
+                            <div class="main-image-wrapper" id="lakeGalleryWrapper">
+                                <!-- Lake gallery slides will be added by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Gallery Navigation -->
+                        <div class="gallery-navigation">
+                            <button class="nav-arrow prev-arrow" onclick="prevSlide('lake')">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="nav-arrow next-arrow" onclick="nextSlide('lake')">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+
+                        <!-- Thumbnail Gallery -->
+                        <div class="thumbnail-gallery">
+                            <div class="thumbnail-container" id="lakeThumbnailContainer">
+                                <!-- Thumbnails will be generated by JavaScript -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2048,11 +1711,11 @@
         </div>
     </section>
 
-    <!-- WORKSHOP HOSPITALITY REDESIGN SECTION -->
-    <section class="workshop-redesign">
+    <!-- WORKSHOP HOSPITALITY SECTION -->
+    <section id="workshop" class="workshop-detail-section">
         <div class="container">
             <!-- Project Header -->
-            <div class="workshop-header">
+            <div class="workshop-detail-header">
                 <div class="workshop-category">Sustainable Hospitality</div>
                 <h2 class="workshop-main-title">Workshop Hospitality</h2>
                 <p class="workshop-tagline">
@@ -2061,441 +1724,157 @@
                 </p>
             </div>
 
-            <!-- Project Overview -->
-            <div class="workshop-overview">
-                <div class="workshop-description">
-                    <h3>Project Vision</h3>
-                    <p>
-                        This project integrates traditional Dai architecture with modern sustainability principles,
-                        creating a serene green environment where visitors engage with local tea cultivation and
-                        environmental stewardship.
-                    </p>
-                    <p>
-                        The design celebrates the harmony between built environment and nature, using local materials
-                        and passive design strategies to create a truly immersive cultural experience.
-                    </p>
-
-                    <h3 style="margin-top: 40px;">Design Approach</h3>
-                    <p>
-                        Our methodology combines vernacular architectural wisdom with contemporary sustainable
-                        technologies. Each space is designed to foster connection—between people, culture, and
-                        the natural environment.
-                    </p>
-                </div>
-
-                <div class="workshop-meta-grid">
-                    <div class="workshop-meta-item">
-                        <div class="workshop-meta-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="workshop-meta-title">Location</div>
-                        <div class="workshop-meta-value">Xishuangbanna, Yunnan</div>
-                    </div>
-
-                    <div class="workshop-meta-item">
-                        <div class="workshop-meta-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <div class="workshop-meta-title">Year</div>
-                        <div class="workshop-meta-value">2024</div>
-                    </div>
-
-                    <div class="workshop-meta-item">
-                        <div class="workshop-meta-icon">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <div class="workshop-meta-title">Typology</div>
-                        <div class="workshop-meta-value">Hospitality Workshop</div>
-                    </div>
-
-                    <div class="workshop-meta-item">
-                        <div class="workshop-meta-icon">
-                            <i class="fas fa-leaf"></i>
-                        </div>
-                        <div class="workshop-meta-title">Sustainability</div>
-                        <div class="workshop-meta-value">High Performance</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Main Project Image -->
-            <div class="workshop-gallery-item" style="aspect-ratio: 16/9; margin: 60px 0;">
-                <img src="assest/Workshop_Hospitality/1_opt_1920px.png" alt="Workshop Hospitality Main View">
-                <div class="workshop-gallery-caption">
-                    <h4>Main Courtyard View</h4>
-                    <p>Integration of traditional Dai architecture with contemporary sustainable design</p>
-                </div>
-            </div>
-
-            <!-- Sustainability Section -->
-            <div class="workshop-sustainability">
-                <div class="workshop-sustainability-content">
-                    <div class="workshop-sustainability-text">
-                        <h3>Sustainability Principles</h3>
-                        <p>
-                            <strong>Sustainability:</strong><br>
-                            Our project is built on sustainability principles, incorporating natural materials and
-                            ingredients for lasting durability. The self-sufficiency in our construction methods
-                            not only enhances the longevity of the structures but also aligns seamlessly with our
-                            commitment to environmental responsibility.
-                        </p>
-                        <p>
-                            Embrace a harmonious blend of natural elements and conscientious design for an
-                            eco-friendly and enduring experience.
-                        </p>
-
-                        <ul class="workshop-sustainability-features">
-                            <li><i class="fas fa-check-circle"></i> Natural local materials</li>
-                            <li><i class="fas fa-check-circle"></i> Passive cooling systems</li>
-                            <li><i class="fas fa-check-circle"></i> Rainwater harvesting</li>
-                            <li><i class="fas fa-check-circle"></i> Solar energy integration</li>
-                            <li><i class="fas fa-check-circle"></i> Waste management systems</li>
-                        </ul>
-                    </div>
-
-                    <div class="workshop-sustainability-image">
-                        <img src="assest/Workshop_Hospitality/1_6_opt_1920px.png" alt="Sustainable Design Features">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Cultural Integration -->
-            <div class="workshop-cultural">
-                <div class="workshop-cultural-content">
-                    <div class="workshop-cultural-image">
-                        <img src="assest/Workshop_Hospitality/1_9_opt_1920px.png" alt="Cultural Integration">
-                    </div>
-
-                    <div class="workshop-cultural-text">
-                        <h3>Cultural Immersion & Target Audience</h3>
-                        <p>
-                            <strong>Target:</strong><br>
-                            Our establishment warmly welcomes visitors seeking a serene green environment.
-                            Immerse yourself in a unique experience as you stay with us, participating in
-                            activities such as planting, harvesting the high quality local tea and contributing
-                            to the maintenance of our pristine surroundings.
-                        </p>
-                        <p>
-                            Your presence will not only enrich your own journey but also contribute to the
-                            sustainable ethos of our community.
-                        </p>
-                        <p>
-                            <strong>Location:</strong><br>
-                            Xishuangbanna is an autonomous prefecture in China's southwestern Yunnan province,
-                            bordering Myanmar and Laos. It's known for Dai culture, distinctive temples and
-                            tropical rainforests. Prefectural capital, Jinghong, offers palm-lined streets,
-                            and the Tropical Flower and Plants Garden with a large number of fruit trees and blossoms.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project Gallery -->
-            <div class="workshop-gallery">
-                <div class="workshop-gallery-header">
-                    <h3 class="workshop-gallery-title">Project Documentation</h3>
-                    <p class="workshop-gallery-description">
+            <!-- Workshop Hospitality Slider Gallery -->
+            <div class="project-gallery-section">
+                <div class="gallery-header">
+                    <h3 class="gallery-title">Project Documentation</h3>
+                    <p class="gallery-description">
                         Comprehensive visual documentation including plans, sections, detailed views and 3D visualizations
                     </p>
                 </div>
 
-                <div class="workshop-gallery-grid">
-                    <!-- Figure 1-2: Conceptual Diagrams -->
-                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/1.jpg')">
-                        <img src="assest/Workshop_Hospitality/1.jpg" alt="Conceptual Diagrams">
-                        <div class="workshop-gallery-caption">
-                            <h4>Conceptual Diagrams</h4>
-                            <p>Site analysis and conceptual development showing integration with tropical environment</p>
+                <!-- Workshop Slider Gallery -->
+                <div class="main-gallery">
+                    <div class="main-image-container">
+                        <div class="main-image-wrapper" id="workshopGalleryWrapper">
+                            <!-- Workshop gallery slides will be added by JavaScript -->
                         </div>
                     </div>
 
-                    <!-- Figure 3: Detailed View -->
-                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/2.jpg')">
-                        <img src="assest/Workshop_Hospitality/2.jpg" alt="Architectural Details">
-                        <div class="workshop-gallery-caption">
-                            <h4>Architectural Details</h4>
-                            <p>Detailed architectural elements showing traditional Dai-inspired construction</p>
-                        </div>
+                    <!-- Gallery Navigation -->
+                    <div class="gallery-navigation">
+                        <button class="nav-arrow prev-arrow" onclick="prevSlide('workshop')">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="nav-arrow next-arrow" onclick="nextSlide('workshop')">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
 
-                    <!-- Figure 4: Plan View 1 -->
-                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/3.jpg')">
-                        <img src="assest/Workshop_Hospitality/3.jpg" alt="Floor Plan">
-                        <div class="workshop-gallery-caption">
-                            <h4>Floor Plans</h4>
-                            <p>Comprehensive layout showing spatial organization and circulation</p>
-                        </div>
-                    </div>
-
-                    <!-- Figure 5-7: Section Views -->
-                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/4.jpg')">
-                        <img src="assest/Workshop_Hospitality/4.jpg" alt="Section Views">
-                        <div class="workshop-gallery-caption">
-                            <h4>Section Views</h4>
-                            <p>Detailed sections showing building volumetry and spatial relationships</p>
-                        </div>
-                    </div>
-
-                    <!-- High Quality Images -->
-                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/5.jpg')">
-                        <img src="assest/Workshop_Hospitality/5.jpg" alt="3D Render 1">
-                        <div class="workshop-gallery-caption">
-                            <h4>Exterior Visualization</h4>
-                            <p>High-quality render showing integration with rainforest environment</p>
-                        </div>
-                    </div>
-
-                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/6.jpg')">
-                        <img src="assest/Workshop_Hospitality/6.jpg" alt="Interior Perspective">
-                        <div class="workshop-gallery-caption">
-                            <h4>Interior Space</h4>
-                            <p>Showcasing natural materials and sustainable design elements</p>
-                        </div>
-                    </div>
-
-                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/7.jpg')">
-                        <img src="assest/Workshop_Hospitality/7.jpg" alt="Detail Render">
-                        <div class="workshop-gallery-caption">
-                            <h4>Architectural Detail</h4>
-                            <p>Close-up of sustainable construction techniques</p>
-                        </div>
-                    </div>
-
-                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/8.jpg')">
-                        <img src="assest/Workshop_Hospitality/8.jpg" alt="Context View">
-                        <div class="workshop-gallery-caption">
-                            <h4>Site Context</h4>
-                            <p>Showing relationship with surrounding tea plantation</p>
-                        </div>
-                    </div>
-
-                    <!-- Additional high-quality images -->
-                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/1_5_opt_1920px.png')">
-                        <img src="assest/Workshop_Hospitality/1_5_opt_1920px.png" alt="Detail Render 2">
-                        <div class="workshop-gallery-caption">
-                            <h4>Detail Study</h4>
-                            <p>Architectural detailing and material expression</p>
-                        </div>
-                    </div>
-
-                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/1_10_opt_1920px.png')">
-                        <img src="assest/Workshop_Hospitality/1_10_opt_1920px.png" alt="Master Plan">
-                        <div class="workshop-gallery-caption">
-                            <h4>Master Planning</h4>
-                            <p>Overall site strategy and spatial organization</p>
-                        </div>
-                    </div>
-
-                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/1_11_opt_1920px.png')">
-                        <img src="assest/Workshop_Hospitality/1_11_opt_1920px.png" alt="3D Visualization">
-                        <div class="workshop-gallery-caption">
-                            <h4>3D Visualization</h4>
-                            <p>Comprehensive view of the entire workshop complex</p>
-                        </div>
-                    </div>
-
-                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/111_opt_1920px.png')">
-                        <img src="assest/Workshop_Hospitality/111_opt_1920px.png" alt="Final Render">
-                        <div class="workshop-gallery-caption">
-                            <h4>Final Presentation</h4>
-                            <p>Complete project visualization showcasing all design elements</p>
+                    <!-- Thumbnail Gallery -->
+                    <div class="thumbnail-gallery">
+                        <div class="thumbnail-container" id="workshopThumbnailContainer">
+                            <!-- Thumbnails will be generated by JavaScript -->
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Environmental Context -->
-            <div class="workshop-environment">
-                <div class="workshop-environment-content">
-                    <h3>Environmental Context & Climate</h3>
-                    <p>
-                        The site features <strong>Shorea wangtianshuea</strong>, a large species of tree in the
-                        family Dipterocarpaceae, native to southern China and in northern Laos and Vietnam.
-                        It is threatened by habitat loss. The species is under first-class national protection in China.
-                    </p>
-                    <p>
-                        This natural context informs our design approach to preserve and integrate with the
-                        existing ecosystem while creating minimal environmental impact.
-                    </p>
-
-                    <div class="workshop-environment-grid">
-                        <div class="workshop-environment-item">
-                            <div class="workshop-environment-value">30°C</div>
-                            <div class="workshop-environment-label">Average Temperature</div>
-                        </div>
-
-                        <div class="workshop-environment-item">
-                            <div class="workshop-environment-value">26%</div>
-                            <div class="workshop-environment-label">Humidity</div>
-                        </div>
-
-                        <div class="workshop-environment-item">
-                            <div class="workshop-environment-value">19,096 km²</div>
-                            <div class="workshop-environment-label">Area</div>
-                        </div>
-
-                        <div class="workshop-environment-item">
-                            <div class="workshop-environment-value">Yunnan</div>
-                            <div class="workshop-environment-label">Province</div>
-                        </div>
+            <!-- Project Information Sections -->
+            <div class="workshop-info-sections">
+                <!-- Sustainability Section -->
+                <div class="info-section">
+                    <div class="info-image">
+                        <img src="assest/Workshop_Hospitality/1_6_opt_1920px.png" alt="Sustainable Design">
                     </div>
-
-                    <div class="project-actions" style="justify-content: center; margin-top: 50px;">
-                        <a href="assest/Workshop_Hospitality/sketchUp-3.pdf"
-                           class="btn btn-primary" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> View Full PDF Documentation
-                        </a>
+                    <div class="info-content">
+                        <div class="info-subtitle">Sustainability</div>
+                        <h3 class="info-title">Eco-Conscious Design Principles</h3>
+                        <p class="info-text">
+                            Our project is built on sustainability principles, incorporating natural materials and ingredients for lasting durability. The self-sufficiency in our construction methods not only enhances the longevity of the structures but also aligns seamlessly with our commitment to environmental responsibility.
+                        </p>
+                        <p class="info-text">
+                            Embrace a harmonious blend of natural elements and conscientious design for an eco-friendly and enduring experience.
+                        </p>
+                        <ul class="info-features">
+                            <li><i class="fas fa-check"></i> Natural local materials</li>
+                            <li><i class="fas fa-check"></i> Passive cooling systems</li>
+                            <li><i class="fas fa-check"></i> Rainwater harvesting</li>
+                            <li><i class="fas fa-check"></i> Solar energy integration</li>
+                            <li><i class="fas fa-check"></i> Waste management systems</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Gallery Section (For Projects 1 & 2 - KEEP ORIGINAL) -->
-    <section class="content-section" id="gallery-farm">
-        <div class="container">
-            <div class="gallery-container">
-                <div class="gallery-header">
-                    <h3 class="gallery-title animate-on-scroll">
-                        <i class="fas fa-seedling"></i> Farm to Fork Collection
-                    </h3>
-                    <p class="gallery-description animate-on-scroll delay-1">
-                        Visual documentation of the modular hydroponic farming system, from initial concept sketches
-                        to detailed technical drawings and construction specifications.
-                    </p>
+                <!-- Cultural Integration Section -->
+                <div class="info-section reverse">
+                    <div class="info-image">
+                        <img src="assest/Workshop_Hospitality/1_9_opt_1920px.png" alt="Cultural Integration">
+                    </div>
+                    <div class="info-content">
+                        <div class="info-subtitle">Cultural Immersion</div>
+                        <h3 class="info-title">Authentic Dai Cultural Experience</h3>
+                        <p class="info-text">
+                            Our establishment warmly welcomes visitors seeking a serene green environment. Immerse yourself in a unique experience as you stay with us, participating in activities such as planting, harvesting the high quality of local tea and contributing to the maintenance of our pristine surroundings.
+                        </p>
+                        <p class="info-text">
+                            Your presence will not only enrich your own journey but also contribute to the sustainable ethos of our community.
+                        </p>
+                        <ul class="info-features">
+                            <li><i class="fas fa-check"></i> Traditional Dai architecture</li>
+                            <li><i class="fas fa-check"></i> Tea cultivation workshops</li>
+                            <li><i class="fas fa-check"></i> Cultural immersion activities</li>
+                            <li><i class="fas fa-check"></i> Community engagement</li>
+                            <li><i class="fas fa-check"></i> Environmental stewardship</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="gallery-filters">
-                    <button class="filter-btn active" data-filter="all" onclick="filterGallery('farm', 'all')">
-                        <i class="fas fa-th"></i> All
-                    </button>
-                    <button class="filter-btn" data-filter="concept" onclick="filterGallery('farm', 'concept')">
-                        <i class="fas fa-lightbulb"></i> Concepts
-                    </button>
-                    <button class="filter-btn" data-filter="technical" onclick="filterGallery('farm', 'technical')">
-                        <i class="fas fa-ruler-combined"></i> Technical
-                    </button>
-                </div>
-
-                <div class="gallery-grid" id="farmGallery">
-                    <div class="gallery-item farm animate-on-scroll" data-category="concept" onclick="openLightbox('assest/Ephemeral_Temporal_spaces/Image1.png', 'Farm to Fork - Concept Visualization')">
-                        <div class="gallery-number">01</div>
-                        <div class="gallery-badge">Concept Design</div>
-                        <img src="assest/Ephemeral_Temporal_spaces/Image1.png" alt="Concept Design">
-                        <div class="gallery-overlay">
-                            <h4>Concept Visualization</h4>
-                            <p>Initial design exploration showing modular system integration</p>
-                        </div>
+                <!-- Location & Context -->
+                <div class="info-section">
+                    <div class="info-image">
+                        <img src="assest/Workshop_Hospitality/5.jpg" alt="Location Context">
                     </div>
-
-                    <div class="gallery-item farm animate-on-scroll delay-1" data-category="technical" onclick="openLightbox('assest/Ephemeral_Temporal_spaces/Image2.png', 'Farm to Fork - Technical Documentation')">
-                        <div class="gallery-number">02</div>
-                        <div class="gallery-badge">Technical Drawings</div>
-                        <img src="assest/Ephemeral_Temporal_spaces/Image2.png" alt="Technical Drawings">
-                        <div class="gallery-overlay">
-                            <h4>Technical Documentation</h4>
-                            <p>Detailed architectural drawings and system specifications</p>
-                        </div>
-                    </div>
-
-                    <div class="gallery-item farm animate-on-scroll delay-2" data-category="concept" onclick="openLightbox('assest/Ephemeral_Temporal_spaces/Image3.png', 'Farm to Fork - Construction Details')">
-                        <div class="gallery-number">03</div>
-                        <div class="gallery-badge">Construction</div>
-                        <img src="assest/Ephemeral_Temporal_spaces/Image3.png" alt="Construction Details">
-                        <div class="gallery-overlay">
-                            <h4>Construction Details</h4>
-                            <p>Structural specifications and assembly sequence</p>
-                        </div>
-                    </div>
-
-                    <div class="gallery-item farm animate-on-scroll delay-3" data-category="technical" onclick="openLightbox('assest/Ephemeral_Temporal_spaces/Image1.png', 'Farm to Fork - System Integration')">
-                        <div class="gallery-number">04</div>
-                        <div class="gallery-badge">System Integration</div>
-                        <img src="assest/Ephemeral_Temporal_spaces/Image1.png" alt="System Integration">
-                        <div class="gallery-overlay">
-                            <h4>System Integration Study</h4>
-                            <p>Analysis of hydroponic system integration</p>
-                        </div>
+                    <div class="info-content">
+                        <div class="info-subtitle">Location</div>
+                        <h3 class="info-title">Xishuangbanna, Yunnan</h3>
+                        <p class="info-text">
+                            Xishuangbanna is an autonomous prefecture in China's southwestern Yunnan province, bordering Myanmar and Laos. It's known for Dai culture, distinctive temples and tropical rainforests. Prefectural capital, Jinghong, offers palm-lined streets, and the Tropical Flower and Plants Garden with a large number of fruit trees and blossoms.
+                        </p>
+                        <p class="info-text">
+                            The city's Mengle Buddhist temple is a vast Dai religious complex completed in 2007, showcasing the rich cultural heritage that inspires our design.
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <!-- Lake Varese Gallery -->
-            <div class="gallery-container" id="gallery-lake">
-                <div class="gallery-header">
-                    <h3 class="gallery-title animate-on-scroll">
-                        <i class="fas fa-water"></i> Lake Varese Collection
-                    </h3>
-                    <p class="gallery-description animate-on-scroll delay-1">
-                        Comprehensive documentation of the ecological restoration project, including site analysis,
-                        master planning, 3D visualizations, and sustainable development strategies.
+            <!-- Project Specifications - FIXED LAYOUT -->
+            <div class="project-specs">
+                <div class="specs-header">
+                    <h3 class="specs-title">Project Specifications</h3>
+                    <p class="specs-description">
+                        Detailed technical information and environmental context
                     </p>
                 </div>
-
-                <div class="gallery-filters">
-                    <button class="filter-btn active" data-filter="all" onclick="filterGallery('lake', 'all')">
-                        <i class="fas fa-th"></i> All
-                    </button>
-                    <button class="filter-btn" data-filter="analysis" onclick="filterGallery('lake', 'analysis')">
-                        <i class="fas fa-search"></i> Analysis
-                    </button>
-                    <button class="filter-btn" data-filter="concept" onclick="filterGallery('lake', 'concept')">
-                        <i class="fas fa-cube"></i> 3D Views
-                    </button>
-                </div>
-
-                <div class="gallery-grid" id="lakeGallery">
-                    <div class="gallery-item lake animate-on-scroll" data-category="analysis" onclick="openLightbox('assest/Lake varese_Landscape/IMG-20231116-WA0013.jpg', 'Lake Varese - Site Analysis')">
-                        <div class="gallery-number">01</div>
-                        <div class="gallery-badge">Site Analysis</div>
-                        <img src="assest/Lake varese_Landscape/IMG-20231116-WA0013.jpg" alt="Site Analysis">
-                        <div class="gallery-overlay">
-                            <h4>Site Analysis & Context Study</h4>
-                            <p>Initial site documentation and environmental assessment</p>
-                        </div>
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <div class="spec-value">30°C</div>
+                        <div class="spec-label">Average Temperature</div>
                     </div>
-
-                    <div class="gallery-item lake animate-on-scroll delay-1" data-category="concept" onclick="openLightbox('assest/Lake varese_Landscape/IMG-20231116-WA0017.jpg', 'Lake Varese - 3D Visualization')">
-                        <div class="gallery-number">02</div>
-                        <div class="gallery-badge">3D Visualization</div>
-                        <img src="assest/Lake varese_Landscape/IMG-20231116-WA0017.jpg" alt="3D Visualization">
-                        <div class="gallery-overlay">
-                            <h4>3D Landscape Visualization</h4>
-                            <p>Twinmotion render showcasing proposed ecological restoration</p>
-                        </div>
+                    <div class="spec-item">
+                        <div class="spec-value">26%</div>
+                        <div class="spec-label">Humidity</div>
                     </div>
-
-                    <div class="gallery-item lake animate-on-scroll delay-2" data-category="analysis" onclick="openLightbox('assest/Lake varese_Landscape/IMG-20231116-WA0021.jpg', 'Lake Varese - Master Planning')">
-                        <div class="gallery-number">03</div>
-                        <div class="gallery-badge">Master Plan</div>
-                        <img src="assest/Lake varese_Landscape/IMG-20231116-WA0021.jpg" alt="Master Plan">
-                        <div class="gallery-overlay">
-                            <h4>Master Planning Strategy</h4>
-                            <p>Comprehensive design layout showing spatial organization</p>
-                        </div>
+                    <div class="spec-item">
+                        <div class="spec-value">19,096 km²</div>
+                        <div class="spec-label">Area</div>
                     </div>
-
-                    <div class="gallery-item lake animate-on-scroll delay-3" data-category="analysis" onclick="openLightbox('assest/Lake varese_Landscape/IMG-20231116-WA0013.jpg', 'Lake Varese - Ecological Zones')">
-                        <div class="gallery-number">04</div>
-                        <div class="gallery-badge">Ecological Design</div>
-                        <img src="assest/Lake varese_Landscape/IMG-20231116-WA0013.jpg" alt="Ecological Zones">
-                        <div class="gallery-overlay">
-                            <h4>Ecological Zone Analysis</h4>
-                            <p>Detailed study of wetland restoration strategies</p>
-                        </div>
+                    <div class="spec-item">
+                        <div class="spec-value">Yunnan</div>
+                        <div class="spec-label">Province</div>
+                    </div>
+                    <div class="spec-item long-text">
+                        <div class="spec-value">Shorea Wangtianshuea</div>
+                        <div class="spec-label">Protected Tree Species</div>
+                    </div>
+                    <div class="spec-item long-text">
+                        <div class="spec-value">Dai Architecture</div>
+                        <div class="spec-label">Architectural Style</div>
                     </div>
                 </div>
             </div>
 
-            <div class="gallery-cta">
-                <a href="portfolio.html" class="btn btn-primary animate-on-scroll">
-                    <i class="fas fa-images"></i> Explore Full Portfolio
+            <!-- Project Actions -->
+            <div class="project-actions" style="justify-content: center; margin-top: 60px;">
+                <a href="assest/Workshop_Hospitality/sketchUp-3.pdf"
+                   class="btn btn-primary" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View Full PDF Documentation
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer (EXACT from portfolio) -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -2505,12 +1884,13 @@
                         <div class="footer-signature">Najibeh Movahedi</div>
                     </div>
                     <p class="footer-about">
-                        Interior Architect & Spatial Designer blending Persian artistic heritage with contemporary Italian design principles. Master's candidate at Politecnico di Milano.
+                        Interior Architect & Spatial Designer blending Persian artistic heritage with contemporary Italian design principles. Master's candidate at Politecnico di Milano, specializing in spatial perception, color theory, and light manipulation.
                     </p>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
-                        <a href="contact.html" class="social-link"><i class="fas fa-envelope"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
                     </div>
                 </div>
 
@@ -2526,36 +1906,47 @@
                 </div>
 
                 <div class="footer-column">
-                    <h4>Contact</h4>
+                    <h4>Contact Info</h4>
                     <ul class="footer-contact">
-                        <li><i class="fas fa-envelope"></i> movahedinajibeh@gmail.com</li>
-                        <li><i class="fas fa-phone"></i> +39 375 5611868</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Milan, Italy</li>
-                        <li><i class="fas fa-graduation-cap"></i> Politecnico di Milano</li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Academic Email</strong><br>
+                                <span>najibeh.movahedi@mail.polimi.it</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Personal Email</strong><br>
+                                <span>movahedinajibeh@gmail.com</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Location</strong><br>
+                                <span>Milan, Italy</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <strong>University</strong><br>
+                                <span>Politecnico di Milano</span>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2025 Najibeh Movahedi. Interior Architect & Spatial Designer | Politecnico di Milano</p>
-                <p style="margin-top: 10px; font-size: 0.8rem; color: rgba(255, 255, 255, 0.4);">
-                    POLITECNICO DI MILANO | SCUOLA DEL DESIGN - WORKSHOP HOTEL REGENERATION 2024 interior design winter workshop week
-                </p>
+                <p>&copy; 2024 Najibeh Movahedi. | Interior Architect & Spatial Designer | Politecnico di Milano</p>
             </div>
         </div>
     </footer>
 
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" onclick="closeLightbox()">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="lightbox-content">
-            <img id="lightbox-img" src="" alt="">
-            <div class="lightbox-caption" id="lightbox-caption"></div>
-        </div>
-    </div>
-
+    <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile menu functionality
@@ -2784,75 +2175,6 @@
                 return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
             }
 
-            // Gallery Filtering System
-            window.filterGallery = function(galleryId, filterType) {
-                const gallery = document.getElementById(galleryId + 'Gallery');
-                const filterBtns = document.querySelectorAll(`#${galleryId} .filter-btn`);
-
-                // Update active button
-                filterBtns.forEach(btn => {
-                    if (btn.getAttribute('data-filter') === filterType) {
-                        btn.classList.add('active');
-                    } else {
-                        btn.classList.remove('active');
-                    }
-                });
-
-                // Filter gallery items
-                const items = gallery.querySelectorAll('.gallery-item');
-
-                items.forEach(item => {
-                    if (filterType === 'all') {
-                        item.style.display = 'block';
-                    } else {
-                        const category = item.getAttribute('data-category');
-                        if (category === filterType) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    }
-                });
-            };
-
-            // Lightbox functionality for Workshop Gallery
-            window.openLightbox = function(src, title) {
-                const lightbox = document.getElementById('lightbox');
-                const lightboxImg = document.getElementById('lightbox-img');
-                const lightboxCaption = document.getElementById('lightbox-caption');
-
-                lightboxImg.src = src;
-
-                if (title) {
-                    lightboxCaption.innerHTML = `<h4>${title}</h4>`;
-                } else {
-                    lightboxCaption.innerHTML = '';
-                }
-
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            };
-
-            function closeLightbox() {
-                const lightbox = document.getElementById('lightbox');
-                lightbox.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-
-            // Close lightbox with ESC key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    closeLightbox();
-                }
-            });
-
-            // Close lightbox when clicking outside
-            document.getElementById('lightbox').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    closeLightbox();
-                }
-            });
-
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
@@ -2870,6 +2192,355 @@
                 });
             });
 
+            // GALLERY SYSTEM FOR ALL PROJECTS
+            const galleries = {
+                farm: {
+                    wrapper: 'farmGalleryWrapper',
+                    thumbnailContainer: 'farmThumbnailContainer',
+                    images: [
+                        {
+                            src: 'assest/Ephemeral_Temporal_spaces/Image1.png',
+                            title: 'Concept Design',
+                            description: 'Initial design exploration showing modular system integration'
+                        },
+                        {
+                            src: 'assest/Ephemeral_Temporal_spaces/Image2.png',
+                            title: 'Technical Drawings',
+                            description: 'Detailed architectural drawings and system specifications'
+                        },
+                        {
+                            src: 'assest/Ephemeral_Temporal_spaces/Image3.png',
+                            title: 'Construction Details',
+                            description: 'Structural specifications and assembly sequence'
+                        },
+                        {
+                            src: 'assest/Ephemeral_Temporal_spaces/Image1.png',
+                            title: 'System Integration Study',
+                            description: 'Analysis of hydroponic system integration'
+                        }
+                    ],
+                    currentIndex: 0
+                },
+                lake: {
+                    wrapper: 'lakeGalleryWrapper',
+                    thumbnailContainer: 'lakeThumbnailContainer',
+                    images: [
+                        {
+                            src: 'assest/Lake varese_Landscape/IMG-20231116-WA0013.jpg',
+                            title: 'Site Analysis',
+                            description: 'Initial site documentation and environmental assessment'
+                        },
+                        {
+                            src: 'assest/Lake varese_Landscape/IMG-20231116-WA0017.jpg',
+                            title: '3D Landscape Visualization',
+                            description: 'Twinmotion render showcasing proposed ecological restoration'
+                        },
+                        {
+                            src: 'assest/Lake varese_Landscape/IMG-20231116-WA0021.jpg',
+                            title: 'Master Planning Strategy',
+                            description: 'Comprehensive design layout showing spatial organization'
+                        },
+                        {
+                            src: 'assest/Lake varese_Landscape/IMG-20231116-WA0013.jpg',
+                            title: 'Ecological Zone Analysis',
+                            description: 'Detailed study of wetland restoration strategies'
+                        }
+                    ],
+                    currentIndex: 0
+                },
+                workshop: {
+                    wrapper: 'workshopGalleryWrapper',
+                    thumbnailContainer: 'workshopThumbnailContainer',
+                    images: [
+                        {
+                            src: 'assest/Workshop_Hospitality/1_opt_1920px.png',
+                            title: 'Main Courtyard View',
+                            description: 'Integration of traditional Dai architecture with contemporary sustainable design'
+                        },
+                        {
+                            src: 'assest/Workshop_Hospitality/1_6_opt_1920px.png',
+                            title: 'Sustainable Design Features',
+                            description: 'Natural materials and passive climate control systems'
+                        },
+                        {
+                            src: 'assest/Workshop_Hospitality/1_9_opt_1920px.png',
+                            title: 'Cultural Integration',
+                            description: 'Traditional Dai architectural elements with contemporary design principles'
+                        },
+                        {
+                            src: 'assest/Workshop_Hospitality/3.jpg',
+                            title: 'Floor Plans',
+                            description: 'Detailed architectural plans showing spatial organization'
+                        },
+                        {
+                            src: 'assest/Workshop_Hospitality/4.jpg',
+                            title: 'Section Views',
+                            description: 'Cross-sections showing building volumetry and spatial relationships'
+                        },
+                        {
+                            src: 'assest/Workshop_Hospitality/5.jpg',
+                            title: 'Exterior Visualization',
+                            description: 'High-quality render showing integration with rainforest environment'
+                        },
+                        {
+                            src: 'assest/Workshop_Hospitality/6.jpg',
+                            title: 'Interior Space',
+                            description: 'Showcasing natural materials and sustainable design elements'
+                        },
+                        {
+                            src: 'assest/Workshop_Hospitality/7.jpg',
+                            title: 'Architectural Detail',
+                            description: 'Close-up of sustainable construction techniques'
+                        },
+                        {
+                            src: 'assest/Workshop_Hospitality/8.jpg',
+                            title: 'Site Context',
+                            description: 'Showing relationship with surrounding tea plantation'
+                        },
+                        {
+                            src: 'assest/Workshop_Hospitality/1_5_opt_1920px.png',
+                            title: 'Detail Study',
+                            description: 'Architectural detailing and material expression'
+                        },
+                        {
+                            src: 'assest/Workshop_Hospitality/1_10_opt_1920px.png',
+                            title: 'Master Planning',
+                            description: 'Overall site strategy and spatial organization'
+                        },
+                        {
+                            src: 'assest/Workshop_Hospitality/1_11_opt_1920px.png',
+                            title: '3D Visualization',
+                            description: 'Comprehensive view of the entire workshop complex'
+                        },
+                        {
+                            src: 'assest/Workshop_Hospitality/111_opt_1920px.png',
+                            title: 'Final Presentation',
+                            description: 'Complete project visualization showcasing all design elements'
+                        },
+                        {
+                            src: 'assest/Workshop_Hospitality/1.jpg',
+                            title: 'Conceptual Diagrams',
+                            description: 'Initial site analysis and conceptual development'
+                        },
+                        {
+                            src: 'assest/Workshop_Hospitality/2.jpg',
+                            title: 'Technical Details',
+                            description: 'Detailed architectural elements and construction methods'
+                        }
+                    ],
+                    currentIndex: 0
+                }
+            };
+
+            // Initialize all galleries
+            function initAllGalleries() {
+                Object.keys(galleries).forEach(galleryId => {
+                    const gallery = galleries[galleryId];
+                    const wrapper = document.getElementById(gallery.wrapper);
+                    const thumbnailContainer = document.getElementById(gallery.thumbnailContainer);
+
+                    // Clear existing content
+                    wrapper.innerHTML = '';
+                    thumbnailContainer.innerHTML = '';
+
+                    // Create slides and thumbnails
+                    gallery.images.forEach((image, index) => {
+                        // Create main slide
+                        const slide = document.createElement('div');
+                        slide.className = 'main-image-slide';
+
+                        const img = document.createElement('img');
+                        img.src = image.src;
+                        img.alt = image.title;
+
+                        const overlay = document.createElement('div');
+                        overlay.className = 'image-overlay';
+
+                        const title = document.createElement('h3');
+                        title.className = 'image-title';
+                        title.textContent = image.title;
+
+                        const description = document.createElement('p');
+                        description.className = 'image-description';
+                        description.textContent = image.description;
+
+                        overlay.appendChild(title);
+                        overlay.appendChild(description);
+                        slide.appendChild(img);
+                        slide.appendChild(overlay);
+                        wrapper.appendChild(slide);
+
+                        // Create thumbnail
+                        const thumbnail = document.createElement('div');
+                        thumbnail.className = 'thumbnail-item';
+                        if (index === 0) thumbnail.classList.add('active');
+                        thumbnail.addEventListener('click', () => goToSlide(galleryId, index));
+
+                        const thumbImg = document.createElement('img');
+                        thumbImg.src = image.src;
+                        thumbImg.alt = image.title;
+
+                        thumbnail.appendChild(thumbImg);
+                        thumbnailContainer.appendChild(thumbnail);
+                    });
+                });
+            }
+
+            // Navigation functions
+            window.prevSlide = function(galleryId) {
+                const gallery = galleries[galleryId];
+                gallery.currentIndex = (gallery.currentIndex - 1 + gallery.images.length) % gallery.images.length;
+                updateGallery(galleryId);
+            };
+
+            window.nextSlide = function(galleryId) {
+                const gallery = galleries[galleryId];
+                gallery.currentIndex = (gallery.currentIndex + 1) % gallery.images.length;
+                updateGallery(galleryId);
+            };
+
+            function goToSlide(galleryId, index) {
+                const gallery = galleries[galleryId];
+                gallery.currentIndex = index;
+                updateGallery(galleryId);
+            }
+
+            function updateGallery(galleryId) {
+                const gallery = galleries[galleryId];
+                const wrapper = document.getElementById(gallery.wrapper);
+                const thumbnailContainer = document.getElementById(gallery.thumbnailContainer);
+
+                // Update main image position
+                if (wrapper) {
+                    wrapper.style.transform = `translateX(-${gallery.currentIndex * 100}%)`;
+                }
+
+                // Update active thumbnail
+                if (thumbnailContainer) {
+                    const thumbnails = thumbnailContainer.querySelectorAll('.thumbnail-item');
+                    thumbnails.forEach((thumb, index) => {
+                        thumb.classList.toggle('active', index === gallery.currentIndex);
+                    });
+
+                    // Center the active thumbnail
+                    centerActiveThumbnail(galleryId);
+                }
+            }
+
+            function centerActiveThumbnail(galleryId) {
+                const gallery = galleries[galleryId];
+                const thumbnailContainer = document.getElementById(gallery.thumbnailContainer);
+                const activeThumb = thumbnailContainer?.querySelector('.thumbnail-item.active');
+
+                if (activeThumb && thumbnailContainer) {
+                    const containerWidth = thumbnailContainer.offsetWidth;
+                    const thumbLeft = activeThumb.offsetLeft;
+                    const thumbWidth = activeThumb.offsetWidth;
+
+                    thumbnailContainer.scrollLeft = thumbLeft - (containerWidth / 2) + (thumbWidth / 2);
+                }
+            }
+
+            // Keyboard navigation for active gallery
+            document.addEventListener('keydown', function(e) {
+                // Find which gallery is currently in view
+                const gallerySections = document.querySelectorAll('.main-gallery');
+                let activeGalleryId = null;
+
+                gallerySections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
+                        // This gallery is in the middle of the viewport
+                        const galleryId = section.closest('.project-gallery-section').id.replace('-gallery', '');
+                        if (galleries[galleryId]) {
+                            activeGalleryId = galleryId;
+                        }
+                    }
+                });
+
+                if (activeGalleryId) {
+                    if (e.key === 'ArrowLeft') {
+                        prevSlide(activeGalleryId);
+                    } else if (e.key === 'ArrowRight') {
+                        nextSlide(activeGalleryId);
+                    }
+                }
+            });
+
+            // Touch/swipe support for mobile
+            const gallerySections = document.querySelectorAll('.main-gallery');
+            gallerySections.forEach(section => {
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                section.addEventListener('touchstart', function(e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+
+                section.addEventListener('touchend', function(e) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleGallerySwipe(section, touchStartX, touchEndX);
+                });
+            });
+
+            function handleGallerySwipe(section, startX, endX) {
+                const swipeThreshold = 50;
+                const galleryId = section.closest('.project-gallery-section').id.replace('-gallery', '');
+
+                if (!galleries[galleryId]) return;
+
+                if (startX - endX > swipeThreshold) {
+                    // Swipe left - next slide
+                    nextSlide(galleryId);
+                } else if (endX - startX > swipeThreshold) {
+                    // Swipe right - previous slide
+                    prevSlide(galleryId);
+                }
+            }
+
+            // Auto-advance for each gallery
+            const autoAdvanceIntervals = {};
+
+            function setupAutoAdvance(galleryId) {
+                if (autoAdvanceIntervals[galleryId]) {
+                    clearInterval(autoAdvanceIntervals[galleryId]);
+                }
+
+                autoAdvanceIntervals[galleryId] = setInterval(() => {
+                    nextSlide(galleryId);
+                }, 5000);
+            }
+
+            // Initialize auto-advance for all galleries
+            Object.keys(galleries).forEach(galleryId => {
+                setupAutoAdvance(galleryId);
+
+                // Pause auto-advance on hover
+                const galleryElement = document.getElementById(galleryId + '-gallery');
+                if (galleryElement) {
+                    const mainGallery = galleryElement.querySelector('.main-gallery');
+                    if (mainGallery) {
+                        mainGallery.addEventListener('mouseenter', () => {
+                            clearInterval(autoAdvanceIntervals[galleryId]);
+                        });
+
+                        mainGallery.addEventListener('mouseleave', () => {
+                            setupAutoAdvance(galleryId);
+                        });
+                    }
+                }
+            });
+
+            // Initialize all galleries
+            initAllGalleries();
+
+            // Center thumbnails initially
+            setTimeout(() => {
+                Object.keys(galleries).forEach(galleryId => {
+                    centerActiveThumbnail(galleryId);
+                });
+            }, 100);
+
             // Immediate hero animation
             const heroTitle = document.querySelector('.page-title');
             const heroDesc = document.querySelector('.hero-description');
@@ -2880,6 +2551,22 @@
             heroCta.forEach((btn, index) => {
                 btn.style.animation = `fadeInUp 0.6s ease forwards ${0.2 + (index * 0.1)}s`;
             });
+
+            // Set active navigation based on current page
+            function setActiveNav() {
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const linkHref = link.getAttribute('href');
+                    if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            setActiveNav();
         });
     </script>
 </body>
