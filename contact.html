@@ -12,8 +12,8 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
         (function() {
-            // Initialize EmailJS with your Public Key
-            emailjs.init("s_TE-WY4d2m5Nedmn"); // Your Public Key (make sure this is correct)
+            // Initialize EmailJS with your CORRECT Public Key
+            emailjs.init("vt1iJJfVprICgoENf"); // ✅ YOUR CORRECT PUBLIC KEY
         })();
     </script>
 
@@ -1429,12 +1429,12 @@
                             <label for="inquiry-type">Type of Inquiry *</label>
                             <select id="inquiry-type" name="inquiry_type" required>
                                 <option value="" disabled selected>Select inquiry type</option>
-                                <option value="academic">Academic Collaboration</option>
-                                <option value="research">Research Partnership</option>
-                                <option value="professional">Professional Opportunity</option>
-                                <option value="internship">Internship/Stage</option>
-                                <option value="project">Project Discussion</option>
-                                <option value="other">Other Inquiry</option>
+                                <option value="Academic Collaboration">Academic Collaboration</option>
+                                <option value="Research Partnership">Research Partnership</option>
+                                <option value="Professional Opportunity">Professional Opportunity</option>
+                                <option value="Internship/Stage">Internship/Stage</option>
+                                <option value="Project Discussion">Project Discussion</option>
+                                <option value="Other Inquiry">Other Inquiry</option>
                             </select>
                         </div>
 
@@ -1445,7 +1445,7 @@
 
                         <div class="form-group">
                             <label for="message">Your Message *</label>
-                            <textarea id="message" name="message" rows="6" required placeholder="Please describe your inquiry in detail, including any relevant project information, timelines, or specific questions..."></textarea>
+                            <textarea id="message" name="message" rows="6" required placeholder="Please describe your inquiry in detail..."></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary" id="submitBtn">
@@ -1548,6 +1548,11 @@
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('✅ Contact page loaded');
+            console.log('📧 EmailJS initialized with Public Key: vt1iJJfVprICgoENf');
+            console.log('🔧 Using Service ID: service_awv9c04');
+            console.log('🎨 Using Template ID: template_6nkd28b');
+
             // ==================== NAVIGATION ====================
             // Navigation Scroll Effect
             window.addEventListener('scroll', function() {
@@ -1647,120 +1652,172 @@
             const submitBtn = document.getElementById('submitBtn');
             const formMessage = document.getElementById('formMessage');
 
-            // Your EmailJS Configuration
+            // Your CORRECT EmailJS Configuration
             const EMAILJS_CONFIG = {
-                SERVICE_ID: 'service_awv9c04', // Your Service ID
-                TEMPLATE_ID: 'template_6nkd28b', // Your Template ID
-                PUBLIC_KEY: 's_TE-WY4d2m5Nedmn' // Your Public Key
+                SERVICE_ID: 'service_awv9c04',    // ✅ Your Service ID
+                TEMPLATE_ID: 'template_6nkd28b',  // ✅ Your Template ID
+                PUBLIC_KEY: 'vt1iJJfVprICgoENf'   // ✅ Your Public Key
             };
 
-            // Test if EmailJS is properly initialized
-            console.log('EmailJS initialized:', emailjs);
-            console.log('Using Service ID:', EMAILJS_CONFIG.SERVICE_ID);
-            console.log('Using Template ID:', EMAILJS_CONFIG.TEMPLATE_ID);
+            // Test EmailJS connection on page load
+            async function testEmailJSConnection() {
+                console.log('🔍 Testing EmailJS connection...');
+
+                try {
+                    // Simple test to see if EmailJS is initialized
+                    const testParams = {
+                        to_email: 'movahedinajibeh@gmail.com',
+                        from_name: 'Test User',
+                        from_email: 'test@example.com',
+                        subject: 'Test Connection',
+                        message: 'Testing EmailJS connection...'
+                    };
+
+                    // Just check if we can access emailjs object
+                    console.log('EmailJS object:', emailjs);
+                    console.log('✅ EmailJS SDK loaded successfully');
+
+                    // Try a simple send to test connection
+                    const response = await emailjs.send(
+                        EMAILJS_CONFIG.SERVICE_ID,
+                        EMAILJS_CONFIG.TEMPLATE_ID,
+                        testParams
+                    );
+
+                    console.log('✅ EmailJS connection test successful!', response.status);
+                    return true;
+
+                } catch (error) {
+                    console.error('❌ EmailJS test failed:', error);
+                    showMessage('⚠️ EmailJS connection test failed. Please check console for details.', 'warning');
+                    return false;
+                }
+            }
+
+            // Run connection test
+            testEmailJSConnection();
 
             if (contactForm) {
                 contactForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
+                    console.log('📨 Form submission started...');
 
                     // Get form values
-                    const name = document.getElementById('name').value.trim();
-                    const email = document.getElementById('email').value.trim();
-                    const phone = document.getElementById('phone').value.trim();
-                    const inquiryType = document.getElementById('inquiry-type').value;
-                    const subject = document.getElementById('subject').value.trim();
-                    const message = document.getElementById('message').value.trim();
+                    const formData = {
+                        from_name: document.getElementById('name').value.trim(),
+                        from_email: document.getElementById('email').value.trim(),
+                        phone: document.getElementById('phone').value.trim() || 'Not provided',
+                        inquiry_type: document.getElementById('inquiry-type').value,
+                        subject: document.getElementById('subject').value.trim(),
+                        message: document.getElementById('message').value.trim(),
+                        to_email: 'movahedinajibeh@gmail.com', // Your email
+                        page_url: window.location.href,
+                        submission_id: 'NM-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9).toUpperCase(),
+                        time: new Date().toLocaleString('en-US', {
+                            weekday: 'long',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: true,
+                            timeZoneName: 'short'
+                        }),
+                        year: new Date().getFullYear()
+                    };
+
+                    console.log('📋 Form data prepared:', formData);
 
                     // Validation
-                    if (!name || !email || !inquiryType || !subject || !message) {
+                    if (!formData.from_name || !formData.from_email || !formData.inquiry_type ||
+                        !formData.subject || !formData.message) {
                         showMessage('Please fill in all required fields.', 'error');
                         return;
                     }
 
-                    if (!isValidEmail(email)) {
+                    if (!isValidEmail(formData.from_email)) {
                         showMessage('Please enter a valid email address.', 'error');
                         return;
                     }
 
-                    // Show loading state
+                    // Show loading
                     submitBtn.classList.add('btn-loading');
                     submitBtn.disabled = true;
-
-                    // Generate unique submission ID
-                    const submissionId = 'NM-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9).toUpperCase();
-
-                    // Get current time
-                    const now = new Date();
-                    const formattedTime = now.toLocaleString('en-US', {
-                        weekday: 'long',
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        hour12: true,
-                        timeZoneName: 'short'
-                    });
-
-                    // Prepare template parameters
-                    const templateParams = {
-                        from_name: name,
-                        from_email: email,
-                        phone: phone || 'Not provided',
-                        inquiry_type: getInquiryTypeText(inquiryType),
-                        subject: subject,
-                        message: message,
-                        to_email: 'movahedinajibeh@gmail.com', // Your email
-                        page_url: window.location.href,
-                        submission_id: submissionId,
-                        time: formattedTime,
-                        year: now.getFullYear()
-                    };
+                    console.log('⏳ Sending email via EmailJS...');
 
                     try {
                         // Send email via EmailJS
                         const response = await emailjs.send(
                             EMAILJS_CONFIG.SERVICE_ID,
                             EMAILJS_CONFIG.TEMPLATE_ID,
-                            templateParams
+                            formData
                         );
 
-                        console.log('Email sent successfully:', response);
+                        console.log('✅ Email sent successfully!', response);
+                        console.log('Status:', response.status);
+                        console.log('Text:', response.text);
 
                         // Show success message
                         showMessage(
-                            'Thank you for your message! I will get back to you soon. Your reference ID: ' + submissionId,
+                            '✅ Thank you! Your message has been sent successfully. I will respond within 24-48 hours.',
                             'success'
                         );
 
                         // Reset form
                         contactForm.reset();
+                        console.log('🔄 Form reset');
 
                         // Scroll to success message
-                        formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        setTimeout(() => {
+                            formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }, 300);
 
-                        // Reset button state after 3 seconds
+                    } catch (error) {
+                        console.error('❌ EmailJS Error Details:', error);
+                        console.error('Error Status:', error.status);
+                        console.error('Error Text:', error.text);
+                        console.error('Full Error:', error);
+
+                        // Detailed error messages
+                        let errorMessage = '';
+
+                        if (error.status === 404) {
+                            errorMessage = 'EmailJS account not found. Please check your credentials in the dashboard.';
+                        } else if (error.status === 400) {
+                            errorMessage = 'Bad request. Please check if your template is published.';
+                        } else if (error.status === 401) {
+                            errorMessage = 'Unauthorized. Please check your Public Key.';
+                        } else if (error.text) {
+                            if (error.text.includes('Account not found')) {
+                                errorMessage = 'Account not found. Check:';
+                                errorMessage += '\n1. Public Key: ' + EMAILJS_CONFIG.PUBLIC_KEY;
+                                errorMessage += '\n2. Service ID: ' + EMAILJS_CONFIG.SERVICE_ID;
+                                errorMessage += '\n3. Template ID: ' + EMAILJS_CONFIG.TEMPLATE_ID;
+                                errorMessage += '\n\nGo to: https://dashboard.emailjs.com/admin to verify';
+                            } else {
+                                errorMessage = error.text;
+                            }
+                        } else {
+                            errorMessage = 'An unknown error occurred. Please try again.';
+                        }
+
+                        showMessage('❌ ' + errorMessage, 'error');
+
+                        // Add fallback suggestion
+                        setTimeout(() => {
+                            showMessage(
+                                '💡 Tip: You can also email me directly at movahedinajibeh@gmail.com',
+                                'warning'
+                            );
+                        }, 5000);
+
+                    } finally {
+                        // Reset button state
                         setTimeout(() => {
                             submitBtn.classList.remove('btn-loading');
                             submitBtn.disabled = false;
-                        }, 3000);
-
-                    } catch (error) {
-                        console.error('EmailJS Error:', error);
-
-                        // Show detailed error message
-                        let errorMsg = 'There was an error sending your message. ';
-                        if (error.text) {
-                            errorMsg += 'Error: ' + error.text;
-                        } else if (error.status) {
-                            errorMsg += 'Status: ' + error.status;
-                        }
-
-                        showMessage(errorMsg, 'error');
-
-                        // Reset button state
-                        submitBtn.classList.remove('btn-loading');
-                        submitBtn.disabled = false;
+                            console.log('🔄 Button reset');
+                        }, 2000);
                     }
                 });
             }
@@ -1771,31 +1828,19 @@
                 return re.test(email);
             }
 
-            function getInquiryTypeText(type) {
-                const types = {
-                    'academic': 'Academic Collaboration',
-                    'research': 'Research Partnership',
-                    'professional': 'Professional Opportunity',
-                    'internship': 'Internship/Stage',
-                    'project': 'Project Discussion',
-                    'other': 'Other Inquiry'
-                };
-                return types[type] || type;
-            }
-
             function showMessage(text, type) {
                 const icon = type === 'success' ? 'fa-check-circle' :
                              type === 'error' ? 'fa-exclamation-circle' :
                              'fa-info-circle';
 
-                formMessage.innerHTML = `
-                    <i class="fas ${icon}"></i> ${text}
-                `;
+                formMessage.innerHTML = `<i class="fas ${icon}"></i> ${text}`;
                 formMessage.className = 'form-message ' + type;
                 formMessage.style.display = 'block';
 
-                // Hide message after 8 seconds for errors, 5 for success
-                const hideTime = type === 'error' ? 8000 : 5000;
+                // Hide message after appropriate time
+                const hideTime = type === 'error' ? 10000 :
+                                 type === 'warning' ? 8000 : 5000;
+
                 setTimeout(() => {
                     formMessage.style.display = 'none';
                 }, hideTime);
@@ -1848,24 +1893,60 @@
                 });
             });
 
-            // ==================== EMAILJS TEST FUNCTION ====================
-            // Add test button for debugging (remove in production)
-            const testEmailJS = async () => {
-                console.log('Testing EmailJS connection...');
+            // ==================== ADD TEST BUTTON (For Debugging) ====================
+            // Add a test button to debug EmailJS
+            const testButton = document.createElement('button');
+            testButton.innerHTML = '<i class="fas fa-vial"></i> Test EmailJS';
+            testButton.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 9999;
+                padding: 12px 20px;
+                background: var(--dome-accent);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-family: 'Inter', sans-serif;
+                font-weight: 500;
+                box-shadow: 0 4px 12px rgba(204, 85, 0, 0.3);
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            `;
+
+            testButton.onmouseover = function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 6px 16px rgba(204, 85, 0, 0.4)';
+            };
+
+            testButton.onmouseout = function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 12px rgba(204, 85, 0, 0.3)';
+            };
+
+            testButton.onclick = async function() {
+                console.log('🧪 Running EmailJS test...');
+
+                const testParams = {
+                    from_name: 'Test User',
+                    from_email: 'test@example.com',
+                    phone: '+39 123 456 7890',
+                    inquiry_type: 'Test Inquiry',
+                    subject: 'EmailJS Test Message',
+                    message: 'This is a test message to verify EmailJS is working correctly.',
+                    to_email: 'movahedinajibeh@gmail.com',
+                    page_url: window.location.href,
+                    submission_id: 'TEST-' + Date.now(),
+                    time: new Date().toLocaleString(),
+                    year: new Date().getFullYear()
+                };
+
                 try {
-                    const testParams = {
-                        from_name: 'Test User',
-                        from_email: 'test@example.com',
-                        phone: '+39 123 456 7890',
-                        inquiry_type: 'Test Inquiry',
-                        subject: 'Test Message',
-                        message: 'This is a test message to verify EmailJS is working.',
-                        to_email: 'movahedinajibeh@gmail.com',
-                        page_url: window.location.href,
-                        submission_id: 'TEST-' + Date.now(),
-                        time: new Date().toLocaleString(),
-                        year: new Date().getFullYear()
-                    };
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Testing...';
+                    this.disabled = true;
 
                     const response = await emailjs.send(
                         EMAILJS_CONFIG.SERVICE_ID,
@@ -1874,19 +1955,18 @@
                     );
 
                     console.log('✅ EmailJS Test Successful:', response);
-                    showMessage('✅ EmailJS connection test successful! Check your email.', 'success');
+                    showMessage('✅ Test email sent successfully! Check your inbox.', 'success');
+
                 } catch (error) {
                     console.error('❌ EmailJS Test Failed:', error);
-                    showMessage('❌ EmailJS test failed: ' + (error.text || error.message), 'error');
+                    showMessage('❌ Test failed: ' + (error.text || error.message), 'error');
+                } finally {
+                    this.innerHTML = '<i class="fas fa-vial"></i> Test EmailJS';
+                    this.disabled = false;
                 }
             };
 
-            // Uncomment to add test button (for debugging only)
-            // const testBtn = document.createElement('button');
-            // testBtn.textContent = 'Test EmailJS';
-            // testBtn.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:9999;padding:10px;background:#007bff;color:white;border:none;border-radius:5px;cursor:pointer;';
-            // testBtn.onclick = testEmailJS;
-            // document.body.appendChild(testBtn);
+            document.body.appendChild(testButton);
         });
     </script>
 </body>
