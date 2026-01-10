@@ -669,6 +669,471 @@
             cursor: pointer;
         }
 
+        /* ==================== IMAGE SLIDER STYLES ==================== */
+        .image-slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--dome-dark);
+        }
+
+        .slider-container {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .slider-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .slider-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            z-index: 10;
+        }
+
+        .slider-counter {
+            color: var(--dome-white);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 70px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .slider-dot:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(1.2);
+        }
+
+        .slider-dot.active {
+            background: var(--dome-accent);
+            transform: scale(1.2);
+        }
+
+        .slider-prev,
+        .slider-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--dome-white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .slider-prev:hover,
+        .slider-next:hover {
+            background: var(--dome-accent);
+            color: var(--dome-black);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slider-prev {
+            left: 20px;
+        }
+
+        .slider-next {
+            right: 20px;
+        }
+
+        /* ==================== WORKSHOP HOSPITALITY REDESIGN ==================== */
+        .workshop-redesign {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 120px 0;
+            border-radius: 30px;
+            margin: 80px 0;
+        }
+
+        .workshop-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .workshop-category {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .workshop-main-title {
+            font-size: 3.8rem;
+            color: var(--dome-black);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .workshop-tagline {
+            font-size: 1.4rem;
+            color: var(--dome-gray);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Workshop Overview Grid */
+        .workshop-overview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 100px;
+            align-items: start;
+        }
+
+        .workshop-description {
+            padding-right: 40px;
+        }
+
+        .workshop-description h3 {
+            font-size: 2rem;
+            color: var(--dome-black);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .workshop-description p {
+            font-size: 1.1rem;
+            color: var(--dome-black);
+            margin-bottom: 25px;
+            line-height: 1.9;
+        }
+
+        .workshop-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .workshop-meta-item {
+            background: var(--dome-white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--dome-border);
+        }
+
+        .workshop-meta-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(204, 85, 0, 0.1);
+        }
+
+        .workshop-meta-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(204, 85, 0, 0.1);
+            color: var(--dome-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .workshop-meta-title {
+            font-size: 0.9rem;
+            color: var(--dome-gray);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        .workshop-meta-value {
+            font-size: 1.3rem;
+            color: var(--dome-black);
+            font-weight: 500;
+        }
+
+        /* Workshop Image Gallery */
+        .workshop-gallery {
+            margin: 100px 0;
+        }
+
+        .workshop-gallery-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .workshop-gallery-title {
+            font-size: 2.5rem;
+            color: var(--dome-black);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .workshop-gallery-description {
+            color: var(--dome-gray);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .workshop-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .workshop-gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .workshop-gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .workshop-gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .workshop-gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .workshop-gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(10, 10, 10, 0.9));
+            color: var(--dome-white);
+            padding: 30px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .workshop-gallery-item:hover .workshop-gallery-caption {
+            transform: translateY(0);
+        }
+
+        .workshop-gallery-caption h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .workshop-gallery-caption p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Sustainability Section */
+        .workshop-sustainability {
+            background: linear-gradient(135deg, rgba(204, 85, 0, 0.05) 0%, rgba(204, 85, 0, 0.15) 100%);
+            padding: 100px 0;
+            border-radius: 30px;
+            margin: 80px 0;
+        }
+
+        .workshop-sustainability-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .workshop-sustainability-text h3 {
+            font-size: 2.5rem;
+            color: var(--dome-black);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .workshop-sustainability-text p {
+            font-size: 1.1rem;
+            color: var(--dome-black);
+            margin-bottom: 25px;
+            line-height: 1.9;
+        }
+
+        .workshop-sustainability-features {
+            list-style: none;
+            margin-top: 40px;
+        }
+
+        .workshop-sustainability-features li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: var(--dome-black);
+            font-size: 1.1rem;
+        }
+
+        .workshop-sustainability-features i {
+            color: var(--dome-accent);
+            font-size: 1.2rem;
+        }
+
+        .workshop-sustainability-image img {
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        /* Cultural Integration Section */
+        .workshop-cultural {
+            padding: 100px 0;
+        }
+
+        .workshop-cultural-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .workshop-cultural-image img {
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .workshop-cultural-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .workshop-cultural-text h3 {
+            font-size: 2.5rem;
+            color: var(--dome-black);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .workshop-cultural-text p {
+            font-size: 1.1rem;
+            color: var(--dome-black);
+            margin-bottom: 25px;
+            line-height: 1.9;
+        }
+
+        /* Environmental Context */
+        .workshop-environment {
+            background: var(--dome-light);
+            padding: 80px;
+            border-radius: 20px;
+            margin: 80px 0;
+        }
+
+        .workshop-environment-content {
+            text-align: center;
+        }
+
+        .workshop-environment h3 {
+            font-size: 2.2rem;
+            color: var(--dome-black);
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .workshop-environment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .workshop-environment-item {
+            background: var(--dome-white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .workshop-environment-value {
+            font-size: 1.8rem;
+            color: var(--dome-accent);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .workshop-environment-label {
+            font-size: 0.9rem;
+            color: var(--dome-gray);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
         /* ==================== GALLERY SECTION ==================== */
         .gallery-container {
             margin-bottom: 80px;
@@ -833,6 +1298,21 @@
             color: var(--dome-white);
         }
 
+        .gallery-item[data-category="plans"] .gallery-badge {
+            background: rgba(204, 85, 0, 0.9);
+            color: var(--dome-white);
+        }
+
+        .gallery-item[data-category="views"] .gallery-badge {
+            background: rgba(0, 168, 150, 0.9);
+            color: var(--dome-white);
+        }
+
+        .gallery-item[data-category="details"] .gallery-badge {
+            background: rgba(212, 175, 55, 0.9);
+            color: var(--dome-black);
+        }
+
         .gallery-item:hover .gallery-badge {
             transform: translateY(0);
             opacity: 1;
@@ -992,7 +1472,14 @@
             justify-content: center;
             z-index: 2000;
             padding: 20px;
-            animation: fadeIn 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
         }
 
         .lightbox-content {
@@ -1002,7 +1489,6 @@
             background: var(--dome-dark);
             border-radius: 12px;
             overflow: hidden;
-            animation: scaleIn 0.3s ease;
         }
 
         .lightbox img {
@@ -1119,6 +1605,16 @@
                 font-size: 2.5rem;
             }
 
+            .workshop-main-title {
+                font-size: 3.2rem;
+            }
+
+            .workshop-overview,
+            .workshop-sustainability-content,
+            .workshop-cultural-content {
+                gap: 60px;
+            }
+
             .footer-content {
                 grid-template-columns: 2fr 1fr;
             }
@@ -1161,12 +1657,27 @@
                 gap: 50px;
             }
 
+            .workshop-overview,
+            .workshop-sustainability-content,
+            .workshop-cultural-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .workshop-description {
+                padding-right: 0;
+            }
+
             .project-visual {
                 min-height: 400px;
             }
 
             .gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+
+            .workshop-gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             }
 
             .footer-content {
@@ -1188,6 +1699,10 @@
                 font-size: 2.2rem;
             }
 
+            .workshop-main-title {
+                font-size: 2.5rem;
+            }
+
             .hero-description {
                 font-size: 1.1rem;
             }
@@ -1205,7 +1720,8 @@
                 font-size: 2.2rem;
             }
 
-            .enhanced-video-player {
+            .enhanced-video-player,
+            .image-slider {
                 min-height: 400px;
             }
 
@@ -1227,6 +1743,28 @@
                 font-size: 0.85rem;
                 min-width: 100px;
             }
+
+            .slider-prev,
+            .slider-next {
+                width: 40px;
+                height: 40px;
+            }
+
+            .workshop-meta-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .workshop-gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .workshop-environment {
+                padding: 40px;
+            }
+
+            .workshop-environment-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 576px) {
@@ -1236,6 +1774,10 @@
 
             .section-title {
                 font-size: 1.8rem;
+            }
+
+            .workshop-main-title {
+                font-size: 2rem;
             }
 
             .btn {
@@ -1263,6 +1805,19 @@
 
             .filter-btn {
                 width: 200px;
+            }
+
+            .slider-counter {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .slider-dots {
+                bottom: 60px;
+            }
+
+            .workshop-environment-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -1374,126 +1929,429 @@
             </div>
 
             <div class="project-showcase">
-               <!-- Project 1: Farm to Fork -->
-<div class="project-item">
-    <div class="project-info animate-left">
-        <div class="project-number">Project 01</div>
-        <h3 class="project-name">Farm to Fork</h3>
-        <p class="project-description">
-            An innovative exploration of ephemeral architecture that transforms transit spaces into
-            vibrant community hubs through modular hydroponic systems. This project reimagines food
-            production within urban environments, creating sustainable ecosystems in transitional spaces.
-        </p>
-        <div class="project-meta">
-            <span class="meta-tag">Sustainable Design</span>
-            <span class="meta-tag">Modular Architecture</span>
-            <span class="meta-tag">Urban Farming</span>
-            <span class="meta-tag">Community Spaces</span>
-        </div>
-        <div class="project-actions">
-            <a href="assest/Ephemeral_Temporal_spaces/BOOK PROVA FINALE_compressed_screen.pdf"
-               class="btn btn-primary" target="_blank">
-                <i class="fas fa-external-link-alt"></i> View Full PDF
-            </a>
-            <a href="#gallery-farm" class="btn">
-                <i class="fas fa-images"></i> View Gallery
-            </a>
-        </div>
-    </div>
-    <div class="project-visual animate-right delay-1">
-        <div class="enhanced-video-player" id="farmVideoPlayer">
-            <video id="farmVideo" poster="assest/Ephemeral_Temporal_spaces/Image1.png">
-                <source src="assest/Ephemeral_Temporal_spaces/final _compressed_web_mobile.mp4" type="video/mp4">
-            </video>
-            <div class="video-overlay" onclick="togglePlay('farm')">
-                <div class="play-button">
-                    <i class="fas fa-play"></i>
+                <!-- Project 1: Farm to Fork - KEEP ORIGINAL -->
+                <div class="project-item">
+                    <div class="project-info animate-left">
+                        <div class="project-number">Project 01</div>
+                        <h3 class="project-name">Farm to Fork</h3>
+                        <p class="project-description">
+                            An innovative exploration of ephemeral architecture that transforms transit spaces into
+                            vibrant community hubs through modular hydroponic systems. This project reimagines food
+                            production within urban environments, creating sustainable ecosystems in transitional spaces.
+                        </p>
+                        <div class="project-meta">
+                            <span class="meta-tag">Sustainable Design</span>
+                            <span class="meta-tag">Modular Architecture</span>
+                            <span class="meta-tag">Urban Farming</span>
+                            <span class="meta-tag">Community Spaces</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="assest/Ephemeral_Temporal_spaces/BOOK PROVA FINALE_compressed_screen.pdf"
+                               class="btn btn-primary" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> View Full PDF
+                            </a>
+                            <a href="#gallery-farm" class="btn">
+                                <i class="fas fa-images"></i> View Gallery
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-visual animate-right delay-1">
+                        <div class="enhanced-video-player" id="farmVideoPlayer">
+                            <video id="farmVideo" poster="assest/Ephemeral_Temporal_spaces/Image1.png">
+                                <source src="assest/Ephemeral_Temporal_spaces/final _compressed_web_mobile.mp4" type="video/mp4">
+                            </video>
+                            <div class="video-overlay" onclick="togglePlay('farm')">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="video-controls-panel">
+                                <button class="control-btn" onclick="togglePlay('farm')">
+                                    <i class="fas fa-play" id="farmPlayIcon"></i>
+                                </button>
+                                <button class="control-btn" onclick="stopVideo('farm')">
+                                    <i class="fas fa-stop"></i>
+                                </button>
+                                <button class="control-btn" onclick="toggleFullscreen('farm')">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="progress-container" onclick="seekVideo('farm', event)">
+                                    <div class="progress-bar" id="farmProgressBar"></div>
+                                </div>
+                                <div class="time-display" id="farmTimeDisplay">0:00 / 0:00</div>
+                                <button class="control-btn" onclick="toggleMute('farm')">
+                                    <i class="fas fa-volume-up" id="farmVolumeIcon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="video-controls-panel">
-                <button class="control-btn" onclick="togglePlay('farm')">
-                    <i class="fas fa-play" id="farmPlayIcon"></i>
-                </button>
-                <button class="control-btn" onclick="stopVideo('farm')">
-                    <i class="fas fa-stop"></i>
-                </button>
-                <button class="control-btn" onclick="toggleFullscreen('farm')">
-                    <i class="fas fa-expand"></i>
-                </button>
-                <div class="progress-container" onclick="seekVideo('farm', event)">
-                    <div class="progress-bar" id="farmProgressBar"></div>
-                </div>
-                <div class="time-display" id="farmTimeDisplay">0:00 / 0:00</div>
-                <button class="control-btn" onclick="toggleMute('farm')">
-                    <i class="fas fa-volume-up" id="farmVolumeIcon"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
 
-                <!-- Project 2: Lake Varese -->
-<div class="project-item">
-    <div class="project-visual animate-left">
-        <div class="enhanced-video-player" id="lakeVideoPlayer">
-            <video id="lakeVideo" poster="assest/Lake varese_Landscape/IMG-20231116-WA0013.jpg">
-                <source src="assest/Lake varese_Landscape/copy_E9F78368-DA7F-4792-AF71-E811B97039FE_compressed_web_mobile.mp4" type="video/mp4">
-            </video>
-            <div class="video-overlay" onclick="togglePlay('lake')">
-                <div class="play-button">
-                    <i class="fas fa-play"></i>
+                <!-- Project 2: Lake Varese - KEEP ORIGINAL -->
+                <div class="project-item">
+                    <div class="project-visual animate-left">
+                        <div class="enhanced-video-player" id="lakeVideoPlayer">
+                            <video id="lakeVideo" poster="assest/Lake varese_Landscape/IMG-20231116-WA0013.jpg">
+                                <source src="assest/Lake varese_Landscape/copy_E9F78368-DA7F-4792-AF71-E811B97039FE_compressed_web_mobile.mp4" type="video/mp4">
+                            </video>
+                            <div class="video-overlay" onclick="togglePlay('lake')">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="video-controls-panel">
+                                <button class="control-btn" onclick="togglePlay('lake')">
+                                    <i class="fas fa-play" id="lakePlayIcon"></i>
+                                </button>
+                                <button class="control-btn" onclick="stopVideo('lake')">
+                                    <i class="fas fa-stop"></i>
+                                </button>
+                                <button class="control-btn" onclick="toggleFullscreen('lake')">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <div class="progress-container" onclick="seekVideo('lake', event)">
+                                    <div class="progress-bar" id="lakeProgressBar"></div>
+                                </div>
+                                <div class="time-display" id="lakeTimeDisplay">0:00 / 0:00</div>
+                                <button class="control-btn" onclick="toggleMute('lake')">
+                                    <i class="fas fa-volume-up" id="lakeVolumeIcon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info animate-right delay-1">
+                        <div class="project-number">Project 02</div>
+                        <h3 class="project-name">Lake Varese</h3>
+                        <p class="project-description">
+                            A comprehensive landscape architecture project focusing on ecological restoration and
+                            sustainable development of lakefront spaces. This design integrates natural ecosystems
+                            with recreational areas, creating harmony between built environment and natural systems.
+                        </p>
+                        <div class="project-meta">
+                            <span class="meta-tag">Landscape Architecture</span>
+                            <span class="meta-tag">Ecological Design</span>
+                            <span class="meta-tag">Public Space</span>
+                            <span class="meta-tag">Sustainable Development</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="assest/Lake varese_Landscape/Exam_Book x stampadef_compressed_ebook_compressed_screen.pdf"
+                               class="btn btn-primary" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> View Full PDF
+                            </a>
+                            <a href="#gallery-lake" class="btn">
+                                <i class="fas fa-images"></i> View Gallery
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="video-controls-panel">
-                <button class="control-btn" onclick="togglePlay('lake')">
-                    <i class="fas fa-play" id="lakePlayIcon"></i>
-                </button>
-                <button class="control-btn" onclick="stopVideo('lake')">
-                    <i class="fas fa-stop"></i>
-                </button>
-                <button class="control-btn" onclick="toggleFullscreen('lake')">
-                    <i class="fas fa-expand"></i>
-                </button>
-                <div class="progress-container" onclick="seekVideo('lake', event)">
-                    <div class="progress-bar" id="lakeProgressBar"></div>
-                </div>
-                <div class="time-display" id="lakeTimeDisplay">0:00 / 0:00</div>
-                <button class="control-btn" onclick="toggleMute('lake')">
-                    <i class="fas fa-volume-up" id="lakeVolumeIcon"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="project-info animate-right delay-1">
-        <div class="project-number">Project 02</div>
-        <h3 class="project-name">Lake Varese</h3>
-        <p class="project-description">
-            A comprehensive landscape architecture project focusing on ecological restoration and
-            sustainable development of lakefront spaces. This design integrates natural ecosystems
-            with recreational areas, creating harmony between built environment and natural systems.
-        </p>
-        <div class="project-meta">
-            <span class="meta-tag">Landscape Architecture</span>
-            <span class="meta-tag">Ecological Design</span>
-            <span class="meta-tag">Public Space</span>
-            <span class="meta-tag">Sustainable Development</span>
-        </div>
-        <div class="project-actions">
-            <a href="assest/Lake varese_Landscape/Exam_Book x stampadef_compressed_ebook_compressed_screen.pdf"
-               class="btn btn-primary" target="_blank">
-                <i class="fas fa-external-link-alt"></i> View Full PDF
-            </a>
-            <a href="#gallery-lake" class="btn">
-                <i class="fas fa-images"></i> View Gallery
-            </a>
-        </div>
-    </div>
-</div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- WORKSHOP HOSPITALITY REDESIGN SECTION -->
+    <section class="workshop-redesign">
+        <div class="container">
+            <!-- Project Header -->
+            <div class="workshop-header">
+                <div class="workshop-category">Sustainable Hospitality</div>
+                <h2 class="workshop-main-title">Workshop Hospitality</h2>
+                <p class="workshop-tagline">
+                    A sustainable hospitality workshop in Xishuangbanna, Yunnan, blending eco-conscious design
+                    with authentic cultural immersion.
+                </p>
+            </div>
+
+            <!-- Project Overview -->
+            <div class="workshop-overview">
+                <div class="workshop-description">
+                    <h3>Project Vision</h3>
+                    <p>
+                        This project integrates traditional Dai architecture with modern sustainability principles,
+                        creating a serene green environment where visitors engage with local tea cultivation and
+                        environmental stewardship.
+                    </p>
+                    <p>
+                        The design celebrates the harmony between built environment and nature, using local materials
+                        and passive design strategies to create a truly immersive cultural experience.
+                    </p>
+
+                    <h3 style="margin-top: 40px;">Design Approach</h3>
+                    <p>
+                        Our methodology combines vernacular architectural wisdom with contemporary sustainable
+                        technologies. Each space is designed to foster connection—between people, culture, and
+                        the natural environment.
+                    </p>
+                </div>
+
+                <div class="workshop-meta-grid">
+                    <div class="workshop-meta-item">
+                        <div class="workshop-meta-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="workshop-meta-title">Location</div>
+                        <div class="workshop-meta-value">Xishuangbanna, Yunnan</div>
+                    </div>
+
+                    <div class="workshop-meta-item">
+                        <div class="workshop-meta-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="workshop-meta-title">Year</div>
+                        <div class="workshop-meta-value">2024</div>
+                    </div>
+
+                    <div class="workshop-meta-item">
+                        <div class="workshop-meta-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="workshop-meta-title">Typology</div>
+                        <div class="workshop-meta-value">Hospitality Workshop</div>
+                    </div>
+
+                    <div class="workshop-meta-item">
+                        <div class="workshop-meta-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="workshop-meta-title">Sustainability</div>
+                        <div class="workshop-meta-value">High Performance</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Project Image -->
+            <div class="workshop-gallery-item" style="aspect-ratio: 16/9; margin: 60px 0;">
+                <img src="assest/Workshop_Hospitality/1_opt_1920px.png" alt="Workshop Hospitality Main View">
+                <div class="workshop-gallery-caption">
+                    <h4>Main Courtyard View</h4>
+                    <p>Integration of traditional Dai architecture with contemporary sustainable design</p>
+                </div>
+            </div>
+
+            <!-- Sustainability Section -->
+            <div class="workshop-sustainability">
+                <div class="workshop-sustainability-content">
+                    <div class="workshop-sustainability-text">
+                        <h3>Sustainability Principles</h3>
+                        <p>
+                            <strong>Sustainability:</strong><br>
+                            Our project is built on sustainability principles, incorporating natural materials and
+                            ingredients for lasting durability. The self-sufficiency in our construction methods
+                            not only enhances the longevity of the structures but also aligns seamlessly with our
+                            commitment to environmental responsibility.
+                        </p>
+                        <p>
+                            Embrace a harmonious blend of natural elements and conscientious design for an
+                            eco-friendly and enduring experience.
+                        </p>
+
+                        <ul class="workshop-sustainability-features">
+                            <li><i class="fas fa-check-circle"></i> Natural local materials</li>
+                            <li><i class="fas fa-check-circle"></i> Passive cooling systems</li>
+                            <li><i class="fas fa-check-circle"></i> Rainwater harvesting</li>
+                            <li><i class="fas fa-check-circle"></i> Solar energy integration</li>
+                            <li><i class="fas fa-check-circle"></i> Waste management systems</li>
+                        </ul>
+                    </div>
+
+                    <div class="workshop-sustainability-image">
+                        <img src="assest/Workshop_Hospitality/1_6_opt_1920px.png" alt="Sustainable Design Features">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cultural Integration -->
+            <div class="workshop-cultural">
+                <div class="workshop-cultural-content">
+                    <div class="workshop-cultural-image">
+                        <img src="assest/Workshop_Hospitality/1_9_opt_1920px.png" alt="Cultural Integration">
+                    </div>
+
+                    <div class="workshop-cultural-text">
+                        <h3>Cultural Immersion & Target Audience</h3>
+                        <p>
+                            <strong>Target:</strong><br>
+                            Our establishment warmly welcomes visitors seeking a serene green environment.
+                            Immerse yourself in a unique experience as you stay with us, participating in
+                            activities such as planting, harvesting the high quality local tea and contributing
+                            to the maintenance of our pristine surroundings.
+                        </p>
+                        <p>
+                            Your presence will not only enrich your own journey but also contribute to the
+                            sustainable ethos of our community.
+                        </p>
+                        <p>
+                            <strong>Location:</strong><br>
+                            Xishuangbanna is an autonomous prefecture in China's southwestern Yunnan province,
+                            bordering Myanmar and Laos. It's known for Dai culture, distinctive temples and
+                            tropical rainforests. Prefectural capital, Jinghong, offers palm-lined streets,
+                            and the Tropical Flower and Plants Garden with a large number of fruit trees and blossoms.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Gallery -->
+            <div class="workshop-gallery">
+                <div class="workshop-gallery-header">
+                    <h3 class="workshop-gallery-title">Project Documentation</h3>
+                    <p class="workshop-gallery-description">
+                        Comprehensive visual documentation including plans, sections, detailed views and 3D visualizations
+                    </p>
+                </div>
+
+                <div class="workshop-gallery-grid">
+                    <!-- Figure 1-2: Conceptual Diagrams -->
+                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/1.jpg')">
+                        <img src="assest/Workshop_Hospitality/1.jpg" alt="Conceptual Diagrams">
+                        <div class="workshop-gallery-caption">
+                            <h4>Conceptual Diagrams</h4>
+                            <p>Site analysis and conceptual development showing integration with tropical environment</p>
+                        </div>
+                    </div>
+
+                    <!-- Figure 3: Detailed View -->
+                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/2.jpg')">
+                        <img src="assest/Workshop_Hospitality/2.jpg" alt="Architectural Details">
+                        <div class="workshop-gallery-caption">
+                            <h4>Architectural Details</h4>
+                            <p>Detailed architectural elements showing traditional Dai-inspired construction</p>
+                        </div>
+                    </div>
+
+                    <!-- Figure 4: Plan View 1 -->
+                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/3.jpg')">
+                        <img src="assest/Workshop_Hospitality/3.jpg" alt="Floor Plan">
+                        <div class="workshop-gallery-caption">
+                            <h4>Floor Plans</h4>
+                            <p>Comprehensive layout showing spatial organization and circulation</p>
+                        </div>
+                    </div>
+
+                    <!-- Figure 5-7: Section Views -->
+                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/4.jpg')">
+                        <img src="assest/Workshop_Hospitality/4.jpg" alt="Section Views">
+                        <div class="workshop-gallery-caption">
+                            <h4>Section Views</h4>
+                            <p>Detailed sections showing building volumetry and spatial relationships</p>
+                        </div>
+                    </div>
+
+                    <!-- High Quality Images -->
+                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/5.jpg')">
+                        <img src="assest/Workshop_Hospitality/5.jpg" alt="3D Render 1">
+                        <div class="workshop-gallery-caption">
+                            <h4>Exterior Visualization</h4>
+                            <p>High-quality render showing integration with rainforest environment</p>
+                        </div>
+                    </div>
+
+                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/6.jpg')">
+                        <img src="assest/Workshop_Hospitality/6.jpg" alt="Interior Perspective">
+                        <div class="workshop-gallery-caption">
+                            <h4>Interior Space</h4>
+                            <p>Showcasing natural materials and sustainable design elements</p>
+                        </div>
+                    </div>
+
+                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/7.jpg')">
+                        <img src="assest/Workshop_Hospitality/7.jpg" alt="Detail Render">
+                        <div class="workshop-gallery-caption">
+                            <h4>Architectural Detail</h4>
+                            <p>Close-up of sustainable construction techniques</p>
+                        </div>
+                    </div>
+
+                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/8.jpg')">
+                        <img src="assest/Workshop_Hospitality/8.jpg" alt="Context View">
+                        <div class="workshop-gallery-caption">
+                            <h4>Site Context</h4>
+                            <p>Showing relationship with surrounding tea plantation</p>
+                        </div>
+                    </div>
+
+                    <!-- Additional high-quality images -->
+                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/1_5_opt_1920px.png')">
+                        <img src="assest/Workshop_Hospitality/1_5_opt_1920px.png" alt="Detail Render 2">
+                        <div class="workshop-gallery-caption">
+                            <h4>Detail Study</h4>
+                            <p>Architectural detailing and material expression</p>
+                        </div>
+                    </div>
+
+                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/1_10_opt_1920px.png')">
+                        <img src="assest/Workshop_Hospitality/1_10_opt_1920px.png" alt="Master Plan">
+                        <div class="workshop-gallery-caption">
+                            <h4>Master Planning</h4>
+                            <p>Overall site strategy and spatial organization</p>
+                        </div>
+                    </div>
+
+                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/1_11_opt_1920px.png')">
+                        <img src="assest/Workshop_Hospitality/1_11_opt_1920px.png" alt="3D Visualization">
+                        <div class="workshop-gallery-caption">
+                            <h4>3D Visualization</h4>
+                            <p>Comprehensive view of the entire workshop complex</p>
+                        </div>
+                    </div>
+
+                    <div class="workshop-gallery-item" onclick="openLightbox('assest/Workshop_Hospitality/111_opt_1920px.png')">
+                        <img src="assest/Workshop_Hospitality/111_opt_1920px.png" alt="Final Render">
+                        <div class="workshop-gallery-caption">
+                            <h4>Final Presentation</h4>
+                            <p>Complete project visualization showcasing all design elements</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Environmental Context -->
+            <div class="workshop-environment">
+                <div class="workshop-environment-content">
+                    <h3>Environmental Context & Climate</h3>
+                    <p>
+                        The site features <strong>Shorea wangtianshuea</strong>, a large species of tree in the
+                        family Dipterocarpaceae, native to southern China and in northern Laos and Vietnam.
+                        It is threatened by habitat loss. The species is under first-class national protection in China.
+                    </p>
+                    <p>
+                        This natural context informs our design approach to preserve and integrate with the
+                        existing ecosystem while creating minimal environmental impact.
+                    </p>
+
+                    <div class="workshop-environment-grid">
+                        <div class="workshop-environment-item">
+                            <div class="workshop-environment-value">30°C</div>
+                            <div class="workshop-environment-label">Average Temperature</div>
+                        </div>
+
+                        <div class="workshop-environment-item">
+                            <div class="workshop-environment-value">26%</div>
+                            <div class="workshop-environment-label">Humidity</div>
+                        </div>
+
+                        <div class="workshop-environment-item">
+                            <div class="workshop-environment-value">19,096 km²</div>
+                            <div class="workshop-environment-label">Area</div>
+                        </div>
+
+                        <div class="workshop-environment-item">
+                            <div class="workshop-environment-value">Yunnan</div>
+                            <div class="workshop-environment-label">Province</div>
+                        </div>
+                    </div>
+
+                    <div class="project-actions" style="justify-content: center; margin-top: 50px;">
+                        <a href="assest/Workshop_Hospitality/sketchUp-3.pdf"
+                           class="btn btn-primary" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View Full PDF Documentation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section (For Projects 1 & 2 - KEEP ORIGINAL) -->
     <section class="content-section" id="gallery-farm">
         <div class="container">
             <div class="gallery-container">
@@ -1680,9 +2538,23 @@
 
             <div class="footer-bottom">
                 <p>&copy; 2025 Najibeh Movahedi. Interior Architect & Spatial Designer | Politecnico di Milano</p>
+                <p style="margin-top: 10px; font-size: 0.8rem; color: rgba(255, 255, 255, 0.4);">
+                    POLITECNICO DI MILANO | SCUOLA DEL DESIGN - WORKSHOP HOTEL REGENERATION 2024 interior design winter workshop week
+                </p>
             </div>
         </div>
     </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -1943,62 +2815,43 @@
                 });
             };
 
-            // Lightbox functionality
+            // Lightbox functionality for Workshop Gallery
             window.openLightbox = function(src, title) {
-                // Create lightbox elements
-                const lightbox = document.createElement('div');
-                lightbox.className = 'lightbox';
-                lightbox.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0, 0, 0, 0.95);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    z-index: 2000;
-                    padding: 20px;
-                `;
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImg = document.getElementById('lightbox-img');
+                const lightboxCaption = document.getElementById('lightbox-caption');
 
-                const lightboxContent = document.createElement('div');
-                lightboxContent.className = 'lightbox-content';
+                lightboxImg.src = src;
 
-                const img = document.createElement('img');
-                img.src = src;
-                img.alt = title;
+                if (title) {
+                    lightboxCaption.innerHTML = `<h4>${title}</h4>`;
+                } else {
+                    lightboxCaption.innerHTML = '';
+                }
 
-                const caption = document.createElement('div');
-                caption.className = 'lightbox-caption';
-
-                const titleElement = document.createElement('h4');
-                titleElement.textContent = title;
-                caption.appendChild(titleElement);
-
-                const closeBtn = document.createElement('button');
-                closeBtn.className = 'lightbox-close';
-                closeBtn.innerHTML = '<i class="fas fa-times"></i>';
-
-                closeBtn.addEventListener('click', function() {
-                    document.body.removeChild(lightbox);
-                    document.body.style.overflow = 'auto';
-                });
-
-                lightbox.addEventListener('click', function(e) {
-                    if (e.target === this) {
-                        document.body.removeChild(lightbox);
-                        document.body.style.overflow = 'auto';
-                    }
-                });
-
-                lightboxContent.appendChild(closeBtn);
-                lightboxContent.appendChild(img);
-                lightboxContent.appendChild(caption);
-                lightbox.appendChild(lightboxContent);
-                document.body.appendChild(lightbox);
+                lightbox.classList.add('active');
                 document.body.style.overflow = 'hidden';
             };
+
+            function closeLightbox() {
+                const lightbox = document.getElementById('lightbox');
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            // Close lightbox with ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                }
+            });
+
+            // Close lightbox when clicking outside
+            document.getElementById('lightbox').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeLightbox();
+                }
+            });
 
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {

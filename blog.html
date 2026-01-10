@@ -19,6 +19,7 @@
             --dome-accent: #CC5500; /* Dark orange from portfolio */
             --dome-border: rgba(0, 0, 0, 0.08);
             --dome-hover: rgba(204, 85, 0, 0.1);
+            --dome-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
         }
 
         /* ==================== BASE STYLES (EXACT FROM PORTFOLIO) ==================== */
@@ -246,12 +247,13 @@
             color: var(--dome-accent);
         }
 
-        /* ==================== BLOG HERO SECTION WITH ANIMATION ==================== */
+        /* ==================== BLOG HERO SECTION WITH OPTIMIZED ANIMATION ==================== */
         .blog-hero {
             min-height: 90vh;
             position: relative;
             padding-top: 120px;
             overflow: hidden;
+            background: var(--dome-black);
         }
 
         .hero-animation-container {
@@ -268,7 +270,16 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.8;
+            /* Optimized for clarity and high quality */
+            opacity: 1;
+            filter: brightness(1.1) contrast(1.05);
+            will-change: transform;
+            /* Ensure hardware acceleration */
+            transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-perspective: 1000;
+            perspective: 1000;
         }
 
         .hero-overlay {
@@ -277,8 +288,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(10, 10, 10, 0.8) 0%, rgba(26, 26, 26, 0.7) 100%);
+            /* More transparent overlay for clarity */
+            background: linear-gradient(45deg,
+                rgba(10, 10, 10, 0.7) 0%,
+                rgba(26, 26, 26, 0.5) 50%,
+                rgba(10, 10, 10, 0.7) 100%);
             z-index: 1;
+            pointer-events: none;
         }
 
         .blog-hero-content {
@@ -287,6 +303,7 @@
             max-width: 900px;
             color: var(--dome-white);
             padding: 100px 0 60px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .blog-page-title {
@@ -295,6 +312,7 @@
             margin-bottom: 30px;
             line-height: 1.1;
             color: var(--dome-white);
+            opacity: 0.95;
         }
 
         .blog-hero-description {
@@ -306,13 +324,14 @@
             font-weight: 300;
             padding-left: 20px;
             border-left: 3px solid var(--dome-accent);
+            opacity: 0.9;
         }
 
         /* Academic badge - DOME style */
         .academic-badge {
             display: inline-block;
-            background: rgba(204, 85, 0, 0.2);
-            border: 1px solid rgba(204, 85, 0, 0.4);
+            background: rgba(204, 85, 0, 0.15);
+            border: 1px solid rgba(204, 85, 0, 0.3);
             color: var(--dome-accent);
             padding: 12px 30px;
             border-radius: 25px;
@@ -321,14 +340,33 @@
             text-transform: uppercase;
             margin-bottom: 30px;
             font-weight: 500;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
             animation: pulse 2s infinite;
+            opacity: 0.9;
         }
 
-        /* ==================== SKETCHUP PROJECT SECTION ==================== */
-        .sketchup-project {
+        /* Video quality enhancement classes */
+        .video-quality-high {
+            /* Force high quality rendering */
+            image-rendering: crisp-edges;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Video fallback styling */
+        .video-fallback {
+            width: 100%;
+            height: 100%;
+            background-image: url('assest/SketchUp/images/web_path trace _000_hq.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* ==================== BACHELOR'S THESIS FEATURED SECTION ==================== */
+        .thesis-featured {
             padding: 120px 0;
-            background: var(--dome-white);
+            background: var(--dome-light);
             border-bottom: 1px solid var(--dome-border);
         }
 
@@ -366,37 +404,78 @@
             font-weight: 400;
         }
 
-        /* SketchUp Project Layout - Alternating like portfolio */
-        .sketchup-project-item {
+        .thesis-project-item {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
             align-items: center;
-            margin-bottom: 120px;
+            margin-bottom: 40px;
             opacity: 0;
             transform: translateY(40px);
             transition: all 0.8s ease;
         }
 
-        .sketchup-project-item.visible {
+        .thesis-project-item.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Alternate layout for even items */
-        .sketchup-project-item:nth-child(even) .sketchup-visual {
-            order: 2;
-        }
-
-        .sketchup-project-item:nth-child(even) .sketchup-info {
+        /* Default layout: image on left, text on right */
+        .thesis-project-item .thesis-visual {
             order: 1;
         }
 
-        .sketchup-info {
+        .thesis-project-item .thesis-info {
+            order: 2;
+        }
+
+        .thesis-visual {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            position: relative;
+            height: 600px;
+            transition: all 0.4s ease;
+            background: var(--dome-white);
+        }
+
+        .thesis-visual:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
+        }
+
+        .thesis-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .thesis-visual:hover img {
+            transform: scale(1.05);
+        }
+
+        .thesis-badge {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(204, 85, 0, 0.3);
+        }
+
+        .thesis-info {
             padding: 20px 0;
         }
 
-        .sketchup-number {
+        .thesis-number {
             font-family: 'Inter', sans-serif;
             font-size: 0.9rem;
             text-transform: uppercase;
@@ -406,25 +485,26 @@
             font-weight: 600;
         }
 
-        .sketchup-title {
-            font-size: 2.5rem;
+        .thesis-title {
+            font-size: 2.8rem;
             color: var(--dome-black);
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             font-weight: 300;
+            line-height: 1.2;
         }
 
-        .sketchup-description {
-            font-size: 1.1rem;
+        .thesis-description {
+            font-size: 1.2rem;
             line-height: 1.9;
             color: var(--dome-black);
             margin-bottom: 25px;
-            max-height: 150px;
+            max-height: 200px;
             overflow: hidden;
             transition: max-height 0.5s ease;
         }
 
-        .sketchup-description.expanded {
-            max-height: 1000px;
+        .thesis-description.expanded {
+            max-height: 2000px;
         }
 
         .read-more-btn {
@@ -440,6 +520,7 @@
             padding: 5px 0;
             transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
+            margin-bottom: 30px;
         }
 
         .read-more-btn:hover {
@@ -457,13 +538,14 @@
 
         .project-meta {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             margin: 30px 0 40px;
             flex-wrap: wrap;
+            max-width: 100%;
         }
 
         .meta-tag {
-            padding: 10px 24px;
+            padding: 8px 16px;
             background: rgba(204, 85, 0, 0.1);
             color: var(--dome-accent);
             font-size: 0.8rem;
@@ -473,6 +555,7 @@
             border-radius: 20px;
             font-family: 'Inter', sans-serif;
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
 
         .meta-tag:hover {
@@ -481,56 +564,48 @@
             transform: translateY(-2px);
         }
 
-        .sketchup-visual {
+        .thesis-details {
+            background: rgba(204, 85, 0, 0.05);
+            padding: 30px;
             border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-            position: relative;
-            height: 500px;
-            transition: all 0.4s ease;
+            margin-top: 40px;
+            border-left: 4px solid var(--dome-accent);
         }
 
-        .sketchup-visual:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
+        .detail-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
         }
 
-        .sketchup-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
+        .detail-item i {
+            color: var(--dome-accent);
+            margin-top: 4px;
         }
 
-        .sketchup-visual:hover img {
-            transform: scale(1.05);
+        .detail-item strong {
+            font-weight: 600;
+            color: var(--dome-black);
+            min-width: 120px;
         }
 
-        .sketchup-badge {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: var(--dome-black);
-            color: var(--dome-white);
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            z-index: 2;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .detail-item span {
+            color: var(--dome-gray);
+            flex: 1;
         }
 
-        /* ==================== ARCHITECTURAL VISUALIZATIONS SECTION (ALTERNATING LAYOUT) ==================== */
-        .visualizations-section {
-            padding: 100px 0;
+        /* ==================== MODERN GALLERY LAYOUT FOR PROJECTS ==================== */
+        .modern-gallery-section {
+            padding: 120px 0;
             background: var(--dome-white);
         }
 
-        /* Alternating Layout for Visualizations */
-        .visualization-item {
+        .modern-gallery-section.light {
+            background: var(--dome-light);
+        }
+
+        .gallery-item {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
@@ -541,25 +616,148 @@
             transition: all 0.8s ease;
         }
 
-        .visualization-item.visible {
+        .gallery-item.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Alternate layout for even items */
-        .visualization-item:nth-child(even) .visualization-visual {
+        /* Default: image on left, text on right */
+        .gallery-item:nth-child(odd) .gallery-visual {
             order: 1;
         }
 
-        .visualization-item:nth-child(even) .visualization-info {
+        .gallery-item:nth-child(odd) .gallery-info {
             order: 2;
         }
 
-        .visualization-info {
+        /* Alternate: image on right, text on left */
+        .gallery-item:nth-child(even) .gallery-visual {
+            order: 2;
+        }
+
+        .gallery-item:nth-child(even) .gallery-info {
+            order: 1;
+        }
+
+        /* Gallery Visual - Modern Design */
+        .gallery-visual {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--dome-shadow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--dome-white);
+            height: 650px;
+        }
+
+        .gallery-visual:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-visual:hover .gallery-main-image {
+            transform: scale(1.05);
+        }
+
+        /* Gallery Thumbnails */
+        .gallery-thumbnails {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .gallery-thumb {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .gallery-thumb:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        .gallery-thumb.active {
+            opacity: 1;
+            border-color: var(--dome-accent);
+            transform: translateY(-3px);
+        }
+
+        .gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Gallery Overlay */
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom,
+                rgba(0,0,0,0) 0%,
+                rgba(0,0,0,0) 60%,
+                rgba(0,0,0,0.4) 100%);
+            pointer-events: none;
+        }
+
+        .gallery-badge {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background: var(--dome-white);
+            color: var(--dome-black);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+        }
+
+        .gallery-counter {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--dome-white);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Gallery Info */
+        .gallery-info {
             padding: 20px 0;
         }
 
-        .visualization-number {
+        .gallery-number {
             font-family: 'Inter', sans-serif;
             font-size: 0.9rem;
             text-transform: uppercase;
@@ -567,170 +765,203 @@
             color: var(--dome-accent);
             margin-bottom: 20px;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .visualization-title {
-            font-size: 2.5rem;
+        .gallery-number::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--dome-accent);
+        }
+
+        .gallery-title {
+            font-size: 2.8rem;
             color: var(--dome-black);
             margin-bottom: 25px;
             font-weight: 300;
+            line-height: 1.2;
         }
 
-        .visualization-description {
+        .gallery-description {
             font-size: 1.1rem;
             line-height: 1.9;
-            color: var(--dome-black);
-            margin-bottom: 25px;
-            max-height: 150px;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
+            color: var(--dome-gray);
+            margin-bottom: 30px;
         }
 
-        .visualization-description.expanded {
-            max-height: 1000px;
+        .gallery-tags {
+            display: flex;
+            gap: 8px;
+            margin: 30px 0 40px;
+            flex-wrap: wrap;
         }
 
-        .visualization-visual {
+        .gallery-tag {
+            padding: 6px 14px;
+            background: rgba(204, 85, 0, 0.08);
+            color: var(--dome-accent);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            border-radius: 15px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(204, 85, 0, 0.2);
+        }
+
+        .gallery-tag:hover {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            transform: translateY(-2px);
+        }
+
+        .gallery-details {
+            background: var(--dome-light);
+            padding: 25px;
             border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            margin-top: 30px;
+            border-left: 3px solid var(--dome-accent);
+        }
+
+        /* ==================== FULLSCREEN GALLERY MODAL ==================== */
+        .fullscreen-gallery {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.98);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .fullscreen-gallery.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .fullscreen-container {
+            width: 90%;
+            height: 90%;
             position: relative;
-            height: 500px;
+        }
+
+        .fullscreen-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transform: scale(0.95);
             transition: all 0.4s ease;
         }
 
-        .visualization-visual:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
+        .fullscreen-image.active {
+            opacity: 1;
+            transform: scale(1);
         }
 
-        .visualization-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .visualization-visual:hover img {
-            transform: scale(1.05);
-        }
-
-        .visualization-badge {
+        .gallery-close {
             position: absolute;
-            bottom: 20px;
+            top: 20px;
             right: 20px;
-            background: var(--dome-black);
-            color: var(--dome-white);
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            z-index: 2;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        /* ==================== RESEARCH CATEGORIES SECTION ==================== */
-        .research-categories {
-            padding: 100px 0;
-            background: var(--dome-light);
-            border-top: 1px solid var(--dome-border);
-            border-bottom: 1px solid var(--dome-border);
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .category-card {
-            background: var(--dome-white);
-            padding: 50px 40px;
-            border-radius: 12px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 2px solid transparent;
-            cursor: pointer;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .category-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--dome-accent);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
-        }
-
-        .category-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--dome-accent);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 30px;
             color: var(--dome-white);
-            font-size: 2rem;
-            transition: all 0.4s ease;
-            position: relative;
-            z-index: 2;
-        }
-
-        .category-card:hover .category-icon {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 10px 30px rgba(204, 85, 0, 0.3);
-        }
-
-        .category-card h3 {
-            font-size: 2rem;
-            color: var(--dome-black);
-            margin-bottom: 20px;
-            font-weight: 500;
-            position: relative;
-            z-index: 2;
+            font-size: 1.5rem;
+            cursor: pointer;
             transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 2001;
         }
 
-        .category-card:hover h3 {
-            color: var(--dome-accent);
-        }
-
-        .category-card p {
-            color: var(--dome-gray);
-            line-height: 1.6;
-            margin-bottom: 25px;
-            font-size: 1.05rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .category-count {
-            display: inline-block;
-            padding: 8px 20px;
-            background: var(--dome-white);
-            color: var(--dome-accent);
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: 1px solid var(--dome-border);
-            position: relative;
-            z-index: 2;
-            transition: all 0.3s ease;
-        }
-
-        .category-card:hover .category-count {
+        .gallery-close:hover {
             background: var(--dome-accent);
-            color: var(--dome-white);
-            border-color: transparent;
+            transform: rotate(90deg);
         }
 
-        /* ==================== BUTTONS (EXACT FROM PORTFOLIO) ==================== */
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dome-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 2001;
+        }
+
+        .gallery-nav:hover {
+            background: var(--dome-accent);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .gallery-prev {
+            left: 20px;
+        }
+
+        .gallery-next {
+            right: 20px;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--dome-white);
+            font-size: 1.1rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 12px 24px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 80%;
+            text-align: center;
+            opacity: 0;
+            transform: translateX(-50%) translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-caption.active {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .gallery-counter-full {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--dome-white);
+            font-size: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* ==================== BUTTONS ==================== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -738,42 +969,32 @@
             padding: 14px 32px;
             font-size: 0.9rem;
             font-weight: 500;
-            text-transform: none;
             letter-spacing: 1px;
-            border: 1px solid var(--dome-white);
+            border: none;
             cursor: pointer;
             transition: all 0.3s ease;
-            background: transparent;
+            background: var(--dome-accent);
             color: var(--dome-white);
+            border-radius: 25px;
+            text-decoration: none;
         }
 
         .btn:hover {
-            background: var(--dome-white);
-            color: var(--dome-black);
-            transform: translateY(-3px);
+            background: var(--dome-black);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(204, 85, 0, 0.2);
         }
 
-        .btn-primary {
-            background: var(--dome-accent);
-            border-color: var(--dome-accent);
-        }
-
-        .btn-primary:hover {
-            background: var(--dome-white);
-            color: var(--dome-accent);
-            border-color: var(--dome-white);
-        }
-
-        .btn-secondary {
+        .btn-outline {
             background: transparent;
-            color: var(--dome-black);
             border: 1px solid var(--dome-border);
+            color: var(--dome-black);
         }
 
-        .btn-secondary:hover {
+        .btn-outline:hover {
             background: var(--dome-accent);
-            color: var(--dome-white);
             border-color: var(--dome-accent);
+            color: var(--dome-white);
         }
 
         /* ==================== ARTICLE MODAL ==================== */
@@ -895,19 +1116,21 @@
         .modal-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 10px;
             margin-bottom: 60px;
+            max-width: 100%;
         }
 
         .modal-tag {
-            padding: 10px 24px;
+            padding: 8px 16px;
             background: var(--dome-light);
             color: var(--dome-accent);
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
             border: 1px solid var(--dome-border);
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
 
         .modal-tag:hover {
@@ -930,7 +1153,9 @@
         .modal-hero-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            background-color: var(--dome-white);
+            padding: 40px;
             transition: transform 0.5s ease;
         }
 
@@ -995,6 +1220,104 @@
             position: absolute;
             left: -15px;
             font-size: 1.5rem;
+        }
+
+        /* ==================== RESEARCH CATEGORIES SECTION ==================== */
+        .research-categories {
+            padding: 100px 0;
+            background: var(--dome-light);
+            border-top: 1px solid var(--dome-border);
+            border-bottom: 1px solid var(--dome-border);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .category-card {
+            background: var(--dome-white);
+            padding: 50px 40px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            cursor: pointer;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--dome-accent);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--dome-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: var(--dome-white);
+            font-size: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-card:hover .category-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 30px rgba(204, 85, 0, 0.3);
+        }
+
+        .category-card h3 {
+            font-size: 2rem;
+            color: var(--dome-black);
+            margin-bottom: 20px;
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover h3 {
+            color: var(--dome-accent);
+        }
+
+        .category-card p {
+            color: var(--dome-gray);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-count {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--dome-white);
+            color: var(--dome-accent);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid var(--dome-border);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover .category-count {
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            border-color: transparent;
         }
 
         /* ==================== FOOTER (EXACT FROM PORTFOLIO) ==================== */
@@ -1138,28 +1461,6 @@
             }
         }
 
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-60px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(60px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
         @keyframes pulse {
             0% {
                 box-shadow: 0 0 0 0 rgba(204, 85, 0, 0.4);
@@ -1177,16 +1478,6 @@
             animation: fadeInUp 0.8s ease forwards;
         }
 
-        .animate-left {
-            opacity: 0;
-            animation: slideInLeft 0.8s ease forwards;
-        }
-
-        .animate-right {
-            opacity: 0;
-            animation: slideInRight 0.8s ease forwards;
-        }
-
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
@@ -1196,18 +1487,17 @@
             .blog-page-title {
                 font-size: 3.5rem;
             }
-
             .section-title {
                 font-size: 2.5rem;
             }
-
-            .footer-content {
-                grid-template-columns: 2fr 1fr;
+            .thesis-title, .gallery-title {
+                font-size: 2.4rem;
             }
-
-            .visualization-item,
-            .sketchup-project-item {
-                gap: 60px;
+            .gallery-visual {
+                height: 550px;
+            }
+            .thesis-visual {
+                height: 500px;
             }
         }
 
@@ -1215,7 +1505,6 @@
             .blog-hero-content {
                 text-align: center;
             }
-
             .blog-hero-description {
                 margin-left: auto;
                 margin-right: auto;
@@ -1224,41 +1513,33 @@
                 border-top: 3px solid var(--dome-accent);
                 padding-top: 20px;
             }
-
             .menu-toggle {
                 display: flex;
             }
-
             .nav-links {
                 display: none;
             }
-
             .mobile-menu.active {
                 display: flex;
             }
-
-            .visualization-item,
-            .sketchup-project-item {
+            .thesis-project-item,
+            .gallery-item {
                 grid-template-columns: 1fr;
                 gap: 50px;
             }
-
-            .visualization-visual,
-            .sketchup-visual {
-                min-height: 400px;
+            .thesis-visual,
+            .gallery-visual {
+                height: 400px;
                 order: 1 !important;
             }
-
-            .visualization-info,
-            .sketchup-info {
+            .thesis-info,
+            .gallery-info {
                 order: 2 !important;
             }
-
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 50px;
             }
-
             .categories-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1268,62 +1549,41 @@
             .container {
                 padding: 0 20px;
             }
-
             .blog-page-title {
                 font-size: 2.8rem;
             }
-
             .section-title {
                 font-size: 2.2rem;
             }
-
             .blog-hero-description {
                 font-size: 1.1rem;
             }
-
-            .visualization-item,
-            .sketchup-project-item {
-                gap: 40px;
-                margin-bottom: 80px;
-            }
-
-            .visualization-title,
-            .sketchup-title {
+            .thesis-title,
+            .gallery-title {
                 font-size: 2.2rem;
             }
-
-            .visualization-visual,
-            .sketchup-visual {
-                height: 400px;
+            .gallery-visual {
+                height: 350px;
             }
-
-            .modal-header h1 {
-                font-size: 2.5rem;
+            .thesis-visual {
+                height: 350px;
             }
-
-            .modal-subtitle {
-                font-size: 1.3rem;
+            .gallery-thumb {
+                width: 50px;
+                height: 50px;
             }
-
-            .modal-hero-image {
-                padding: 20px;
-                max-height: 500px;
-            }
-
-            .modal-hero-image img {
-                max-height: 450px;
-            }
-
-            .modal-section-title {
-                font-size: 2.2rem;
-            }
-
             .categories-grid {
                 grid-template-columns: 1fr;
             }
-
-            .category-card {
-                padding: 40px 30px;
+            .gallery-nav {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            .gallery-close {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
             }
         }
 
@@ -1331,46 +1591,34 @@
             .blog-page-title {
                 font-size: 2.2rem;
             }
-
             .section-title {
                 font-size: 1.8rem;
             }
-
-            .project-meta {
-                justify-content: center;
+            .thesis-title,
+            .gallery-title {
+                font-size: 1.8rem;
             }
-
-            .visualization-visual,
-            .sketchup-visual {
+            .gallery-visual {
                 height: 300px;
             }
-
-            .modal-header h1 {
-                font-size: 2rem;
+            .thesis-visual {
+                height: 300px;
             }
-
-            .modal-description {
-                font-size: 1.1rem;
+            .gallery-thumb {
+                width: 40px;
+                height: 40px;
             }
-
-            .modal-meta {
-                gap: 20px;
-            }
-
-            .modal-meta-item {
-                font-size: 1rem;
-            }
-
-            .category-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
+            .thesis-badge {
+                top: 20px;
+                left: 20px;
+                padding: 10px 20px;
+                font-size: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation (EXACT from portfolio) -->
+    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="container">
             <a href="index.html" class="logo-container">
@@ -1407,11 +1655,17 @@
         </div>
     </nav>
 
-    <!-- Blog Hero Section with Animation -->
+    <!-- Blog Hero Section with Optimized Animation -->
     <section class="blog-hero">
         <div class="hero-animation-container">
-            <video class="hero-animation" autoplay muted loop playsinline>
+            <video class="hero-animation video-quality-high" autoplay muted loop playsinline
+                   poster="assest/SketchUp/images/web_path trace _000_hq.webp"
+                   preload="auto">
+                <!-- Add the .MOV file as the first source since it's your actual file -->
+                <source src="assest/SketchUp/animations/IMG_2781.MOV" type="video/mp4">
+                <!-- Keep the other formats as fallbacks -->
                 <source src="assest/SketchUp/animations/Video8_002.mp4" type="video/mp4">
+                <source src="assest/SketchUp/animations/Video8_002.webm" type="video/webm">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -1427,184 +1681,429 @@
         </div>
     </section>
 
-    <!-- SketchUp Project Section -->
-    <section class="sketchup-project" id="sketchup-project">
+    <!-- Bachelor's Thesis Featured Section -->
+    <section class="thesis-featured" id="bachelor-thesis">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">SketchUp Modeling Study</h2>
-                <p class="section-subtitle">Modern Residential Architecture – A comprehensive exploration of form, material, and light through digital modeling</p>
+                <h2 class="section-title">Bachelor's Thesis Research</h2>
+                <p class="section-subtitle">Featured academic research exploring the integration of Impressionist art principles into contemporary hotel design</p>
             </div>
 
-            <div class="sketchup-project-item visible">
-                <div class="sketchup-visual">
-                    <img src="assest/SketchUp/images/web_path trace _000_hq.webp" alt="Modern Residential Design - Main View">
-                    <div class="sketchup-badge">SketchUp Study</div>
+            <div class="thesis-project-item visible">
+                <div class="thesis-visual">
+                    <img src="assest/bachelor_Thesis/render/room-design.jpg" alt="Color & Light in Boutique Hospitality">
+                    <div class="thesis-badge">Bachelor Thesis</div>
                 </div>
-                <div class="sketchup-info">
-                    <div class="sketchup-number">Modeling Study 01</div>
-                    <h3 class="sketchup-title">Modern Residential Architecture – SketchUp Modeling Study</h3>
-                    <div class="sketchup-description" id="sketchup-desc-1">
-                        <p>These figures present a series of modern residential design explorations modeled in SketchUp, focusing on clean geometry, material contrast, and the relationship between architecture and its natural surroundings. The intention of this project was to develop realistic architectural forms while studying light, proportion, and spatial experience.</p>
+                <div class="thesis-info">
+                    <div class="thesis-number">Academic Research 01</div>
+                    <h3 class="thesis-title">Color & Light in Boutique Hospitality: An Impressionist Approach</h3>
+                    <div class="thesis-description" id="thesis-desc-1">
+                        <p>This comprehensive Bachelor's thesis research explores how Impressionist art principles can revolutionize boutique hotel design. Drawing from the artistic techniques of Monet, Renoir, and other Impressionist masters, the study investigates how color and light can be used as primary architectural elements to create emotionally resonant spatial experiences.</p>
 
-                        <h4>Overall Design Concept</h4>
-                        <p>The architectural language is minimalist and contemporary, defined by simple volumes, flat roofs, and strong horizontal lines. The massing is composed of clear rectangular forms that create a calm and balanced composition. Large openings and cantilevered elements give the buildings a lightweight appearance while enhancing visual connection with the landscape.</p>
+                        <p>The research focuses on Isfahan, Iran—a UNESCO World Heritage site renowned for its architectural marvels. The proposed boutique hotel design merges architectural design with artistic sensibility, specifically targeting tourists and art enthusiasts seeking immersive cultural experiences.</p>
 
-                        <h4>Material and Texture Strategy</h4>
-                        <p>A restrained material palette was used to emphasize elegance and clarity:</p>
+                        <h4>Key Research Questions:</h4>
                         <ul>
-                            <li>Timber cladding adds warmth and contrast to the modern form.</li>
-                            <li>Glass façades create transparency, allowing natural light to penetrate deep into the interior spaces.</li>
-                            <li>Concrete and neutral-toned surfaces ground the structure and reinforce a modern aesthetic.</li>
+                            <li>How can Impressionist principles of color and light be translated into architectural space?</li>
+                            <li>What emotional and perceptual qualities can be evoked through Impressionist-inspired design?</li>
+                            <li>How can boutique hotels serve as platforms for art-architecture integration?</li>
+                            <li>What design strategies optimize both functional efficiency and emotional resonance?</li>
                         </ul>
-                        <p>The contrast between solid and transparent elements helps define private and public zones while maintaining visual continuity.</p>
 
-                        <h4>Relationship with the Site</h4>
-                        <p>The houses are carefully integrated into a natural, green environment. Elevated platforms and stepped access paths respond to the terrain and reduce visual impact on the landscape. Surrounding vegetation is used not only as a backdrop but as an active design element that softens the architecture and enhances the sense of privacy.</p>
-
-                        <h4>Lighting and Atmosphere</h4>
-                        <p>Day and evening scenes are used to explore how light transforms the architecture:</p>
-                        <ul>
-                            <li>Daytime views highlight form, materiality, and spatial clarity.</li>
-                            <li>Evening and night scenes emphasize artificial lighting, showcasing how warm interior lights contrast with the darker surroundings and create a welcoming atmosphere.</li>
-                        </ul>
-                        <p>Exterior lighting is subtle and strategically placed to enhance depth, edges, and circulation paths without overpowering the design.</p>
-
-                        <h4>Modeling Focus</h4>
-                        <p>This project demonstrates:</p>
-                        <ul>
-                            <li>Precise SketchUp modeling techniques</li>
-                            <li>Clean geometry and accurate proportions</li>
-                            <li>Attention to architectural detail</li>
-                            <li>Consideration of realism through lighting, reflections, and environmental context</li>
-                        </ul>
+                        <h4>Methodology:</h4>
+                        <p>The research employs a mixed-methods approach including theoretical studies on boutique hotels and Impressionism, comprehensive case studies of successful boutique hotels in Iran and internationally, and practical design exploration through spatial planning, lighting strategies, and color scheme development.</p>
                     </div>
-                    <button class="read-more-btn" data-target="sketchup-desc-1">
+                    <button class="read-more-btn" data-target="thesis-desc-1">
                         Read More <i class="fas fa-chevron-down"></i>
                     </button>
+
                     <div class="project-meta">
-                        <span class="meta-tag">SketchUp</span>
-                        <span class="meta-tag">Residential Design</span>
-                        <span class="meta-tag">Modern Architecture</span>
-                        <span class="meta-tag">Material Study</span>
-                        <span class="meta-tag">Lighting Analysis</span>
+                        <span class="meta-tag">Impressionism</span>
+                        <span class="meta-tag">Boutique Hotel</span>
+                        <span class="meta-tag">Color Theory</span>
+                        <span class="meta-tag">Lighting Design</span>
+                        <span class="meta-tag">Isfahan</span>
+                        <span class="meta-tag">Spatial Atmosphere</span>
+                        <span class="meta-tag">Academic</span>
                     </div>
+
+                    <div class="thesis-details">
+                        <div class="detail-item">
+                            <i class="far fa-calendar"></i>
+                            <strong>Date:</strong>
+                            <span>January 2021</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="far fa-clock"></i>
+                            <strong>Read Time:</strong>
+                            <span>12 minutes</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <strong>Location:</strong>
+                            <span>Isfahan, Iran</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-university"></i>
+                            <strong>Institution:</strong>
+                            <span>Faculty of Art, Architecture and Urban Planning</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <strong>Degree:</strong>
+                            <span>Bachelor of Interior Architecture</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-user-graduate"></i>
+                            <strong>Supervisor:</strong>
+                            <span>Dr. Razieh Rafiee</span>
+                        </div>
+                    </div>
+
+                    <button class="btn open-modal-btn" data-modal="bachelor-thesis-modal">
+                        <i class="fas fa-book-open"></i> View Full Thesis Research
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Architectural Visualizations Section with Alternating Layout -->
-    <section class="visualizations-section">
+    <!-- NEW SECTION: RHINO 3D MODELING STUDIES -->
+    <section class="modern-gallery-section light" id="rhino-studies">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Architectural Visualizations</h2>
-                <p class="section-subtitle">3D renderings and architectural visualizations created using Rhinoceros 3D with V-Ray rendering, demonstrating materiality, lighting dynamics, and spatial relationships</p>
+                <h2 class="section-title">Rhino 3D Modeling Studies</h2>
+                <p class="section-subtitle">Advanced architectural visualization and parametric design explorations using Rhinoceros 3D</p>
             </div>
 
-            <!-- Visualization 1 -->
-            <div class="visualization-item visible" data-category="visualization">
-                <div class="visualization-visual">
-                    <img src="assest/Rhino/01._Rhino_Document_Sun.webp" alt="Sunlight-Optimized Living Space">
-                    <div class="visualization-badge">Interior Visualization</div>
-                </div>
-                <div class="visualization-info">
-                    <div class="visualization-number">Visualization 01</div>
-                    <h3 class="visualization-title">Sunlight-Optimized Living Space</h3>
-                    <div class="visualization-description" id="viz-desc-1">
-                        <p>This comprehensive study explores the dynamic relationship between architecture and natural light throughout different times of the day. The project demonstrates how strategic design decisions can optimize daylight penetration while creating dramatic visual effects.</p>
-                        <p>The space features polished concrete floors, oak wood wall paneling, and a minimalist color palette of warm greys and beige. Strategically placed clerestory windows create dramatic light patterns while maintaining privacy and controlling glare.</p>
-                        <p>Using Rhinoceros 3D with V-Ray rendering, this visualization accurately simulates real-world lighting conditions and material responses to changing light throughout the day.</p>
-                    </div>
-                    <button class="read-more-btn" data-target="viz-desc-1">
-                        Read More <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="project-meta">
-                        <span class="meta-tag">Rhino 3D</span>
-                        <span class="meta-tag">V-Ray</span>
-                        <span class="meta-tag">Light Study</span>
-                        <span class="meta-tag">Daylight Analysis</span>
-                    </div>
-                </div>
-            </div>
+            <!-- Rhino Project 1: Complex Architectural Form -->
+            <div class="gallery-item visible" id="rhino-project-1">
+                <div class="gallery-visual">
+                    <img src="assest/Rhino/P 10.png"
+                         alt="Complex Architectural Form - Axonometric View"
+                         class="gallery-main-image active"
+                         data-index="0">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-badge" style="background: var(--dome-black); color: var(--dome-white);">Rhino 3D</div>
+                    <div class="gallery-counter">1/2</div>
 
-            <!-- Visualization 2 -->
-            <div class="visualization-item" data-category="visualization">
-                <div class="visualization-visual">
-                    <img src="assest/Rhino/1a_resized_1920px.webp" alt="Contemporary Villa Design">
-                    <div class="visualization-badge">Exterior Visualization</div>
-                </div>
-                <div class="visualization-info">
-                    <div class="visualization-number">Visualization 02</div>
-                    <h3 class="visualization-title">Contemporary Villa Design</h3>
-                    <div class="visualization-description" id="viz-desc-2">
-                        <p>Modern residential design exploring material honesty, clean architectural lines, and the relationship between solid and void. Features textured concrete, expansive glass surfaces, and thermally modified wood cladding.</p>
-                        <p>The cantilevered roof element serves both functional and aesthetic purposes, providing solar shading while creating dramatic shadows that change throughout the day, adding dynamic visual interest to the façade.</p>
-                        <p>This visualization study examines the integration of architecture with its natural surroundings, focusing on material texture, shadow play, and environmental responsiveness.</p>
-                    </div>
-                    <button class="read-more-btn" data-target="viz-desc-2">
-                        Read More <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="project-meta">
-                        <span class="meta-tag">Villa Design</span>
-                        <span class="meta-tag">Exterior</span>
-                        <span class="meta-tag">Contemporary</span>
-                        <span class="meta-tag">Material Studies</span>
+                    <div class="gallery-thumbnails">
+                        <div class="gallery-thumb active" data-index="0">
+                            <img src="assest/Rhino/P 10.png" alt="Axonometric View">
+                        </div>
+                        <div class="gallery-thumb" data-index="1">
+                            <img src="assest/Rhino/010 End.png" alt="Perspective View">
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Additional SketchUp Visualizations -->
-            <div class="visualization-item" data-category="visualization">
-                <div class="visualization-visual">
-                    <img src="assest/SketchUp/images/web_path trace 1_hq.webp" alt="Modern Residential Design - View 1">
-                    <div class="visualization-badge">SketchUp Study</div>
-                </div>
-                <div class="visualization-info">
-                    <div class="visualization-number">Visualization 03</div>
-                    <h3 class="visualization-title">Minimalist Residential Form</h3>
-                    <div class="visualization-description" id="viz-desc-3">
-                        <p>This SketchUp modeling study focuses on clean geometric forms and the interplay between solid masses and transparent surfaces. The design emphasizes horizontal lines and flat roofs characteristic of contemporary residential architecture.</p>
-                        <p>The strategic placement of windows and openings creates a dialogue between interior spaces and the surrounding landscape, while maintaining privacy and optimizing views.</p>
-                        <p>Material studies include the contrast between warm timber cladding and cool concrete surfaces, demonstrating how material selection can enhance architectural expression.</p>
+                <div class="gallery-info">
+                    <div class="gallery-number">Parametric Study 01</div>
+                    <h3 class="gallery-title">Complex Architectural Form – Parametric Design Exploration</h3>
+                    <p class="gallery-description">
+                        This comprehensive Rhino 3D study explores complex architectural forms through parametric design principles. The project investigates the relationship between geometric logic, spatial efficiency, and visual impact in contemporary architectural design. Using advanced NURBS modeling techniques, the study demonstrates sophisticated surface manipulation and volumetric composition.
+                    </p>
+
+                    <div class="gallery-tags">
+                        <span class="gallery-tag">Rhino 3D</span>
+                        <span class="gallery-tag">Parametric Design</span>
+                        <span class="gallery-tag">NURBS Modeling</span>
+                        <span class="gallery-tag">Architectural Form</span>
+                        <span class="gallery-tag">Complex Geometry</span>
+                        <span class="gallery-tag">Digital Fabrication</span>
                     </div>
-                    <button class="read-more-btn" data-target="viz-desc-3">
-                        Read More <i class="fas fa-chevron-down"></i>
+
+                    <div class="gallery-details">
+                        <div class="detail-item">
+                            <i class="fas fa-shapes"></i>
+                            <span>Complex NURBS surfaces and parametric form generation</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-cube"></i>
+                            <span>Multi-layered volumetric composition with spatial hierarchy</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>Geometric precision and structural logic development</span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-outline view-gallery-btn" data-gallery="rhino1" style="margin-top: 30px;">
+                        <i class="fas fa-expand"></i> View Gallery
                     </button>
-                    <div class="project-meta">
-                        <span class="meta-tag">SketchUp</span>
-                        <span class="meta-tag">Minimalism</span>
-                        <span class="meta-tag">Form Study</span>
-                        <span class="meta-tag">Material Contrast</span>
-                    </div>
                 </div>
             </div>
 
-            <div class="visualization-item" data-category="visualization">
-                <div class="visualization-visual">
-                    <img src="assest/SketchUp/images/web_path trace 2_hq.webp" alt="Modern Residential Design - View 2">
-                    <div class="visualization-badge">SketchUp Study</div>
+            <!-- Rhino Project 2: Interior Space Exploration -->
+            <div class="gallery-item visible" id="rhino-project-2">
+                <div class="gallery-visual">
+                    <img src="assest/Rhino/009 End.png"
+                         alt="Interior Space Exploration - Sectional Perspective"
+                         class="gallery-main-image active"
+                         data-index="0">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-badge" style="background: var(--dome-accent); color: var(--dome-white);">Interior Study</div>
+                    <div class="gallery-counter">1/1</div>
                 </div>
-                <div class="visualization-info">
-                    <div class="visualization-number">Visualization 04</div>
-                    <h3 class="visualization-title">Architectural Integration with Landscape</h3>
-                    <div class="visualization-description" id="viz-desc-4">
-                        <p>This study explores the seamless integration of architecture with its natural setting through careful massing and material selection. The design responds to the terrain with elevated platforms and stepped transitions between indoor and outdoor spaces.</p>
-                        <p>Large glass openings frame specific views while maintaining visual privacy through strategic positioning and landscaping elements. The relationship between built form and natural vegetation creates a harmonious dialogue between architecture and environment.</p>
-                        <p>Lighting studies demonstrate how artificial illumination enhances architectural features at night while maintaining a warm, welcoming atmosphere.</p>
+
+                <div class="gallery-info">
+                    <div class="gallery-number">Interior Study 01</div>
+                    <h3 class="gallery-title">Interior Space Exploration – Sectional & Volumetric Analysis</h3>
+                    <p class="gallery-description">
+                        This Rhino 3D study focuses on interior spatial organization and volumetric relationships. Using sectional perspectives and axonometric projections, the project analyzes spatial hierarchy, circulation patterns, and material transitions in contemporary interior design. The study demonstrates advanced modeling techniques for interior architecture with emphasis on spatial quality and user experience.
+                    </p>
+
+                    <div class="gallery-tags">
+                        <span class="gallery-tag">Interior Architecture</span>
+                        <span class="gallery-tag">Sectional Design</span>
+                        <span class="gallery-tag">Spatial Analysis</span>
+                        <span class="gallery-tag">Volumetric Study</span>
+                        <span class="gallery-tag">Rhino 3D</span>
+                        <span class="gallery-tag">User Experience</span>
                     </div>
-                    <button class="read-more-btn" data-target="viz-desc-4">
-                        Read More <i class="fas fa-chevron-down"></i>
+
+                    <div class="gallery-details">
+                        <div class="detail-item">
+                            <i class="fas fa-layer-group"></i>
+                            <span>Multi-level spatial organization and volumetric composition</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-people-arrows"></i>
+                            <span>Circulation analysis and user movement patterns</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Light and material interaction studies</span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-outline view-gallery-btn" data-gallery="rhino2" style="margin-top: 30px;">
+                        <i class="fas fa-expand"></i> View Details
                     </button>
-                    <div class="project-meta">
-                        <span class="meta-tag">SketchUp</span>
-                        <span class="meta-tag">Landscape Integration</span>
-                        <span class="meta-tag">Site Response</span>
-                        <span class="meta-tag">Environmental Design</span>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Modern Residential Architecture Studies -->
+    <section class="modern-gallery-section" id="modern-residential">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Modern Residential Architecture Studies</h2>
+                <p class="section-subtitle">Comprehensive SketchUp modeling studies exploring form, material, light, and landscape integration</p>
+            </div>
+
+            <!-- Project 1 -->
+            <div class="gallery-item visible" id="project-1">
+                <div class="gallery-visual">
+                    <img src="assest/SketchUp/images/web_path trace _000_hq.webp"
+                         alt="Modern Residential Design - Main View"
+                         class="gallery-main-image active"
+                         data-index="0">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-badge">SketchUp Modeling</div>
+                    <div class="gallery-counter">1/5</div>
+
+                    <div class="gallery-thumbnails">
+                        <div class="gallery-thumb active" data-index="0">
+                            <img src="assest/SketchUp/images/web_path trace _000_hq.webp" alt="Main View">
+                        </div>
+                        <div class="gallery-thumb" data-index="1">
+                            <img src="assest/SketchUp/images/web_path_trace_1_hq.jpg" alt="Normal Day">
+                        </div>
+                        <div class="gallery-thumb" data-index="2">
+                            <img src="assest/SketchUp/images/web_path trace 2_hq.webp" alt="Sunset View">
+                        </div>
+                        <div class="gallery-thumb" data-index="3">
+                            <img src="assest/SketchUp/images/web_path_trace_3__hq.jpg" alt="Rainy View">
+                        </div>
+                        <div class="gallery-thumb" data-index="4">
+                            <img src="assest/SketchUp/images/web_path_trace_4__hq.jpg" alt="Sunny View">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-info">
+                    <div class="gallery-number">Integrated Study 01</div>
+                    <h3 class="gallery-title">Modern Residential Architecture – Comprehensive Form Exploration</h3>
+                    <p class="gallery-description">
+                        This comprehensive SketchUp modeling study integrates architectural form exploration with detailed visualizations across different environmental conditions. The project demonstrates advanced digital modeling techniques while studying light, materiality, and spatial relationships in contemporary residential design.
+                    </p>
+
+                    <div class="gallery-tags">
+                        <span class="gallery-tag">SketchUp</span>
+                        <span class="gallery-tag">Residential Design</span>
+                        <span class="gallery-tag">Modern Architecture</span>
+                        <span class="gallery-tag">Light Study</span>
+                        <span class="gallery-tag">Material Contrast</span>
+                        <span class="gallery-tag">Environmental Design</span>
+                    </div>
+
+                    <div class="gallery-details">
+                        <div class="detail-item">
+                            <i class="fas fa-cube"></i>
+                            <span>Architectural form & volume study with minimalist contemporary language</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-palette"></i>
+                            <span>Restrained material palette emphasizing elegance and clarity</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-sun"></i>
+                            <span>Multi-condition lighting study across different environmental conditions</span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-outline view-gallery-btn" data-gallery="1" style="margin-top: 30px;">
+                        <i class="fas fa-expand"></i> View Full Gallery
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="gallery-item visible" id="project-2">
+                <div class="gallery-visual">
+                    <img src="assest/Rhino/01._Rhino_Document_Sun.webp"
+                         alt="Sunlight-Optimized Living Space - Natural View"
+                         class="gallery-main-image active"
+                         data-index="0">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-badge" style="background: var(--dome-accent); color: var(--dome-white);">Rhino 3D & V-Ray</div>
+                    <div class="gallery-counter">1/3</div>
+
+                    <div class="gallery-thumbnails">
+                        <div class="gallery-thumb active" data-index="0">
+                            <img src="assest/Rhino/01._Rhino_Document_Sun.webp" alt="Natural View">
+                        </div>
+                        <div class="gallery-thumb" data-index="1">
+                            <img src="assest/Rhino/01.Environment.webp" alt="Morning View">
+                        </div>
+                        <div class="gallery-thumb" data-index="2">
+                            <img src="assest/Rhino/01.webp" alt="Day Lighting">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-info">
+                    <div class="gallery-number">Lighting Study 01</div>
+                    <h3 class="gallery-title">Sunlight-Optimized Living Space – Daylight Analysis Study</h3>
+                    <p class="gallery-description">
+                        This comprehensive study explores the dynamic relationship between architecture and natural light throughout different times of the day. Using Rhinoceros 3D with V-Ray rendering, this visualization accurately simulates real-world lighting conditions and material responses to changing light.
+                    </p>
+
+                    <div class="gallery-tags">
+                        <span class="gallery-tag">Rhino 3D</span>
+                        <span class="gallery-tag">V-Ray</span>
+                        <span class="gallery-tag">Light Study</span>
+                        <span class="gallery-tag">Daylight Analysis</span>
+                        <span class="gallery-tag">Interior Design</span>
+                        <span class="gallery-tag">Material Studies</span>
+                    </div>
+
+                    <div class="gallery-details">
+                        <div class="detail-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Comprehensive daylight analysis across different times of day</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-cube"></i>
+                            <span>Polished concrete, oak wood, and minimalist color palette</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-sun"></i>
+                            <span>Strategic clerestory windows for dramatic light patterns</span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-outline view-gallery-btn" data-gallery="2" style="margin-top: 30px;">
+                        <i class="fas fa-expand"></i> View Full Gallery
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="gallery-item visible" id="project-3">
+                <div class="gallery-visual">
+                    <img src="assest/Rhino/008-2.webp"
+                         alt="Contemporary Villa Design - Night View"
+                         class="gallery-main-image active"
+                         data-index="0">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-badge">3D Visualization</div>
+                    <div class="gallery-counter">1/3</div>
+
+                    <div class="gallery-thumbnails">
+                        <div class="gallery-thumb active" data-index="0">
+                            <img src="assest/Rhino/008-2.webp" alt="Night View">
+                        </div>
+                        <div class="gallery-thumb" data-index="1">
+                            <img src="assest/Rhino/007-04.webp" alt="Day View">
+                        </div>
+                        <div class="gallery-thumb" data-index="2">
+                            <img src="assest/Rhino/1a.webp" alt="Alternative View">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-info">
+                    <div class="gallery-number">Architectural Study 02</div>
+                    <h3 class="gallery-title">Contemporary Villa Design – Material & Lighting Exploration</h3>
+                    <p class="gallery-description">
+                        Modern residential design exploring material honesty, clean architectural lines, and the relationship between solid and void. Features textured concrete, expansive glass surfaces, and thermally modified wood cladding with comprehensive lighting studies.
+                    </p>
+
+                    <div class="gallery-tags">
+                        <span class="gallery-tag">Villa Design</span>
+                        <span class="gallery-tag">Contemporary</span>
+                        <span class="gallery-tag">Material Studies</span>
+                        <span class="gallery-tag">Lighting Analysis</span>
+                        <span class="gallery-tag">Architecture</span>
+                        <span class="gallery-tag">Environmental Design</span>
+                    </div>
+
+                    <div class="gallery-details">
+                        <div class="detail-item">
+                            <i class="fas fa-vector-square"></i>
+                            <span>Cantilevered roof elements for solar shading and visual interest</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-layer-group"></i>
+                            <span>Textured concrete, thermal wood, and expansive glass surfaces</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tree"></i>
+                            <span>Sensitive site integration with optimized orientation and landscape</span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-outline view-gallery-btn" data-gallery="3" style="margin-top: 30px;">
+                        <i class="fas fa-expand"></i> View Full Gallery
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fullscreen Gallery Modal -->
+    <div class="fullscreen-gallery" id="fullscreenGallery">
+        <button class="gallery-close" id="galleryClose">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <button class="gallery-nav gallery-prev" id="galleryPrev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <button class="gallery-nav gallery-next" id="galleryNext">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <div class="fullscreen-container">
+            <img class="fullscreen-image" id="fullscreenImage" src="" alt="">
+            <div class="gallery-caption" id="galleryCaption"></div>
+            <div class="gallery-counter-full" id="galleryCounterFull">1 / 5</div>
+        </div>
+    </div>
 
     <!-- Research Categories Section -->
     <section class="research-categories">
@@ -1650,7 +2149,7 @@
         </div>
     </section>
 
-    <!-- Footer (EXACT from portfolio) -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -1715,9 +2214,192 @@
         </div>
     </footer>
 
+    <!-- Bachelor's Thesis Modal -->
+    <div class="article-modal" id="bachelor-thesis-modal">
+        <div class="modal-nav">
+            <div class="container">
+                <button class="modal-back-btn close-modal-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Academic Blog
+                </button>
+            </div>
+        </div>
+
+        <div class="modal-header">
+            <div class="container">
+                <div class="modal-header-content">
+                    <h1>Color & Light in Boutique Hospitality: An Impressionist Approach</h1>
+                    <div class="modal-subtitle">A Comprehensive Bachelor's Thesis Research on Integrating Impressionist Art Principles into Contemporary Hotel Design in Isfahan</div>
+
+                    <div class="modal-meta">
+                        <span class="modal-meta-item"><i class="far fa-calendar"></i> January 2021</span>
+                        <span class="modal-meta-item"><i class="far fa-clock"></i> 12 minutes</span>
+                        <span class="modal-meta-item"><i class="far fa-folder"></i> Academic Research</span>
+                        <span class="modal-meta-item"><i class="fas fa-map-marker-alt"></i> Isfahan, Iran</span>
+                        <span class="modal-meta-item"><i class="fas fa-university"></i> Faculty of Art, Architecture and Urban Planning</span>
+                        <span class="modal-meta-item"><i class="fas fa-graduation-cap"></i> Bachelor of Interior Architecture</span>
+                        <span class="modal-meta-item"><i class="fas fa-user-graduate"></i> Dr. Razieh Rafiee</span>
+                    </div>
+
+                    <div class="modal-tags">
+                        <span class="modal-tag">Impressionism</span>
+                        <span class="modal-tag">Boutique Hotel</span>
+                        <span class="modal-tag">Color Theory</span>
+                        <span class="modal-tag">Lighting Design</span>
+                        <span class="modal-tag">Isfahan</span>
+                        <span class="modal-tag">Spatial Atmosphere</span>
+                        <span class="modal-tag">Academic</span>
+                    </div>
+
+                    <div class="modal-hero-image">
+                        <img src="assest/bachelor_Thesis/render/room-design.jpg" alt="Color & Light in Boutique Hospitality">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-content">
+            <div class="container">
+                <div class="modal-content-section">
+                    <h2 class="modal-section-title">Abstract</h2>
+                    <div class="modal-text-content">
+                        <p>This thesis proposes an innovative approach to boutique hotel design in Isfahan, Iran, by integrating principles from Impressionist art with a specialized focus on color and light as primary architectural elements. The project aims to create a unique hospitality experience that merges architectural design with artistic sensibility, specifically targeting tourists and art enthusiasts seeking immersive cultural experiences.</p>
+
+                        <div style="background: rgba(204, 85, 0, 0.05); border-left: 4px solid var(--dome-accent); padding: 30px; margin: 40px 0; border-radius: 8px;">
+                            <p style="font-style: italic; color: var(--dome-black); margin: 0; font-size: 1.3rem; line-height: 1.6;">
+                                "The hotel is designed to reflect the transient effects of light and color characteristic of Impressionism, while responding to the rich cultural and historical context of Isfahan—a UNESCO World Heritage site renowned for its architectural marvels."
+                            </p>
+                        </div>
+
+                        <p>The research methodology includes comprehensive theoretical studies on boutique hotels, Impressionism, lighting design psychology, and extensive case studies of successful boutique hotels both in Iran and internationally. The final design proposal integrates sophisticated spatial planning, innovative lighting strategies, and carefully curated color schemes to evoke the emotional and perceptual qualities characteristic of Impressionist art.</p>
+                    </div>
+                </div>
+
+                <div class="modal-content-section">
+                    <h2 class="modal-section-title">Design Visualizations</h2>
+                    <div class="modal-text-content">
+                        <p>The following renderings illustrate key spaces within the proposed boutique hotel design, demonstrating the application of Impressionist principles to architectural space:</p>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 50px; margin: 60px 0;">
+                        <!-- Featured Image -->
+                        <div style="background: var(--dome-light); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.08); border: 1px solid var(--dome-border);">
+                            <div style="width: 100%; height: 500px; overflow: hidden; position: relative; background: var(--dome-white);">
+                                <img src="assest/bachelor_Thesis/render/room-design.jpg" alt="Boutique Hotel Room Design" style="width: 100%; height: 100%; object-fit: contain; padding: 30px;">
+                            </div>
+                            <div style="padding: 30px; background: var(--dome-white); border-top: 1px solid var(--dome-border);">
+                                <span style="display: inline-block; padding: 8px 20px; background: var(--dome-accent); color: var(--dome-white); border-radius: 25px; font-size: 0.9rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(204, 85, 0, 0.2);">
+                                    Featured Design
+                                </span>
+                                <h3 style="font-size: 2.2rem; color: var(--dome-black); margin-bottom: 20px; font-weight: 500; line-height: 1.3;">
+                                    Boutique Hotel Room Design
+                                </h3>
+                                <p style="color: var(--dome-gray); line-height: 1.7; font-size: 1.15rem; margin: 0;">
+                                    Impressionist Color & Light Study - Primary room showcasing the integration of Impressionist principles in hospitality design
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Additional Visualizations -->
+                        <div style="background: var(--dome-light); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.08); border: 1px solid var(--dome-border);">
+                            <div style="width: 100%; height: 400px; overflow: hidden; position: relative; background: var(--dome-white);">
+                                <img src="assest/bachelor_Thesis/render/gallery-space-1.jpg" alt="Gallery 5: Impression Art Display Area" style="width: 100%; height: 100%; object-fit: contain; padding: 30px;">
+                            </div>
+                            <div style="padding: 30px; background: var(--dome-white); border-top: 1px solid var(--dome-border);">
+                                <span style="display: inline-block; padding: 8px 20px; background: var(--dome-black); color: var(--dome-white); border-radius: 25px; font-size: 0.9rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 20px;">
+                                    Gallery 5
+                                </span>
+                                <h3 style="font-size: 2rem; color: var(--dome-black); margin-bottom: 20px; font-weight: 500; line-height: 1.3;">
+                                    Impression Art Display Area
+                                </h3>
+                                <p style="color: var(--dome-gray); line-height: 1.7; font-size: 1.1rem; margin: 0;">
+                                    Dedicated exhibition space showcasing Impressionist artworks with controlled natural lighting
+                                </p>
+                            </div>
+                        </div>
+
+                        <div style="background: var(--dome-light); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.08); border: 1px solid var(--dome-border);">
+                            <div style="width: 100%; height: 400px; overflow: hidden; position: relative; background: var(--dome-white);">
+                                <img src="assest/bachelor_Thesis/render/gallery-space-2.jpg" alt="Gallery 6: Space Natural Light Interaction" style="width: 100%; height: 100%; object-fit: contain; padding: 30px;">
+                            </div>
+                            <div style="padding: 30px; background: var(--dome-white); border-top: 1px solid var(--dome-border);">
+                                <span style="display: inline-block; padding: 8px 20px; background: var(--dome-black); color: var(--dome-white); border-radius: 25px; font-size: 0.9rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 20px;">
+                                    Gallery 6
+                                </span>
+                                <h3 style="font-size: 2rem; color: var(--dome-black); margin-bottom: 20px; font-weight: 500; line-height: 1.3;">
+                                    Space Natural Light Interaction
+                                </h3>
+                                <p style="color: var(--dome-gray); line-height: 1.7; font-size: 1.1rem; margin: 0;">
+                                    Demonstrating the dynamic relationship between architectural space and changing natural light conditions
+                                </p>
+                            </div>
+                        </div>
+
+                        <div style="background: var(--dome-light); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.08); border: 1px solid var(--dome-border);">
+                            <div style="width: 100%; height: 400px; overflow: hidden; position: relative; background: var(--dome-white);">
+                                <img src="assest/bachelor_Thesis/render/gallery-space-4.jpg" alt="Gallery 7: Space Event Atmosphere with Artificial Light" style="width: 100%; height: 100%; object-fit: contain; padding: 30px;">
+                            </div>
+                            <div style="padding: 30px; background: var(--dome-white); border-top: 1px solid var(--dome-border);">
+                                <span style="display: inline-block; padding: 8px 20px; background: var(--dome-black); color: var(--dome-white); border-radius: 25px; font-size: 0.9rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 20px;">
+                                    Gallery 7
+                                </span>
+                                <h3 style="font-size: 2rem; color: var(--dome-black); margin-bottom: 20px; font-weight: 500; line-height: 1.3;">
+                                    Space Event Atmosphere with Artificial Light
+                                </h3>
+                                <p style="color: var(--dome-gray); line-height: 1.7; font-size: 1.1rem; margin: 0;">
+                                    Evening rendering showcasing artificial lighting strategies for event spaces and social gatherings
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-content-section">
+                    <h2 class="modal-section-title">Theoretical Framework</h2>
+                    <div class="modal-text-content">
+                        <h4>Boutique Hotels: Concept and Characteristics</h4>
+                        <p>A boutique hotel is defined by several key characteristics:</p>
+                        <ul>
+                            <li><strong>Small Scale:</strong> Typically under 100 rooms, allowing for personalized service</li>
+                            <li><strong>Unique Thematic Identity:</strong> Each hotel tells a distinct story through its design</li>
+                            <li><strong>Cultural Authenticity:</strong> Strong connection to local history and traditions</li>
+                            <li><strong>Prime Urban Locations:</strong> Often situated in culturally significant areas</li>
+                            <li><strong>Architectural Significance:</strong> Emphasis on interior design as a primary attraction</li>
+                        </ul>
+
+                        <h4>Impressionism in Architectural Context</h4>
+                        <p>Impressionism, originating in 19th-century France, revolutionized artistic expression by emphasizing:</p>
+                        <ul>
+                            <li>Capturing fleeting moments and transient light effects</li>
+                            <li>Use of pure, unmixed colors applied in short brushstrokes</li>
+                            <li>Painting <em>en plein air</em> (outdoors) to capture natural light</li>
+                            <li>Focus on perception and sensory experience over precise representation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="modal-content-section">
+                    <h2 class="modal-section-title">Conclusion and Contribution</h2>
+                    <div class="modal-text-content">
+                        <p>This thesis demonstrates the significant potential for translating Impressionist art principles into architectural and interior design practice, creating boutique hotels that are both functionally efficient and emotionally resonant. The proposed "Boutique Hotel of Color and Light" in Isfahan offers an innovative model for thematic hospitality spaces where art, architecture, and human experience intersect meaningfully.</p>
+
+                        <div style="background: rgba(204, 85, 0, 0.05); border-left: 4px solid var(--dome-accent); padding: 30px; margin: 40px 0; border-radius: 8px;">
+                            <p style="font-style: italic; color: var(--dome-black); margin: 0; font-size: 1.3rem; line-height: 1.6;">
+                                "The project contributes to multiple fields: interior design through its innovative approach to color and light; cultural tourism by enhancing visitor experience through artistic immersion; and sustainable architecture by emphasizing perceptual richness and contextual sensitivity as alternatives to resource-intensive solutions."
+                            </p>
+                        </div>
+
+                        <p>This research establishes a framework for future investigations into art-architecture integration, suggesting that emotional and perceptual dimensions of space deserve equal consideration alongside functional requirements in hospitality design.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded - initializing scripts');
+
             // ==================== NAVIGATION ====================
             // Navigation Scroll Effect
             window.addEventListener('scroll', function() {
@@ -1768,6 +2450,314 @@
                 });
             });
 
+            // ==================== GALLERY MANAGEMENT ====================
+            class Gallery {
+                constructor(galleryId) {
+                    this.gallery = document.getElementById(galleryId);
+                    if (!this.gallery) {
+                        console.log('Gallery not found:', galleryId);
+                        return;
+                    }
+
+                    this.thumbnails = this.gallery.querySelectorAll('.gallery-thumb');
+                    this.mainImage = this.gallery.querySelector('.gallery-main-image');
+                    this.counter = this.gallery.querySelector('.gallery-counter');
+                    this.images = [];
+                    this.currentIndex = 0;
+
+                    console.log('Initializing gallery:', galleryId, 'with', this.thumbnails.length, 'thumbnails');
+                    this.init();
+                }
+
+                init() {
+                    // Collect all image sources from thumbnails
+                    this.thumbnails.forEach((thumb, index) => {
+                        const img = thumb.querySelector('img');
+                        if (img) {
+                            this.images.push({
+                                src: img.src,
+                                alt: img.alt
+                            });
+
+                            // Thumbnail click event
+                            thumb.addEventListener('click', () => {
+                                console.log('Thumbnail clicked:', index);
+                                this.showImage(index);
+                            });
+                        }
+                    });
+
+                    // Also add the main image if it exists
+                    if (this.mainImage) {
+                        this.images.push({
+                            src: this.mainImage.src,
+                            alt: this.mainImage.alt
+                        });
+                    }
+
+                    // Set initial state
+                    if (this.images.length > 0) {
+                        this.showImage(0);
+                    }
+                }
+
+                showImage(index) {
+                    if (index < 0 || index >= this.images.length) return;
+
+                    this.currentIndex = index;
+                    const image = this.images[index];
+
+                    // Update main image
+                    if (this.mainImage) {
+                        this.mainImage.src = image.src;
+                        this.mainImage.alt = image.alt;
+                        this.mainImage.setAttribute('data-index', index);
+                    }
+
+                    // Update thumbnails
+                    this.thumbnails.forEach((thumb, i) => {
+                        thumb.classList.toggle('active', i === index);
+                    });
+
+                    // Update counter
+                    if (this.counter) {
+                        this.counter.textContent = `${index + 1}/${this.images.length}`;
+                    }
+                }
+
+                next() {
+                    const nextIndex = (this.currentIndex + 1) % this.images.length;
+                    this.showImage(nextIndex);
+                }
+
+                prev() {
+                    const prevIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+                    this.showImage(prevIndex);
+                }
+
+                getCurrentImage() {
+                    return this.images[this.currentIndex];
+                }
+
+                getTotalImages() {
+                    return this.images.length;
+                }
+            }
+
+            // Initialize galleries
+            const galleries = {};
+            const galleryIds = ['project-1', 'project-2', 'project-3', 'rhino-project-1', 'rhino-project-2'];
+
+            galleryIds.forEach(id => {
+                galleries[id] = new Gallery(id);
+                console.log('Gallery initialized:', id, galleries[id]);
+            });
+
+            // ==================== FULLSCREEN GALLERY ====================
+            const fullscreenGallery = document.getElementById('fullscreenGallery');
+            const fullscreenImage = document.getElementById('fullscreenImage');
+            const galleryCaption = document.getElementById('galleryCaption');
+            const galleryCounterFull = document.getElementById('galleryCounterFull');
+            const galleryClose = document.getElementById('galleryClose');
+            const galleryPrev = document.getElementById('galleryPrev');
+            const galleryNext = document.getElementById('galleryNext');
+
+            let currentGallery = null;
+            let currentGalleryId = null;
+
+            // Open fullscreen gallery
+            document.querySelectorAll('.view-gallery-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const galleryId = this.getAttribute('data-gallery');
+                    console.log('View gallery clicked:', galleryId);
+
+                    // Map button data-gallery to actual gallery IDs
+                    let actualGalleryId;
+                    switch(galleryId) {
+                        case '1': actualGalleryId = 'project-1'; break;
+                        case '2': actualGalleryId = 'project-2'; break;
+                        case '3': actualGalleryId = 'project-3'; break;
+                        case 'rhino1': actualGalleryId = 'rhino-project-1'; break;
+                        case 'rhino2': actualGalleryId = 'rhino-project-2'; break;
+                        default: actualGalleryId = galleryId;
+                    }
+
+                    currentGalleryId = actualGalleryId;
+                    currentGallery = galleries[actualGalleryId];
+
+                    console.log('Current gallery:', currentGallery);
+
+                    if (currentGallery && currentGallery.images && currentGallery.images.length > 0) {
+                        const image = currentGallery.getCurrentImage();
+                        console.log('Opening fullscreen with image:', image);
+
+                        fullscreenImage.src = image.src;
+                        fullscreenImage.alt = image.alt;
+                        galleryCaption.textContent = image.alt;
+                        galleryCounterFull.textContent = `${currentGallery.currentIndex + 1} / ${currentGallery.getTotalImages()}`;
+
+                        fullscreenGallery.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+
+                        // Show image and caption after a delay
+                        setTimeout(() => {
+                            fullscreenImage.classList.add('active');
+                        }, 50);
+
+                        setTimeout(() => {
+                            galleryCaption.classList.add('active');
+                        }, 300);
+                    } else {
+                        console.error('Gallery not found or has no images:', actualGalleryId);
+                    }
+                });
+            });
+
+            // Close fullscreen gallery
+            galleryClose.addEventListener('click', closeFullscreenGallery);
+            fullscreenGallery.addEventListener('click', function(e) {
+                if (e.target === this) closeFullscreenGallery();
+            });
+
+            // Navigation in fullscreen gallery
+            galleryPrev.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (currentGallery) {
+                    currentGallery.prev();
+                    updateFullscreenGallery();
+                }
+            });
+
+            galleryNext.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (currentGallery) {
+                    currentGallery.next();
+                    updateFullscreenGallery();
+                }
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (!fullscreenGallery.classList.contains('active')) return;
+
+                if (e.key === 'Escape') {
+                    closeFullscreenGallery();
+                } else if (e.key === 'ArrowLeft') {
+                    currentGallery.prev();
+                    updateFullscreenGallery();
+                } else if (e.key === 'ArrowRight') {
+                    currentGallery.next();
+                    updateFullscreenGallery();
+                }
+            });
+
+            // Touch/swipe support
+            let touchStartX = 0;
+            fullscreenGallery.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            fullscreenGallery.addEventListener('touchend', function(e) {
+                const touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        // Swipe left
+                        currentGallery.next();
+                    } else {
+                        // Swipe right
+                        currentGallery.prev();
+                    }
+                    updateFullscreenGallery();
+                }
+            }, { passive: true });
+
+            function updateFullscreenGallery() {
+                if (!currentGallery) return;
+
+                const image = currentGallery.getCurrentImage();
+
+                // Fade out current image and caption
+                fullscreenImage.classList.remove('active');
+                galleryCaption.classList.remove('active');
+
+                // Update after fade out
+                setTimeout(() => {
+                    fullscreenImage.src = image.src;
+                    fullscreenImage.alt = image.alt;
+                    galleryCaption.textContent = image.alt;
+                    galleryCounterFull.textContent = `${currentGallery.currentIndex + 1} / ${currentGallery.getTotalImages()}`;
+
+                    // Fade in new image and caption
+                    setTimeout(() => {
+                        fullscreenImage.classList.add('active');
+                        galleryCaption.classList.add('active');
+                    }, 50);
+                }, 300);
+            }
+
+            function closeFullscreenGallery() {
+                fullscreenGallery.classList.remove('active');
+                fullscreenImage.classList.remove('active');
+                galleryCaption.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // ==================== MODAL MANAGEMENT ====================
+            const bachelorThesisModal = document.getElementById('bachelor-thesis-modal');
+            const openModalBtns = document.querySelectorAll('.open-modal-btn');
+            const closeModalBtn = document.querySelector('.close-modal-btn');
+
+            // Open modal - FIXED
+            openModalBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const modalId = this.getAttribute('data-modal');
+                    console.log('Opening modal:', modalId);
+
+                    const modal = document.getElementById(modalId);
+                    if (modal) {
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                        // Scroll to top of modal
+                        modal.scrollTop = 0;
+                    } else {
+                        console.error('Modal not found:', modalId);
+                    }
+                });
+            });
+
+            // Close modal
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', function() {
+                    console.log('Closing modal');
+                    bachelorThesisModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && bachelorThesisModal.classList.contains('active')) {
+                    bachelorThesisModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Close modal when clicking on overlay
+            bachelorThesisModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    bachelorThesisModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
             // ==================== SCROLL ANIMATIONS ====================
             const observerOptions = {
                 threshold: 0.1,
@@ -1782,9 +2772,9 @@
                 });
             }, observerOptions);
 
-            // Observe visualization items
-            const visualizationItems = document.querySelectorAll('.visualization-item, .sketchup-project-item');
-            visualizationItems.forEach(item => {
+            // Observe all project items
+            const projectItems = document.querySelectorAll('.gallery-item, .thesis-project-item');
+            projectItems.forEach(item => {
                 if (!item.classList.contains('visible')) {
                     observer.observe(item);
                 }
@@ -1799,33 +2789,93 @@
             // ==================== HERO VIDEO OPTIMIZATION ====================
             const heroVideo = document.querySelector('.hero-animation');
             if (heroVideo) {
+                // Force high quality rendering
+                heroVideo.classList.add('video-quality-high');
+
+                // Set video attributes for better performance
+                heroVideo.playsInline = true;
+                heroVideo.muted = true;
+                heroVideo.loop = true;
+
                 // Preload video for better performance
                 heroVideo.preload = 'auto';
 
                 // Handle video loading
                 heroVideo.addEventListener('loadeddata', function() {
                     console.log('Hero video loaded successfully');
+                    // Try to play the video
+                    const playPromise = this.play();
+
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            console.log('Video playing successfully');
+                        }).catch(error => {
+                            console.log('Autoplay prevented, showing fallback:', error);
+                            showVideoFallback();
+                        });
+                    }
                 });
 
-                heroVideo.addEventListener('error', function() {
-                    console.error('Error loading hero video');
-                    // Fallback to background image if video fails to load
-                    heroVideo.style.display = 'none';
-                    document.querySelector('.hero-animation-container').style.backgroundImage = 'url(assest/SketchUp/images/web_path trace _000_hq.webp)';
-                    document.querySelector('.hero-animation-container').style.backgroundSize = 'cover';
-                    document.querySelector('.hero-animation-container').style.backgroundPosition = 'center';
+                heroVideo.addEventListener('error', function(e) {
+                    console.error('Error loading hero video:', e);
+                    showVideoFallback();
                 });
+
+                // Add error handling for unsupported formats
+                heroVideo.addEventListener('canplaythrough', function() {
+                    console.log('Video can play through');
+                });
+
+                // Try to load the video
+                heroVideo.load();
             }
+
+            function showVideoFallback() {
+                const container = document.querySelector('.hero-animation-container');
+                const video = document.querySelector('.hero-animation');
+
+                // Hide the video
+                if (video) {
+                    video.style.display = 'none';
+                }
+
+                // Show fallback background
+                if (container) {
+                    container.classList.add('video-fallback');
+                }
+            }
+
+            // Ensure video plays when user interacts with page
+            document.addEventListener('click', function() {
+                const video = document.querySelector('.hero-animation');
+                if (video && video.paused) {
+                    video.play().catch(e => {
+                        console.log('Cannot play video:', e);
+                    });
+                }
+            });
 
             // ==================== IMAGE FALLBACK HANDLING ====================
             document.querySelectorAll('img').forEach(img => {
                 img.addEventListener('error', function() {
                     console.error('Image failed to load:', this.src);
-                    this.style.backgroundColor = '#f5f5f5';
-                    this.style.padding = '20px';
-                    this.style.textAlign = 'center';
-                    this.style.color = '#8c8c8c';
-                    this.innerHTML = 'Image not available';
+                    // Check if it's a Rhino project image
+                    if (this.src.includes('Rhino')) {
+                        console.log('Rhino image not found at path:', this.src);
+                        // You might want to copy these images to your assest folder
+                        // For now, show placeholder
+                        this.style.backgroundColor = '#f5f5f5';
+                        this.style.padding = '20px';
+                        this.style.textAlign = 'center';
+                        this.style.color = '#8c8c8c';
+                        this.innerHTML = 'Rhino Project Image<br>(Please copy images to assest folder)';
+                    } else {
+                        this.style.backgroundColor = '#f5f5f5';
+                        this.style.padding = '20px';
+                        this.style.textAlign = 'center';
+                        this.style.color = '#8c8c8c';
+                        this.innerHTML = 'Image not available';
+                    }
                 });
             });
 
@@ -1845,6 +2895,12 @@
                     }
                 });
             });
+
+            // ==================== DEBUG LOGS ====================
+            console.log('Script initialization complete');
+            console.log('Galleries initialized:', Object.keys(galleries));
+            console.log('Modal buttons found:', openModalBtns.length);
+            console.log('Gallery buttons found:', document.querySelectorAll('.view-gallery-btn').length);
         });
     </script>
 </body>
