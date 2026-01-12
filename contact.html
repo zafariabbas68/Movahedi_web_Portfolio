@@ -12,8 +12,8 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
         (function() {
-            // Initialize EmailJS with your CORRECT Public Key
-            emailjs.init("vt1iJJfVprICgoENf"); // ✅ YOUR CORRECT PUBLIC KEY
+            // Initialize EmailJS with your Public Key
+            emailjs.init("vt1iJJfVprICgoENf");
         })();
     </script>
 
@@ -1652,50 +1652,12 @@
             const submitBtn = document.getElementById('submitBtn');
             const formMessage = document.getElementById('formMessage');
 
-            // Your CORRECT EmailJS Configuration
+            // EmailJS Configuration
             const EMAILJS_CONFIG = {
-                SERVICE_ID: 'service_awv9c04',    // ✅ Your Service ID
-                TEMPLATE_ID: 'template_6nkd28b',  // ✅ Your Template ID
-                PUBLIC_KEY: 'vt1iJJfVprICgoENf'   // ✅ Your Public Key
+                SERVICE_ID: 'service_awv9c04',
+                TEMPLATE_ID: 'template_6nkd28b',
+                PUBLIC_KEY: 'vt1iJJfVprICgoENf'
             };
-
-            // Test EmailJS connection on page load
-            async function testEmailJSConnection() {
-                console.log('🔍 Testing EmailJS connection...');
-
-                try {
-                    // Simple test to see if EmailJS is initialized
-                    const testParams = {
-                        to_email: 'movahedinajibeh@gmail.com',
-                        from_name: 'Test User',
-                        from_email: 'test@example.com',
-                        subject: 'Test Connection',
-                        message: 'Testing EmailJS connection...'
-                    };
-
-                    // Just check if we can access emailjs object
-                    console.log('EmailJS object:', emailjs);
-                    console.log('✅ EmailJS SDK loaded successfully');
-
-                    // Try a simple send to test connection
-                    const response = await emailjs.send(
-                        EMAILJS_CONFIG.SERVICE_ID,
-                        EMAILJS_CONFIG.TEMPLATE_ID,
-                        testParams
-                    );
-
-                    console.log('✅ EmailJS connection test successful!', response.status);
-                    return true;
-
-                } catch (error) {
-                    console.error('❌ EmailJS test failed:', error);
-                    showMessage('⚠️ EmailJS connection test failed. Please check console for details.', 'warning');
-                    return false;
-                }
-            }
-
-            // Run connection test
-            testEmailJSConnection();
 
             if (contactForm) {
                 contactForm.addEventListener('submit', async function(e) {
@@ -1710,7 +1672,7 @@
                         inquiry_type: document.getElementById('inquiry-type').value,
                         subject: document.getElementById('subject').value.trim(),
                         message: document.getElementById('message').value.trim(),
-                        to_email: 'movahedinajibeh@gmail.com', // Your email
+                        to_email: 'movahedinajibeh@gmail.com',
                         page_url: window.location.href,
                         submission_id: 'NM-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9).toUpperCase(),
                         time: new Date().toLocaleString('en-US', {
@@ -1893,80 +1855,33 @@
                 });
             });
 
-            // ==================== ADD TEST BUTTON (For Debugging) ====================
-            // Add a test button to debug EmailJS
-            const testButton = document.createElement('button');
-            testButton.innerHTML = '<i class="fas fa-vial"></i> Test EmailJS';
-            testButton.style.cssText = `
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                z-index: 9999;
-                padding: 12px 20px;
-                background: var(--dome-accent);
-                color: white;
-                border: none;
-                border-radius: 8px;
-                cursor: pointer;
-                font-family: 'Inter', sans-serif;
-                font-weight: 500;
-                box-shadow: 0 4px 12px rgba(204, 85, 0, 0.3);
-                transition: all 0.3s ease;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-            `;
-
-            testButton.onmouseover = function() {
-                this.style.transform = 'translateY(-2px)';
-                this.style.boxShadow = '0 6px 16px rgba(204, 85, 0, 0.4)';
-            };
-
-            testButton.onmouseout = function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = '0 4px 12px rgba(204, 85, 0, 0.3)';
-            };
-
-            testButton.onclick = async function() {
-                console.log('🧪 Running EmailJS test...');
-
-                const testParams = {
-                    from_name: 'Test User',
-                    from_email: 'test@example.com',
-                    phone: '+39 123 456 7890',
-                    inquiry_type: 'Test Inquiry',
-                    subject: 'EmailJS Test Message',
-                    message: 'This is a test message to verify EmailJS is working correctly.',
-                    to_email: 'movahedinajibeh@gmail.com',
-                    page_url: window.location.href,
-                    submission_id: 'TEST-' + Date.now(),
-                    time: new Date().toLocaleString(),
-                    year: new Date().getFullYear()
-                };
+            // ==================== EMAILJS VERIFICATION (NO TEST EMAIL) ====================
+            // Only verify EmailJS is loaded, don't send test email
+            function verifyEmailJS() {
+                console.log('🔍 Verifying EmailJS connection...');
 
                 try {
-                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Testing...';
-                    this.disabled = true;
-
-                    const response = await emailjs.send(
-                        EMAILJS_CONFIG.SERVICE_ID,
-                        EMAILJS_CONFIG.TEMPLATE_ID,
-                        testParams
-                    );
-
-                    console.log('✅ EmailJS Test Successful:', response);
-                    showMessage('✅ Test email sent successfully! Check your inbox.', 'success');
-
+                    // Just check if emailjs object exists
+                    if (typeof emailjs !== 'undefined') {
+                        console.log('✅ EmailJS SDK loaded successfully');
+                        showMessage('✅ Contact form is ready to send messages.', 'success');
+                        setTimeout(() => {
+                            formMessage.style.display = 'none';
+                        }, 3000);
+                        return true;
+                    } else {
+                        console.error('❌ EmailJS SDK not loaded');
+                        showMessage('⚠️ EmailJS is not properly loaded. Please refresh the page.', 'warning');
+                        return false;
+                    }
                 } catch (error) {
-                    console.error('❌ EmailJS Test Failed:', error);
-                    showMessage('❌ Test failed: ' + (error.text || error.message), 'error');
-                } finally {
-                    this.innerHTML = '<i class="fas fa-vial"></i> Test EmailJS';
-                    this.disabled = false;
+                    console.error('❌ EmailJS verification error:', error);
+                    return false;
                 }
-            };
+            }
 
-            document.body.appendChild(testButton);
+            // Verify EmailJS on page load (but don't send test email)
+            setTimeout(verifyEmailJS, 1000);
         });
     </script>
 </body>
