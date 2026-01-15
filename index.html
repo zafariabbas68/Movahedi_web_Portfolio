@@ -71,6 +71,188 @@
             transition: all 0.3s ease;
         }
 
+        /* ==================== LANGUAGE SELECTOR STYLES ==================== */
+        .language-selector {
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .current-language {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: var(--dome-white);
+            border: 1px solid var(--dome-border);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            color: var(--dome-black);
+        }
+
+        .current-language:hover {
+            border-color: var(--dome-accent);
+            background: var(--dome-hover);
+        }
+
+        .language-flag {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .language-flag img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--dome-white);
+            border: 1px solid var(--dome-border);
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            min-width: 180px;
+            display: none;
+            z-index: 1001;
+            margin-top: 10px;
+        }
+
+        .language-dropdown.active {
+            display: block;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--dome-border);
+        }
+
+        .language-option:last-child {
+            border-bottom: none;
+        }
+
+        .language-option:hover {
+            background: var(--dome-hover);
+        }
+
+        .language-option.active {
+            background: rgba(204, 85, 0, 0.1);
+            color: var(--dome-accent);
+        }
+
+        .language-name {
+            flex: 1;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .language-code {
+            font-size: 0.8rem;
+            color: var(--dome-gray);
+        }
+
+        /* Mobile language selector */
+        .mobile-language-selector {
+            margin-top: 40px;
+            display: none;
+        }
+
+        .mobile-language-options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .mobile-language-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            color: var(--dome-white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .mobile-language-option.active {
+            background: var(--dome-accent);
+            border-color: var(--dome-accent);
+        }
+
+        .mobile-language-option:hover {
+            background: var(--dome-accent);
+            transform: translateY(-2px);
+        }
+
+        /* Language indicator badge */
+        .language-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--dome-accent);
+            color: var(--dome-white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 9999;
+            display: none;
+            animation: fadeIn 0.3s ease;
+            box-shadow: 0 4px 15px rgba(204, 85, 0, 0.3);
+        }
+
+        /* RTL Support */
+        html[dir="rtl"] .language-selector {
+            margin-left: 0;
+            margin-right: 20px;
+        }
+
+        html[dir="rtl"] .language-dropdown {
+            right: auto;
+            left: 0;
+        }
+
+        html[dir="rtl"] .language-option {
+            direction: rtl;
+        }
+
+        html[dir="rtl"] .hero-description {
+            border-left: none;
+            border-right: 3px solid var(--dome-accent);
+            padding-left: 0;
+            padding-right: 20px;
+            text-align: right;
+        }
+
+        html[dir="rtl"] .section-title::after {
+            left: auto;
+            right: 50%;
+            transform: translateX(50%);
+        }
+
+        html[dir="rtl"] .footer-links a:hover {
+            padding-left: 0;
+            padding-right: 5px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* ==================== DOME-STYLE NAVIGATION ==================== */
         .navbar {
             background: var(--dome-white);
@@ -1312,6 +1494,15 @@
                 grid-template-columns: 1fr;
                 gap: 50px;
             }
+
+            /* Mobile language selector */
+            .language-selector {
+                display: none;
+            }
+
+            .mobile-language-selector {
+                display: block;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1457,6 +1648,17 @@
             .spec-value {
                 font-size: 1.8rem;
             }
+
+            .mobile-language-options {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .mobile-language-option {
+                width: 200px;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -1469,14 +1671,50 @@
                 <div class="logo-name">Najibeh Movahedi</div>
             </a>
 
-            <!-- Desktop Navigation - UPDATED TO MATCH FOOTER -->
-            <ul class="nav-links" id="desktopNav">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="blog.html">Academic Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+            <!-- Desktop Navigation with Language Selector -->
+            <div style="display: flex; align-items: center; gap: 40px;">
+                <ul class="nav-links" id="desktopNav">
+                    <li><a href="index.html" class="active" data-i18n="nav.home">Home</a></li>
+                    <li><a href="about.html" data-i18n="nav.about">About</a></li>
+                    <li><a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a></li>
+                    <li><a href="blog.html" data-i18n="nav.blog">Academic Blog</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+                </ul>
+
+                <!-- Language Selector -->
+                <div class="language-selector">
+                    <div class="current-language" id="currentLanguage">
+                        <div class="language-flag">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAyMCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEgyMFYxNEgwVjBaIiBmaWxsPSIjMDMxOTUxIi8+CjxwYXRoIGQ9Ik0wIDBIMjBWNkgwVjBaIiBmaWxsPSIjZmZmIi8+CjxwYXRoIGQ9Ik0wIDhIMjBWMTRIMFY4WiIgZmlsbD0iIzAzMTk1MSIvPgo8cmVjdCB4PSI0IiB5PSIwIiB3aWR0aD0iMTIiIGhlaWdodD0iMTQiIGZpbGw9IiNDMDAzMDQiLz4KPHBhdGggZD0iTTEwIDNMMTEuOTExIDcuNSAxNyA4LjI0MyAxMy41IDEwLjk4NSAxNC45MTEgMTUuNSAxMCAxMi44NTcgNS4wODkgMTUuNSA2LjUgMTAuOTg1IDMgOC4yNDMgOC4wODkgNy41IDEwIDNaIiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPgo=" alt="English">
+                        </div>
+                        <span class="language-name" id="currentLanguageName">EN</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="language-dropdown" id="languageDropdown">
+                        <div class="language-option active" data-lang="en">
+                            <div class="language-flag">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAyMCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEgyMFYxNEgwVjBaIiBmaWxsPSIjMDMxOTUxIi8+CjxwYXRoIGQ9Ik0wIDBIMjBWNkgwVjBaIiBmaWxsPSIjZmZmIi8+CjxwYXRoIGQ9Ik0wIDhIMjBWMTRIMFY4WiIgZmlsbD0iIzAzMTk1MSIvPgo8cmVjdCB4PSI0IiB5PSIwIiB3aWR0aD0iMTIiIGhlaWdodD0iMTQiIGZpbGw9IiNDMDAzMDQiLz4KPHBhdGggZD0iTTEwIDNMMTEuOTExIDcuNSAxNyA4LjI0MyAxMy41IDEwLjk4NSAxNC45MTEgMTUuNSAxMCAxMi44NTcgNS4wODkgMTUuNSA2LjUgMTAuOTg1IDMgOC4yNDMgOC4wODkgNy41IDEwIDNaIiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPgo=" alt="English">
+                            </div>
+                            <span class="language-name">English</span>
+                            <span class="language-code">EN</span>
+                        </div>
+                        <div class="language-option" data-lang="it">
+                            <div class="language-flag">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAyMCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEg2LjY2NlYxNEgwVjBaIiBmaWxsPSIjMDA5MjQ2Ii8+CjxwYXRoIGQ9Ik02LjY2NiAwSDEzLjMzM1YxNEg2LjY2NlYwWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNMTMuMzMzIDBIMjBWMTRIMTMuMzMzVjBaIiBmaWxsPSIjQ0UyQjJGIi8+Cjwvc3ZnPgo=" alt="Italian">
+                            </div>
+                            <span class="language-name">Italiano</span>
+                            <span class="language-code">IT</span>
+                        </div>
+                        <div class="language-option" data-lang="fa">
+                            <div class="language-flag">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAyMCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEgyMFYxNEgwVjBaIiBmaWxsPSIjMzZhNzAwIi8+CjxwYXRoIGQ9Ik0wIDBIMjBWNkgwVjBaIiBmaWxsPSIjZWEyYzJjIi8+CjxwYXRoIGQ9Ik0wIDhIMjBWMTRIMFY4WiIgZmlsbD0iIzM2YTcwMCIvPgo8L3N2Zz4K" alt="Persian">
+                            </div>
+                            <span class="language-name">فارسی</span>
+                            <span class="language-code">FA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Mobile Menu Toggle -->
             <button class="menu-toggle" id="menuToggle">
@@ -1486,17 +1724,46 @@
             </button>
         </div>
 
-        <!-- Mobile Navigation Menu - UPDATED TO MATCH FOOTER -->
+        <!-- Mobile Navigation Menu with Language Selector -->
         <div class="mobile-menu" id="mobileMenu">
             <ul class="mobile-nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="blog.html">Academic Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" class="active" data-i18n="nav.home">Home</a></li>
+                <li><a href="about.html" data-i18n="nav.about">About</a></li>
+                <li><a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a></li>
+                <li><a href="blog.html" data-i18n="nav.blog">Academic Blog</a></li>
+                <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
             </ul>
+
+            <!-- Mobile Language Selector -->
+            <div class="mobile-language-selector">
+                <div class="mobile-language-options">
+                    <div class="mobile-language-option active" data-lang="en">
+                        <div class="language-flag">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAyMCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEgyMFYxNEgwVjBaIiBmaWxsPSIjMDMxOTUxIi8+CjxwYXRoIGQ9Ik0wIDBIMjBWNkgwVjBaIiBmaWxsPSIjZmZmIi8+CjxwYXRoIGQ9Ik0wIDhIMjBWMTRIMFY4WiIgZmlsbD0iIzAzMTk1MSIvPgo8cmVjdCB4PSI0IiB5PSIwIiB3aWR0aD0iMTIiIGhlaWdodD0iMTQiIGZpbGw9IiNDMDAzMDQiLz4KPHBhdGggZD0iTTEwIDNMMTEuOTExIDcuNSAxNyA4LjI0MyAxMy41IDEwLjk4NSAxNC45MTEgMTUuNSAxMCAxMi44NTcgNS4wODkgMTUuNSA2LjUgMTAuOTg1IDMgOC4yNDMgOC4wODkgNy41IDEwIDNaIiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPgo=" alt="English">
+                        </div>
+                        <span>English</span>
+                    </div>
+                    <div class="mobile-language-option" data-lang="it">
+                        <div class="language-flag">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAyMCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEg2LjY2NlYxNEgwVjBaIiBmaWxsPSIjMDA5MjQ2Ii8+CjxwYXRoIGQ9Ik02LjY2NiAwSDEzLjMzM1YxNEg2LjY2NlYwWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNMTMuMzMzIDBIMjBWMTRIMTMuMzMzVjBaIiBmaWxsPSIjQ0UyQjJGIi8+Cjwvc3ZnPgo=" alt="Italian">
+                        </div>
+                        <span>Italiano</span>
+                    </div>
+                    <div class="mobile-language-option" data-lang="fa">
+                        <div class="language-flag">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAyMCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEgyMFYxNEgwVjBaIiBmaWxsPSIjMzZhNzAwIi8+CjxwYXRoIGQ9Ik0wIDBIMjBWNkgwVjBaIiBmaWxsPSIjZWEyYzJjIi8+CjxwYXRoIGQ9Ik0wIDhIMjBWMTRIMFY4WiIgZmlsbD0iIzM2YTcwMCIvPgo8L3N2Zz4K" alt="Persian">
+                        </div>
+                        <span>فارسی</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
+
+    <!-- Language Change Indicator -->
+    <div class="language-indicator" id="languageIndicator">
+        Language changed to <span id="indicatorLanguage">English</span>
+    </div>
 
     <!-- Hero Section with Video -->
     <section class="hero">
@@ -1509,18 +1776,18 @@
         </div>
         <div class="container">
             <div class="hero-content">
-                <h1 class="page-title" style="animation: fadeInUp 0.6s ease forwards;">Interior Architecture &<br>Spatial Design</h1>
-                <p class="hero-description" style="animation: fadeInUp 0.6s ease forwards 0.1s;">
+                <h1 class="page-title" style="animation: fadeInUp 0.6s ease forwards;" data-i18n="hero.title">Interior Architecture &<br>Spatial Design</h1>
+                <p class="hero-description" style="animation: fadeInUp 0.6s ease forwards 0.1s;" data-i18n="hero.description">
                     Crafting immersive environments through sophisticated interplay of light, materiality, and form.
                     Specializing in spatial narratives that evoke emotion while maintaining functional excellence.
                     Where Persian artistic heritage meets contemporary Italian design principles.
                 </p>
 
                 <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary" style="animation: fadeInUp 0.6s ease forwards 0.2s;">
+                    <a href="#projects" class="btn btn-primary" style="animation: fadeInUp 0.6s ease forwards 0.2s;" data-i18n="hero.cta.projects">
                         <i class="fas fa-arrow-down"></i> View Featured Projects
                     </a>
-                    <a href="#workshop" class="btn" style="animation: fadeInUp 0.6s ease forwards 0.2s;">
+                    <a href="#workshop" class="btn" style="animation: fadeInUp 0.6s ease forwards 0.2s;" data-i18n="hero.cta.workshop">
                         <i class="fas fa-hotel"></i> Workshop Hospitality
                     </a>
                 </div>
@@ -1533,18 +1800,18 @@
         <div class="container">
             <div class="intro-container">
                 <div class="intro-text animate-left">
-                    <h2>Design Philosophy</h2>
-                    <p>
+                    <h2 data-i18n="philosophy.title">Design Philosophy</h2>
+                    <p data-i18n="philosophy.para1">
                         Interior architecture transcends mere decoration—it's the art of shaping human experience through space.
                         Our approach integrates rigorous academic research from Politecnico di Milano with practical application,
                         focusing on how spatial design influences perception, emotion, and behavior.
                     </p>
-                    <p>
+                    <p data-i18n="philosophy.para2">
                         We believe in evidence-based design where every decision—from material selection to lighting strategy—is
                         informed by principles of spatial psychology, color theory, and sustainable practice. This methodology
                         ensures environments that are not only aesthetically compelling but also enhance wellbeing and functionality.
                     </p>
-                    <p>
+                    <p data-i18n="philosophy.para3">
                         Specializing in transitional spaces and adaptive reuse, we transform underutilized areas into meaningful
                         environments that serve communities while respecting ecological balance and cultural context.
                     </p>
@@ -1553,7 +1820,7 @@
                     <img src="assest/3Dmax/room-design_resized_1920px.jpg"
                          alt="3DMax Interior Design Render"
                          style="width:100%; height:100%;">
-                    <div class="render-badge">
+                    <div class="render-badge" data-i18n="philosophy.badge">
                         <i class="fas fa-cube"></i> 3DMax Professional Render
                     </div>
                 </div>
@@ -1565,8 +1832,8 @@
     <section class="content-section" id="projects">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title animate-on-scroll">Featured Studio Projects</h2>
-                <p class="section-subtitle animate-on-scroll delay-1">
+                <h2 class="section-title animate-on-scroll" data-i18n="projects.title">Featured Studio Projects</h2>
+                <p class="section-subtitle animate-on-scroll delay-1" data-i18n="projects.subtitle">
                     A selection of recent spatial design explorations and architectural interventions
                     that demonstrate our studio's approach to creating meaningful environments.
                 </p>
@@ -1576,25 +1843,25 @@
                 <!-- Project 1: Farm to Fork -->
                 <div class="project-item">
                     <div class="project-info animate-left">
-                        <div class="project-number">Project 01</div>
-                        <h3 class="project-name">Farm to Fork</h3>
-                        <p class="project-description">
+                        <div class="project-number" data-i18n="projects.farm.number">Project 01</div>
+                        <h3 class="project-name" data-i18n="projects.farm.title">Farm to Fork</h3>
+                        <p class="project-description" data-i18n="projects.farm.description">
                             An innovative exploration of ephemeral architecture that transforms transit spaces into
                             vibrant community hubs through modular hydroponic systems. This project reimagines food
                             production within urban environments, creating sustainable ecosystems in transitional spaces.
                         </p>
                         <div class="project-meta">
-                            <span class="meta-tag">Sustainable Design</span>
-                            <span class="meta-tag">Modular Architecture</span>
-                            <span class="meta-tag">Urban Farming</span>
-                            <span class="meta-tag">Community Spaces</span>
+                            <span class="meta-tag" data-i18n="projects.farm.tags.sustainable">Sustainable Design</span>
+                            <span class="meta-tag" data-i18n="projects.farm.tags.modular">Modular Architecture</span>
+                            <span class="meta-tag" data-i18n="projects.farm.tags.urban">Urban Farming</span>
+                            <span class="meta-tag" data-i18n="projects.farm.tags.community">Community Spaces</span>
                         </div>
                         <div class="project-actions">
                             <a href="assest/Ephemeral_Temporal_spaces/BOOK PROVA FINALE_compressed_screen.pdf"
-                               class="btn btn-primary" target="_blank">
+                               class="btn btn-primary" target="_blank" data-i18n="projects.farm.actions.view">
                                 <i class="fas fa-external-link-alt"></i> View Full PDF
                             </a>
-                            <a href="#farm-gallery" class="btn">
+                            <a href="#farm-gallery" class="btn" data-i18n="projects.farm.actions.gallery">
                                 <i class="fas fa-images"></i> View Gallery
                             </a>
                         </div>
@@ -1634,8 +1901,8 @@
                 <!-- Farm to Fork Gallery - Immediately after project -->
                 <div id="farm-gallery" class="project-gallery-section">
                     <div class="gallery-header">
-                        <h3 class="gallery-title">Farm to Fork Collection</h3>
-                        <p class="gallery-description">
+                        <h3 class="gallery-title" data-i18n="galleries.farm.title">Farm to Fork Collection</h3>
+                        <p class="gallery-description" data-i18n="galleries.farm.description">
                             Visual documentation of the modular hydroponic farming system, from initial concept sketches
                             to detailed technical drawings and construction specifications.
                         </p>
@@ -1701,25 +1968,25 @@
                         </div>
                     </div>
                     <div class="project-info animate-right delay-1">
-                        <div class="project-number">Project 02</div>
-                        <h3 class="project-name">Lake Varese</h3>
-                        <p class="project-description">
+                        <div class="project-number" data-i18n="projects.lake.number">Project 02</div>
+                        <h3 class="project-name" data-i18n="projects.lake.title">Lake Varese</h3>
+                        <p class="project-description" data-i18n="projects.lake.description">
                             A comprehensive landscape architecture project focusing on ecological restoration and
                             sustainable development of lakefront spaces. This design integrates natural ecosystems
                             with recreational areas, creating harmony between built environment and natural systems.
                         </p>
                         <div class="project-meta">
-                            <span class="meta-tag">Landscape Architecture</span>
-                            <span class="meta-tag">Ecological Design</span>
-                            <span class="meta-tag">Public Space</span>
-                            <span class="meta-tag">Sustainable Development</span>
+                            <span class="meta-tag" data-i18n="projects.lake.tags.landscape">Landscape Architecture</span>
+                            <span class="meta-tag" data-i18n="projects.lake.tags.ecological">Ecological Design</span>
+                            <span class="meta-tag" data-i18n="projects.lake.tags.public">Public Space</span>
+                            <span class="meta-tag" data-i18n="projects.lake.tags.sustainable">Sustainable Development</span>
                         </div>
                         <div class="project-actions">
                             <a href="assest/Lake varese_Landscape/Exam_Book x stampadef_compressed_ebook_compressed_screen.pdf"
-                               class="btn btn-primary" target="_blank">
+                               class="btn btn-primary" target="_blank" data-i18n="projects.lake.actions.view">
                                 <i class="fas fa-external-link-alt"></i> View Full PDF
                             </a>
-                            <a href="#lake-gallery" class="btn">
+                            <a href="#lake-gallery" class="btn" data-i18n="projects.lake.actions.gallery">
                                 <i class="fas fa-images"></i> View Gallery
                             </a>
                         </div>
@@ -1729,8 +1996,8 @@
                 <!-- Lake Varese Gallery - Immediately after project -->
                 <div id="lake-gallery" class="project-gallery-section">
                     <div class="gallery-header">
-                        <h3 class="gallery-title">Lake Varese Collection</h3>
-                        <p class="gallery-description">
+                        <h3 class="gallery-title" data-i18n="galleries.lake.title">Lake Varese Collection</h3>
+                        <p class="gallery-description" data-i18n="galleries.lake.description">
                             Comprehensive documentation of the ecological restoration project, including site analysis,
                             master planning, 3D visualizations, and sustainable development strategies.
                         </p>
@@ -1771,9 +2038,9 @@
         <div class="container">
             <!-- Project Header -->
             <div class="workshop-detail-header">
-                <div class="workshop-category">Sustainable Hospitality</div>
-                <h2 class="workshop-main-title">Workshop Hospitality</h2>
-                <p class="workshop-tagline">
+                <div class="workshop-category" data-i18n="workshop.category">Sustainable Hospitality</div>
+                <h2 class="workshop-main-title" data-i18n="workshop.title">Workshop Hospitality</h2>
+                <p class="workshop-tagline" data-i18n="workshop.tagline">
                     A sustainable hospitality workshop in Xishuangbanna, Yunnan, blending eco-conscious design
                     with authentic cultural immersion.
                 </p>
@@ -1782,8 +2049,8 @@
             <!-- Workshop Hospitality Slider Gallery -->
             <div class="project-gallery-section">
                 <div class="gallery-header">
-                    <h3 class="gallery-title">Project Documentation</h3>
-                    <p class="gallery-description">
+                    <h3 class="gallery-title" data-i18n="galleries.workshop.title">Project Documentation</h3>
+                    <p class="gallery-description" data-i18n="galleries.workshop.description">
                         Comprehensive visual documentation including plans, sections, detailed views and 3D visualizations
                     </p>
                 </div>
@@ -1823,20 +2090,20 @@
                         <img src="assest/Workshop_Hospitality/view1_resized_1920px.jpg" alt="Sustainable Design">
                     </div>
                     <div class="info-content">
-                        <div class="info-subtitle">Sustainability</div>
-                        <h3 class="info-title">Eco-Conscious Design Principles</h3>
-                        <p class="info-text">
+                        <div class="info-subtitle" data-i18n="workshop.sustainability.subtitle">Sustainability</div>
+                        <h3 class="info-title" data-i18n="workshop.sustainability.title">Eco-Conscious Design Principles</h3>
+                        <p class="info-text" data-i18n="workshop.sustainability.para1">
                             Our project is built on sustainability principles, incorporating natural materials and ingredients for lasting durability. The self-sufficiency in our construction methods not only enhances the longevity of the structures but also aligns seamlessly with our commitment to environmental responsibility.
                         </p>
-                        <p class="info-text">
+                        <p class="info-text" data-i18n="workshop.sustainability.para2">
                             Embrace a harmonious blend of natural elements and conscientious design for an eco-friendly and enduring experience.
                         </p>
                         <ul class="info-features">
-                            <li><i class="fas fa-check"></i> Natural local materials</li>
-                            <li><i class="fas fa-check"></i> Passive cooling systems</li>
-                            <li><i class="fas fa-check"></i> Rainwater harvesting</li>
-                            <li><i class="fas fa-check"></i> Solar energy integration</li>
-                            <li><i class="fas fa-check"></i> Waste management systems</li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="workshop.sustainability.features.1">Natural local materials</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="workshop.sustainability.features.2">Passive cooling systems</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="workshop.sustainability.features.3">Rainwater harvesting</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="workshop.sustainability.features.4">Solar energy integration</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="workshop.sustainability.features.5">Waste management systems</span></li>
                         </ul>
                     </div>
                 </div>
@@ -1847,20 +2114,20 @@
                         <img src="assest/Workshop_Hospitality/view2_resized_1920px.jpg" alt="Cultural Integration">
                     </div>
                     <div class="info-content">
-                        <div class="info-subtitle">Cultural Immersion</div>
-                        <h3 class="info-title">Authentic Dai Cultural Experience</h3>
-                        <p class="info-text">
+                        <div class="info-subtitle" data-i18n="workshop.culture.subtitle">Cultural Immersion</div>
+                        <h3 class="info-title" data-i18n="workshop.culture.title">Authentic Dai Cultural Experience</h3>
+                        <p class="info-text" data-i18n="workshop.culture.para1">
                             Our establishment warmly welcomes visitors seeking a serene green environment. Immerse yourself in a unique experience as you stay with us, participating in activities such as planting, harvesting the high quality of local tea and contributing to the maintenance of our pristine surroundings.
                         </p>
-                        <p class="info-text">
+                        <p class="info-text" data-i18n="workshop.culture.para2">
                             Your presence will not only enrich your own journey but also contribute to the sustainable ethos of our community.
                         </p>
                         <ul class="info-features">
-                            <li><i class="fas fa-check"></i> Traditional Dai architecture</li>
-                            <li><i class="fas fa-check"></i> Tea cultivation workshops</li>
-                            <li><i class="fas fa-check"></i> Cultural immersion activities</li>
-                            <li><i class="fas fa-check"></i> Community engagement</li>
-                            <li><i class="fas fa-check"></i> Environmental stewardship</li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="workshop.culture.features.1">Traditional Dai architecture</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="workshop.culture.features.2">Tea cultivation workshops</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="workshop.culture.features.3">Cultural immersion activities</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="workshop.culture.features.4">Community engagement</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="workshop.culture.features.5">Environmental stewardship</span></li>
                         </ul>
                     </div>
                 </div>
@@ -1871,12 +2138,12 @@
                         <img src="assest/Workshop_Hospitality/view3_resized_1920px.jpg" alt="Location Context">
                     </div>
                     <div class="info-content">
-                        <div class="info-subtitle">Location</div>
-                        <h3 class="info-title">Xishuangbanna, Yunnan</h3>
-                        <p class="info-text">
+                        <div class="info-subtitle" data-i18n="workshop.location.subtitle">Location</div>
+                        <h3 class="info-title" data-i18n="workshop.location.title">Xishuangbanna, Yunnan</h3>
+                        <p class="info-text" data-i18n="workshop.location.para1">
                             Xishuangbanna is an autonomous prefecture in China's southwestern Yunnan province, bordering Myanmar and Laos. It's known for Dai culture, distinctive temples and tropical rainforests. Prefectural capital, Jinghong, offers palm-lined streets, and the Tropical Flower and Plants Garden with a large number of fruit trees and blossoms.
                         </p>
-                        <p class="info-text">
+                        <p class="info-text" data-i18n="workshop.location.para2">
                             The city's Mengle Buddhist temple is a vast Dai religious complex completed in 2007, showcasing the rich cultural heritage that inspires our design.
                         </p>
                     </div>
@@ -1886,35 +2153,35 @@
             <!-- Project Specifications - FIXED LAYOUT -->
             <div class="project-specs">
                 <div class="specs-header">
-                    <h3 class="specs-title">Project Specifications</h3>
-                    <p class="specs-description">
+                    <h3 class="specs-title" data-i18n="workshop.specs.title">Project Specifications</h3>
+                    <p class="specs-description" data-i18n="workshop.specs.description">
                         Detailed technical information and environmental context
                     </p>
                 </div>
                 <div class="specs-grid">
                     <div class="spec-item">
                         <div class="spec-value">30°C</div>
-                        <div class="spec-label">Average Temperature</div>
+                        <div class="spec-label" data-i18n="workshop.specs.temperature">Average Temperature</div>
                     </div>
                     <div class="spec-item">
                         <div class="spec-value">26%</div>
-                        <div class="spec-label">Humidity</div>
+                        <div class="spec-label" data-i18n="workshop.specs.humidity">Humidity</div>
                     </div>
                     <div class="spec-item">
                         <div class="spec-value">19,096 km²</div>
-                        <div class="spec-label">Area</div>
+                        <div class="spec-label" data-i18n="workshop.specs.area">Area</div>
                     </div>
                     <div class="spec-item">
                         <div class="spec-value">Yunnan</div>
-                        <div class="spec-label">Province</div>
+                        <div class="spec-label" data-i18n="workshop.specs.province">Province</div>
                     </div>
                     <div class="spec-item long-text">
                         <div class="spec-value">Shorea Wangtianshuea</div>
-                        <div class="spec-label">Protected Tree Species</div>
+                        <div class="spec-label" data-i18n="workshop.specs.trees">Protected Tree Species</div>
                     </div>
                     <div class="spec-item long-text">
                         <div class="spec-value">Dai Architecture</div>
-                        <div class="spec-label">Architectural Style</div>
+                        <div class="spec-label" data-i18n="workshop.specs.style">Architectural Style</div>
                     </div>
                 </div>
             </div>
@@ -1922,7 +2189,7 @@
             <!-- Project Actions -->
             <div class="project-actions" style="justify-content: center; margin-top: 60px;">
                 <a href="assest/Workshop_Hospitality/sketchUp-3.pdf"
-                   class="btn btn-primary" target="_blank">
+                   class="btn btn-primary" target="_blank" data-i18n="workshop.actions.pdf">
                     <i class="fas fa-external-link-alt"></i> View Full PDF Documentation
                 </a>
             </div>
@@ -1938,7 +2205,7 @@
                         <div class="footer-logo-symbol">NM</div>
                         <div class="footer-signature">Najibeh Movahedi</div>
                     </div>
-                    <p class="footer-about">
+                    <p class="footer-about" data-i18n="footer.about">
                         Interior Architect & Spatial Designer blending Persian artistic heritage with contemporary Italian design principles. Master's candidate at Politecnico di Milano, specializing in spatial perception, color theory, and light manipulation.
                     </p>
                     <div class="social-links">
@@ -1950,44 +2217,44 @@
                 </div>
 
                 <div class="footer-column">
-                    <h4>Navigation</h4>
+                    <h4 data-i18n="footer.navigation">Navigation</h4>
                     <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="blog.html">Academic Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                        <li><a href="about.html" data-i18n="nav.about">About</a></li>
+                        <li><a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a></li>
+                        <li><a href="blog.html" data-i18n="nav.blog">Academic Blog</a></li>
+                        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
-                    <h4>Contact Info</h4>
+                    <h4 data-i18n="footer.contact">Contact Info</h4>
                     <ul class="footer-contact">
                         <li>
                             <i class="fas fa-envelope"></i>
                             <div>
-                                <strong>Academic Email</strong><br>
+                                <strong data-i18n="footer.email.academic">Academic Email</strong><br>
                                 <span>najibeh.movahedi@mail.polimi.it</span>
                             </div>
                         </li>
                         <li>
                             <i class="fas fa-envelope"></i>
                             <div>
-                                <strong>Personal Email</strong><br>
+                                <strong data-i18n="footer.email.personal">Personal Email</strong><br>
                                 <span>movahedinajibeh@gmail.com</span>
                             </div>
                         </li>
                         <li>
                             <i class="fas fa-map-marker-alt"></i>
                             <div>
-                                <strong>Location</strong><br>
+                                <strong data-i18n="footer.location">Location</strong><br>
                                 <span>Milan, Italy</span>
                             </div>
                         </li>
                         <li>
                             <i class="fas fa-graduation-cap"></i>
                             <div>
-                                <strong>University</strong><br>
+                                <strong data-i18n="footer.university">University</strong><br>
                                 <span>Politecnico di Milano</span>
                             </div>
                         </li>
@@ -1996,14 +2263,547 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2024 Najibeh Movahedi. | Interior Architect & Spatial Designer | Politecnico di Milano</p>
+                <p>&copy; 2024 Najibeh Movahedi. | <span data-i18n="footer.copyright">Interior Architect & Spatial Designer</span> | Politecnico di Milano</p>
             </div>
         </div>
     </footer>
 
     <!-- JavaScript -->
     <script>
+        // ==================== LANGUAGE MANAGEMENT SYSTEM ====================
+        const translations = {
+            en: {
+                // Navigation
+                "nav.home": "Home",
+                "nav.about": "About",
+                "nav.portfolio": "Portfolio",
+                "nav.blog": "Academic Blog",
+                "nav.contact": "Contact",
+
+                // Hero Section
+                "hero.title": "Interior Architecture &<br>Spatial Design",
+                "hero.description": "Crafting immersive environments through sophisticated interplay of light, materiality, and form. Specializing in spatial narratives that evoke emotion while maintaining functional excellence. Where Persian artistic heritage meets contemporary Italian design principles.",
+                "hero.cta.projects": "View Featured Projects",
+                "hero.cta.workshop": "Workshop Hospitality",
+
+                // Design Philosophy
+                "philosophy.title": "Design Philosophy",
+                "philosophy.para1": "Interior architecture transcends mere decoration—it's the art of shaping human experience through space. Our approach integrates rigorous academic research from Politecnico di Milano with practical application, focusing on how spatial design influences perception, emotion, and behavior.",
+                "philosophy.para2": "We believe in evidence-based design where every decision—from material selection to lighting strategy—is informed by principles of spatial psychology, color theory, and sustainable practice. This methodology ensures environments that are not only aesthetically compelling but also enhance wellbeing and functionality.",
+                "philosophy.para3": "Specializing in transitional spaces and adaptive reuse, we transform underutilized areas into meaningful environments that serve communities while respecting ecological balance and cultural context.",
+                "philosophy.badge": "3DMax Professional Render",
+
+                // Projects Section
+                "projects.title": "Featured Studio Projects",
+                "projects.subtitle": "A selection of recent spatial design explorations and architectural interventions that demonstrate our studio's approach to creating meaningful environments.",
+
+                // Farm to Fork Project
+                "projects.farm.number": "Project 01",
+                "projects.farm.title": "Farm to Fork",
+                "projects.farm.description": "An innovative exploration of ephemeral architecture that transforms transit spaces into vibrant community hubs through modular hydroponic systems. This project reimagines food production within urban environments, creating sustainable ecosystems in transitional spaces.",
+                "projects.farm.tags.sustainable": "Sustainable Design",
+                "projects.farm.tags.modular": "Modular Architecture",
+                "projects.farm.tags.urban": "Urban Farming",
+                "projects.farm.tags.community": "Community Spaces",
+                "projects.farm.actions.view": "View Full PDF",
+                "projects.farm.actions.gallery": "View Gallery",
+
+                // Lake Varese Project
+                "projects.lake.number": "Project 02",
+                "projects.lake.title": "Lake Varese",
+                "projects.lake.description": "A comprehensive landscape architecture project focusing on ecological restoration and sustainable development of lakefront spaces. This design integrates natural ecosystems with recreational areas, creating harmony between built environment and natural systems.",
+                "projects.lake.tags.landscape": "Landscape Architecture",
+                "projects.lake.tags.ecological": "Ecological Design",
+                "projects.lake.tags.public": "Public Space",
+                "projects.lake.tags.sustainable": "Sustainable Development",
+                "projects.lake.actions.view": "View Full PDF",
+                "projects.lake.actions.gallery": "View Gallery",
+
+                // Galleries
+                "galleries.farm.title": "Farm to Fork Collection",
+                "galleries.farm.description": "Visual documentation of the modular hydroponic farming system, from initial concept sketches to detailed technical drawings and construction specifications.",
+                "galleries.lake.title": "Lake Varese Collection",
+                "galleries.lake.description": "Comprehensive documentation of the ecological restoration project, including site analysis, master planning, 3D visualizations, and sustainable development strategies.",
+                "galleries.workshop.title": "Project Documentation",
+                "galleries.workshop.description": "Comprehensive visual documentation including plans, sections, detailed views and 3D visualizations",
+
+                // Workshop Section
+                "workshop.category": "Sustainable Hospitality",
+                "workshop.title": "Workshop Hospitality",
+                "workshop.tagline": "A sustainable hospitality workshop in Xishuangbanna, Yunnan, blending eco-conscious design with authentic cultural immersion.",
+
+                "workshop.sustainability.subtitle": "Sustainability",
+                "workshop.sustainability.title": "Eco-Conscious Design Principles",
+                "workshop.sustainability.para1": "Our project is built on sustainability principles, incorporating natural materials and ingredients for lasting durability. The self-sufficiency in our construction methods not only enhances the longevity of the structures but also aligns seamlessly with our commitment to environmental responsibility.",
+                "workshop.sustainability.para2": "Embrace a harmonious blend of natural elements and conscientious design for an eco-friendly and enduring experience.",
+                "workshop.sustainability.features.1": "Natural local materials",
+                "workshop.sustainability.features.2": "Passive cooling systems",
+                "workshop.sustainability.features.3": "Rainwater harvesting",
+                "workshop.sustainability.features.4": "Solar energy integration",
+                "workshop.sustainability.features.5": "Waste management systems",
+
+                "workshop.culture.subtitle": "Cultural Immersion",
+                "workshop.culture.title": "Authentic Dai Cultural Experience",
+                "workshop.culture.para1": "Our establishment warmly welcomes visitors seeking a serene green environment. Immerse yourself in a unique experience as you stay with us, participating in activities such as planting, harvesting the high quality of local tea and contributing to the maintenance of our pristine surroundings.",
+                "workshop.culture.para2": "Your presence will not only enrich your own journey but also contribute to the sustainable ethos of our community.",
+                "workshop.culture.features.1": "Traditional Dai architecture",
+                "workshop.culture.features.2": "Tea cultivation workshops",
+                "workshop.culture.features.3": "Cultural immersion activities",
+                "workshop.culture.features.4": "Community engagement",
+                "workshop.culture.features.5": "Environmental stewardship",
+
+                "workshop.location.subtitle": "Location",
+                "workshop.location.title": "Xishuangbanna, Yunnan",
+                "workshop.location.para1": "Xishuangbanna is an autonomous prefecture in China's southwestern Yunnan province, bordering Myanmar and Laos. It's known for Dai culture, distinctive temples and tropical rainforests. Prefectural capital, Jinghong, offers palm-lined streets, and the Tropical Flower and Plants Garden with a large number of fruit trees and blossoms.",
+                "workshop.location.para2": "The city's Mengle Buddhist temple is a vast Dai religious complex completed in 2007, showcasing the rich cultural heritage that inspires our design.",
+
+                "workshop.specs.title": "Project Specifications",
+                "workshop.specs.description": "Detailed technical information and environmental context",
+                "workshop.specs.temperature": "Average Temperature",
+                "workshop.specs.humidity": "Humidity",
+                "workshop.specs.area": "Area",
+                "workshop.specs.province": "Province",
+                "workshop.specs.trees": "Protected Tree Species",
+                "workshop.specs.style": "Architectural Style",
+
+                "workshop.actions.pdf": "View Full PDF Documentation",
+
+                // Footer
+                "footer.about": "Interior Architect & Spatial Designer blending Persian artistic heritage with contemporary Italian design principles. Master's candidate at Politecnico di Milano, specializing in spatial perception, color theory, and light manipulation.",
+                "footer.navigation": "Navigation",
+                "footer.contact": "Contact Info",
+                "footer.email.academic": "Academic Email",
+                "footer.email.personal": "Personal Email",
+                "footer.location": "Location",
+                "footer.university": "University",
+                "footer.copyright": "Interior Architect & Spatial Designer"
+            },
+
+            it: {
+                // Navigation
+                "nav.home": "Home",
+                "nav.about": "Chi Sono",
+                "nav.portfolio": "Portfolio",
+                "nav.blog": "Blog Accademico",
+                "nav.contact": "Contatti",
+
+                // Hero Section
+                "hero.title": "Architettura d'Interni &<br>Design Spaziale",
+                "hero.description": "Creazione di ambienti immersivi attraverso l'interazione sofisticata di luce, materialità e forma. Specializzato in narrazioni spaziali che suscitano emozioni mantenendo l'eccellenza funzionale. Dove il patrimonio artistico persiano incontra i principi del design italiano contemporaneo.",
+                "hero.cta.projects": "Vedi Progetti in Primo Piano",
+                "hero.cta.workshop": "Workshop Hospitality",
+
+                // Design Philosophy
+                "philosophy.title": "Filosofia del Design",
+                "philosophy.para1": "L'architettura d'interni trascende la mera decorazione—è l'arte di plasmare l'esperienza umana attraverso lo spazio. Il nostro approccio integra la rigorosa ricerca accademica del Politecnico di Milano con l'applicazione pratica, concentrandosi su come il design spaziale influenza percezione, emozione e comportamento.",
+                "philosophy.para2": "Crediamo in un design basato sull'evidenza dove ogni decisione—dalla selezione dei materiali alla strategia illuminotecnica—è informata da principi di psicologia spaziale, teoria del colore e pratica sostenibile. Questa metodologia garantisce ambienti non solo esteticamente convincenti ma anche migliorativi del benessere e della funzionalità.",
+                "philosophy.para3": "Specializzati in spazi di transizione e riuso adattivo, trasformiamo aree sottoutilizzate in ambienti significativi che servono le comunità rispettando l'equilibrio ecologico e il contesto culturale.",
+                "philosophy.badge": "Render Professionale 3DMax",
+
+                // Projects Section
+                "projects.title": "Progetti dello Studio in Primo Piano",
+                "projects.subtitle": "Una selezione di recenti esplorazioni di design spaziale e interventi architettonici che dimostrano l'approccio del nostro studio nella creazione di ambienti significativi.",
+
+                // Farm to Fork Project
+                "projects.farm.number": "Progetto 01",
+                "projects.farm.title": "Farm to Fork",
+                "projects.farm.description": "Un'esplorazione innovativa di architettura effimera che trasforma spazi di transito in vivaci hub comunitari attraverso sistemi idroponici modulari. Questo progetto reinventa la produzione alimentare negli ambienti urbani, creando ecosistemi sostenibili in spazi di transizione.",
+                "projects.farm.tags.sustainable": "Design Sostenibile",
+                "projects.farm.tags.modular": "Architettura Modulare",
+                "projects.farm.tags.urban": "Agricoltura Urbana",
+                "projects.farm.tags.community": "Spazi Comunitari",
+                "projects.farm.actions.view": "Vedi PDF Completo",
+                "projects.farm.actions.gallery": "Vedi Galleria",
+
+                // Lake Varese Project
+                "projects.lake.number": "Progetto 02",
+                "projects.lake.title": "Lago di Varese",
+                "projects.lake.description": "Un progetto completo di architettura del paesaggio focalizzato sul ripristino ecologico e lo sviluppo sostenibile degli spazi lacustri. Questo design integra ecosistemi naturali con aree ricreative, creando armonia tra ambiente costruito e sistemi naturali.",
+                "projects.lake.tags.landscape": "Architettura del Paesaggio",
+                "projects.lake.tags.ecological": "Design Ecologico",
+                "projects.lake.tags.public": "Spazio Pubblico",
+                "projects.lake.tags.sustainable": "Sviluppo Sostenibile",
+                "projects.lake.actions.view": "Vedi PDF Completo",
+                "projects.lake.actions.gallery": "Vedi Galleria",
+
+                // Galleries
+                "galleries.farm.title": "Collezione Farm to Fork",
+                "galleries.farm.description": "Documentazione visiva del sistema di coltivazione idroponica modulare, dagli schizzi concettuali iniziali ai disegni tecnici dettagliati e alle specifiche costruttive.",
+                "galleries.lake.title": "Collezione Lago di Varese",
+                "galleries.lake.description": "Documentazione completa del progetto di ripristino ecologico, inclusa analisi del sito, pianificazione master, visualizzazioni 3D e strategie di sviluppo sostenibile.",
+                "galleries.workshop.title": "Documentazione del Progetto",
+                "galleries.workshop.description": "Documentazione visiva completa inclusi piante, sezioni, viste dettagliate e visualizzazioni 3D",
+
+                // Workshop Section
+                "workshop.category": "Hospitality Sostenibile",
+                "workshop.title": "Workshop Hospitality",
+                "workshop.tagline": "Un workshop di hospitality sostenibile a Xishuangbanna, Yunnan, che fonde design eco-consapevole con un'autentica immersione culturale.",
+
+                "workshop.sustainability.subtitle": "Sostenibilità",
+                "workshop.sustainability.title": "Principi di Design Eco-Consapevole",
+                "workshop.sustainability.para1": "Il nostro progetto è costruito su principi di sostenibilità, incorporando materiali e ingredienti naturali per una durabilità duratura. L'autosufficienza nei nostri metodi costruttivi non solo migliora la longevità delle strutture ma si allinea perfettamente con il nostro impegno per la responsabilità ambientale.",
+                "workshop.sustainability.para2": "Abbraccia un'armoniosa fusione di elementi naturali e design coscienzioso per un'esperienza eco-friendly e duratura.",
+                "workshop.sustainability.features.1": "Materiali locali naturali",
+                "workshop.sustainability.features.2": "Sistemi di raffreddamento passivo",
+                "workshop.sustainability.features.3": "Raccolta dell'acqua piovana",
+                "workshop.sustainability.features.4": "Integrazione di energia solare",
+                "workshop.sustainability.features.5": "Sistemi di gestione dei rifiuti",
+
+                "workshop.culture.subtitle": "Immersione Culturale",
+                "workshop.culture.title": "Esperienza Culturale Dai Autentica",
+                "workshop.culture.para1": "Il nostro stabilimento accoglie calorosamente i visitatori che cercano un ambiente verde sereno. Immergiti in un'esperienza unica durante il tuo soggiorno, partecipando ad attività come la semina, la raccolta dell'alta qualità del tè locale e contribuendo alla manutenzione del nostro ambiente incontaminato.",
+                "workshop.culture.para2": "La tua presenza arricchirà non solo il tuo viaggio ma contribuirà anche all'etos sostenibile della nostra comunità.",
+                "workshop.culture.features.1": "Architettura tradizionale Dai",
+                "workshop.culture.features.2": "Workshop di coltivazione del tè",
+                "workshop.culture.features.3": "Attività di immersione culturale",
+                "workshop.culture.features.4": "Coinvolgimento della comunità",
+                "workshop.culture.features.5": "Tutela ambientale",
+
+                "workshop.location.subtitle": "Posizione",
+                "workshop.location.title": "Xishuangbanna, Yunnan",
+                "workshop.location.para1": "Xishuangbanna è una prefettura autonoma nella provincia sud-occidentale dello Yunnan in Cina, al confine con Myanmar e Laos. È nota per la cultura Dai, i templi distintivi e le foreste pluviali tropicali. La capitale prefettizia, Jinghong, offre strade fiancheggiate da palme e il Giardino Tropicale di Fiori e Piante con un gran numero di alberi da frutto e fiori.",
+                "workshop.location.para2": "Il tempio buddista Mengle della città è un vasto complesso religioso Dai completato nel 2007, che mostra il ricco patrimonio culturale che ispira il nostro design.",
+
+                "workshop.specs.title": "Specifiche del Progetto",
+                "workshop.specs.description": "Informazioni tecniche dettagliate e contesto ambientale",
+                "workshop.specs.temperature": "Temperatura Media",
+                "workshop.specs.humidity": "Umidità",
+                "workshop.specs.area": "Area",
+                "workshop.specs.province": "Provincia",
+                "workshop.specs.trees": "Specie Arboree Protette",
+                "workshop.specs.style": "Stile Architettonico",
+
+                "workshop.actions.pdf": "Vedi Documentazione PDF Completa",
+
+                // Footer
+                "footer.about": "Architetto d'Interni e Designer Spaziale che fonde il patrimonio artistico persiano con i principi del design italiano contemporaneo. Laureanda al Politecnico di Milano, specializzata in percezione spaziale, teoria del colore e manipolazione della luce.",
+                "footer.navigation": "Navigazione",
+                "footer.contact": "Informazioni di Contatto",
+                "footer.email.academic": "Email Accademica",
+                "footer.email.personal": "Email Personale",
+                "footer.location": "Località",
+                "footer.university": "Università",
+                "footer.copyright": "Architetto d'Interni & Designer Spaziale"
+            },
+
+            fa: {
+                // Navigation
+                "nav.home": "صفحه اصلی",
+                "nav.about": "درباره من",
+                "nav.portfolio": "نمونه کارها",
+                "nav.blog": "وبلاگ آکادمیک",
+                "nav.contact": "تماس",
+
+                // Hero Section
+                "hero.title": "معماری داخلی و<br>طراحی فضایی",
+                "hero.description": "خلق محیط‌های غوطه‌ور از طریق تعامل پیچیده نور، مواد و فرم. تخصص در روایت‌های فضایی که احساس برمی‌انگیزند و در عین حال برتری عملکردی را حفظ می‌کنند. جایی که میراث هنری ایرانی با اصول طراحی معاصر ایتالیایی ملاقات می‌کند.",
+                "hero.cta.projects": "مشاهده پروژه‌های منتخب",
+                "hero.cta.workshop": "کارگاه هتلداری",
+
+                // Design Philosophy
+                "philosophy.title": "فلسفه طراحی",
+                "philosophy.para1": "معماری داخلی فراتر از تزئینات صرف است—هنر شکل‌دهی به تجربه انسانی از طریق فضا است. رویکرد ما تحقیقات آکادمیک دقیق پلی‌تکنیک میلان را با کاربرد عملی ادغام می‌کند و بر چگونگی تأثیر طراحی فضایی بر ادراک، احساس و رفتار تمرکز دارد.",
+                "philosophy.para2": "ما به طراحی مبتنی بر شواهد اعتقاد داریم که در آن هر تصمیم—از انتخاب مواد تا استراتژی نورپردازی—از اصول روانشناسی فضایی، تئوری رنگ و عمل پایدار الهام می‌گیرد. این روش‌شناسی محیط‌هایی را تضمین می‌کند که نه تنها از نظر زیبایی‌شناختی متقاعدکننده هستند بلکه رفاه و عملکرد را نیز افزایش می‌دهند.",
+                "philosophy.para3": "تخصص در فضاهای انتقالی و استفاده مجدد انطباقی، ما مناطق کم‌استفاده را به محیط‌های معناداری تبدیل می‌کنیم که به جوامع خدمت می‌کنند و در عین حال تعادل اکولوژیکی و زمینه فرهنگی را رعایت می‌کنند.",
+                "philosophy.badge": "رندر حرفه‌ای 3DMax",
+
+                // Projects Section
+                "projects.title": "پروژه‌های منتخب استودیو",
+                "projects.subtitle": "انتخابی از اکتشافات طراحی فضایی و مداخلات معماری اخیر که رویکرد استودیوی ما را در ایجاد محیط‌های معنادار نشان می‌دهد.",
+
+                // Farm to Fork Project
+                "projects.farm.number": "پروژه 01",
+                "projects.farm.title": "مزرعه تا سفره",
+                "projects.farm.description": "اکتشافی نوآورانه از معماری فانی که فضاهای ترانزیت را از طریق سیستم‌های هیدروپونیک مدولار به مراکز پررونق جامعه تبدیل می‌کند. این پروژه تولید غذا را در محیط‌های شهری بازاندیشی می‌کند و اکوسیستم‌های پایدار را در فضاهای انتقالی ایجاد می‌کند.",
+                "projects.farm.tags.sustainable": "طراحی پایدار",
+                "projects.farm.tags.modular": "معماری مدولار",
+                "projects.farm.tags.urban": "کشاورزی شهری",
+                "projects.farm.tags.community": "فضاهای اجتماعی",
+                "projects.farm.actions.view": "مشاهده PDF کامل",
+                "projects.farm.actions.gallery": "مشاهده گالری",
+
+                // Lake Varese Project
+                "projects.lake.number": "پروژه 02",
+                "projects.lake.title": "دریاچه وارزه",
+                "projects.lake.description": "یک پروژه کامل معماری منظر متمرکز بر بازسازی اکولوژیکی و توسعه پایدار فضاهای ساحلی دریاچه. این طراحی اکوسیستم‌های طبیعی را با مناطق تفریحی ادغام می‌کند و هماهنگی بین محیط ساخته شده و سیستم‌های طبیعی ایجاد می‌کند.",
+                "projects.lake.tags.landscape": "معماری منظر",
+                "projects.lake.tags.ecological": "طراحی اکولوژیک",
+                "projects.lake.tags.public": "فضای عمومی",
+                "projects.lake.tags.sustainable": "توسعه پایدار",
+                "projects.lake.actions.view": "مشاهده PDF کامل",
+                "projects.lake.actions.gallery": "مشاهده گالری",
+
+                // Galleries
+                "galleries.farm.title": "مجموعه مزرعه تا سفره",
+                "galleries.farm.description": "مستندات بصری سیستم کشاورزی هیدروپونیک مدولار، از طرح‌های مفهومی اولیه تا نقشه‌های فنی دقیق و مشخصات ساخت.",
+                "galleries.lake.title": "مجموعه دریاچه وارزه",
+                "galleries.lake.description": "مستندات کامل پروژه بازسازی اکولوژیکی، شامل تحلیل سایت، برنامه‌ریزی کلی، تجسم‌های سه‌بعدی و استراتژی‌های توسعه پایدار.",
+                "galleries.workshop.title": "مستندات پروژه",
+                "galleries.workshop.description": "مستندات بصری کامل شامل پلان‌ها، مقاطع، نماهای دقیق و تجسم‌های سه‌بعدی",
+
+                // Workshop Section
+                "workshop.category": "مهمان‌نواری پایدار",
+                "workshop.title": "کارگاه مهمان‌نواری",
+                "workshop.tagline": "یک کارگاه مهمان‌نواری پایدار در شی‌شوانگبانا، یوننان، که طراحی زیست‌آگاه را با غوطه‌وری فرهنگی اصیل ترکیب می‌کند.",
+
+                "workshop.sustainability.subtitle": "پایداری",
+                "workshop.sustainability.title": "اصول طراحی زیست‌آگاه",
+                "workshop.sustainability.para1": "پروژه ما بر اساس اصول پایداری ساخته شده است، با استفاده از مواد و مواد اولیه طبیعی برای دوام ماندگار. خودکفایی در روش‌های ساخت ما نه تنها طول عمر سازه‌ها را افزایش می‌دهد بلکه با تعهد ما به مسئولیت محیطی کاملاً همسو است.",
+                "workshop.sustainability.para2": "ترکیبی هماهنگ از عناصر طبیعی و طراحی آگاهانه را برای تجربه‌ای زیست‌دوستانه و ماندگار بپذیرید.",
+                "workshop.sustainability.features.1": "مواد طبیعی محلی",
+                "workshop.sustainability.features.2": "سیستم‌های خنک‌کننده غیرفعال",
+                "workshop.sustainability.features.3": "جمع‌آوری آب باران",
+                "workshop.sustainability.features.4": "یکپارچه‌سازی انرژی خورشیدی",
+                "workshop.sustainability.features.5": "سیستم‌های مدیریت پسماند",
+
+                "workshop.culture.subtitle": "غوطه‌وری فرهنگی",
+                "workshop.culture.title": "تجربه فرهنگی اصیل دای",
+                "workshop.culture.para1": "مؤسسه ما به گرمی از بازدیدکنندگانی استقبال می‌کند که به دنبال محیطی سبز و آرام هستند. خود را در یک تجربه منحصربه‌فرد غوطه‌ور کنید در حالی که با ما اقامت می‌کنید، در فعالیت‌هایی مانند کاشت، برداشت چای محلی با کیفیت بالا و مشارکت در نگهداری از محیط بکر ما شرکت می‌کنید.",
+                "workshop.culture.para2": "حضور شما نه تنها سفر خود را غنی می‌کند بلکه به اخلاق پایدار جامعه ما نیز کمک می‌کند.",
+                "workshop.culture.features.1": "معماری سنتی دای",
+                "workshop.culture.features.2": "کارگاه‌های کشت چای",
+                "workshop.culture.features.3": "فعالیت‌های غوطه‌وری فرهنگی",
+                "workshop.culture.features.4": "مشارکت جامعه",
+                "workshop.culture.features.5": "حفاظت محیطی",
+
+                "workshop.location.subtitle": "موقعیت",
+                "workshop.location.title": "شی‌شوانگبانا، یوننان",
+                "workshop.location.para1": "شی‌شوانگبانا یک منطقه خودمختار در استان یوننان جنوب غربی چین است که با میانمار و لائوس مرز مشترک دارد. این منطقه به خاطر فرهنگ دای، معابد متمایز و جنگل‌های بارانی استوایی شناخته شده است. پایتخت منطقه، جینگ‌هونگ، خیابان‌هایی با درختان نخل و باغ گل و گیاهان گرمسیری با تعداد زیادی درخت میوه و گل ارائه می‌دهد.",
+                "workshop.location.para2": "معبد بودایی منگل شهر یک مجموعه مذهبی وسیع دای است که در سال ۲۰۰۷ تکمیل شد و میراث فرهنگی غنی را نشان می‌دهد که الهام‌بخش طراحی ماست.",
+
+                "workshop.specs.title": "مشخصات پروژه",
+                "workshop.specs.description": "اطلاعات فنی دقیق و زمینه محیطی",
+                "workshop.specs.temperature": "دمای متوسط",
+                "workshop.specs.humidity": "رطوبت",
+                "workshop.specs.area": "مساحت",
+                "workshop.specs.province": "استان",
+                "workshop.specs.trees": "گونه‌های درختی حفاظت شده",
+                "workshop.specs.style": "سبک معماری",
+
+                "workshop.actions.pdf": "مشاهده مستندات PDF کامل",
+
+                // Footer
+                "footer.about": "معمار داخلی و طراح فضایی که میراث هنری ایرانی را با اصول طراحی معاصر ایتالیایی ترکیب می‌کند. دانشجوی کارشناسی ارشد در پلی‌تکنیک میلان، متخصص در ادراک فضایی، تئوری رنگ و کنترل نور.",
+                "footer.navigation": "ناوبری",
+                "footer.contact": "اطلاعات تماس",
+                "footer.email.academic": "ایمیل آکادمیک",
+                "footer.email.personal": "ایمیل شخصی",
+                "footer.location": "موقعیت",
+                "footer.university": "دانشگاه",
+                "footer.copyright": "معمار داخلی و طراح فضایی"
+            }
+        };
+
+        // Language Management Class
+        class LanguageManager {
+            constructor() {
+                this.currentLang = this.getSavedLanguage() || 'en';
+                this.isPersian = this.currentLang === 'fa';
+                this.init();
+            }
+
+            getSavedLanguage() {
+                return localStorage.getItem('preferredLanguage') ||
+                       (navigator.language.startsWith('it') ? 'it' :
+                        navigator.language.startsWith('fa') ? 'fa' : 'en');
+            }
+
+            saveLanguage(lang) {
+                localStorage.setItem('preferredLanguage', lang);
+                this.currentLang = lang;
+                this.isPersian = lang === 'fa';
+            }
+
+            init() {
+                // Apply initial language
+                this.updateDirection();
+                this.translatePage();
+                this.setupEventListeners();
+            }
+
+            updateDirection() {
+                if (this.isPersian) {
+                    document.documentElement.setAttribute('dir', 'rtl');
+                    document.documentElement.setAttribute('lang', 'fa');
+                    // Adjust text alignment for RTL
+                    document.querySelectorAll('.hero-description, .section-subtitle, .project-description, .info-text, .gallery-description, .workshop-tagline, .specs-description, .footer-about, .footer-links a, .footer-contact li').forEach(el => {
+                        el.style.textAlign = 'right';
+                    });
+                    document.querySelectorAll('.section-title').forEach(el => {
+                        const after = document.createElement('style');
+                        after.textContent = `.section-title::after { left: auto; right: 50%; transform: translateX(50%); }`;
+                        document.head.appendChild(after);
+                    });
+                } else {
+                    document.documentElement.setAttribute('dir', 'ltr');
+                    document.documentElement.setAttribute('lang', this.currentLang);
+                    // Reset text alignment for LTR
+                    document.querySelectorAll('.hero-description, .section-subtitle, .project-description, .info-text, .gallery-description, .workshop-tagline, .specs-description, .footer-about, .footer-links a, .footer-contact li').forEach(el => {
+                        el.style.textAlign = '';
+                    });
+                }
+
+                // Update gallery arrows for RTL
+                this.updateGalleryArrows();
+            }
+
+            updateGalleryArrows() {
+                const prevArrows = document.querySelectorAll('.prev-arrow i');
+                const nextArrows = document.querySelectorAll('.next-arrow i');
+
+                if (this.isPersian) {
+                    prevArrows.forEach(arrow => {
+                        arrow.className = 'fas fa-chevron-right';
+                    });
+                    nextArrows.forEach(arrow => {
+                        arrow.className = 'fas fa-chevron-left';
+                    });
+                } else {
+                    prevArrows.forEach(arrow => {
+                        arrow.className = 'fas fa-chevron-left';
+                    });
+                    nextArrows.forEach(arrow => {
+                        arrow.className = 'fas fa-chevron-right';
+                    });
+                }
+            }
+
+            translatePage() {
+                // Update all elements with data-i18n attribute
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    if (translations[this.currentLang] && translations[this.currentLang][key]) {
+                        const text = translations[this.currentLang][key];
+
+                        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                            element.placeholder = text;
+                        } else if (element.hasAttribute('title')) {
+                            element.title = text;
+                        } else if (element.hasAttribute('alt')) {
+                            element.alt = text;
+                        } else {
+                            // Handle HTML in translations
+                            if (text.includes('<br>')) {
+                                element.innerHTML = text;
+                            } else {
+                                element.textContent = text;
+                            }
+                        }
+                    }
+                });
+
+                // Update language selector UI
+                this.updateLanguageSelector();
+
+                // Show language change indicator
+                this.showLanguageIndicator();
+
+                // Reinitialize galleries with translated titles
+                if (typeof initAllGalleries === 'function') {
+                    initAllGalleries();
+                }
+            }
+
+            updateLanguageSelector() {
+                // Desktop selector
+                const currentLanguageElement = document.getElementById('currentLanguageName');
+                const languageOptions = document.querySelectorAll('.language-option, .mobile-language-option');
+
+                if (currentLanguageElement) {
+                    currentLanguageElement.textContent = this.currentLang.toUpperCase();
+                }
+
+                // Update active state
+                languageOptions.forEach(option => {
+                    const lang = option.getAttribute('data-lang');
+                    if (lang === this.currentLang) {
+                        option.classList.add('active');
+                    } else {
+                        option.classList.remove('active');
+                    }
+                });
+            }
+
+            showLanguageIndicator() {
+                const indicator = document.getElementById('languageIndicator');
+                const indicatorLanguage = document.getElementById('indicatorLanguage');
+
+                if (indicator && indicatorLanguage) {
+                    const languageNames = {
+                        'en': 'English',
+                        'it': 'Italiano',
+                        'fa': 'فارسی'
+                    };
+
+                    indicatorLanguage.textContent = languageNames[this.currentLang];
+                    indicator.style.display = 'block';
+
+                    setTimeout(() => {
+                        indicator.style.display = 'none';
+                    }, 2000);
+                }
+            }
+
+            setupEventListeners() {
+                // Desktop language selector
+                const currentLanguageBtn = document.getElementById('currentLanguage');
+                const languageDropdown = document.getElementById('languageDropdown');
+
+                if (currentLanguageBtn && languageDropdown) {
+                    currentLanguageBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        languageDropdown.classList.toggle('active');
+                    });
+
+                    // Close dropdown when clicking outside
+                    document.addEventListener('click', (e) => {
+                        if (!currentLanguageBtn.contains(e.target) &&
+                            !languageDropdown.contains(e.target)) {
+                            languageDropdown.classList.remove('active');
+                        }
+                    });
+
+                    // Language option clicks
+                    languageDropdown.querySelectorAll('.language-option').forEach(option => {
+                        option.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const lang = option.getAttribute('data-lang');
+                            this.changeLanguage(lang);
+                            languageDropdown.classList.remove('active');
+                        });
+                    });
+                }
+
+                // Mobile language selector
+                document.querySelectorAll('.mobile-language-option').forEach(option => {
+                    option.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const lang = option.getAttribute('data-lang');
+                        this.changeLanguage(lang);
+                    });
+                });
+            }
+
+            changeLanguage(lang) {
+                if (lang === this.currentLang) return;
+
+                this.saveLanguage(lang);
+                this.updateDirection();
+                this.translatePage();
+
+                // Trigger custom event for other components
+                window.dispatchEvent(new CustomEvent('languageChanged', {
+                    detail: { language: lang }
+                }));
+            }
+        }
+
+        // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize language manager
+            window.languageManager = new LanguageManager();
+
+            // Your existing JavaScript code continues here...
             // Mobile menu functionality
             const menuToggle = document.getElementById('menuToggle');
             const mobileMenu = document.getElementById('mobileMenu');
@@ -2395,8 +3195,8 @@
                     const thumbnailContainer = document.getElementById(gallery.thumbnailContainer);
 
                     // Clear existing content
-                    wrapper.innerHTML = '';
-                    thumbnailContainer.innerHTML = '';
+                    if (wrapper) wrapper.innerHTML = '';
+                    if (thumbnailContainer) thumbnailContainer.innerHTML = '';
 
                     // Create slides and thumbnails
                     gallery.images.forEach((image, index) => {
@@ -2407,6 +3207,7 @@
                         const img = document.createElement('img');
                         img.src = image.src;
                         img.alt = image.title;
+                        img.loading = 'lazy';
 
                         const overlay = document.createElement('div');
                         overlay.className = 'image-overlay';
@@ -2423,7 +3224,7 @@
                         overlay.appendChild(description);
                         slide.appendChild(img);
                         slide.appendChild(overlay);
-                        wrapper.appendChild(slide);
+                        if (wrapper) wrapper.appendChild(slide);
 
                         // Create thumbnail
                         const thumbnail = document.createElement('div');
@@ -2434,34 +3235,48 @@
                         const thumbImg = document.createElement('img');
                         thumbImg.src = image.src;
                         thumbImg.alt = image.title;
+                        thumbImg.loading = 'lazy';
 
                         thumbnail.appendChild(thumbImg);
-                        thumbnailContainer.appendChild(thumbnail);
+                        if (thumbnailContainer) thumbnailContainer.appendChild(thumbnail);
                     });
                 });
+
+                // Update gallery arrows based on current language
+                if (window.languageManager) {
+                    window.languageManager.updateGalleryArrows();
+                }
             }
 
             // Navigation functions
             window.prevSlide = function(galleryId) {
                 const gallery = galleries[galleryId];
-                gallery.currentIndex = (gallery.currentIndex - 1 + gallery.images.length) % gallery.images.length;
-                updateGallery(galleryId);
+                if (gallery) {
+                    gallery.currentIndex = (gallery.currentIndex - 1 + gallery.images.length) % gallery.images.length;
+                    updateGallery(galleryId);
+                }
             };
 
             window.nextSlide = function(galleryId) {
                 const gallery = galleries[galleryId];
-                gallery.currentIndex = (gallery.currentIndex + 1) % gallery.images.length;
-                updateGallery(galleryId);
+                if (gallery) {
+                    gallery.currentIndex = (gallery.currentIndex + 1) % gallery.images.length;
+                    updateGallery(galleryId);
+                }
             };
 
             function goToSlide(galleryId, index) {
                 const gallery = galleries[galleryId];
-                gallery.currentIndex = index;
-                updateGallery(galleryId);
+                if (gallery) {
+                    gallery.currentIndex = index;
+                    updateGallery(galleryId);
+                }
             }
 
             function updateGallery(galleryId) {
                 const gallery = galleries[galleryId];
+                if (!gallery) return;
+
                 const wrapper = document.getElementById(gallery.wrapper);
                 const thumbnailContainer = document.getElementById(gallery.thumbnailContainer);
 
@@ -2484,6 +3299,8 @@
 
             function centerActiveThumbnail(galleryId) {
                 const gallery = galleries[galleryId];
+                if (!gallery) return;
+
                 const thumbnailContainer = document.getElementById(gallery.thumbnailContainer);
                 const activeThumb = thumbnailContainer?.querySelector('.thumbnail-item.active');
 
@@ -2506,8 +3323,8 @@
                     const rect = section.getBoundingClientRect();
                     if (rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
                         // This gallery is in the middle of the viewport
-                        const galleryId = section.closest('.project-gallery-section').id.replace('-gallery', '');
-                        if (galleries[galleryId]) {
+                        const galleryId = section.closest('.project-gallery-section')?.id.replace('-gallery', '');
+                        if (galleryId && galleries[galleryId]) {
                             activeGalleryId = galleryId;
                         }
                     }
@@ -2540,9 +3357,9 @@
 
             function handleGallerySwipe(section, startX, endX) {
                 const swipeThreshold = 50;
-                const galleryId = section.closest('.project-gallery-section').id.replace('-gallery', '');
+                const galleryId = section.closest('.project-gallery-section')?.id.replace('-gallery', '');
 
-                if (!galleries[galleryId]) return;
+                if (!galleryId || !galleries[galleryId]) return;
 
                 if (startX - endX > swipeThreshold) {
                     // Swipe left - next slide
@@ -2641,6 +3458,15 @@
             }
 
             setActiveNav();
+
+            // Listen for language changes to update gallery arrows
+            window.addEventListener('languageChanged', function(e) {
+                setTimeout(() => {
+                    if (window.languageManager) {
+                        window.languageManager.updateGalleryArrows();
+                    }
+                }, 100);
+            });
         });
     </script>
 </body>
