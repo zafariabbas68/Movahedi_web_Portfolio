@@ -71,6 +71,91 @@
             transition: all 0.3s ease;
         }
 
+        /* ==================== MINIMALIST FLAG LANGUAGE SELECTOR ==================== */
+        .rectangle-flag-selector {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 9999;
+            display: flex;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .rectangle-flag-option {
+            width: 34px; /* Smaller than index.html (36px) */
+            height: 24px; /* Smaller than index.html (26px) */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .rectangle-flag-option:hover {
+            transform: scale(1.08);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .rectangle-flag-option.active {
+            box-shadow: 0 0 0 2px var(--dome-accent);
+            transform: scale(1.08);
+        }
+
+        .rectangle-flag-option.active:hover {
+            transform: scale(1.12);
+        }
+
+        .rectangle-flag-option img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .rectangle-flag-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dome-black);
+            color: var(--dome-white);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            margin-bottom: 8px;
+            pointer-events: none;
+        }
+
+        .rectangle-flag-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--dome-black);
+        }
+
+        .rectangle-flag-option:hover .rectangle-flag-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Remove old language selector styles */
+        .language-selector,
+        .mobile-language-selector,
+        .floating-language-selector,
+        .floating-language-dropdown,
+        .simple-flag-selector,
+        .flag-option {
+            display: none !important;
+        }
+
         /* ==================== DOME-STYLE NAVIGATION ==================== */
         .navbar {
             background: var(--dome-white);
@@ -941,6 +1026,22 @@
             .quote-section h2 {
                 font-size: 1.8rem;
             }
+
+            /* Smaller flags on mobile */
+            .rectangle-flag-selector {
+                bottom: 15px;
+                left: 15px;
+                gap: 8px;
+            }
+
+            .rectangle-flag-option {
+                width: 30px;
+                height: 21px;
+            }
+
+            .rectangle-flag-tooltip {
+                display: none;
+            }
         }
 
         @media (max-width: 576px) {
@@ -965,25 +1066,53 @@
             .stat-number {
                 font-size: 2.2rem;
             }
+
+            /* Even smaller flags on very small screens */
+            .rectangle-flag-selector {
+                bottom: 10px;
+                left: 10px;
+                gap: 6px;
+            }
+
+            .rectangle-flag-option {
+                width: 26px;
+                height: 18px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation (EXACT from index.html) -->
+    <!-- Minimalist Flag Language Selector - NO FRAME, SLIGHTLY SMALLER -->
+    <div class="rectangle-flag-selector" id="rectangleFlagSelector">
+        <div class="rectangle-flag-option active" data-lang="en">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTciIGhlaWdodD0iMzgiIHZpZXdCb3g9IjAgMCA1NyAzOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iMC41IiB5PSIwLjUiIHdpZHRoPSI1NiIgaGVpZ2h0PSIzNyIgZmlsbD0iIzAzMTk1MSIgc3Ryb2tlPSIjMDMxOTUxIi8+CjxwYXRoIGQ9Ik0wIDBINTdWMTJIMFYwWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNMCAyNkg1N1YzOEgwVjI2WiIgZmlsbD0iIzAzMTk1MSIvPgo8cmVjdCB4PSIxNSIgeT0iMCIgd2lkdGg9IjI3IiBoZWlnaHQ9IjM4IiBmaWxsPSIjQzAwMzA0Ii8+CjxwYXRoIGQ9Ik0yOC41IDlMMzMuOTMxIDE4TDUyLjUgMjAuMjQzTDQxLjUgMzAuOTg1TDQ0LjkxMSA0NS41TDI4LjUgMzUuODU3TDEyLjA4OSA0NS41TDE1LjUgMzAuOTg1TDQuNSAyMC4yNDNMMjMuMDY5IDE4TDI4LjUgOVoiIGZpbGw9IiNmZmYiLz4KPC9zdmc+" alt="English">
+            <div class="rectangle-flag-tooltip">English</div>
+        </div>
+        <div class="rectangle-flag-option" data-lang="it">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTciIGhlaWdodD0iMzgiIHZpZXdCb3g9IjAgMCA1NyAzOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iMC41IiB5PSIwLjUiIHdpZHRoPSI1NiIgaGVpZ2h0PSIzNyIgZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjRkZGIi8+CjxwYXRoIGQ9Ik0wIDBIMTlWMzhIMFYwWiIgZmlsbD0iIzAwOTI0NiIvPgo8cGF0aCBkPSJNMTkgMEgzOFYzOEgxOVYwWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNMzggMEg1N1YzOEgzOFYwWiIgZmlsbD0iI0NFMkIyRiIvPgo8L3N2Zz4=" alt="Italian">
+            <div class="rectangle-flag-tooltip">Italiano</div>
+        </div>
+        <div class="rectangle-flag-option" data-lang="fa">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTciIGhlaWdodD0iMzgiIHZpZXdCb3g9IjAgMCA1NyAzOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iMC41IiB5PSIwLjUiIHdpZHRoPSI1NiIgaGVpZ2h0PSIzNyIgZmlsbD0iIzM2YTcwMCIgc3Ryb2tlPSIjMzZhNzAwIi8+CjxwYXRoIGQ9Ik0wIDBINTdWMTJIMFYwWiIgZmlsbD0iI2VhMmMyYyIvPgo8cGF0aCBkPSJNMCAyNkg1N1YzOEgwVjI2WiIgZmlsbD0iIzM2YTcwMCIvPgo8L3N2Zz4=" alt="Persian">
+            <div class="rectangle-flag-tooltip">فارسی</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="container">
             <a href="index.html" class="logo-container">
                 <div class="logo-symbol">NM</div>
-                <div class="logo-name">Najibeh Movahedi</div>
+                <div class="logo-name" data-i18n="nav.logo">Najibeh Movahedi</div>
             </a>
 
             <!-- Desktop Navigation -->
             <ul class="nav-links" id="desktopNav">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html" class="active">About</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="blog.html">Academic Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                <li><a href="about.html" class="active" data-i18n="nav.about">About</a></li>
+                <li><a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a></li>
+                <li><a href="blog.html" data-i18n="nav.blog">Academic Blog</a></li>
+                <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
             </ul>
 
             <!-- Mobile Menu Toggle -->
@@ -997,11 +1126,11 @@
         <!-- Mobile Navigation Menu -->
         <div class="mobile-menu" id="mobileMenu">
             <ul class="mobile-nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html" class="active">About</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="blog.html">Academic Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                <li><a href="about.html" class="active" data-i18n="nav.about">About</a></li>
+                <li><a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a></li>
+                <li><a href="blog.html" data-i18n="nav.blog">Academic Blog</a></li>
+                <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -1011,23 +1140,23 @@
         <div class="container">
             <div class="about-hero-content">
                 <div class="hero-text">
-                    <h1 class="page-title" style="animation: fadeInUp 0.6s ease forwards;">Interior Architect<br>& <span>Spatial Designer</span></h1>
-                    <p class="page-subtitle" style="animation: fadeInUp 0.6s ease forwards 0.1s;">
+                    <h1 class="page-title" style="animation: fadeInUp 0.6s ease forwards;" data-i18n="about.hero.title">Interior Architect<br>& <span>Spatial Designer</span></h1>
+                    <p class="page-subtitle" style="animation: fadeInUp 0.6s ease forwards 0.1s;" data-i18n="about.hero.subtitle">
                         Blending Persian artistic heritage with contemporary Italian design principles to create spaces that tell stories and transform experiences.
                     </p>
 
                     <div class="hero-stats">
                         <div class="stat-item" style="animation: fadeInUp 0.6s ease forwards 0.2s;">
                             <div class="stat-number">3+</div>
-                            <div class="stat-label">Years Experience</div>
+                            <div class="stat-label" data-i18n="about.stats.experience">Years Experience</div>
                         </div>
                         <div class="stat-item" style="animation: fadeInUp 0.6s ease forwards 0.3s;">
                             <div class="stat-number">5+</div>
-                            <div class="stat-label">Projects</div>
+                            <div class="stat-label" data-i18n="about.stats.projects">Projects</div>
                         </div>
                         <div class="stat-item" style="animation: fadeInUp 0.6s ease forwards 0.4s;">
                             <div class="stat-number">2</div>
-                            <div class="stat-label">Awards</div>
+                            <div class="stat-label" data-i18n="about.stats.awards">Awards</div>
                         </div>
                     </div>
                 </div>
@@ -1035,8 +1164,8 @@
                 <div class="about-hero-image" style="animation: fadeInUp 0.6s ease forwards 0.2s;">
                     <img src="assest/Najibeh.png" alt="Najibeh Movahedi - Interior Architect & Spatial Designer" onerror="this.style.display='none'">
                     <div class="image-overlay">
-                        <div style="font-size: 1.2rem; margin-bottom: 5px; font-weight: 500;">Najibeh Movahedi</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;">Master's Candidate at Politecnico di Milano</div>
+                        <div style="font-size: 1.2rem; margin-bottom: 5px; font-weight: 500;" data-i18n="about.image.name">Najibeh Movahedi</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;" data-i18n="about.image.title">Master's Candidate at Politecnico di Milano</div>
                     </div>
                 </div>
             </div>
@@ -1047,8 +1176,8 @@
 <section class="content-section">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title animate-on-scroll">Cultural Fusion in Design</h2>
-            <p class="section-subtitle animate-on-scroll delay-1">
+            <h2 class="section-title animate-on-scroll" data-i18n="about.culture.title">Cultural Fusion in Design</h2>
+            <p class="section-subtitle animate-on-scroll delay-1" data-i18n="about.culture.subtitle">
                 Bridging Persian artistry with Italian design excellence to create spaces that tell stories and evoke emotions
             </p>
         </div>
@@ -1059,12 +1188,12 @@
                     <img src="assest/Rhino/005-1.webp" alt="Persian Architecture" onerror="this.onerror=null; this.style.display='none'">
                 </div>
                 <div class="culture-content">
-                    <h3>Persian Heritage</h3>
-                    <p>Influenced by the intricate patterns, vibrant colors, and mathematical precision of Persian architecture and miniature art.</p>
+                    <h3 data-i18n="about.culture.card1.title">Persian Heritage</h3>
+                    <p data-i18n="about.culture.card1.description">Influenced by the intricate patterns, vibrant colors, and mathematical precision of Persian architecture and miniature art.</p>
                     <div class="culture-tags">
-                        <span class="culture-tag">Geometric Patterns</span>
-                        <span class="culture-tag">Color Harmony</span>
-                        <span class="culture-tag">Spiritual Spaces</span>
+                        <span class="culture-tag" data-i18n="about.culture.card1.tag1">Geometric Patterns</span>
+                        <span class="culture-tag" data-i18n="about.culture.card1.tag2">Color Harmony</span>
+                        <span class="culture-tag" data-i18n="about.culture.card1.tag3">Spiritual Spaces</span>
                     </div>
                 </div>
             </div>
@@ -1074,12 +1203,12 @@
                     <img src="assest/SketchUp/images/web_path%20trace%20_000_hq.webp" alt="Italian Design" onerror="this.onerror=null; this.style.display='none'">
                 </div>
                 <div class="culture-content">
-                    <h3>Italian Excellence</h3>
-                    <p>Embracing the minimalist elegance, functional innovation, and material sophistication of Italian design.</p>
+                    <h3 data-i18n="about.culture.card2.title">Italian Excellence</h3>
+                    <p data-i18n="about.culture.card2.description">Embracing the minimalist elegance, functional innovation, and material sophistication of Italian design.</p>
                     <div class="culture-tags">
-                        <span class="culture-tag">Minimalism</span>
-                        <span class="culture-tag">Functionality</span>
-                        <span class="culture-tag">Material Innovation</span>
+                        <span class="culture-tag" data-i18n="about.culture.card2.tag1">Minimalism</span>
+                        <span class="culture-tag" data-i18n="about.culture.card2.tag2">Functionality</span>
+                        <span class="culture-tag" data-i18n="about.culture.card2.tag3">Material Innovation</span>
                     </div>
                 </div>
             </div>
@@ -1089,12 +1218,12 @@
                     <img src="assest/SketchUp/images/web_path_trace_4__hq.jpg" alt="Cultural Synthesis" onerror="this.onerror=null; this.style.display='none'">
                 </div>
                 <div class="culture-content">
-                    <h3>Harmonious Fusion</h3>
-                    <p>Creating a unique design language that merges Eastern ornamentation with Western minimalism.</p>
+                    <h3 data-i18n="about.culture.card3.title">Harmonious Fusion</h3>
+                    <p data-i18n="about.culture.card3.description">Creating a unique design language that merges Eastern ornamentation with Western minimalism.</p>
                     <div class="culture-tags">
-                        <span class="culture-tag">Cultural Bridge</span>
-                        <span class="culture-tag">Emotional Design</span>
-                        <span class="culture-tag">Global Perspective</span>
+                        <span class="culture-tag" data-i18n="about.culture.card3.tag1">Cultural Bridge</span>
+                        <span class="culture-tag" data-i18n="about.culture.card3.tag2">Emotional Design</span>
+                        <span class="culture-tag" data-i18n="about.culture.card3.tag3">Global Perspective</span>
                     </div>
                 </div>
             </div>
@@ -1105,8 +1234,8 @@
     <!-- Quote Section -->
     <section class="quote-section">
         <div class="container">
-            <h2 style="animation: fadeInUp 0.6s ease forwards;">"Design is not just about creating beautiful spaces, but about crafting experiences that resonate with the human spirit."</h2>
-            <p class="quote-author" style="animation: fadeInUp 0.6s ease forwards 0.2s;">— Najibeh Movahedi</p>
+            <h2 style="animation: fadeInUp 0.6s ease forwards;" data-i18n="about.quote.text">"Design is not just about creating beautiful spaces, but about crafting experiences that resonate with the human spirit."</h2>
+            <p class="quote-author" style="animation: fadeInUp 0.6s ease forwards 0.2s;">— <span data-i18n="about.quote.author">Najibeh Movahedi</span></p>
         </div>
     </section>
 
@@ -1114,8 +1243,8 @@
     <section class="content-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title animate-on-scroll">Design Philosophy</h2>
-                <p class="section-subtitle animate-on-scroll delay-1">
+                <h2 class="section-title animate-on-scroll" data-i18n="about.philosophy.title">Design Philosophy</h2>
+                <p class="section-subtitle animate-on-scroll delay-1" data-i18n="about.philosophy.subtitle">
                     Four fundamental principles that guide my creative process and approach to spatial design
                 </p>
             </div>
@@ -1124,26 +1253,26 @@
                 <div class="philosophy-item animate-left">
                     <div class="philosophy-number">01</div>
                     <div class="philosophy-icon"><i class="fas fa-eye"></i></div>
-                    <h3>Spatial Perception</h3>
-                    <p>Understanding how humans perceive and interact with space to create intuitive environments that enhance daily experiences.</p>
+                    <h3 data-i18n="about.philosophy.card1.title">Spatial Perception</h3>
+                    <p data-i18n="about.philosophy.card1.description">Understanding how humans perceive and interact with space to create intuitive environments that enhance daily experiences.</p>
                 </div>
                 <div class="philosophy-item animate-on-scroll">
                     <div class="philosophy-number">02</div>
                     <div class="philosophy-icon"><i class="fas fa-sun"></i></div>
-                    <h3>Light & Shadow</h3>
-                    <p>Mastering the interplay of natural and artificial light to define space, create mood, and enhance architectural features.</p>
+                    <h3 data-i18n="about.philosophy.card2.title">Light & Shadow</h3>
+                    <p data-i18n="about.philosophy.card2.description">Mastering the interplay of natural and artificial light to define space, create mood, and enhance architectural features.</p>
                 </div>
                 <div class="philosophy-item animate-on-scroll">
                     <div class="philosophy-number">03</div>
                     <div class="philosophy-icon"><i class="fas fa-palette"></i></div>
-                    <h3>Color Psychology</h3>
-                    <p>Using color theory to evoke specific emotions, create visual harmony, and influence spatial perception in meaningful ways.</p>
+                    <h3 data-i18n="about.philosophy.card3.title">Color Psychology</h3>
+                    <p data-i18n="about.philosophy.card3.description">Using color theory to evoke specific emotions, create visual harmony, and influence spatial perception in meaningful ways.</p>
                 </div>
                 <div class="philosophy-item animate-right">
                     <div class="philosophy-number">04</div>
                     <div class="philosophy-icon"><i class="fas fa-leaf"></i></div>
-                    <h3>Sustainable Innovation</h3>
-                    <p>Integrating eco-friendly materials with cutting-edge design approaches for spaces that are beautiful and responsible.</p>
+                    <h3 data-i18n="about.philosophy.card4.title">Sustainable Innovation</h3>
+                    <p data-i18n="about.philosophy.card4.description">Integrating eco-friendly materials with cutting-edge design approaches for spaces that are beautiful and responsible.</p>
                 </div>
             </div>
         </div>
@@ -1153,8 +1282,8 @@
     <section class="content-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title animate-on-scroll">Academic Journey</h2>
-                <p class="section-subtitle animate-on-scroll delay-1">
+                <h2 class="section-title animate-on-scroll" data-i18n="about.academic.title">Academic Journey</h2>
+                <p class="section-subtitle animate-on-scroll delay-1" data-i18n="about.academic.subtitle">
                     From Isfahan to Milan: A path of artistic and academic growth
                 </p>
             </div>
@@ -1163,25 +1292,25 @@
                 <div class="timeline-item animate-left">
                     <div class="timeline-year">2023-2026</div>
                     <div class="timeline-content">
-                        <h3>Master's in Interior Architecture</h3>
-                        <p class="subtitle">Politecnico di Milano, Italy</p>
-                        <p>Currently pursuing advanced studies in interior architecture with expected graduation in March 2026. Specializing in spatial design, sustainable architecture, and cross-cultural design methodologies.</p>
+                        <h3 data-i18n="about.timeline.item1.title">Master's in Interior Architecture</h3>
+                        <p class="subtitle" data-i18n="about.timeline.item1.subtitle">Politecnico di Milano, Italy</p>
+                        <p data-i18n="about.timeline.item1.description">Currently pursuing advanced studies in interior architecture with expected graduation in March 2026. Specializing in spatial design, sustainable architecture, and cross-cultural design methodologies.</p>
                     </div>
                 </div>
                 <div class="timeline-item animate-on-scroll">
                     <div class="timeline-year">2022</div>
                     <div class="timeline-content">
-                        <h3>Humanitarian Journey</h3>
-                        <p class="subtitle">Community of Sant'Egidio, Italy</p>
-                        <p>Arrived in Italy through a Humanitarian Corridor, deepening understanding of cultural integration and inclusive design. This experience enriched my perspective on creating spaces that welcome and celebrate diversity.</p>
+                        <h3 data-i18n="about.timeline.item2.title">Humanitarian Journey</h3>
+                        <p class="subtitle" data-i18n="about.timeline.item2.subtitle">Community of Sant'Egidio, Italy</p>
+                        <p data-i18n="about.timeline.item2.description">Arrived in Italy through a Humanitarian Corridor, deepening understanding of cultural integration and inclusive design. This experience enriched my perspective on creating spaces that welcome and celebrate diversity.</p>
                     </div>
                 </div>
                 <div class="timeline-item animate-right">
                     <div class="timeline-year">2016-2020</div>
                     <div class="timeline-content">
-                        <h3>Bachelor's in Interior Architecture</h3>
-                        <p class="subtitle">Islamic Azad University, Najaf Abad, Iran</p>
-                        <p>Graduated with focus on color theory, lighting design, and spatial planning. Developed foundation in Persian architectural traditions while exploring modern design principles and technical implementation.</p>
+                        <h3 data-i18n="about.timeline.item3.title">Bachelor's in Interior Architecture</h3>
+                        <p class="subtitle" data-i18n="about.timeline.item3.subtitle">Islamic Azad University, Najaf Abad, Iran</p>
+                        <p data-i18n="about.timeline.item3.description">Graduated with focus on color theory, lighting design, and spatial planning. Developed foundation in Persian architectural traditions while exploring modern design principles and technical implementation.</p>
                     </div>
                 </div>
             </div>
@@ -1192,41 +1321,41 @@
     <section class="content-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title animate-on-scroll">Skills & Expertise</h2>
-                <p class="section-subtitle animate-on-scroll delay-1">
+                <h2 class="section-title animate-on-scroll" data-i18n="about.skills.title">Skills & Expertise</h2>
+                <p class="section-subtitle animate-on-scroll delay-1" data-i18n="about.skills.subtitle">
                     Technical mastery and creative competencies developed through years of study and practice
                 </p>
             </div>
 
             <div class="skills-grid">
                 <div class="skill-category animate-left">
-                    <h3>3D Visualization</h3>
+                    <h3 data-i18n="about.skills.category1.title">3D Visualization</h3>
                     <ul class="skill-list">
-                        <li><i class="fas fa-check"></i> Photorealistic Rendering</li>
-                        <li><i class="fas fa-check"></i> Material Creation & Mapping</li>
-                        <li><i class="fas fa-check"></i> Lighting Design & Simulation</li>
-                        <li><i class="fas fa-check"></i> Camera Composition & Framing</li>
-                        <li><i class="fas fa-check"></i> VR/AR Visualization</li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.skills.category1.skill1">Photorealistic Rendering</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.skills.category1.skill2">Material Creation & Mapping</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.skills.category1.skill3">Lighting Design & Simulation</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.skills.category1.skill4">Camera Composition & Framing</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.skills.category1.skill5">VR/AR Visualization</span></li>
                     </ul>
                 </div>
                 <div class="skill-category animate-on-scroll">
-                    <h3>Software Proficiency</h3>
+                    <h3 data-i18n="about.skills.category2.title">Software Proficiency</h3>
                     <ul class="skill-list">
-                        <li><i class="fas fa-check"></i> 3D Max, V-Ray, Corona</li>
-                        <li><i class="fas fa-check"></i> Rhino, Revit, SketchUp</li>
-                        <li><i class="fas fa-check"></i> Twinmotion, Enscape</li>
-                        <li><i class="fas fa-check"></i> Adobe Creative Suite</li>
-                        <li><i class="fas fa-check"></i> AutoCAD, BIM Software</li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.skills.category2.skill1">3D Max, V-Ray, Corona</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.skills.category2.skill2">Rhino, Revit, SketchUp</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.skills.category2.skill3">Twinmotion, Enscape</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.skills.category2.skill4">Adobe Creative Suite</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.skills.category2.skill5">AutoCAD, BIM Software</span></li>
                     </ul>
                 </div>
                 <div class="skill-category animate-right">
-                    <h3>Design Specializations</h3>
+                    <h3 data-i18n="about.skills.category3.title">Design Specializations</h3>
                     <ul class="skill-list">
-                        <li><i class="fas fa-check"></i> Architectural Interiors</li>
-                        <li><i class="fas fa-check"></i> Building Exteriors</li>
-                        <li><i class="fas fa-check"></i> Daylight & Night Studies</li>
-                        <li><i class="fas fa-check"></i> Human Scale Integration</li>
-                        <li><i class="fas fa-check"></i> Sustainable Design Solutions</li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.skills.category3.skill1">Architectural Interiors</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.skills.category3.skill2">Building Exteriors</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.skills.category3.skill3">Daylight & Night Studies</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.skills.category3.skill4">Human Scale Integration</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.skills.category3.skill5">Sustainable Design Solutions</span></li>
                     </ul>
                 </div>
             </div>
@@ -1236,31 +1365,31 @@
     <!-- Call to Action -->
     <section class="content-section">
         <div class="container" style="text-align: center;">
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px; animation: fadeInUp 0.6s ease forwards;">Let's Create Something Meaningful</h2>
-            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 40px; color: var(--dome-gray); line-height: 1.7; animation: fadeInUp 0.6s ease forwards 0.1s;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px; animation: fadeInUp 0.6s ease forwards;" data-i18n="about.cta.title">Let's Create Something Meaningful</h2>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 40px; color: var(--dome-gray); line-height: 1.7; animation: fadeInUp 0.6s ease forwards 0.1s;" data-i18n="about.cta.subtitle">
                 Interested in collaborating or learning more about my work? Explore my portfolio or get in touch to discuss your next project.
             </p>
             <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
                 <a href="portfolio.html" class="btn btn-primary" style="animation: fadeInUp 0.6s ease forwards 0.2s;">
-                    <i class="fas fa-folder-open"></i> View Portfolio
+                    <i class="fas fa-folder-open"></i> <span data-i18n="about.cta.portfolio">View Portfolio</span>
                 </a>
                 <a href="contact.html" class="btn" style="animation: fadeInUp 0.6s ease forwards 0.3s;">
-                    <i class="fas fa-envelope"></i> Get in Touch
+                    <i class="fas fa-envelope"></i> <span data-i18n="about.cta.contact">Get in Touch</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Footer (EXACT from index.html) -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo-section">
                     <div class="footer-logo">
                         <div class="footer-logo-symbol">NM</div>
-                        <div class="footer-signature">Najibeh Movahedi</div>
+                        <div class="footer-signature" data-i18n="nav.logo">Najibeh Movahedi</div>
                     </div>
-                    <p class="footer-about">
+                    <p class="footer-about" data-i18n="footer.about">
                         Interior Architect & Spatial Designer blending Persian artistic heritage with contemporary Italian design principles. Master's candidate at Politecnico di Milano, specializing in spatial perception, color theory, and light manipulation.
                     </p>
                     <div class="social-links">
@@ -1272,44 +1401,44 @@
                 </div>
 
                 <div class="footer-column">
-                    <h4>Navigation</h4>
+                    <h4 data-i18n="footer.navigation">Navigation</h4>
                     <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="blog.html">Academic Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                        <li><a href="about.html" data-i18n="nav.about">About</a></li>
+                        <li><a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a></li>
+                        <li><a href="blog.html" data-i18n="nav.blog">Academic Blog</a></li>
+                        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
-                    <h4>Contact Info</h4>
+                    <h4 data-i18n="footer.contact">Contact Info</h4>
                     <ul class="footer-contact">
                         <li>
                             <i class="fas fa-envelope"></i>
                             <div>
-                                <strong>Academic Email</strong><br>
+                                <strong data-i18n="footer.email.academic">Academic Email</strong><br>
                                 <span>najibeh.movahedi@mail.polimi.it</span>
                             </div>
                         </li>
                         <li>
                             <i class="fas fa-envelope"></i>
                             <div>
-                                <strong>Personal Email</strong><br>
+                                <strong data-i18n="footer.email.personal">Personal Email</strong><br>
                                 <span>movahedinajibeh@gmail.com</span>
                             </div>
                         </li>
                         <li>
                             <i class="fas fa-map-marker-alt"></i>
                             <div>
-                                <strong>Location</strong><br>
+                                <strong data-i18n="footer.location">Location</strong><br>
                                 <span>Milan, Italy</span>
                             </div>
                         </li>
                         <li>
                             <i class="fas fa-graduation-cap"></i>
                             <div>
-                                <strong>University</strong><br>
+                                <strong data-i18n="footer.university">University</strong><br>
                                 <span>Politecnico di Milano</span>
                             </div>
                         </li>
@@ -1318,14 +1447,509 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2024 Najibeh Movahedi. | Interior Architect & Spatial Designer | Politecnico di Milano</p>
+                <p>&copy; 2024 Najibeh Movahedi. | <span data-i18n="footer.copyright">Interior Architect & Spatial Designer</span> | Politecnico di Milano</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript from index.html -->
+    <!-- JavaScript with Multilingual Support -->
     <script>
+        // ==================== LANGUAGE MANAGEMENT SYSTEM ====================
+        const translations = {
+            en: {
+                // Navigation
+                "nav.logo": "Najibeh Movahedi",
+                "nav.home": "Home",
+                "nav.about": "About",
+                "nav.portfolio": "Portfolio",
+                "nav.blog": "Academic Blog",
+                "nav.contact": "Contact",
+
+                // About Page Translations
+                "about.hero.title": "Interior Architect<br>& <span>Spatial Designer</span>",
+                "about.hero.subtitle": "Blending Persian artistic heritage with contemporary Italian design principles to create spaces that tell stories and transform experiences.",
+                "about.stats.experience": "Years Experience",
+                "about.stats.projects": "Projects",
+                "about.stats.awards": "Awards",
+                "about.image.name": "Najibeh Movahedi",
+                "about.image.title": "Master's Candidate at Politecnico di Milano",
+
+                "about.culture.title": "Cultural Fusion in Design",
+                "about.culture.subtitle": "Bridging Persian artistry with Italian design excellence to create spaces that tell stories and evoke emotions",
+                "about.culture.card1.title": "Persian Heritage",
+                "about.culture.card1.description": "Influenced by the intricate patterns, vibrant colors, and mathematical precision of Persian architecture and miniature art.",
+                "about.culture.card1.tag1": "Geometric Patterns",
+                "about.culture.card1.tag2": "Color Harmony",
+                "about.culture.card1.tag3": "Spiritual Spaces",
+                "about.culture.card2.title": "Italian Excellence",
+                "about.culture.card2.description": "Embracing the minimalist elegance, functional innovation, and material sophistication of Italian design.",
+                "about.culture.card2.tag1": "Minimalism",
+                "about.culture.card2.tag2": "Functionality",
+                "about.culture.card2.tag3": "Material Innovation",
+                "about.culture.card3.title": "Harmonious Fusion",
+                "about.culture.card3.description": "Creating a unique design language that merges Eastern ornamentation with Western minimalism.",
+                "about.culture.card3.tag1": "Cultural Bridge",
+                "about.culture.card3.tag2": "Emotional Design",
+                "about.culture.card3.tag3": "Global Perspective",
+
+                "about.quote.text": "\"Design is not just about creating beautiful spaces, but about crafting experiences that resonate with the human spirit.\"",
+                "about.quote.author": "Najibeh Movahedi",
+
+                "about.philosophy.title": "Design Philosophy",
+                "about.philosophy.subtitle": "Four fundamental principles that guide my creative process and approach to spatial design",
+                "about.philosophy.card1.title": "Spatial Perception",
+                "about.philosophy.card1.description": "Understanding how humans perceive and interact with space to create intuitive environments that enhance daily experiences.",
+                "about.philosophy.card2.title": "Light & Shadow",
+                "about.philosophy.card2.description": "Mastering the interplay of natural and artificial light to define space, create mood, and enhance architectural features.",
+                "about.philosophy.card3.title": "Color Psychology",
+                "about.philosophy.card3.description": "Using color theory to evoke specific emotions, create visual harmony, and influence spatial perception in meaningful ways.",
+                "about.philosophy.card4.title": "Sustainable Innovation",
+                "about.philosophy.card4.description": "Integrating eco-friendly materials with cutting-edge design approaches for spaces that are beautiful and responsible.",
+
+                "about.academic.title": "Academic Journey",
+                "about.academic.subtitle": "From Isfahan to Milan: A path of artistic and academic growth",
+                "about.timeline.item1.title": "Master's in Interior Architecture",
+                "about.timeline.item1.subtitle": "Politecnico di Milano, Italy",
+                "about.timeline.item1.description": "Currently pursuing advanced studies in interior architecture with expected graduation in March 2026. Specializing in spatial design, sustainable architecture, and cross-cultural design methodologies.",
+                "about.timeline.item2.title": "Humanitarian Journey",
+                "about.timeline.item2.subtitle": "Community of Sant'Egidio, Italy",
+                "about.timeline.item2.description": "Arrived in Italy through a Humanitarian Corridor, deepening understanding of cultural integration and inclusive design. This experience enriched my perspective on creating spaces that welcome and celebrate diversity.",
+                "about.timeline.item3.title": "Bachelor's in Interior Architecture",
+                "about.timeline.item3.subtitle": "Islamic Azad University, Najaf Abad, Iran",
+                "about.timeline.item3.description": "Graduated with focus on color theory, lighting design, and spatial planning. Developed foundation in Persian architectural traditions while exploring modern design principles and technical implementation.",
+
+                "about.skills.title": "Skills & Expertise",
+                "about.skills.subtitle": "Technical mastery and creative competencies developed through years of study and practice",
+                "about.skills.category1.title": "3D Visualization",
+                "about.skills.category1.skill1": "Photorealistic Rendering",
+                "about.skills.category1.skill2": "Material Creation & Mapping",
+                "about.skills.category1.skill3": "Lighting Design & Simulation",
+                "about.skills.category1.skill4": "Camera Composition & Framing",
+                "about.skills.category1.skill5": "VR/AR Visualization",
+                "about.skills.category2.title": "Software Proficiency",
+                "about.skills.category2.skill1": "3D Max, V-Ray, Corona",
+                "about.skills.category2.skill2": "Rhino, Revit, SketchUp",
+                "about.skills.category2.skill3": "Twinmotion, Enscape",
+                "about.skills.category2.skill4": "Adobe Creative Suite",
+                "about.skills.category2.skill5": "AutoCAD, BIM Software",
+                "about.skills.category3.title": "Design Specializations",
+                "about.skills.category3.skill1": "Architectural Interiors",
+                "about.skills.category3.skill2": "Building Exteriors",
+                "about.skills.category3.skill3": "Daylight & Night Studies",
+                "about.skills.category3.skill4": "Human Scale Integration",
+                "about.skills.category3.skill5": "Sustainable Design Solutions",
+
+                "about.cta.title": "Let's Create Something Meaningful",
+                "about.cta.subtitle": "Interested in collaborating or learning more about my work? Explore my portfolio or get in touch to discuss your next project.",
+                "about.cta.portfolio": "View Portfolio",
+                "about.cta.contact": "Get in Touch",
+
+                // Footer
+                "footer.about": "Interior Architect & Spatial Designer blending Persian artistic heritage with contemporary Italian design principles. Master's candidate at Politecnico di Milano, specializing in spatial perception, color theory, and light manipulation.",
+                "footer.navigation": "Navigation",
+                "footer.contact": "Contact Info",
+                "footer.email.academic": "Academic Email",
+                "footer.email.personal": "Personal Email",
+                "footer.location": "Location",
+                "footer.university": "University",
+                "footer.copyright": "Interior Architect & Spatial Designer"
+            },
+
+            it: {
+                // Navigation
+                "nav.logo": "Najibeh Movahedi",
+                "nav.home": "Home",
+                "nav.about": "Chi Sono",
+                "nav.portfolio": "Portfolio",
+                "nav.blog": "Blog Accademico",
+                "nav.contact": "Contatti",
+
+                // About Page Translations
+                "about.hero.title": "Architetto d'Interni<br>& <span>Designer Spaziale</span>",
+                "about.hero.subtitle": "Fondere il patrimonio artistico persiano con i principi del design italiano contemporaneo per creare spazi che raccontano storie e trasformano esperienze.",
+                "about.stats.experience": "Anni Esperienza",
+                "about.stats.projects": "Progetti",
+                "about.stats.awards": "Premi",
+                "about.image.name": "Najibeh Movahedi",
+                "about.image.title": "Laureanda al Politecnico di Milano",
+
+                "about.culture.title": "Fusione Culturale nel Design",
+                "about.culture.subtitle": "Collegare l'arte persiana con l'eccellenza del design italiano per creare spazi che raccontano storie ed evocano emozioni",
+                "about.culture.card1.title": "Patrimonio Persiano",
+                "about.culture.card1.description": "Influenzato dai motivi intricati, dai colori vivaci e dalla precisione matematica dell'architettura persiana e dell'arte miniaturistica.",
+                "about.culture.card1.tag1": "Motivi Geometrici",
+                "about.culture.card1.tag2": "Armonia di Colori",
+                "about.culture.card1.tag3": "Spazi Spirituali",
+                "about.culture.card2.title": "Eccellenza Italiana",
+                "about.culture.card2.description": "Abbracciare l'eleganza minimalista, l'innovazione funzionale e la sofisticazione dei materiali del design italiano.",
+                "about.culture.card2.tag1": "Minimalismo",
+                "about.culture.card2.tag2": "Funzionalità",
+                "about.culture.card2.tag3": "Innovazione Materiali",
+                "about.culture.card3.title": "Fusione Armoniosa",
+                "about.culture.card3.description": "Creare un linguaggio di design unico che fonde l'ornamentazione orientale con il minimalismo occidentale.",
+                "about.culture.card3.tag1": "Ponte Culturale",
+                "about.culture.card3.tag2": "Design Emozionale",
+                "about.culture.card3.tag3": "Prospettiva Globale",
+
+                "about.quote.text": "\"Il design non è solo creare spazi belli, ma plasmare esperienze che risuonano con lo spirito umano.\"",
+                "about.quote.author": "Najibeh Movahedi",
+
+                "about.philosophy.title": "Filosofia del Design",
+                "about.philosophy.subtitle": "Quattro principi fondamentali che guidano il mio processo creativo e approccio al design spaziale",
+                "about.philosophy.card1.title": "Percezione Spaziale",
+                "about.philosophy.card1.description": "Comprendere come gli esseri umani percepiscono e interagiscono con lo spazio per creare ambienti intuitivi che migliorino le esperienze quotidiane.",
+                "about.philosophy.card2.title": "Luce & Ombra",
+                "about.philosophy.card2.description": "Padroneggiare l'interazione tra luce naturale e artificiale per definire lo spazio, creare atmosfera e valorizzare le caratteristiche architettoniche.",
+                "about.philosophy.card3.title": "Psicologia del Colore",
+                "about.philosophy.card3.description": "Utilizzare la teoria del colore per evocare emozioni specifiche, creare armonia visiva e influenzare la percezione spaziale in modi significativi.",
+                "about.philosophy.card4.title": "Innovazione Sostenibile",
+                "about.philosophy.card4.description": "Integrare materiali eco-compatibili con approcci di design all'avanguardia per spazi che siano belli e responsabili.",
+
+                "about.academic.title": "Percorso Accademico",
+                "about.academic.subtitle": "Da Isfahan a Milano: Un percorso di crescita artistica e accademica",
+                "about.timeline.item1.title": "Laurea Magistrale in Architettura d'Interni",
+                "about.timeline.item1.subtitle": "Politecnico di Milano, Italia",
+                "about.timeline.item1.description": "Attualmente sto perseguendo studi avanzati in architettura d'interni con laurea prevista a marzo 2026. Specializzazione in design spaziale, architettura sostenibile e metodologie di design interculturale.",
+                "about.timeline.item2.title": "Percorso Umanitario",
+                "about.timeline.item2.subtitle": "Comunità di Sant'Egidio, Italia",
+                "about.timeline.item2.description": "Arrivata in Italia attraverso un Corridoio Umanitario, approfondendo la comprensione dell'integrazione culturale e del design inclusivo. Questa esperienza ha arricchito la mia prospettiva sulla creazione di spazi che accolgono e celebrano la diversità.",
+                "about.timeline.item3.title": "Laurea Triennale in Architettura d'Interni",
+                "about.timeline.item3.subtitle": "Università Azad Islamica, Najaf Abad, Iran",
+                "about.timeline.item3.description": "Laureata con focus sulla teoria del colore, design dell'illuminazione e pianificazione spaziale. Sviluppata una solida base nelle tradizioni architettoniche persiane mentre esplorava principi di design moderni e implementazione tecnica.",
+
+                "about.skills.title": "Competenze & Specializzazioni",
+                "about.skills.subtitle": "Padronanza tecnica e competenze creative sviluppate attraverso anni di studio e pratica",
+                "about.skills.category1.title": "Visualizzazione 3D",
+                "about.skills.category1.skill1": "Rendering Fotorealistico",
+                "about.skills.category1.skill2": "Creazione & Mappatura Materiali",
+                "about.skills.category1.skill3": "Design & Simulazione Illuminazione",
+                "about.skills.category1.skill4": "Composizione & Inquadratura Camera",
+                "about.skills.category1.skill5": "Visualizzazione VR/AR",
+                "about.skills.category2.title": "Competenze Software",
+                "about.skills.category2.skill1": "3D Max, V-Ray, Corona",
+                "about.skills.category2.skill2": "Rhino, Revit, SketchUp",
+                "about.skills.category2.skill3": "Twinmotion, Enscape",
+                "about.skills.category2.skill4": "Adobe Creative Suite",
+                "about.skills.category2.skill5": "AutoCAD, Software BIM",
+                "about.skills.category3.title": "Specializzazioni di Design",
+                "about.skills.category3.skill1": "Interni Architettonici",
+                "about.skills.category3.skill2": "Esterni Edifici",
+                "about.skills.category3.skill3": "Studi Giorno & Notte",
+                "about.skills.category3.skill4": "Integrazione Scala Umana",
+                "about.skills.category3.skill5": "Soluzioni Design Sostenibili",
+
+                "about.cta.title": "Creiamo Qualcosa di Significativo",
+                "about.cta.subtitle": "Interessato a collaborare o saperne di più sul mio lavoro? Esplora il mio portfolio o mettiti in contatto per discutere il tuo prossimo progetto.",
+                "about.cta.portfolio": "Vedi Portfolio",
+                "about.cta.contact": "Mettiti in Contatto",
+
+                // Footer
+                "footer.about": "Architetto d'Interni e Designer Spaziale che fonde il patrimonio artistico persiano con i principi del design italiano contemporaneo. Laureanda al Politecnico di Milano, specializzata in percezione spaziale, teoria del colore e manipolazione della luce.",
+                "footer.navigation": "Navigazione",
+                "footer.contact": "Informazioni di Contatto",
+                "footer.email.academic": "Email Accademica",
+                "footer.email.personal": "Email Personale",
+                "footer.location": "Località",
+                "footer.university": "Università",
+                "footer.copyright": "Architetto d'Interni & Designer Spaziale"
+            },
+
+            fa: {
+                // Navigation
+                "nav.logo": "نجیبه موحدی",
+                "nav.home": "صفحه اصلی",
+                "nav.about": "درباره من",
+                "nav.portfolio": "نمونه کارها",
+                "nav.blog": "وبلاگ آکادمیک",
+                "nav.contact": "تماس",
+
+                // About Page Translations
+                "about.hero.title": "معمار داخلی<br>& <span>طراح فضایی</span>",
+                "about.hero.subtitle": "ترکیب میراث هنری ایرانی با اصول طراحی معاصر ایتالیایی برای ایجاد فضاهایی که داستان می‌گویند و تجربیات را دگرگون می‌کنند.",
+                "about.stats.experience": "سال تجربه",
+                "about.stats.projects": "پروژه",
+                "about.stats.awards": "جایزه",
+                "about.image.name": "نجیبه موحدی",
+                "about.image.title": "دانشجوی کارشناسی ارشد پلی‌تکنیک میلان",
+
+                "about.culture.title": "ادغام فرهنگی در طراحی",
+                "about.culture.subtitle": "پل زدن بین هنر ایرانی و برتری طراحی ایتالیایی برای ایجاد فضاهایی که داستان می‌گویند و احساس برمی‌انگیزند",
+                "about.culture.card1.title": "میراث ایرانی",
+                "about.culture.card1.description": "متأثر از الگوهای پیچیده، رنگ‌های زنده و دقت ریاضی معماری ایرانی و هنر مینیاتور.",
+                "about.culture.card1.tag1": "الگوهای هندسی",
+                "about.culture.card1.tag2": "هماهنگی رنگ",
+                "about.culture.card1.tag3": "فضاهای معنوی",
+                "about.culture.card2.title": "برتری ایتالیایی",
+                "about.culture.card2.description": "در آغوش گرفتن ظرافت مینیمالیستی، نوآوری عملکردی و پیچیدگی مواد در طراحی ایتالیایی.",
+                "about.culture.card2.tag1": "مینیمالیسم",
+                "about.culture.card2.tag2": "کارکردگرایی",
+                "about.culture.card2.tag3": "نوآوری مواد",
+                "about.culture.card3.title": "ادغام هماهنگ",
+                "about.culture.card3.description": "ایجاد یک زبان طراحی منحصر به فرد که تزئینات شرقی را با مینیمالیسم غربی ترکیب می‌کند.",
+                "about.culture.card3.tag1": "پل فرهنگی",
+                "about.culture.card3.tag2": "طراحی احساسی",
+                "about.culture.card3.tag3": "چشم‌انداز جهانی",
+
+                "about.quote.text": "\"طراحی فقط درباره ایجاد فضاهای زیبا نیست، بلکه درباره خلق تجربیاتی است که با روح انسان طنین انداز می‌شود.\"",
+                "about.quote.author": "نجیبه موحدی",
+
+                "about.philosophy.title": "فلسفه طراحی",
+                "about.philosophy.subtitle": "چهار اصل اساسی که فرآیند خلاقیت و رویکرد من به طراحی فضایی را هدایت می‌کنند",
+                "about.philosophy.card1.title": "ادراک فضایی",
+                "about.philosophy.card1.description": "درک چگونگی ادراک و تعامل انسان با فضا برای ایجاد محیط‌های شهودی که تجربیات روزمره را ارتقا می‌دهند.",
+                "about.philosophy.card2.title": "نور و سایه",
+                "about.philosophy.card2.description": "تسلط بر تعامل نور طبیعی و مصنوعی برای تعریف فضا، ایجاد حال‌وهوا و تقویت ویژگی‌های معماری.",
+                "about.philosophy.card3.title": "روانشناسی رنگ",
+                "about.philosophy.card3.description": "استفاده از تئوری رنگ برای برانگیختن احساسات خاص، ایجاد هماهنگی بصری و تأثیرگذاری بر ادراک فضایی به روش‌های معنادار.",
+                "about.philosophy.card4.title": "نوآوری پایدار",
+                "about.philosophy.card4.description": "یکپارچه‌سازی مواد سازگار با محیط زیست با رویکردهای طراحی پیشرفته برای فضاهایی که زیبا و مسئولیت‌پذیر هستند.",
+
+                "about.academic.title": "سفر آکادمیک",
+                "about.academic.subtitle": "از اصفهان تا میلان: مسیری از رشد هنری و آکادمیک",
+                "about.timeline.item1.title": "کارشناسی ارشد معماری داخلی",
+                "about.timeline.item1.subtitle": "پلی‌تکنیک میلان، ایتالیا",
+                "about.timeline.item1.description": "در حال حاضر مشغول به تحصیلات پیشرفته در معماری داخلی با پیش‌بینی فارغ‌التحصیلی در مارس ۲۰۲۶. تخصص در طراحی فضایی، معماری پایدار و روش‌شناسی طراحی بین‌فرهنگی.",
+                "about.timeline.item2.title": "سفر بشردوستانه",
+                "about.timeline.item2.subtitle": "جامعه سنت‌اِجیدیو، ایتالیا",
+                "about.timeline.item2.description": "از طریق یک کریدور بشردوستانه وارد ایتالیا شدم و درک عمیق‌تری از ادغام فرهنگی و طراحی فراگیر پیدا کردم. این تجربه دیدگاه من را در ایجاد فضاهایی که تنوع را گرامی می‌دارند و جشن می‌گیرند، غنی کرد.",
+                "about.timeline.item3.title": "کارشناسی معماری داخلی",
+                "about.timeline.item3.subtitle": "دانشگاه آزاد اسلامی، نجف آباد، ایران",
+                "about.timeline.item3.description": "فارغ‌التحصیل شده با تمرکز بر تئوری رنگ، طراحی نور و برنامه‌ریزی فضایی. بنیان‌گذاری در سنت‌های معماری ایرانی در حالی که اصول طراحی مدرن و پیاده‌سازی فنی را کاوش می‌کردم.",
+
+                "about.skills.title": "مهارت‌ها و تخصص‌ها",
+                "about.skills.subtitle": "تسلط فنی و شایستگی‌های خلاقانه توسعه یافته از طریق سال‌ها مطالعه و تمرین",
+                "about.skills.category1.title": "تجسم سه‌بعدی",
+                "about.skills.category1.skill1": "رندر فتورئالیستی",
+                "about.skills.category1.skill2": "ایجاد و نقشه‌برداری مواد",
+                "about.skills.category1.skill3": "طراحی و شبیه‌سازی نورپردازی",
+                "about.skills.category1.skill4": "ترکیب‌بندی و قاب‌بندی دوربین",
+                "about.skills.category1.skill5": "تجسم واقعیت مجازی/افزوده",
+                "about.skills.category2.title": "تسلط نرم‌افزاری",
+                "about.skills.category2.skill1": "۳دی مکس، وی-ری، کورونا",
+                "about.skills.category2.skill2": "راینو، رویت، اسکچ‌آپ",
+                "about.skills.category2.skill3": "توینموشن، ان‌اسکیپ",
+                "about.skills.category2.skill4": "ادوبی کریتیو سوئیت",
+                "about.skills.category2.skill5": "اتوکد، نرم‌افزار BIM",
+                "about.skills.category3.title": "تخصص‌های طراحی",
+                "about.skills.category3.skill1": "داخلی‌های معماری",
+                "about.skills.category3.skill2": "نمای ساختمان",
+                "about.skills.category3.skill3": "مطالعات روز و شب",
+                "about.skills.category3.skill4": "یکپارچه‌سازی مقیاس انسانی",
+                "about.skills.category3.skill5": "راه‌حل‌های طراحی پایدار",
+
+                "about.cta.title": "بیایید چیزی معنادار خلق کنیم",
+                "about.cta.subtitle": "علاقه‌مند به همکاری یا کسب اطلاعات بیشتر درباره کارم هستید؟ نمونه کارهایم را ببینید یا تماس بگیرید تا درباره پروژه بعدی خود صحبت کنیم.",
+                "about.cta.portfolio": "مشاهده نمونه کارها",
+                "about.cta.contact": "تماس بگیرید",
+
+                // Footer
+                "footer.about": "معمار داخلی و طراح فضایی که میراث هنری ایرانی را با اصول طراحی معاصر ایتالیایی ترکیب می‌کند. دانشجوی کارشناسی ارشد در پلی‌تکنیک میلان، متخصص در ادراک فضایی، تئوری رنگ و کنترل نور.",
+                "footer.navigation": "ناوبری",
+                "footer.contact": "اطلاعات تماس",
+                "footer.email.academic": "ایمیل آکادمیک",
+                "footer.email.personal": "ایمیل شخصی",
+                "footer.location": "موقعیت",
+                "footer.university": "دانشگاه",
+                "footer.copyright": "معمار داخلی و طراح فضایی"
+            }
+        };
+
+        // Language Management Class
+        class LanguageManager {
+            constructor() {
+                this.currentLang = this.getSavedLanguage() || 'en';
+                this.isPersian = this.currentLang === 'fa';
+                this.init();
+            }
+
+            getSavedLanguage() {
+                return localStorage.getItem('preferredLanguage') ||
+                       (navigator.language.startsWith('it') ? 'it' :
+                        navigator.language.startsWith('fa') ? 'fa' : 'en');
+            }
+
+            saveLanguage(lang) {
+                localStorage.setItem('preferredLanguage', lang);
+                this.currentLang = lang;
+                this.isPersian = lang === 'fa';
+            }
+
+            init() {
+                // Apply initial language
+                this.updateDirection();
+                this.translatePage();
+                this.setupEventListeners();
+                this.updateFlagSelector();
+            }
+
+            updateDirection() {
+                if (this.isPersian) {
+                    document.documentElement.setAttribute('dir', 'rtl');
+                    document.documentElement.setAttribute('lang', 'fa');
+                    // Adjust text alignment for RTL
+                    document.querySelectorAll('.page-subtitle, .section-subtitle, .culture-content p, .philosophy-item p, .timeline-content p, .footer-about, .footer-links a, .footer-contact li, .skill-list li span, .stat-label').forEach(el => {
+                        el.style.textAlign = 'right';
+                    });
+                    document.querySelectorAll('.section-title').forEach(el => {
+                        const after = document.createElement('style');
+                        after.textContent = `.section-title::after { left: auto; right: 50%; transform: translateX(50%); }`;
+                        document.head.appendChild(after);
+                    });
+                    // Adjust timeline for RTL
+                    const timeline = document.querySelector('.timeline');
+                    if (timeline) {
+                        timeline.style.direction = 'rtl';
+                        const timelineBefore = document.querySelector('.timeline::before');
+                        if (timelineBefore) {
+                            timelineBefore.style.left = 'auto';
+                            timelineBefore.style.right = '30px';
+                        }
+                        document.querySelectorAll('.timeline-item').forEach(item => {
+                            item.style.paddingLeft = '0';
+                            item.style.paddingRight = '100px';
+                        });
+                        document.querySelectorAll('.timeline-year').forEach(year => {
+                            year.style.left = 'auto';
+                            year.style.right = '0';
+                        });
+                        document.querySelectorAll('.timeline-content').forEach(content => {
+                            content.style.borderLeft = 'none';
+                            content.style.borderRight = '3px solid var(--dome-accent)';
+                        });
+                    }
+                } else {
+                    document.documentElement.setAttribute('dir', 'ltr');
+                    document.documentElement.setAttribute('lang', this.currentLang);
+                    // Reset text alignment for LTR
+                    document.querySelectorAll('.page-subtitle, .section-subtitle, .culture-content p, .philosophy-item p, .timeline-content p, .footer-about, .footer-links a, .footer-contact li, .skill-list li span, .stat-label').forEach(el => {
+                        el.style.textAlign = '';
+                    });
+                    // Reset timeline for LTR
+                    const timeline = document.querySelector('.timeline');
+                    if (timeline) {
+                        timeline.style.direction = 'ltr';
+                        document.querySelectorAll('.timeline-item').forEach(item => {
+                            item.style.paddingLeft = '100px';
+                            item.style.paddingRight = '0';
+                        });
+                        document.querySelectorAll('.timeline-year').forEach(year => {
+                            year.style.left = '0';
+                            year.style.right = 'auto';
+                        });
+                        document.querySelectorAll('.timeline-content').forEach(content => {
+                            content.style.borderLeft = '3px solid var(--dome-accent)';
+                            content.style.borderRight = 'none';
+                        });
+                    }
+                }
+            }
+
+            translatePage() {
+                // Update all elements with data-i18n attribute
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    if (translations[this.currentLang] && translations[this.currentLang][key]) {
+                        const text = translations[this.currentLang][key];
+
+                        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                            element.placeholder = text;
+                        } else if (element.hasAttribute('title')) {
+                            element.title = text;
+                        } else if (element.hasAttribute('alt')) {
+                            element.alt = text;
+                        } else {
+                            // Handle HTML in translations
+                            if (text.includes('<br>')) {
+                                element.innerHTML = text;
+                            } else {
+                                element.textContent = text;
+                            }
+                        }
+                    }
+                });
+
+                // Show language change indicator
+                this.showLanguageIndicator();
+            }
+
+            updateFlagSelector() {
+                const flagOptions = document.querySelectorAll('.rectangle-flag-option');
+                flagOptions.forEach(option => {
+                    const lang = option.getAttribute('data-lang');
+                    if (lang === this.currentLang) {
+                        option.classList.add('active');
+                    } else {
+                        option.classList.remove('active');
+                    }
+                });
+            }
+
+            showLanguageIndicator() {
+                const indicator = document.createElement('div');
+                indicator.className = 'language-indicator';
+                indicator.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: var(--dome-accent);
+                    color: var(--dome-white);
+                    padding: 8px 16px;
+                    border-radius: 20px;
+                    font-size: 0.9rem;
+                    z-index: 99999;
+                    animation: fadeIn 0.3s ease;
+                    box-shadow: 0 4px 15px rgba(204, 85, 0, 0.3);
+                `;
+
+                const languageNames = {
+                    'en': 'English',
+                    'it': 'Italiano',
+                    'fa': 'فارسی'
+                };
+
+                indicator.textContent = `Language: ${languageNames[this.currentLang]}`;
+                document.body.appendChild(indicator);
+
+                setTimeout(() => {
+                    indicator.style.animation = 'fadeOut 0.3s ease forwards';
+                    setTimeout(() => {
+                        document.body.removeChild(indicator);
+                    }, 300);
+                }, 2000);
+            }
+
+            setupEventListeners() {
+                // Rectangle flag selector
+                const flagOptions = document.querySelectorAll('.rectangle-flag-option');
+                flagOptions.forEach(option => {
+                    option.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const lang = option.getAttribute('data-lang');
+                        this.changeLanguage(lang);
+                    });
+                });
+            }
+
+            changeLanguage(lang) {
+                if (lang === this.currentLang) return;
+
+                this.saveLanguage(lang);
+                this.updateDirection();
+                this.translatePage();
+                this.updateFlagSelector();
+
+                // Trigger custom event for other components
+                window.dispatchEvent(new CustomEvent('languageChanged', {
+                    detail: { language: lang }
+                }));
+            }
+        }
+
+        // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize language manager
+            window.languageManager = new LanguageManager();
+
             // Mobile menu functionality
             const menuToggle = document.getElementById('menuToggle');
             const mobileMenu = document.getElementById('mobileMenu');
@@ -1395,6 +2019,16 @@
             }
 
             setActiveNav();
+
+            // Add CSS for fadeOut animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeOut {
+                    from { opacity: 1; }
+                    to { opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
         });
     </script>
 </body>

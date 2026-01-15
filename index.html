@@ -71,186 +71,89 @@
             transition: all 0.3s ease;
         }
 
-        /* ==================== LANGUAGE SELECTOR STYLES ==================== */
-        .language-selector {
-            position: relative;
-            margin-left: 20px;
+        /* ==================== MINIMALIST FLAG LANGUAGE SELECTOR ==================== */
+        .rectangle-flag-selector {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            z-index: 9999;
+            display: flex;
+            gap: 12px;
+            transition: all 0.3s ease;
         }
 
-        .current-language {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 15px;
-            background: var(--dome-white);
-            border: 1px solid var(--dome-border);
-            border-radius: 20px;
+        .rectangle-flag-option {
+            width: 40px;
+            height: 28px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
-            color: var(--dome-black);
-        }
-
-        .current-language:hover {
-            border-color: var(--dome-accent);
-            background: var(--dome-hover);
-        }
-
-        .language-flag {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
+            position: relative;
+            border-radius: 2px;
             overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
 
-        .language-flag img {
+        .rectangle-flag-option:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .rectangle-flag-option.active {
+            box-shadow: 0 0 0 2px var(--dome-accent);
+            transform: scale(1.1);
+        }
+
+        .rectangle-flag-option.active:hover {
+            transform: scale(1.15);
+        }
+
+        .rectangle-flag-option img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .language-dropdown {
+        .rectangle-flag-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dome-black);
+            color: var(--dome-white);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            margin-bottom: 8px;
+            pointer-events: none;
+        }
+
+        .rectangle-flag-tooltip::after {
+            content: '';
             position: absolute;
             top: 100%;
-            right: 0;
-            background: var(--dome-white);
-            border: 1px solid var(--dome-border);
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            min-width: 180px;
-            display: none;
-            z-index: 1001;
-            margin-top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--dome-black);
         }
 
-        .language-dropdown.active {
-            display: block;
-            animation: fadeInUp 0.3s ease;
+        .rectangle-flag-option:hover .rectangle-flag-tooltip {
+            opacity: 1;
+            visibility: visible;
         }
 
-        .language-option {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid var(--dome-border);
-        }
-
-        .language-option:last-child {
-            border-bottom: none;
-        }
-
-        .language-option:hover {
-            background: var(--dome-hover);
-        }
-
-        .language-option.active {
-            background: rgba(204, 85, 0, 0.1);
-            color: var(--dome-accent);
-        }
-
-        .language-name {
-            flex: 1;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .language-code {
-            font-size: 0.8rem;
-            color: var(--dome-gray);
-        }
-
-        /* Mobile language selector */
-        .mobile-language-selector {
-            margin-top: 40px;
-            display: none;
-        }
-
-        .mobile-language-options {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .mobile-language-option {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            color: var(--dome-white);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .mobile-language-option.active {
-            background: var(--dome-accent);
-            border-color: var(--dome-accent);
-        }
-
-        .mobile-language-option:hover {
-            background: var(--dome-accent);
-            transform: translateY(-2px);
-        }
-
-        /* Language indicator badge */
-        .language-indicator {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--dome-accent);
-            color: var(--dome-white);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            z-index: 9999;
-            display: none;
-            animation: fadeIn 0.3s ease;
-            box-shadow: 0 4px 15px rgba(204, 85, 0, 0.3);
-        }
-
-        /* RTL Support */
-        html[dir="rtl"] .language-selector {
-            margin-left: 0;
-            margin-right: 20px;
-        }
-
-        html[dir="rtl"] .language-dropdown {
-            right: auto;
-            left: 0;
-        }
-
-        html[dir="rtl"] .language-option {
-            direction: rtl;
-        }
-
-        html[dir="rtl"] .hero-description {
-            border-left: none;
-            border-right: 3px solid var(--dome-accent);
-            padding-left: 0;
-            padding-right: 20px;
-            text-align: right;
-        }
-
-        html[dir="rtl"] .section-title::after {
-            left: auto;
-            right: 50%;
-            transform: translateX(50%);
-        }
-
-        html[dir="rtl"] .footer-links a:hover {
-            padding-left: 0;
-            padding-right: 5px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Remove old language selector styles */
+        .language-selector,
+        .mobile-language-selector,
+        .floating-language-selector,
+        .floating-language-dropdown,
+        .simple-flag-selector,
+        .flag-option {
+            display: none !important;
         }
 
         /* ==================== DOME-STYLE NAVIGATION ==================== */
@@ -1334,17 +1237,6 @@
             to { opacity: 1; }
         }
 
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -1495,13 +1387,16 @@
                 gap: 50px;
             }
 
-            /* Mobile language selector */
-            .language-selector {
-                display: none;
+            /* Rectangle flag selector mobile adjustments */
+            .rectangle-flag-selector {
+                bottom: 20px;
+                left: 20px;
+                gap: 10px;
             }
 
-            .mobile-language-selector {
-                display: block;
+            .rectangle-flag-option {
+                width: 36px;
+                height: 25px;
             }
         }
 
@@ -1586,6 +1481,22 @@
             .spec-value {
                 font-size: 2rem;
             }
+
+            /* Rectangle flag selector mobile adjustments */
+            .rectangle-flag-selector {
+                bottom: 15px;
+                left: 15px;
+                gap: 8px;
+            }
+
+            .rectangle-flag-option {
+                width: 32px;
+                height: 22px;
+            }
+
+            .rectangle-flag-tooltip {
+                display: none;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1649,20 +1560,37 @@
                 font-size: 1.8rem;
             }
 
-            .mobile-language-options {
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
+            /* Rectangle flag selector mobile adjustments */
+            .rectangle-flag-selector {
+                bottom: 10px;
+                left: 10px;
+                gap: 6px;
             }
 
-            .mobile-language-option {
-                width: 200px;
-                justify-content: center;
+            .rectangle-flag-option {
+                width: 28px;
+                height: 20px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Minimalist Flag Language Selector - NO FRAME -->
+    <div class="rectangle-flag-selector" id="rectangleFlagSelector">
+        <div class="rectangle-flag-option active" data-lang="en">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTciIGhlaWdodD0iMzgiIHZpZXdCb3g9IjAgMCA1NyAzOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iMC41IiB5PSIwLjUiIHdpZHRoPSI1NiIgaGVpZ2h0PSIzNyIgZmlsbD0iIzAzMTk1MSIgc3Ryb2tlPSIjMDMxOTUxIi8+CjxwYXRoIGQ9Ik0wIDBINTdWMTJIMFYwWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNMCAyNkg1N1YzOEgwVjI2WiIgZmlsbD0iIzAzMTk1MSIvPgo8cmVjdCB4PSIxNSIgeT0iMCIgd2lkdGg9IjI3IiBoZWlnaHQ9IjM4IiBmaWxsPSIjQzAwMzA0Ii8+CjxwYXRoIGQ9Ik0yOC41IDlMMzMuOTMxIDE4TDUyLjUgMjAuMjQzTDQxLjUgMzAuOTg1TDQ0LjkxMSA0NS41TDI4LjUgMzUuODU3TDEyLjA4OSA0NS41TDE1LjUgMzAuOTg1TDQuNSAyMC4yNDNMMjMuMDY5IDE4TDI4LjUgOVoiIGZpbGw9IiNmZmYiLz4KPC9zdmc+" alt="English">
+            <div class="rectangle-flag-tooltip">English</div>
+        </div>
+        <div class="rectangle-flag-option" data-lang="it">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTciIGhlaWdodD0iMzgiIHZpZXdCb3g9IjAgMCA1NyAzOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iMC41IiB5PSIwLjUiIHdpZHRoPSI1NiIgaGVpZ2h0PSIzNyIgZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjRkZGIi8+CjxwYXRoIGQ9Ik0wIDBIMTlWMzhIMFYwWiIgZmlsbD0iIzAwOTI0NiIvPgo8cGF0aCBkPSJNMTkgMEgzOFYzOEgxOVYwWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNMzggMEg1N1YzOEgzOFYwWiIgZmlsbD0iI0NFMkIyRiIvPgo8L3N2Zz4=" alt="Italian">
+            <div class="rectangle-flag-tooltip">Italiano</div>
+        </div>
+        <div class="rectangle-flag-option" data-lang="fa">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTciIGhlaWdodD0iMzgiIHZpZXdCb3g9IjAgMCA1NyAzOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iMC41IiB5PSIwLjUiIHdpZHRoPSI1NiIgaGVpZ2h0PSIzNyIgZmlsbD0iIzM2YTcwMCIgc3Ryb2tlPSIjMzZhNzAwIi8+CjxwYXRoIGQ9Ik0wIDBINTdWMTJIMFYwWiIgZmlsbD0iI2VhMmMyYyIvPgo8cGF0aCBkPSJNMCAyNkg1N1YzOEgwVjI2WiIgZmlsbD0iIzM2YTcwMCIvPgo8L3N2Zz4=" alt="Persian">
+            <div class="rectangle-flag-tooltip">فارسی</div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="container">
@@ -1671,50 +1599,14 @@
                 <div class="logo-name">Najibeh Movahedi</div>
             </a>
 
-            <!-- Desktop Navigation with Language Selector -->
-            <div style="display: flex; align-items: center; gap: 40px;">
-                <ul class="nav-links" id="desktopNav">
-                    <li><a href="index.html" class="active" data-i18n="nav.home">Home</a></li>
-                    <li><a href="about.html" data-i18n="nav.about">About</a></li>
-                    <li><a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a></li>
-                    <li><a href="blog.html" data-i18n="nav.blog">Academic Blog</a></li>
-                    <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
-                </ul>
-
-                <!-- Language Selector -->
-                <div class="language-selector">
-                    <div class="current-language" id="currentLanguage">
-                        <div class="language-flag">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAyMCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEgyMFYxNEgwVjBaIiBmaWxsPSIjMDMxOTUxIi8+CjxwYXRoIGQ9Ik0wIDBIMjBWNkgwVjBaIiBmaWxsPSIjZmZmIi8+CjxwYXRoIGQ9Ik0wIDhIMjBWMTRIMFY4WiIgZmlsbD0iIzAzMTk1MSIvPgo8cmVjdCB4PSI0IiB5PSIwIiB3aWR0aD0iMTIiIGhlaWdodD0iMTQiIGZpbGw9IiNDMDAzMDQiLz4KPHBhdGggZD0iTTEwIDNMMTEuOTExIDcuNSAxNyA4LjI0MyAxMy41IDEwLjk4NSAxNC45MTEgMTUuNSAxMCAxMi44NTcgNS4wODkgMTUuNSA2LjUgMTAuOTg1IDMgOC4yNDMgOC4wODkgNy41IDEwIDNaIiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPgo=" alt="English">
-                        </div>
-                        <span class="language-name" id="currentLanguageName">EN</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="language-dropdown" id="languageDropdown">
-                        <div class="language-option active" data-lang="en">
-                            <div class="language-flag">
-                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAyMCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEgyMFYxNEgwVjBaIiBmaWxsPSIjMDMxOTUxIi8+CjxwYXRoIGQ9Ik0wIDBIMjBWNkgwVjBaIiBmaWxsPSIjZmZmIi8+CjxwYXRoIGQ9Ik0wIDhIMjBWMTRIMFY4WiIgZmlsbD0iIzAzMTk1MSIvPgo8cmVjdCB4PSI0IiB5PSIwIiB3aWR0aD0iMTIiIGhlaWdodD0iMTQiIGZpbGw9IiNDMDAzMDQiLz4KPHBhdGggZD0iTTEwIDNMMTEuOTExIDcuNSAxNyA4LjI0MyAxMy41IDEwLjk4NSAxNC45MTEgMTUuNSAxMCAxMi44NTcgNS4wODkgMTUuNSA2LjUgMTAuOTg1IDMgOC4yNDMgOC4wODkgNy41IDEwIDNaIiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPgo=" alt="English">
-                            </div>
-                            <span class="language-name">English</span>
-                            <span class="language-code">EN</span>
-                        </div>
-                        <div class="language-option" data-lang="it">
-                            <div class="language-flag">
-                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAyMCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEg2LjY2NlYxNEgwVjBaIiBmaWxsPSIjMDA5MjQ2Ii8+CjxwYXRoIGQ9Ik02LjY2NiAwSDEzLjMzM1YxNEg2LjY2NlYwWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNMTMuMzMzIDBIMjBWMTRIMTMuMzMzVjBaIiBmaWxsPSIjQ0UyQjJGIi8+Cjwvc3ZnPgo=" alt="Italian">
-                            </div>
-                            <span class="language-name">Italiano</span>
-                            <span class="language-code">IT</span>
-                        </div>
-                        <div class="language-option" data-lang="fa">
-                            <div class="language-flag">
-                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAyMCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEgyMFYxNEgwVjBaIiBmaWxsPSIjMzZhNzAwIi8+CjxwYXRoIGQ9Ik0wIDBIMjBWNkgwVjBaIiBmaWxsPSIjZWEyYzJjIi8+CjxwYXRoIGQ9Ik0wIDhIMjBWMTRIMFY4WiIgZmlsbD0iIzM2YTcwMCIvPgo8L3N2Zz4K" alt="Persian">
-                            </div>
-                            <span class="language-name">فارسی</span>
-                            <span class="language-code">FA</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Desktop Navigation without Language Selector -->
+            <ul class="nav-links" id="desktopNav">
+                <li><a href="index.html" class="active" data-i18n="nav.home">Home</a></li>
+                <li><a href="about.html" data-i18n="nav.about">About</a></li>
+                <li><a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a></li>
+                <li><a href="blog.html" data-i18n="nav.blog">Academic Blog</a></li>
+                <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+            </ul>
 
             <!-- Mobile Menu Toggle -->
             <button class="menu-toggle" id="menuToggle">
@@ -1724,7 +1616,7 @@
             </button>
         </div>
 
-        <!-- Mobile Navigation Menu with Language Selector -->
+        <!-- Mobile Navigation Menu -->
         <div class="mobile-menu" id="mobileMenu">
             <ul class="mobile-nav-links">
                 <li><a href="index.html" class="active" data-i18n="nav.home">Home</a></li>
@@ -1733,37 +1625,8 @@
                 <li><a href="blog.html" data-i18n="nav.blog">Academic Blog</a></li>
                 <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
             </ul>
-
-            <!-- Mobile Language Selector -->
-            <div class="mobile-language-selector">
-                <div class="mobile-language-options">
-                    <div class="mobile-language-option active" data-lang="en">
-                        <div class="language-flag">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAyMCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEgyMFYxNEgwVjBaIiBmaWxsPSIjMDMxOTUxIi8+CjxwYXRoIGQ9Ik0wIDBIMjBWNkgwVjBaIiBmaWxsPSIjZmZmIi8+CjxwYXRoIGQ9Ik0wIDhIMjBWMTRIMFY4WiIgZmlsbD0iIzAzMTk1MSIvPgo8cmVjdCB4PSI0IiB5PSIwIiB3aWR0aD0iMTIiIGhlaWdodD0iMTQiIGZpbGw9IiNDMDAzMDQiLz4KPHBhdGggZD0iTTEwIDNMMTEuOTExIDcuNSAxNyA4LjI0MyAxMy41IDEwLjk4NSAxNC45MTEgMTUuNSAxMCAxMi44NTcgNS4wODkgMTUuNSA2LjUgMTAuOTg1IDMgOC4yNDMgOC4wODkgNy41IDEwIDNaIiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPgo=" alt="English">
-                        </div>
-                        <span>English</span>
-                    </div>
-                    <div class="mobile-language-option" data-lang="it">
-                        <div class="language-flag">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAyMCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEg2LjY2NlYxNEgwVjBaIiBmaWxsPSIjMDA5MjQ2Ii8+CjxwYXRoIGQ9Ik02LjY2NiAwSDEzLjMzM1YxNEg2LjY2NlYwWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNMTMuMzMzIDBIMjBWMTRIMTMuMzMzVjBaIiBmaWxsPSIjQ0UyQjJGIi8+Cjwvc3ZnPgo=" alt="Italian">
-                        </div>
-                        <span>Italiano</span>
-                    </div>
-                    <div class="mobile-language-option" data-lang="fa">
-                        <div class="language-flag">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAyMCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEgyMFYxNEgwVjBaIiBmaWxsPSIjMzZhNzAwIi8+CjxwYXRoIGQ9Ik0wIDBIMjBWNkgwVjBaIiBmaWxsPSIjZWEyYzJjIi8+CjxwYXRoIGQ9Ik0wIDhIMjBWMTRIMFY4WiIgZmlsbD0iIzM2YTcwMCIvPgo8L3N2Zz4K" alt="Persian">
-                        </div>
-                        <span>فارسی</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </nav>
-
-    <!-- Language Change Indicator -->
-    <div class="language-indicator" id="languageIndicator">
-        Language changed to <span id="indicatorLanguage">English</span>
-    </div>
 
     <!-- Hero Section with Video -->
     <section class="hero">
@@ -2619,6 +2482,7 @@
                 this.updateDirection();
                 this.translatePage();
                 this.setupEventListeners();
+                this.updateFlagSelector();
             }
 
             updateDirection() {
@@ -2692,9 +2556,6 @@
                     }
                 });
 
-                // Update language selector UI
-                this.updateLanguageSelector();
-
                 // Show language change indicator
                 this.showLanguageIndicator();
 
@@ -2704,17 +2565,9 @@
                 }
             }
 
-            updateLanguageSelector() {
-                // Desktop selector
-                const currentLanguageElement = document.getElementById('currentLanguageName');
-                const languageOptions = document.querySelectorAll('.language-option, .mobile-language-option');
-
-                if (currentLanguageElement) {
-                    currentLanguageElement.textContent = this.currentLang.toUpperCase();
-                }
-
-                // Update active state
-                languageOptions.forEach(option => {
+            updateFlagSelector() {
+                const flagOptions = document.querySelectorAll('.rectangle-flag-option');
+                flagOptions.forEach(option => {
                     const lang = option.getAttribute('data-lang');
                     if (lang === this.currentLang) {
                         option.classList.add('active');
@@ -2725,57 +2578,43 @@
             }
 
             showLanguageIndicator() {
-                const indicator = document.getElementById('languageIndicator');
-                const indicatorLanguage = document.getElementById('indicatorLanguage');
+                const indicator = document.createElement('div');
+                indicator.className = 'language-indicator';
+                indicator.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: var(--dome-accent);
+                    color: var(--dome-white);
+                    padding: 8px 16px;
+                    border-radius: 20px;
+                    font-size: 0.9rem;
+                    z-index: 99999;
+                    animation: fadeIn 0.3s ease;
+                    box-shadow: 0 4px 15px rgba(204, 85, 0, 0.3);
+                `;
 
-                if (indicator && indicatorLanguage) {
-                    const languageNames = {
-                        'en': 'English',
-                        'it': 'Italiano',
-                        'fa': 'فارسی'
-                    };
+                const languageNames = {
+                    'en': 'English',
+                    'it': 'Italiano',
+                    'fa': 'فارسی'
+                };
 
-                    indicatorLanguage.textContent = languageNames[this.currentLang];
-                    indicator.style.display = 'block';
+                indicator.textContent = `Language: ${languageNames[this.currentLang]}`;
+                document.body.appendChild(indicator);
 
+                setTimeout(() => {
+                    indicator.style.animation = 'fadeOut 0.3s ease forwards';
                     setTimeout(() => {
-                        indicator.style.display = 'none';
-                    }, 2000);
-                }
+                        document.body.removeChild(indicator);
+                    }, 300);
+                }, 2000);
             }
 
             setupEventListeners() {
-                // Desktop language selector
-                const currentLanguageBtn = document.getElementById('currentLanguage');
-                const languageDropdown = document.getElementById('languageDropdown');
-
-                if (currentLanguageBtn && languageDropdown) {
-                    currentLanguageBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        languageDropdown.classList.toggle('active');
-                    });
-
-                    // Close dropdown when clicking outside
-                    document.addEventListener('click', (e) => {
-                        if (!currentLanguageBtn.contains(e.target) &&
-                            !languageDropdown.contains(e.target)) {
-                            languageDropdown.classList.remove('active');
-                        }
-                    });
-
-                    // Language option clicks
-                    languageDropdown.querySelectorAll('.language-option').forEach(option => {
-                        option.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            const lang = option.getAttribute('data-lang');
-                            this.changeLanguage(lang);
-                            languageDropdown.classList.remove('active');
-                        });
-                    });
-                }
-
-                // Mobile language selector
-                document.querySelectorAll('.mobile-language-option').forEach(option => {
+                // Rectangle flag selector
+                const flagOptions = document.querySelectorAll('.rectangle-flag-option');
+                flagOptions.forEach(option => {
                     option.addEventListener('click', (e) => {
                         e.preventDefault();
                         const lang = option.getAttribute('data-lang');
@@ -2790,6 +2629,7 @@
                 this.saveLanguage(lang);
                 this.updateDirection();
                 this.translatePage();
+                this.updateFlagSelector();
 
                 // Trigger custom event for other components
                 window.dispatchEvent(new CustomEvent('languageChanged', {
@@ -2803,7 +2643,6 @@
             // Initialize language manager
             window.languageManager = new LanguageManager();
 
-            // Your existing JavaScript code continues here...
             // Mobile menu functionality
             const menuToggle = document.getElementById('menuToggle');
             const mobileMenu = document.getElementById('mobileMenu');
@@ -3047,7 +2886,7 @@
                 });
             });
 
-            // GALLERY SYSTEM FOR ALL PROJECTS
+            // GALLERY SYSTEM FOR ALL PROJECTS - FIXED VERSION
             const galleries = {
                 farm: {
                     wrapper: 'farmGalleryWrapper',
@@ -3187,7 +3026,7 @@
                 }
             };
 
-            // Initialize all galleries
+            // Initialize all galleries - FIXED VERSION
             function initAllGalleries() {
                 Object.keys(galleries).forEach(galleryId => {
                     const gallery = galleries[galleryId];
@@ -3208,6 +3047,13 @@
                         img.src = image.src;
                         img.alt = image.title;
                         img.loading = 'lazy';
+
+                        // Handle image loading errors
+                        img.onerror = function() {
+                            console.warn('Failed to load image:', image.src);
+                            // You can set a placeholder image here if needed
+                            // this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjMUEwMDAwIi8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjQ0M1NTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPkltYWdlIG5vdCBmb3VuZDwvdGV4dD4KPC9zdmc+';
+                        };
 
                         const overlay = document.createElement('div');
                         overlay.className = 'image-overlay';
@@ -3236,6 +3082,9 @@
                         thumbImg.src = image.src;
                         thumbImg.alt = image.title;
                         thumbImg.loading = 'lazy';
+                        thumbImg.onerror = function() {
+                            console.warn('Failed to load thumbnail:', image.src);
+                        };
 
                         thumbnail.appendChild(thumbImg);
                         if (thumbnailContainer) thumbnailContainer.appendChild(thumbnail);
@@ -3313,96 +3162,6 @@
                 }
             }
 
-            // Keyboard navigation for active gallery
-            document.addEventListener('keydown', function(e) {
-                // Find which gallery is currently in view
-                const gallerySections = document.querySelectorAll('.main-gallery');
-                let activeGalleryId = null;
-
-                gallerySections.forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
-                        // This gallery is in the middle of the viewport
-                        const galleryId = section.closest('.project-gallery-section')?.id.replace('-gallery', '');
-                        if (galleryId && galleries[galleryId]) {
-                            activeGalleryId = galleryId;
-                        }
-                    }
-                });
-
-                if (activeGalleryId) {
-                    if (e.key === 'ArrowLeft') {
-                        prevSlide(activeGalleryId);
-                    } else if (e.key === 'ArrowRight') {
-                        nextSlide(activeGalleryId);
-                    }
-                }
-            });
-
-            // Touch/swipe support for mobile
-            const gallerySections = document.querySelectorAll('.main-gallery');
-            gallerySections.forEach(section => {
-                let touchStartX = 0;
-                let touchEndX = 0;
-
-                section.addEventListener('touchstart', function(e) {
-                    touchStartX = e.changedTouches[0].screenX;
-                });
-
-                section.addEventListener('touchend', function(e) {
-                    touchEndX = e.changedTouches[0].screenX;
-                    handleGallerySwipe(section, touchStartX, touchEndX);
-                });
-            });
-
-            function handleGallerySwipe(section, startX, endX) {
-                const swipeThreshold = 50;
-                const galleryId = section.closest('.project-gallery-section')?.id.replace('-gallery', '');
-
-                if (!galleryId || !galleries[galleryId]) return;
-
-                if (startX - endX > swipeThreshold) {
-                    // Swipe left - next slide
-                    nextSlide(galleryId);
-                } else if (endX - startX > swipeThreshold) {
-                    // Swipe right - previous slide
-                    prevSlide(galleryId);
-                }
-            }
-
-            // Auto-advance for each gallery
-            const autoAdvanceIntervals = {};
-
-            function setupAutoAdvance(galleryId) {
-                if (autoAdvanceIntervals[galleryId]) {
-                    clearInterval(autoAdvanceIntervals[galleryId]);
-                }
-
-                autoAdvanceIntervals[galleryId] = setInterval(() => {
-                    nextSlide(galleryId);
-                }, 5000);
-            }
-
-            // Initialize auto-advance for all galleries
-            Object.keys(galleries).forEach(galleryId => {
-                setupAutoAdvance(galleryId);
-
-                // Pause auto-advance on hover
-                const galleryElement = document.getElementById(galleryId + '-gallery');
-                if (galleryElement) {
-                    const mainGallery = galleryElement.querySelector('.main-gallery');
-                    if (mainGallery) {
-                        mainGallery.addEventListener('mouseenter', () => {
-                            clearInterval(autoAdvanceIntervals[galleryId]);
-                        });
-
-                        mainGallery.addEventListener('mouseleave', () => {
-                            setupAutoAdvance(galleryId);
-                        });
-                    }
-                }
-            });
-
             // Initialize all galleries
             initAllGalleries();
 
@@ -3459,11 +3218,13 @@
 
             setActiveNav();
 
-            // Listen for language changes to update gallery arrows
+            // Listen for language changes to update gallery arrows and reinitialize galleries
             window.addEventListener('languageChanged', function(e) {
                 setTimeout(() => {
                     if (window.languageManager) {
                         window.languageManager.updateGalleryArrows();
+                        // Reinitialize galleries to update translated titles
+                        initAllGalleries();
                     }
                 }, 100);
             });
