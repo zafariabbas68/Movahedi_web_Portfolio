@@ -71,7 +71,7 @@
             transition: all 0.3s ease;
         }
 
-        /* ==================== MINIMALIST FLAG LANGUAGE SELECTOR ==================== */
+        /* ==================== EMOJI-STYLE FLAG LANGUAGE SELECTOR ==================== */
         .rectangle-flag-selector {
             position: fixed;
             bottom: 25px;
@@ -83,14 +83,24 @@
         }
 
         .rectangle-flag-option {
-            width: 40px;
-            height: 28px;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
-            border-radius: 2px;
-            overflow: hidden;
+            border-radius: 4px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* English flag - slightly larger */
+        .rectangle-flag-option[data-lang="en"] {
+            width: 44px;
+            height: 31px;
+        }
+
+        /* Italian and Persian flags - normal size */
+        .rectangle-flag-option[data-lang="it"],
+        .rectangle-flag-option[data-lang="fa"] {
+            width: 40px;
+            height: 28px;
         }
 
         .rectangle-flag-option:hover {
@@ -105,12 +115,6 @@
 
         .rectangle-flag-option.active:hover {
             transform: scale(1.15);
-        }
-
-        .rectangle-flag-option img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
 
         .rectangle-flag-tooltip {
@@ -144,6 +148,172 @@
         .rectangle-flag-option:hover .rectangle-flag-tooltip {
             opacity: 1;
             visibility: visible;
+        }
+
+        /* ==================== EMOJI-STYLE FLAG DESIGNS ==================== */
+        .flag-emoji {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* UK Flag (English) */
+        .flag-emoji-uk {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: #012169;
+        }
+
+        .flag-emoji-uk .blue {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #012169;
+        }
+
+        .flag-emoji-uk .white {
+            position: absolute;
+            background: white;
+        }
+
+        .flag-emoji-uk .white:nth-child(2) {
+            width: 100%;
+            height: 20%;
+            top: 40%;
+        }
+
+        .flag-emoji-uk .white:nth-child(3) {
+            width: 20%;
+            height: 100%;
+            left: 40%;
+        }
+
+        .flag-emoji-uk .flag-emoji-cross-red {
+            position: absolute;
+            background: #C8102E;
+            z-index: 1;
+        }
+
+        .flag-emoji-uk .flag-emoji-cross-red:nth-child(4) {
+            width: 100%;
+            height: 10%;
+            top: 45%;
+        }
+
+        .flag-emoji-uk .flag-emoji-cross-red:nth-child(5) {
+            width: 10%;
+            height: 100%;
+            left: 45%;
+        }
+
+        .flag-emoji-uk .flag-emoji-cross-red.diagonal {
+            transform: rotate(45deg);
+            width: 14%;
+            height: 120%;
+            top: -10%;
+            left: 43%;
+        }
+
+        /* Italy Flag */
+        .flag-emoji-it {
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+
+        .flag-emoji-it .flag-emoji-stripe {
+            flex: 1;
+            height: 100%;
+        }
+
+        .flag-emoji-it .flag-emoji-stripe.green {
+            background: #009246;
+        }
+
+        .flag-emoji-it .flag-emoji-stripe.white {
+            background: white;
+        }
+
+        .flag-emoji-it .flag-emoji-stripe.red {
+            background: #CE2B37;
+        }
+
+        /* Afghanistan Flag (Persian) - Black, Red, Green with emblem */
+        .flag-emoji-af {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .flag-emoji-af .flag-emoji-stripe {
+            width: 100%;
+            height: 33.33%;
+            position: absolute;
+        }
+
+        .flag-emoji-af .flag-emoji-stripe.black {
+            background: #000000;
+            top: 0;
+        }
+
+        .flag-emoji-af .flag-emoji-stripe.red {
+            background: #D32011;
+            top: 33.33%;
+        }
+
+        .flag-emoji-af .flag-emoji-stripe.green {
+            background: #007A36;
+            top: 66.66%;
+        }
+
+        /* Afghanistan emblem (simplified for emoji size) */
+        .flag-emoji-af-symbol {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40%;
+            height: 50%;
+            z-index: 2;
+        }
+
+        .af-symbol-main {
+            width: 100%;
+            height: 70%;
+            background: white;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            position: absolute;
+            top: 15%;
+        }
+
+        .af-symbol-dot {
+            width: 20%;
+            height: 20%;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 40%;
+            left: 40%;
+        }
+
+        /* Color definitions */
+        .blue { background: #012169; }
+        .white { background: white; }
+        .red { background: #C8102E; }
+        .green { background: #009246; }
+        .black { background: #000000; }
+        .dark-red { background: #D32011; }
+        .dark-green { background: #007A36; }
+
+        /* Remove old flag images */
+        .rectangle-flag-option img {
+            display: none;
         }
 
         /* Remove old language selector styles */
@@ -1394,9 +1564,20 @@
                 gap: 10px;
             }
 
-            .rectangle-flag-option {
+            .rectangle-flag-option[data-lang="en"] {
+                width: 40px;
+                height: 28px;
+            }
+
+            .rectangle-flag-option[data-lang="it"],
+            .rectangle-flag-option[data-lang="fa"] {
                 width: 36px;
                 height: 25px;
+            }
+
+            .flag-emoji-af-symbol {
+                width: 35%;
+                height: 45%;
             }
         }
 
@@ -1489,13 +1670,24 @@
                 gap: 8px;
             }
 
-            .rectangle-flag-option {
+            .rectangle-flag-option[data-lang="en"] {
+                width: 36px;
+                height: 25px;
+            }
+
+            .rectangle-flag-option[data-lang="it"],
+            .rectangle-flag-option[data-lang="fa"] {
                 width: 32px;
                 height: 22px;
             }
 
             .rectangle-flag-tooltip {
                 display: none;
+            }
+
+            .flag-emoji-af-symbol {
+                width: 35%;
+                height: 45%;
             }
         }
 
@@ -1567,26 +1759,66 @@
                 gap: 6px;
             }
 
-            .rectangle-flag-option {
+            .rectangle-flag-option[data-lang="en"] {
+                width: 32px;
+                height: 22px;
+            }
+
+            .rectangle-flag-option[data-lang="it"],
+            .rectangle-flag-option[data-lang="fa"] {
                 width: 28px;
                 height: 20px;
+            }
+
+            .flag-emoji-af-symbol {
+                width: 30%;
+                height: 40%;
+            }
+
+            .af-symbol-main {
+                height: 60%;
+                top: 20%;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Minimalist Flag Language Selector - NO FRAME -->
+    <!-- Emoji-Style Flag Language Selector -->
     <div class="rectangle-flag-selector" id="rectangleFlagSelector">
         <div class="rectangle-flag-option active" data-lang="en">
-            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTciIGhlaWdodD0iMzgiIHZpZXdCb3g9IjAgMCA1NyAzOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iMC41IiB5PSIwLjUiIHdpZHRoPSI1NiIgaGVpZ2h0PSIzNyIgZmlsbD0iIzAzMTk1MSIgc3Ryb2tlPSIjMDMxOTUxIi8+CjxwYXRoIGQ9Ik0wIDBINTdWMTJIMFYwWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNMCAyNkg1N1YzOEgwVjI2WiIgZmlsbD0iIzAzMTk1MSIvPgo8cmVjdCB4PSIxNSIgeT0iMCIgd2lkdGg9IjI3IiBoZWlnaHQ9IjM4IiBmaWxsPSIjQzAwMzA0Ii8+CjxwYXRoIGQ9Ik0yOC41IDlMMzMuOTMxIDE4TDUyLjUgMjAuMjQzTDQxLjUgMzAuOTg1TDQ0LjkxMSA0NS41TDI4LjUgMzUuODU3TDEyLjA4OSA0NS41TDE1LjUgMzAuOTg1TDQuNSAyMC4yNDNMMjMuMDY5IDE4TDI4LjUgOVoiIGZpbGw9IiNmZmYiLz4KPC9zdmc+" alt="English">
+            <div class="flag-emoji">
+                <div class="flag-emoji-uk">
+                    <div class="flag-emoji-base blue"></div>
+                    <div class="flag-emoji-stripe white"></div>
+                    <div class="flag-emoji-stripe white"></div>
+                    <div class="flag-emoji-cross-red"></div>
+                    <div class="flag-emoji-cross-red diagonal"></div>
+                </div>
+            </div>
             <div class="rectangle-flag-tooltip">English</div>
         </div>
         <div class="rectangle-flag-option" data-lang="it">
-            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTciIGhlaWdodD0iMzgiIHZpZXdCb3g9IjAgMCA1NyAzOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iMC41IiB5PSIwLjUiIHdpZHRoPSI1NiIgaGVpZ2h0PSIzNyIgZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjRkZGIi8+CjxwYXRoIGQ9Ik0wIDBIMTlWMzhIMFYwWiIgZmlsbD0iIzAwOTI0NiIvPgo8cGF0aCBkPSJNMTkgMEgzOFYzOEgxOVYwWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNMzggMEg1N1YzOEgzOFYwWiIgZmlsbD0iI0NFMkIyRiIvPgo8L3N2Zz4=" alt="Italian">
+            <div class="flag-emoji">
+                <div class="flag-emoji-it">
+                    <div class="flag-emoji-stripe green"></div>
+                    <div class="flag-emoji-stripe white"></div>
+                    <div class="flag-emoji-stripe red"></div>
+                </div>
+            </div>
             <div class="rectangle-flag-tooltip">Italiano</div>
         </div>
         <div class="rectangle-flag-option" data-lang="fa">
-            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTciIGhlaWdodD0iMzgiIHZpZXdCb3g9IjAgMCA1NyAzOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iMC41IiB5PSIwLjUiIHdpZHRoPSI1NiIgaGVpZ2h0PSIzNyIgZmlsbD0iIzM2YTcwMCIgc3Ryb2tlPSIjMzZhNzAwIi8+CjxwYXRoIGQ9Ik0wIDBINTdWMTJIMFYwWiIgZmlsbD0iI2VhMmMyYyIvPgo8cGF0aCBkPSJNMCAyNkg1N1YzOEgwVjI2WiIgZmlsbD0iIzM2YTcwMCIvPgo8L3N2Zz4=" alt="Persian">
+            <div class="flag-emoji">
+                <div class="flag-emoji-af">
+                    <div class="flag-emoji-stripe black"></div>
+                    <div class="flag-emoji-stripe red"></div>
+                    <div class="flag-emoji-stripe green"></div>
+                    <div class="flag-emoji-af-symbol">
+                        <div class="af-symbol-main"></div>
+                        <div class="af-symbol-dot"></div>
+                    </div>
+                </div>
+            </div>
             <div class="rectangle-flag-tooltip">فارسی</div>
         </div>
     </div>
@@ -2367,7 +2599,7 @@
                 "philosophy.title": "فلسفه طراحی",
                 "philosophy.para1": "معماری داخلی فراتر از تزئینات صرف است—هنر شکل‌دهی به تجربه انسانی از طریق فضا است. رویکرد ما تحقیقات آکادمیک دقیق پلی‌تکنیک میلان را با کاربرد عملی ادغام می‌کند و بر چگونگی تأثیر طراحی فضایی بر ادراک، احساس و رفتار تمرکز دارد.",
                 "philosophy.para2": "ما به طراحی مبتنی بر شواهد اعتقاد داریم که در آن هر تصمیم—از انتخاب مواد تا استراتژی نورپردازی—از اصول روانشناسی فضایی، تئوری رنگ و عمل پایدار الهام می‌گیرد. این روش‌شناسی محیط‌هایی را تضمین می‌کند که نه تنها از نظر زیبایی‌شناختی متقاعدکننده هستند بلکه رفاه و عملکرد را نیز افزایش می‌دهند.",
-                "philosophy.para3": "تخصص در فضاهای انتقالی و استفاده مجدد انطباقی، ما مناطق کم‌استفاده را به محیط‌های معناداری تبدیل می‌کنیم که به جوامع خدمت می‌کنند و در عین حال تعادل اکولوژیکی و زمینه فرهنگی را رعایت می‌کنند.",
+                "philosophy.para3": "تخصص در فضاهای انتقالی و استفاده مجدد انطباقی، ما مناطق کم‌استفاده را به محیط‌های معناداری تبدیل می‌کنند که به جوامع خدمت می‌کنند و در عین حال تعادل اکولوژیکی و زمینه فرهنگی را رعایت می‌کنند.",
                 "philosophy.badge": "رندر حرفه‌ای 3DMax",
 
                 // Projects Section
@@ -3052,7 +3284,7 @@
                         img.onerror = function() {
                             console.warn('Failed to load image:', image.src);
                             // You can set a placeholder image here if needed
-                            // this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjMUEwMDAwIi8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjQ0M1NTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPkltYWdlIG5vdCBmb3VuZDwvdGV4dD4KPC9zdmc+';
+                            // this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0Cb3g9IjAgMCAzMDAgMjAwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzFBMDAwMCIvPgo8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI0NDNTUwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2Ij5JbWFnZSBub3QgZm91bmQ8L3RleHQ+Cjwvc3ZnPg==';
                         };
 
                         const overlay = document.createElement('div');
